@@ -1,0 +1,71 @@
+.home {
+    position: relative;
+    height: calc(100vh - 102px);
+    padding-bottom: 50px;
+}
+
+.home-footer {
+    position: absolute;
+    bottom: 17px;
+    width: 100%;
+    text-align: center;
+}
+
+.server-indicator {
+    padding: 12px 10px;
+    border: 1px solid rgb(72, 72, 72);
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+.server-indicator-value:not(.connected), .server-indicator-value:not(.connected) * {
+    color: #f3d700;
+}
+
+.server-indicator-value.connected, .server-indicator-value.connected * {
+    color: #0070f3 !important;
+}
+
+.server-indicator-value:not(.connected) .indicator-dot {
+    background-color: #f3d700;
+}
+
+.server-indicator-value.connected .indicator-dot {
+    background-color: #0070f3;
+}
+
+.indicator-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: 10px;
+}
+
+.home-container {
+    position: relative;
+    height: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-container h1 {
+    font-size: 100px;
+}
+
+.home-container input {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px 20px;
+    border: 1px solid #363636;
+    border-radius: 7px;
+    background-color: #363636;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
