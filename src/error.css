@@ -1,0 +1,17 @@
+.errorCode {
+    color: white;
+    font-size: 100px;
+}
+
+.errorText {
+    color: #eee;
+    font-size: 20px;
+}
+
+.error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
