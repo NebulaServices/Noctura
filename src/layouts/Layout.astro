@@ -25,17 +25,20 @@ try {
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
 		<link rel="preconnect" href={cookie ? 'https://' + cookie : ''} crossorigin>
+		<link rel="preconnect" crossorigin href="https://classroom.google.com" />
 		{
 			[
 				'tomp.app',
 				'us-east.noctura.tech',
-				'us-west.noctura.tech'
+				'us-west.noctura.tech',
+				'eu-central.noctura.tech'
 			].map(e=>{
 				return <link rel="prefetch" as="fetch" href={'https://' + e} />;
 			})
 		}
 		<meta name="generator" content={Astro.generator} />
-		<script defer src="/bareServer.js" type="module"></script>
+		<script defer src="/js/bareServer.js" type="module"></script>
+		<script defer src="/js/clock.js"></script>
 		<title>{title}</title>
 	</head>
 	<body>

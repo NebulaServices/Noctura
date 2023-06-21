@@ -7,8 +7,10 @@ export default function Index(props) {
             <div className="top-banner"></div>
 
             <div className="home-container">
-                {/*<h1>Noctura</h1>
-                <input placeholder="Enter URL or Search Query"/>*/}
+                <h1>Noctura</h1>
+                <input className="home-input" placeholder="Enter URL or Search Query"/>
+
+                <div className="home-results"></div>
             </div>
 
             <div className="home-footer">
@@ -17,6 +19,7 @@ export default function Index(props) {
                     <span className={"server-indicator-value"}><span className="indicator-dot"></span>Connecting...<span className="server-name"></span></span>
                 </span>
             </div>
+            <script src="/js/omnibox.js"></script>
         </div>
     )
 }

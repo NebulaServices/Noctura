@@ -19,14 +19,16 @@ if (!paths.find(path=>path.params.route === Astro.params.route)) {
   return Astro.redirect("/404");
 }
 
-/*export function getStaticPaths() {
+/*export const prerender = true;
+
+export function getStaticPaths() {
   return [{ params: { route: undefined } }, { params: { route: "ai" } }, { params: { route: "games" } }, { params: { route: "media" } }, { params: { route: "console" } }, { params: { route: "settings" } }];
 }*/
 ---
 
 <Layout title="Noctura">
 	<main class="">
-		<Header data={url} client:load key="header"></Header>
+		<Header data={url} cookie={Astro.request.headers.get('cookie') || ''} client:load key="header"></Header>
     { url.pathname === "/" && <Index /> }
     { url.pathname === "/ai" && <AI /> }
     { url.pathname === "/games" && <Games /> }

@@ -17,6 +17,7 @@
     color: white;
     padding: 5px 14px 10px 14px;
     text-align: center;
+    z-index: 0;
     width: 100%;
     position: relative;
 }
@@ -24,8 +25,8 @@
 .nav-btns {
     display: flex;
     justify-content: flex-start;
-    width: auto;
-    max-width: 600px;
+    width: 600px;
+    float: left;
     position: relative;
 }
 
@@ -75,7 +76,7 @@
     height: 40px;
     margin-right: 5px;
     display: inline-block;
-    animation: breathe 4s ease;
+    /*animation: breathe 4s ease;*/
 }
 
 .tn-icon {
@@ -83,7 +84,8 @@
     height: 40px;
     margin-left: 10px;
     display: inline-block;
-    filter: brightness(3);
+    filter: brightness(2.5) hue-rotate(357deg);
+    transform: scale(1.02);
 }
 
 @keyframes breathe {
@@ -153,4 +155,29 @@
 
 .extra-btn:hover {
     color: white;
+}
+
+.nav-time {
+    margin: 0;
+    padding: 6px 0 6px 0;
+    flex: auto;
+    font-size: 14px;
+    color: #888;
+    position: relative;
+    transition: 0.1s ease;
+    z-index: -1;
+    text-align: right;
+}
+
+.nav-time-text {
+    color: white;
+    margin-right: 10px;
+}
+
+.clock-text {
+    width: 90px;
+}
+
+.date-text {
+    width: 80px;
 }
