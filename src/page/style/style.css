@@ -12,7 +12,7 @@
     position: relative;
     text-align: center;
     z-index: 2;
-    padding: 1px 0;
+    padding: 1px 0 0 0;
 }
 
 .top-banner::before {
@@ -23,7 +23,7 @@
     left: 0;
     top: 0;
     content: '';
-    background: url('/banner.png');/*linear-gradient(to right, #0000 0%, #1797ce 30%, #36c1ff 50%, #1797ce 70%, #0000 100%);*/
+    background: linear-gradient(to right, #0000 0%, #4d008c 20%, #6f00ff 50%, #4d008c 80%, #0000 100%);
     background-size: 100% 100%;
     filter: blur(1px);
     animation: blur-breathe 6s ease infinite;

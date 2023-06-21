@@ -15,23 +15,33 @@
     padding: 12px 10px;
     border: 1px solid rgb(72, 72, 72);
     border-radius: 15px;
+    transition: 0.1s ease;
+    cursor: pointer;
     font-size: 14px;
 }
 
+.server-indicator:hover {
+    background: #36363681;
+}
+
+.server-indicator:active {
+    background: #363636 !important;
+}
+
 .server-indicator-value:not(.connected), .server-indicator-value:not(.connected) * {
-    color: #f3d700;
+    color: #ffffff;
 }
 
 .server-indicator-value.connected, .server-indicator-value.connected * {
-    color: #0070f3 !important;
+    color: white !important;
 }
 
 .server-indicator-value:not(.connected) .indicator-dot {
-    background-color: #f3d700;
+    background-color: #ff0000;
 }
 
 .server-indicator-value.connected .indicator-dot {
-    background-color: #0070f3;
+    background-color: #00ff22;
 }
 
 .indicator-dot {
@@ -45,7 +55,7 @@
 
 .home-container {
     position: relative;
-    height: 50%;
+    height: 90%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -54,7 +64,7 @@
 }
 
 .home-container h1 {
-    font-size: 100px;
+    font-size: 60px;
 }
 
 .home-container input {
@@ -63,9 +73,46 @@
     padding: 10px 20px;
     border: 1px solid #363636;
     border-radius: 7px;
-    background-color: #363636;
+    background-color: #000;
     color: white;
     font-size: 16px;
     font-weight: 500;
+    outline: none;
+    /*transition: 0.2s ease;*/
+}
+
+.input-omnibox {
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.home-results {
+    width: 100%;
+    max-width: 500px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    margin-top: 0;
+    background-color: #000;
+    border: 1px solid #363636;
+    border-top: 0 !important;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    list-style-type: none;
+}
+
+.home-results li {
+    width: 100%;
+    padding: 7px 10px;
+    border-bottom: 1px solid #363636;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
     transition: 0.2s ease;
+    cursor: pointer;
+}
+
+.home-results[style="display: none;"] {
+    border: 0 !important;
 }

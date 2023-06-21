@@ -3,7 +3,8 @@ export async function get({params, request}) {
       body: JSON.stringify([
         'tomp.app',
         'us-east.noctura.tech',
-        'us-west.noctura.tech'
+        'us-west.noctura.tech',
+        'eu-central.noctura.tech'
       ]),
     };
   }
