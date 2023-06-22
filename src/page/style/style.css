@@ -1,14 +1,14 @@
 /* Set default color to white */
 
 * {
-    color: white;
+    color: var(--font-color);
 }
 
 .top-banner {
     height: auto;
     width: 100%;
     font-size: 20px;
-    color: white;
+    color: var(--font-color);
     position: relative;
     text-align: center;
     z-index: 2;
