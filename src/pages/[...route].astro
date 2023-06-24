@@ -35,7 +35,7 @@ export function getStaticPaths() {
     { url.pathname === "/games" && <Games /> }
     { url.pathname === "/media" && <Media /> }
     { url.pathname === "/console" && <Console /> }
-    { url.pathname === "/settings" && <Settings /> }
+    { url.pathname === "/settings" && <Settings client:load/> }
     <Tabs />
 	</main>
 </Layout>
