@@ -1,0 +1,70 @@
+---
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+
+let cookie;
+
+try {
+	cookie = Astro.request.headers.get('cookie').split(';').find((c) => c.trim().startsWith('astro-bare=')).split('=')[1];
+} catch {
+	cookie = null;
+}
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description">
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
+		<link rel="preconnect" href={cookie ? 'https://' + cookie : ''} crossorigin>
+		<link rel="preconnect" crossorigin href="https://classroom.google.com" />
+		{
+			[
+				'tomp.app',
+				'us-east.noctura.tech',
+				'us-west.noctura.tech',
+				'eu-central.noctura.tech'
+			].map(e=>{
+				return <link rel="prefetch" as="fetch" href={'https://' + e} />;
+			})
+		}
+		<meta name="generator" content={Astro.generator} />
+		<script defer src="/js/bareServer.js" type="module"></script>
+		<script defer src="/js/clock.js"></script>
+		<title>{title}</title>
+	</head>
+	<body>
+		<div class="page-load-progress"></div>
+		<slot />
+	</body>
+</html>
+<style is:global>
+	:root {
+		--accent: 124, 58, 237;
+		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+	}
+	code {
+		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+			Bitstream Vera Sans Mono, Courier New, monospace;
+	}
+
+	.page-load-progress {
+		border: none;
+		background: #ddd;
+		height: 2px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		transition: 0.1s ease;
+		display: none;
+	}
+</style>

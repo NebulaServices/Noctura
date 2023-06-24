@@ -1,0 +1,11 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.56 122.88">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%" gradientTransform="rotate(150)">
+      <stop offset="0%" stop-color="rgba(131, 58, 180, 1)"></stop>
+      <stop offset="59%" stop-color="rgba(68, 78, 141, 1)"></stop>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#gradient)" />
+  <title>send</title>
+  <path fill="#FFFFFF" d="M2.33,44.58,117.33.37a3.63,3.63,0,0,1,5,4.56l-44,115.61h0a3.63,3.63,0,0,1-6.67.28L53.93,84.14,89.12,33.77,38.85,68.86,2.06,51.24a3.63,3.63,0,0,1,.27-6.66Z" transform="scale(0.5)" />
+</svg>
