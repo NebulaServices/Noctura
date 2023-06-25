@@ -102,7 +102,7 @@ export default function Index(props) {
             url = 'https://www.google.com/search?q=' + encodeURIComponent(input.value);
         }
 
-        var prefix = prefixes[props.cookie.split('; ').map(e=>e.split('=')).find(e=>e[0]=='astro-proxy')[1]];
+        var prefix = props.cookie.split('; ').map(e=>e.split('=')).find(e=>e[0]=='astro-proxy') ? prefixes[props.cookie.split('; ').map(e=>e.split('=')).find(e=>e[0]=='astro-proxy')[1]] : prefixes['Ultraviolet'];
 
         location.href = `/~/${prefix}/` + encodeURIComponent(url);
 
