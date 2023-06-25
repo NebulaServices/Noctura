@@ -104,3 +104,8 @@
     width: 100%;
     outline: none;
 }
+
+.open-up {
+    top: -100%;
+    transform: translateY(-100%) translateX(-50%);
+}

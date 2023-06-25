@@ -92,6 +92,8 @@
     color: white;
     text-decoration: none;
     text-align: left;
+    width: 100%;
+    min-width: max-content;
     font-size: 14px;
     font-weight: 500;
     transition: 0.2s ease;

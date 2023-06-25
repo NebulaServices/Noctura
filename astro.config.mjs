@@ -10,5 +10,12 @@ export default defineConfig({
   adapter: nodejs({
     mode: "standalone",
   }),
+  server: {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Service-Worker-Allowed": "/",
+      "X-Content-Type-Options": "nosniff"
+    }
+  },
   output: "server",
 });
