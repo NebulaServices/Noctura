@@ -170,6 +170,7 @@
 }
 
 .nav-time-text {
+    color: #cacaca;
     color: var(--nav-btn-color);
     margin-right: 10px;
 }

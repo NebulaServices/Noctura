@@ -23,6 +23,8 @@ if (input) {
     });
 
     input.addEventListener('blur', async function(e) {
+        if (input.omnibox) return;
+
         if (autofill) {
             autofill = false;
 
@@ -64,10 +66,19 @@ if (input) {
                 span.innerText = result.phrase;
 
                 li.appendChild(span);
-                
-                li.onclick = function() {
+            
+                li.addEventListener('mousedown', function(e) {
+                    input.value = result.phrase;
+                    input.omnibox = true;
+                    input.focus();
+                    input.omnibox = false;
+                    input.classList.remove('input-omnibox');
+                    autofill = false;
+                    results.style.display = 'none';
+                    document.querySelector('.home-results').innerHTML = '';
 
-                }
+                    input.parentNode.requestSubmit();
+                });
 
                 results.appendChild(li);
             });

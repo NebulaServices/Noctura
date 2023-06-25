@@ -116,3 +116,16 @@
 .home-results[style="display: none;"] {
     border: 0 !important;
 }
+
+.modify-split-a {
+    display: flex !important;
+    gap: 10px;
+    max-width: 100%;
+    justify-content: space-between;
+    text-align: left !important;
+    min-width: max-content;
+}
+
+.server-ping {
+    text-align: left;
+}

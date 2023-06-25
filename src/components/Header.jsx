@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from './Link';
 import Hamburger from './Burger';
-import '../header.css';
+import './header.css';
 import './switch.css';
 
 const routes = [
@@ -45,7 +45,7 @@ const Header = (props) => {
                 switchBtn.style.display = 'none';
             }, 100);
         }
-      });
+    });
   }, []);
 
   const onHover = (e) => {
@@ -145,7 +145,7 @@ const Header = (props) => {
                 <Link target="_blank" href="https://titaniumnetwork.org"><img src="/tn.png" className="tn-icon" alt="logo" /></Link>
 
                 <div className="switch-btn-container">
-                    <div className="switch-btn-current" onClick={toggleSwitchBtn}><img src={cookie ? '/' + cookie + '.png' : '/Dynamic.png'} /></div>
+                    <div className="switch-btn-current" onClick={toggleSwitchBtn}><img src={cookie ? '/' + cookie + '.png' : '/Ultraviolet.png'} /></div>
                     <div className="switch-btn" style={{background: props.background || '#000'}}>
                         <a onClick={switchProxy} value="Dynamic"><img src="/Dynamic.png" className="nav-switch-img" /> Dynamic</a>
                         <a onClick={switchProxy} value="Ultraviolet"><img src="/Ultraviolet.png" className="nav-switch-img" /> Ultraviolet</a>
@@ -173,8 +173,9 @@ const Header = (props) => {
 
                 <Hamburger>
                     <Link href="https://classroom.google.com" onClick={(e) => e.preventDefault() || typeof window !== 'undefined' && window.location.replace('https://classroom.google.com')} className="hamburger-link" target="_self">Panic</Link>
-                    <Link href="/other" className="hamburger-link">Other</Link>
-                    <input style={{width: 200}} placeholder="placeholder" />
+                    <Link href="/credits" className="hamburger-link">Credits</Link>
+                    <Link href="/privacy" className="hamburger-link">Privacy Policy</Link>
+                    <Link href="/terms" className="hamburger-link">Terms of Service</Link>
                 </Hamburger>
             </div>
         </div>
@@ -197,7 +198,7 @@ const Header = (props) => {
                 ))}
             </div>
             <div className="nav-time">
-            <span className="nav-time-text clock-text">{currentDate ? new Date(currentDate).toLocaleTimeString() : `${new Date().getHours()}:${new Date().getMinutes()}:00 PM`}</span>
+            <span className="nav-time-text clock-text">{currentDate ? new Date(currentDate).toLocaleTimeString() : `${new Date().getHours() > 12 ? new Date().getHours() - 12 : new Date().getHours()}:${new Date().getMinutes()}:00 PM`}</span>
                 <span className="nav-time-text date-text">{new Date().toLocaleDateString()}</span>
             </div>
         </div>

@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import Tabs from '../components/Tabs';
 import '../styles.css';
 
@@ -29,13 +30,14 @@ export function getStaticPaths() {
 
 <Layout title="Noctura">
 	<main class="">
-		<Header data={url} cookie={Astro.request.headers.get('cookie') || ''} client:load key="header"></Header>
-    { url.pathname === "/" && <Index /> }
-    { url.pathname === "/ai" && <AI /> }
-    { url.pathname === "/games" && <Games /> }
-    { url.pathname === "/media" && <Media /> }
-    { url.pathname === "/console" && <Console /> }
-    { url.pathname === "/settings" && <Settings client:load/> }
+		<Header data={url} cookie={Astro.request.headers.get('cookie') || ''} client:load key="header" />
+    { url.pathname.replace(/^\/(.*?)\/$/g, '/$1') === "/" && <Index cookie={Astro.request.headers.get('cookie') || ''} client:idle /> }
+    { url.pathname.replace(/^\/(.*?)\/$/g, '/$1') === "/ai" && <AI client:idle /> }
+    { url.pathname.replace(/^\/(.*?)\/$/g, '/$1') === "/games" && <Games client:idle /> }
+    { url.pathname.replace(/^\/(.*?)\/$/g, '/$1') === "/media" && <Media client:idle /> }
+    { url.pathname.replace(/^\/(.*?)\/$/g, '/$1') === "/console" && <Console client:idle /> }
+    { url.pathname.replace(/^\/(.*?)\/$/g, '/$1') === "/settings" && <Settings client:load /> }
     <Tabs />
+    <Footer />
 	</main>
 </Layout>
