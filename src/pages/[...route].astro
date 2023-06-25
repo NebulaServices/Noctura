@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import Tabs from '../components/Tabs';
 import '../styles.css';
 
+
 const { url } = Astro;
 
 import Index from '../page/home';
@@ -35,7 +36,7 @@ export function getStaticPaths() {
     { url.pathname.replace(/^\/(.*?)\/$/g, '/$1') === "/games" && <Games client:idle /> }
     { url.pathname.replace(/^\/(.*?)\/$/g, '/$1') === "/media" && <Media client:idle /> }
     { url.pathname.replace(/^\/(.*?)\/$/g, '/$1') === "/console" && <Console client:idle /> }
-    { url.pathname.replace(/^\/(.*?)\/$/g, '/$1') === "/settings" && <Settings client:idle /> }
+    { url.pathname.replace(/^\/(.*?)\/$/g, '/$1') === "/settings" && <Settings client:load /> }
     <Tabs />
     <Footer />
 	</main>

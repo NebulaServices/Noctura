@@ -2,11 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --primary-bg-color: #030303;
+    --primary-text-color: #ffffff;
+    --nav-btn-color: #fff; /* active button       -- also applies to extra nav buttons */
+    --nav-btn-color-darker: #888; /* not active   -- also applies to extra nav buttons */
+    --header-font: "Inter", sans-serif;
+    --font-color: #fff;
+}
+
 body, html {
     height: 100%;
     margin: 0;
     padding: 0;
-    background: #030303;
+    background: var(--primary-bg-color);
 }
 
 * {

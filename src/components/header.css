@@ -1,12 +1,12 @@
 .header {
-    background-color: #000;
+    background-color: var(--primary-bg-color);
     text-align: center;
-    font-family: "Inter", sans-serif;
+    font-family: var(--header-font);
 }
 
 .top {
     background: transparent;
-    color: white;
+    color: var(--primary-text-color);
     padding: 14px 20px 0 14px;
     text-align: center;
     width: 100%;
@@ -14,7 +14,7 @@
 
 .bottom {
     background: transparent;
-    color: white;
+    color: var(--primary-text-color);
     padding: 5px 14px 10px 14px;
     text-align: center;
     z-index: 0;
@@ -40,17 +40,17 @@
     padding: 6px 0;
     flex: auto;
     font-size: 14px;
-    color: #888;
+    color: var(--nav-btn-color-darker);
     position: relative;
     transition: 0.1s ease;
 }
 
 .nav-btn.active {
-    color: white;
+    color: var(--nav-btn-color);
 }
 
 .nav-btn:hover:not(.active) {
-    color: rgb(255, 255, 255, 0.8)
+    color: var(--nav-btn-color-darker);
 }
 
 .nav-btn.active::before {
@@ -58,7 +58,7 @@
     display: block;
     width: calc(70% - 10px);
     height: 2px;
-    background-color: white;
+    background-color: var(--nav-btn-color);
     position: absolute;
     left: 50%;
     bottom: -10px;
@@ -148,13 +148,13 @@
     padding: 6px 0;
     flex: auto;
     font-size: 14px;
-    color: #888;
+    color: var(--nav-btn-color-darker);
     position: relative;
     transition: 0.1s ease;
 }
 
 .extra-btn:hover {
-    color: white;
+    color: var(--nav-btn-color);
 }
 
 .nav-time {
@@ -171,6 +171,7 @@
 
 .nav-time-text {
     color: #cacaca;
+    color: var(--nav-btn-color);
     margin-right: 10px;
 }
 
