@@ -198,8 +198,8 @@ const Header = (props) => {
                 ))}
             </div>
             <div className="nav-time">
-            <span className="nav-time-text clock-text">{currentDate ? new Date(currentDate).toLocaleTimeString() : `${new Date().getHours() > 12 ? new Date().getHours() - 12 : new Date().getHours()}:${new Date().getMinutes()}:00 PM`}</span>
-                <span className="nav-time-text date-text">{new Date().toLocaleDateString()}</span>
+            <span className="nav-time-text clock-text">{currentDate ? new Date(currentDate).toLocaleTimeString() : `0:0:0 AM`}</span>
+                <span className="nav-time-text date-text">{currentDate ? new Date(currentDate).toLocaleDateString() : `0/0/0000`}</span>
             </div>
         </div>
     </div>
