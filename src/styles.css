@@ -4,10 +4,14 @@
 
 :root {
 <<<<<<< HEAD
+<<<<<<< HEAD
     --primary-bg-color: #000000;
 =======
     --primary-bg-color: #030303;
 >>>>>>> 3ed04a5d1242389e78f1850286d0af5740bf3da7
+=======
+    --primary-bg-color: #030303;
+>>>>>>> 3ac06c9f436e0fc6235640e8d634ae04e80af26f
     --primary-text-color: #ffffff;
     --nav-btn-color: #fff; /* active button       -- also applies to extra nav buttons */
     --nav-btn-color-darker: #888; /* not active   -- also applies to extra nav buttons */

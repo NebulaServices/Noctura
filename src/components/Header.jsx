@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Link from './Link';
 import Hamburger from './Burger';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import '../header.css';
 =======
 import './header.css';
 >>>>>>> 3ed04a5d1242389e78f1850286d0af5740bf3da7
+=======
+import './header.css';
+>>>>>>> 3ac06c9f436e0fc6235640e8d634ae04e80af26f
 import './switch.css';
 
 const routes = [
@@ -50,10 +54,14 @@ const Header = (props) => {
             }, 100);
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
       });
 =======
     });
 >>>>>>> 3ed04a5d1242389e78f1850286d0af5740bf3da7
+=======
+    });
+>>>>>>> 3ac06c9f436e0fc6235640e8d634ae04e80af26f
   }, []);
 
   const onHover = (e) => {
@@ -154,10 +162,14 @@ const Header = (props) => {
 
                 <div className="switch-btn-container">
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <div className="switch-btn-current" onClick={toggleSwitchBtn}><img src={cookie ? '/' + cookie + '.png' : '/Dynamic.png'} /></div>
 =======
                     <div className="switch-btn-current" onClick={toggleSwitchBtn}><img src={cookie ? '/' + cookie + '.png' : '/Ultraviolet.png'} /></div>
 >>>>>>> 3ed04a5d1242389e78f1850286d0af5740bf3da7
+=======
+                    <div className="switch-btn-current" onClick={toggleSwitchBtn}><img src={cookie ? '/' + cookie + '.png' : '/Ultraviolet.png'} /></div>
+>>>>>>> 3ac06c9f436e0fc6235640e8d634ae04e80af26f
                     <div className="switch-btn" style={{background: props.background || '#000'}}>
                         <a onClick={switchProxy} value="Dynamic"><img src="/Dynamic.png" className="nav-switch-img" /> Dynamic</a>
                         <a onClick={switchProxy} value="Ultraviolet"><img src="/Ultraviolet.png" className="nav-switch-img" /> Ultraviolet</a>
@@ -186,6 +198,7 @@ const Header = (props) => {
                 <Hamburger>
                     <Link href="https://classroom.google.com" onClick={(e) => e.preventDefault() || typeof window !== 'undefined' && window.location.replace('https://classroom.google.com')} className="hamburger-link" target="_self">Panic</Link>
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <Link href="/other" className="hamburger-link">Other</Link>
                     <input style={{width: 200}} placeholder="placeholder" />
 =======
@@ -193,6 +206,11 @@ const Header = (props) => {
                     <Link href="/privacy" className="hamburger-link">Privacy Policy</Link>
                     <Link href="/terms" className="hamburger-link">Terms of Service</Link>
 >>>>>>> 3ed04a5d1242389e78f1850286d0af5740bf3da7
+=======
+                    <Link href="/credits" className="hamburger-link">Credits</Link>
+                    <Link href="/privacy" className="hamburger-link">Privacy Policy</Link>
+                    <Link href="/terms" className="hamburger-link">Terms of Service</Link>
+>>>>>>> 3ac06c9f436e0fc6235640e8d634ae04e80af26f
                 </Hamburger>
             </div>
         </div>
@@ -216,12 +234,17 @@ const Header = (props) => {
             </div>
             <div className="nav-time">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <span className="nav-time-text clock-text">{currentDate ? new Date(currentDate).toLocaleTimeString() : `${new Date().getHours()}:${new Date().getMinutes()}:00 PM`}</span>
                 <span className="nav-time-text date-text">{new Date().toLocaleDateString()}</span>
 =======
             <span className="nav-time-text clock-text">{currentDate ? new Date(currentDate).toLocaleTimeString() : `0:0:0 AM`}</span>
                 <span className="nav-time-text date-text">{currentDate ? new Date(currentDate).toLocaleDateString() : `0/0/0000`}</span>
 >>>>>>> 3ed04a5d1242389e78f1850286d0af5740bf3da7
+=======
+            <span className="nav-time-text clock-text">{currentDate ? new Date(currentDate).toLocaleTimeString() : `0:0:0 AM`}</span>
+                <span className="nav-time-text date-text">{currentDate ? new Date(currentDate).toLocaleDateString() : `0/0/0000`}</span>
+>>>>>>> 3ac06c9f436e0fc6235640e8d634ae04e80af26f
             </div>
         </div>
     </div>

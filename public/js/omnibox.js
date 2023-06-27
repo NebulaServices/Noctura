@@ -24,10 +24,15 @@ if (input) {
 
     input.addEventListener('blur', async function(e) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         if (input.omnibox) return;
 
 >>>>>>> 3ed04a5d1242389e78f1850286d0af5740bf3da7
+=======
+        if (input.omnibox) return;
+
+>>>>>>> 3ac06c9f436e0fc6235640e8d634ae04e80af26f
         if (autofill) {
             autofill = false;
 
@@ -70,11 +75,14 @@ if (input) {
 
                 li.appendChild(span);
 <<<<<<< HEAD
+<<<<<<< HEAD
                 
                 li.onclick = function() {
 
                 }
 =======
+=======
+>>>>>>> 3ac06c9f436e0fc6235640e8d634ae04e80af26f
             
                 li.addEventListener('mousedown', function(e) {
                     input.value = result.phrase;
@@ -88,7 +96,10 @@ if (input) {
 
                     input.parentNode.requestSubmit();
                 });
+<<<<<<< HEAD
 >>>>>>> 3ed04a5d1242389e78f1850286d0af5740bf3da7
+=======
+>>>>>>> 3ac06c9f436e0fc6235640e8d634ae04e80af26f
 
                 results.appendChild(li);
             });
