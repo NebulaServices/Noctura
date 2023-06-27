@@ -1,0 +1,131 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../style/style.css";
+import "../style/index.css";
+import "../components/switch.css"; 
+
+const { background } = Astro.props;
+
+---
+
+<Layout title="Noctura">
+    <div class="home">
+        <div class="top-banner" />
+
+        <form class="home-container">
+            <h1>Noctura</h1>
+            <input class="home-input" placeholder="Enter URL or Search Query"/>
+
+            <div class="home-results"></div>
+        </form>
+
+        <div class="home-footer">
+        </div>
+    </div>
+
+    <script is:inline src="/js/omnibox.js" />
+    <script is:inline src="/js/bareServer.js"></script>
+    <script is:inline>
+        const prefixes = {
+            'Ultraviolet': 'uv',
+            'Dynamic': 'dynamic',
+            'Rammerhead': 'rh'
+        }
+    
+        const toggleSwitchBtnBare = (e) => {
+            const switchBtn = document.getElementsByClassName('switch-btn')[1];
+    
+            if (switchBtn.style.display == 'block') {
+                switchBtn.style.opacity = '0';
+                setTimeout(function() {
+                    switchBtn.style.display = 'none';
+                }, 100);
+            } else {
+                switchBtn.style.display = 'block';
+                requestAnimationFrame(() => {
+                switchBtn.style.opacity = '1';
+                });
+            }
+    
+            return e.stopPropagation();
+        }
+    
+        // const recursive = (el) => {
+        //     var arr = [];
+        
+        //     function iterate(el) {
+        //         if (el.childNodes) el.childNodes.forEach(e=>(arr.push(e), iterate(e)));
+    
+        //         return;
+        //     }
+    
+        //     arr.push(el);
+    
+        //     iterate(el)
+    
+        //     return arr;
+        // }
+    
+        const submit = (e) => {
+            e.preventDefault();
+    
+            const input = document.querySelector('.home-input');
+            const results = document.querySelector('.home-results');
+    
+            if (!input.value) return;
+    
+            results.innerHTML = '';
+    
+            let url;
+    
+            if (input.value.match(/^https?:\/\//g)) {
+                url = input.value;
+            } else {
+                url = 'https://www.google.com/search?q=' + encodeURIComponent(input.value);
+            }
+
+
+    
+            var prefix = document.cookie.split('; ').map(e=>e.split('=')).find(e=>e[0]=='astro-proxy') ? prefixes[document.cookie.split('; ').map(e=>e.split('=')).find(e=>e[0]=='astro-proxy')[1]] : prefixes['Ultraviolet'];
+    
+            location.href = `/~/${prefix}/` + encodeURIComponent(url);
+        }
+    
+        const switchServer = (e) => {
+            e.preventDefault();
+    
+            const server = e.target.getAttribute('value');
+    
+            e.target.parentNode.style.opacity = '0';
+    
+            document.querySelector('.server-indicator-value').childNodes[1].textContent = 'Connecting ';
+            document.querySelector('.server-indicator-value').classList.remove('connected');
+            document.querySelectorAll('.server-name')[0].innerText = server.split('.')[0].toUpperCase();
+    
+            if (window.connectBare) {
+                window.connectBare(server).then(() => {
+                    document.querySelector('.server-indicator-value').childNodes[1].textContent = 'Connected ';
+                    document.querySelector('.server-indicator-value').classList.add('connected');
+                
+                    localStorage.server = server;
+                }).catch(() => {
+                    document.querySelector('.server-indicator-value').childNodes[1].textContent = 'Disconnected ';
+                });
+            }
+    
+            document.cookie = 'astro-bare='+server+'; expires=Fri, 31 Dec 9999 23:59:59 GMT'
+    
+            setTimeout(function() {
+                e.target.parentNode.style.display = 'none';
+            }, 100);
+        }
+
+        const homeContainer = document.querySelector(".home-container");
+        const switchBtnCurrentBare = document.querySelector(".switch-btn-current");
+        const modifySplitA = document.querySelectorAll(".modify-split-a");
+    
+        homeContainer.onsubmit = submit;
+        switchBtnCurrentBare.onclick = toggleSwitchBtnBare;
+        modifySplitA.onclick = switchServer;
+    </script>
+</Layout>

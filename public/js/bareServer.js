@@ -93,8 +93,8 @@ if (!window.__init) {
         requestBare();
     });
 
-    onerror = function(e) {
-        if (!e) return;
-        if (e.stack.includes('react-dom') && e.error.toString().includes('hydration')) return false;
-    }
+    // onerror = function(e) {
+    //     if (!e) return;
+    //     if (e.stack.includes('react-dom') && e.error.toString().includes('hydration')) return false;
+    // }
 }

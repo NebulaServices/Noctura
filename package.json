@@ -20,6 +20,7 @@
     "@types/react-dom": "^18.2.5",
     "@types/react-router-dom": "^5.3.3",
     "astro": "^2.6.4",
+    "astro-compress": "^1.1.47",
     "express": "^4.18.2",
     "fastify": "^4.18.0",
     "flamethrower-router": "^0.0.0-meme.12",

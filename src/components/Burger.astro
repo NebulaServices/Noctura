@@ -1,6 +1,20 @@
-import './burger.css'
+---
+import "./burger.css";
 
-export default function Burger(props) {
+const { background } = Astro.props;
+---
+
+<div class="burger-container" id="burger-container">
+    <span id="_b1" class="burger-line-1"></span>
+    <span id="_b2" class="burger-line-2"></span>
+    <span id="_b3" class="burger-line-3"></span>
+
+    <div class="burger-child-container" style={background || "#000"}>
+        <slot />
+    </div>
+</div>
+
+<script is:inline>
     if (typeof window !== 'undefined') {
         addEventListener('mousedown', (e) => {
             const burger = document.getElementsByClassName('burger-container')[0];
@@ -17,7 +31,7 @@ export default function Burger(props) {
             }
         });
     }
-
+    
     const toggle = (e, only = false) => {
         if (!only && e.target.parentNode !== document.getElementsByClassName('burger-container')[0] && e.target !== document.getElementsByClassName('burger-container')[0]) return;
 
@@ -58,17 +72,7 @@ export default function Burger(props) {
         }
     }
 
-    return (
-        <>
-            <div className="burger-container" onClick={toggle}>
-                <span id="_b1" className="burger-line-1"></span>
-                <span id="_b2" className="burger-line-2"></span>
-                <span id="_b3" className="burger-line-3"></span>
+    const burger = document.getElementById("burger-container");
 
-                <div className="burger-child-container" style={{background: props.background || '#000'}}>
-                    {props.children}
-                </div>
-            </div>
-        </>
-    )
-}
+    burger.addEventListener("click", (e) => toggle(e));
+</script>

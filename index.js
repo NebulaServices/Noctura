@@ -11,6 +11,14 @@ await app
     root: fileURLToPath(new URL('./dist/client', import.meta.url)),
   })
   .register(fastifyMiddie);
+
+/**
+ * @param {import('fastify').} req
+ */
+app.use((req, res, next) => {
+
+})
+
 app.use(ssrHandler);
 
 app.listen({ port: 80 });

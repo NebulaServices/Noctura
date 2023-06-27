@@ -114,8 +114,6 @@ export default function Index(props) {
         var prefix = props.cookie.split('; ').map(e=>e.split('=')).find(e=>e[0]=='astro-proxy') ? prefixes[props.cookie.split('; ').map(e=>e.split('=')).find(e=>e[0]=='astro-proxy')[1]] : prefixes['Ultraviolet'];
 
         location.href = `/~/${prefix}/` + encodeURIComponent(url);
-
-        // route stuff
     }
 
     const switchServer = (e) => {
@@ -197,4 +195,4 @@ export default function Index(props) {
 >>>>>>> 3ed04a5d1242389e78f1850286d0af5740bf3da7
         </div>
     )
-}
+} 
