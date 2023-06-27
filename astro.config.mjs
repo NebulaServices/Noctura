@@ -11,8 +11,6 @@ export default defineConfig({
   adapter: nodejs({
     mode: "standalone"
   }),
-<<<<<<< HEAD
-=======
   server: {
     headers: {
       "Access-Control-Allow-Origin": "*",
@@ -20,10 +18,5 @@ export default defineConfig({
       "X-Content-Type-Options": "nosniff"
     }
   },
-<<<<<<< HEAD
->>>>>>> 3ed04a5d1242389e78f1850286d0af5740bf3da7
-  output: "server",
-=======
   output: "server"
->>>>>>> 2a73ad3 (Port (mostly) everything to astro)
 });
