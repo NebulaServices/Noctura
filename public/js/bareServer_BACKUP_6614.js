@@ -1,5 +1,9 @@
 if (!window.__init) {
     window.__init = true;
+<<<<<<< HEAD
+    
+    async function requestBare() {
+=======
 
     window.connectBare = async function connectBare(server) {
         if (!document.querySelector('.server-name')) return;
@@ -14,12 +18,25 @@ if (!window.__init) {
 
     
     window.requestBare = async function requestBare(pingOnly = false) {
+>>>>>>> 3ed04a5d1242389e78f1850286d0af5740bf3da7
         if (!document.querySelector('.server-name')) return;
 
         const req = await fetch('/bare.json');
         const bareServers = await req.json();
         const ping = {};
 
+<<<<<<< HEAD
+        if (!localStorage.getItem('server')) {
+            bareServers.forEach(server => ping[server] = 0);
+
+            for await (var endpoint of bareServers) {
+                const start = new Date();
+                const req = await fetch('https://' + endpoint);
+                await req.json();
+
+                ping[endpoint] = new Date() - start;
+            }
+=======
         bareServers.forEach(server => ping[server] = 0);
 
         for await (var endpoint of bareServers) {
@@ -35,16 +52,20 @@ if (!window.__init) {
         if (pingOnly) return;
 
         if (!localStorage.server && navigator.onLine) {
+>>>>>>> 3ed04a5d1242389e78f1850286d0af5740bf3da7
 
             const values = Object.entries(ping).sort((a, b) => a[1] - b[1]);
 
             window.server = values[0];
             localStorage.server = values[0][0];
 
+<<<<<<< HEAD
+=======
             const cache = await caches.open('astro-data');
 
             await cache.put('/bare.txt', new Response(values[0][0]));
 
+>>>>>>> 3ed04a5d1242389e78f1850286d0af5740bf3da7
             document.cookie = 'astro-bare='+values[0][0]+'; expires=Fri, 31 Dec 9999 23:59:59 GMT';
 
             document.querySelector('.server-name').innerText = values[0][0].split('.')[0].toUpperCase();
@@ -58,9 +79,15 @@ if (!window.__init) {
         }
     }
     
+<<<<<<< HEAD
+    if (navigator.onLine) await requestBare(); else document.querySelector('.server-indicator-value').childNodes[1].textContent = 'Offline';
+
+    addEventListener('flamethrower:router:end', requestBare);
+=======
     if (navigator.onLine) requestBare(); else if (document.querySelector('.server-indicator-value')) document.querySelector('.server-indicator-value').childNodes[1].textContent = 'Offline';
 
     addEventListener('flamethrower:router:end', () => requestBare());
+>>>>>>> 3ed04a5d1242389e78f1850286d0af5740bf3da7
     addEventListener('flamethrower:router:fetch-progress', function(e) {
         if (e.detail.progress === 100) {
             setTimeout(function() {
@@ -92,9 +119,12 @@ if (!window.__init) {
         document.querySelector('.server-indicator-value').childNodes[1].textContent = 'Connecting...';
         requestBare();
     });
+<<<<<<< HEAD
+=======
 
     onerror = function(e) {
         if (!e) return;
         if (e.stack.includes('react-dom') && e.error.toString().includes('hydration')) return false;
     }
+>>>>>>> 3ed04a5d1242389e78f1850286d0af5740bf3da7
 }

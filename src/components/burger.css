@@ -92,6 +92,11 @@
     color: white;
     text-decoration: none;
     text-align: left;
+<<<<<<< HEAD
+=======
+    width: 100%;
+    min-width: max-content;
+>>>>>>> 3ed04a5d1242389e78f1850286d0af5740bf3da7
     font-size: 14px;
     font-weight: 500;
     transition: 0.2s ease;

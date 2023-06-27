@@ -103,4 +103,12 @@
     border: none;
     width: 100%;
     outline: none;
+<<<<<<< HEAD
+=======
+}
+
+.open-up {
+    top: -100%;
+    transform: translateY(-100%) translateX(-50%);
+>>>>>>> 3ed04a5d1242389e78f1850286d0af5740bf3da7
 }
