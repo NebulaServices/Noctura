@@ -104,17 +104,11 @@
     width: 100%;
     outline: none;
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
-=======
->>>>>>> 3ac06c9f436e0fc6235640e8d634ae04e80af26f
 }
 
 .open-up {
     top: -100%;
     transform: translateY(-100%) translateX(-50%);
-<<<<<<< HEAD
 >>>>>>> 3ed04a5d1242389e78f1850286d0af5740bf3da7
-=======
->>>>>>> 3ac06c9f436e0fc6235640e8d634ae04e80af26f
 }
