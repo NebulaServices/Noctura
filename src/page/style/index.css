@@ -65,6 +65,8 @@
 
 .home-container h1 {
     font-size: 60px;
+    position: absolute;
+    top: 175px;
 }
 
 .home-container input {
@@ -79,6 +81,8 @@
     font-weight: 500;
     outline: none;
     /*transition: 0.2s ease;*/
+    height: 50px;
+    top: 275px;
 }
 
 .input-omnibox {

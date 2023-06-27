@@ -16,13 +16,12 @@ body {
 .chat-history {
     position: absolute;
     height: 90%;
-    width: 20%;
+    width: 25%;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
 }
-
 .answer-box {
     background-color: #0E0E0E;
     top: 0;
@@ -37,24 +36,29 @@ body {
 
 .message-box {
     background-color: #0A0A0A;
-    top: 0;
     position: absolute;
-    height: 15%;
+    height: 17.5%;
     width: 100%;
-    display: flex;
+    display: inline-block;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     top: 85%;
+    padding-left: 13.33333px;
+    
 }
 
 input {
     width: 80%;
     height: 45%;
-    border-radius: 20px;
+    border-radius: 15px;
     background-color: #161616;
+    position: absolute;
+    top: 15px;
 }
 
 .send-img {
-    
+    width: 50px;
+    position: absolute;
+    top: 17px; right: 155px;
 }

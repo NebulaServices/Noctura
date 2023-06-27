@@ -10,9 +10,10 @@ export default function AI(props) {
                 <div className="answer-box"></div>
                 <div className="message-box">
                     <input></input>
-                    <button type="submit" className="send-img">
-                    <img href="../../../public/send-icon.svg"></img>
-                    </button>
+                    <a type="submit" className="send-img">
+                    <img src="/send-icon.png"></img>
+                    
+                    </a>
                     
                 </div>
             </div>
