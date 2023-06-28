@@ -23,11 +23,8 @@ if (input) {
     });
 
     input.addEventListener('blur', async function(e) {
-<<<<<<< HEAD
-=======
         if (input.omnibox) return;
 
->>>>>>> 3ed04a5d1242389e78f1850286d0af5740bf3da7
         if (autofill) {
             autofill = false;
 
@@ -69,12 +66,6 @@ if (input) {
                 span.innerText = result.phrase;
 
                 li.appendChild(span);
-<<<<<<< HEAD
-                
-                li.onclick = function() {
-
-                }
-=======
             
                 li.addEventListener('mousedown', function(e) {
                     input.value = result.phrase;
@@ -88,7 +79,6 @@ if (input) {
 
                     input.parentNode.requestSubmit();
                 });
->>>>>>> 3ed04a5d1242389e78f1850286d0af5740bf3da7
 
                 results.appendChild(li);
             });
