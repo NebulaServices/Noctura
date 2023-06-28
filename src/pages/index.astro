@@ -4,7 +4,7 @@ import "../style/style.css";
 import "../style/index.css";
 import "../components/switch.css"; 
 
-const { background } = Astro.props;
+//const { background } = Astro.props;
 ---
 
 <Layout title="Noctura">
@@ -83,8 +83,6 @@ const { background } = Astro.props;
             } else {
                 url = 'https://www.google.com/search?q=' + encodeURIComponent(input.value);
             }
-
-
     
             var prefix = document.cookie.split('; ').map(e=>e.split('=')).find(e=>e[0]=='astro-proxy') ? prefixes[document.cookie.split('; ').map(e=>e.split('=')).find(e=>e[0]=='astro-proxy')[1]] : prefixes['Ultraviolet'];
     
