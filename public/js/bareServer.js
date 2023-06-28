@@ -7,6 +7,14 @@ if (!window.__init) {
         const req = await fetch('https://'+server);
         const data = await req.json();
 
+        const cache = await caches.open('astro-data');
+
+        await cache.put('/bare.txt', new Response(server));
+
+        localStorage.server = server;
+
+        document.cookie = 'astro-bare='+server+'; expires=Fri, 31 Dec 9999 23:59:59 GMT';
+
         window.server = [server, data];
 
         return server;

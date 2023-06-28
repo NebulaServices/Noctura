@@ -39,7 +39,7 @@ addEventListener('fetch', function(event) {
             return await self.uv.fetch(event);
         }
 
-        if (event.request.url.startsWith(location.origin + '/~/dynamic/')) {
+        if (await self.dynamic.route(event)) {
             return await self.dynamic.fetch(event);
         }
 

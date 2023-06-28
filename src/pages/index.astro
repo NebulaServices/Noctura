@@ -19,7 +19,26 @@ import "../components/switch.css";
         </form>
 
         <div class="home-footer">
-            <!-- This is where you should put the bare server selector, I couldn't get it to work -->
+            <div class="switch-btn-container">
+                <div class="switch-btn-current">
+                    <span class="server-indicator">
+                        Server:
+                        <span class={"server-indicator-value"}><span class="indicator-dot"></span>Connecting...<span class="server-name"></span></span>
+                    </span>
+                </div>
+                <div class="switch-btn open-up" style={{background: '#000'}}>
+                    {
+                        [
+                            'tomp.app',
+                            'us-east.noctura.tech',
+                            'us-west.noctura.tech',
+                            'eu-central.noctura.tech'
+                        ].map(e=>{
+                            return <a id={"server-" + e.split('.')[0]} key={e} class="modify-split-a" value={e}>{e.split('.')[0].split('-').map(e=>e.split('').map((e,i)=>i==0?e.toUpperCase():e).join('')).join(' ')} <span class="server-ping">0ms</span></a>
+                        })
+                    }
+                </div>
+            </div>
         </div>
     </div>
 
@@ -119,11 +138,11 @@ import "../components/switch.css";
         }
 
         const homeContainer = document.querySelector(".home-container");
-        const switchBtnCurrentBare = document.querySelector(".switch-btn-current");
+        const switchBtnCurrentBare = document.querySelector(".switch-btn-current .server-indicator");
         const modifySplitA = document.querySelectorAll(".modify-split-a");
     
         homeContainer.onsubmit = submit;
         switchBtnCurrentBare.onclick = toggleSwitchBtnBare;
-        modifySplitA.onclick = switchServer;
+        modifySplitA.forEach(e => e.onclick = switchServer);
     </script>
 </Layout>
