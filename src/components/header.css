@@ -7,7 +7,7 @@
 .top {
     background: transparent;
     color: var(--primary-text-color);
-    padding: 14px 20px 0px 14px;
+    padding: 14px 20px 2px 14px;
     text-align: center;
     width: 100%;
     display: flex;

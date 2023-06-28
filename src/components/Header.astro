@@ -42,15 +42,15 @@ const currentDate = (new Date).getTime();
                     <img src={cookie ? '/' + cookie + '.png' : '/Ultraviolet.png'} />
                 </div>
                 <div class="switch-btn" style={{background: background || '#000'}}>
-                    <a value="Dynamic">
+                    <a data-value="Dynamic">
                         <img src="/Dynamic.png" class="nav-switch-img">
                         Dynamic
                     </a>
-                    <a value="Ultraviolet">
+                    <a data-value="Ultraviolet">
                         <img src="/Ultraviolet.png" class="nav-switch-img">
                         Ultraviolet
                     </a>
-                    <a value="Rammerhead">
+                    <a data-value="Rammerhead">
                         <img src="/Rammerhead.png" class="nav-switch-img">
                         Rammerhead
                     </a>
@@ -178,7 +178,7 @@ const currentDate = (new Date).getTime();
   }
 
   const switchProxy = (e) => {
-    const proxy = e.target.getAttribute('value');
+    const proxy = e.target.dataset.value;
 
     document.cookie = `astro-proxy=${proxy}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;
 
@@ -210,7 +210,7 @@ const currentDate = (new Date).getTime();
   }
 
   const switchBtnCurrent = document.querySelector(".switch-btn-current");
-    const switchBtns = document.querySelectorAll("a[value]");
+    const switchBtns = document.querySelectorAll("a[data-value]");
     const hamburgerLink = document.querySelector(".hamburger-link");
     const navBtns = document.querySelectorAll(".nav-btn");
 

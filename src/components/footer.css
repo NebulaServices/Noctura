@@ -54,6 +54,10 @@
     margin-bottom: 10px;
 }
 
+.footer-section p {
+    color: white;
+}
+
 .footer-section h3::before {
     content: "";
     display: block;
