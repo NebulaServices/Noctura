@@ -186,3 +186,10 @@
 .date-text {
     width: 80px;
 }
+
+.focus-mode-container {
+    display: inline-block;
+    position: relative;
+    top: 6px;
+    cursor: pointer
+}

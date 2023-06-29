@@ -7,218 +7,307 @@ const { background, data: url } = Astro.props;
 let { cookie } = Astro.props;
 
 try {
-    cookie = cookie.split('; ').find(row => row.startsWith('astro-proxy')).split('=')[1];
+  cookie = cookie
+    .split("; ")
+    .find((row) => row.startsWith("astro-proxy"))
+    .split("=")[1];
 } catch {
-    cookie = null;
+  cookie = null;
 }
 
 const routes = [
-    { id: 1, title: 'Search', path: '/' },
-    { id: 2, title: 'Artificial Intelligence', path: '/ai' },
-    { id: 3, title: 'Games', path: '/games' },
-    { id: 4, title: 'Media', path: '/media' },
-    { id: 5, title: 'Console', path: '/console' },
-    { id: 6, title: 'Settings', path: '/settings' },
+  { id: 1, title: "Search", path: "/" },
+  { id: 2, title: "Artificial Intelligence", path: "/ai" },
+  { id: 3, title: "Games", path: "/games" },
+  { id: 4, title: "Media", path: "/media" },
+  { id: 5, title: "Console", path: "/console" },
+  { id: 6, title: "Settings", path: "/settings" },
 ];
 
 const currentLocation = routes.find((route) => route.path === url);
 
-const currentDate = (new Date).getTime();
+const currentDate = new Date().getTime();
 ---
 
 <!-- There's an error with how the css works on .top-left and .top-right but I couldn't figure it out -->
-
 <div class="header">
-    <div class="top">
-        <div class="top-left">
-            <a href="/"><img src="/favicon.ico" class="nav-icon" alt="logo"></a>
-            <hr class="nav-slash" />
-            <a target="_blank" href="https://titaniumnetwork.org">
-                <img src="/tn.png" class="tn-icon" alt="logo" />
-            </a>
+  <div class="top">
+    <div class="top-left">
+      <a href="/"><img src="/favicon.ico" class="nav-icon" alt="logo" /></a>
+      <hr class="nav-slash" />
+      <a target="_blank" href="https://titaniumnetwork.org">
+        <img src="/tn.png" class="tn-icon" alt="logo" />
+      </a>
 
-            <div class="switch-btn-container">
-                <div class="switch-btn-current">
-                    <img src={cookie ? '/' + cookie + '.png' : '/Ultraviolet.png'} />
-                </div>
-                <div class="switch-btn" style={{background: background || '#000'}}>
-                    <a value="Dynamic">
-                        <img src="/Dynamic.png" class="nav-switch-img">
-                        Dynamic
-                    </a>
-                    <a value="Ultraviolet">
-                        <img src="/Ultraviolet.png" class="nav-switch-img">
-                        Ultraviolet
-                    </a>
-                    <a value="Rammerhead">
-                        <img src="/Rammerhead.png" class="nav-switch-img">
-                        Rammerhead
-                    </a>
-                </div>
-            </div>
+      <div class="switch-btn-container">
+        <div class="switch-btn-current">
+          <img src={cookie ? "/" + cookie + ".png" : "/Ultraviolet.png"} />
         </div>
-        
-        <div class="top-right">
-            <a class="feedback-btn" href="mailto:akane@noctura.tech">
-                <span class="nav-btn-title">Feedback</span>
-            </a>
-
-            <a class="extra-btn" href="https://discord.gg/unblock">
-                <span class="nav-btn-title">Discord</span>
-            </a>
-
-            <a class="extra-btn" href="/changelog">
-                <span class="nav-btn-title">Changelog</span>
-            </a>
-
-            <a class="extra-btn" href="/docs">
-                <span class="nav-btn-title">Docs</span>
-            </a>
-
-            <Hamburger>
-                <a href="https://classroom.google.com" class="hamburger-link" target="_self">Panic</a>
-                <a href="/credits" class="hamburger-link">Credits</a>
-                <a href="/privacy" class="hamburger-link">Privacy Policy</a>
-                <a href="/terms" class="hamburger-link">Terms of Service</a>
-            </Hamburger>
+        <div class="switch-btn" style={{ background: background || "#000" }}>
+          <a value="Dynamic">
+            <img src="/Dynamic.png" class="nav-switch-img" />
+            Dynamic
+          </a>
+          <a value="Ultraviolet">
+            <img src="/Ultraviolet.png" class="nav-switch-img" />
+            Ultraviolet
+          </a>
+          <a value="Rammerhead">
+            <img src="/Rammerhead.png" class="nav-switch-img" />
+            Rammerhead
+          </a>
         </div>
+      </div>
+      <div class="focus-mode-container">
+        <!-- should we have a non-fullscreen mode, and if so how will we show to user different option? -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="1.3em"
+          viewBox="0 0 448 512"
+        >
+          <style>
+            .toggle-button {
+              fill: #3d5afe;
+              transition: fill 0.3s ease;
+            }
+
+            .toggle-button:hover {
+              fill: #536dfe;
+            }
+          </style>
+          <path
+            class="toggle-button"
+            d="M32 32C14.3 32 0 46.3 0 64v96c0 17.7 14.3 32 32 32s32-14.3 32-32V96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H32zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7 14.3 32 32 32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H64V352zM320 32c-17.7 0-32 14.3-32 32s14.3 32 32 32h64v64c0 17.7 14.3 32 32 32s32-14.3 32-32V64c0-17.7-14.3-32-32-32H320zM448 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32V352z"
+          ></path>
+        </svg>
+      </div>
     </div>
-    
-    {/* some1 fix the google classroom / panic button should replace the current tab but it uh; doesn't */} 
 
-    <div class="bottom">
-        <div class="nav-btns">
-            <div id="nav-move" class="nav-move"></div>
-            {routes.map((route) => (
-                <a
-                    class={`nav-btn ${currentLocation && currentLocation.id == route.id ? 'active' : ''}`}
-                    href={route.path}
-                >
-                    <span class="nav-btn-title">{route.title}</span>
-                </a>
-            ))}
-        </div>
-        <div class="nav-time">
-        <span class="nav-time-text clock-text">{currentDate ? new Date(currentDate).toLocaleTimeString() : `0:0:0 AM`}</span>
-            <span class="nav-time-text date-text">{currentDate ? new Date(currentDate).toLocaleDateString() : `0/0/0000`}</span>
-        </div>
+    <div class="top-right">
+      <a class="feedback-btn" href="mailto:akane@noctura.tech">
+        <span class="nav-btn-title">Feedback</span>
+      </a>
+
+      <a class="extra-btn" href="https://discord.gg/unblock">
+        <span class="nav-btn-title">Discord</span>
+      </a>
+
+      <a class="extra-btn" href="/changelog">
+        <span class="nav-btn-title">Changelog</span>
+      </a>
+
+      <a class="extra-btn" href="/docs">
+        <span class="nav-btn-title">Docs</span>
+      </a>
+
+      <Hamburger>
+        <a
+          href="https://classroom.google.com"
+          class="hamburger-link"
+          target="_self">Panic</a
+        >
+        <a href="/credits" class="hamburger-link">Credits</a>
+        <a href="/privacy" class="hamburger-link">Privacy Policy</a>
+        <a href="/terms" class="hamburger-link">Terms of Service</a>
+      </Hamburger>
     </div>
+  </div>
+
+  {
+    /* some1 fix the google classroom / panic button should replace the current tab but it uh; doesn't */
+  }
+
+  <div class="bottom">
+    <div class="nav-btns">
+      <div id="nav-move" class="nav-move"></div>
+      {
+        routes.map((route) => (
+          <a
+            class={`nav-btn ${
+              currentLocation && currentLocation.id == route.id ? "active" : ""
+            }`}
+            href={route.path}
+          >
+            <span class="nav-btn-title">{route.title}</span>
+          </a>
+        ))
+      }
+    </div>
+    <div class="nav-time">
+      <span class="nav-time-text clock-text"
+        >{
+          currentDate ? new Date(currentDate).toLocaleTimeString() : `0:0:0 AM`
+        }</span
+      >
+      <span class="nav-time-text date-text"
+        >{
+          currentDate ? new Date(currentDate).toLocaleDateString() : `0/0/0000`
+        }</span
+      >
+    </div>
+  </div>
+
+  <div class="top-banner" />
 </div>
 
 <script is:inline>
-    let hovered = false;
+  let hovered = false;
 
-    addEventListener('click', function(e) {
-        if (recursive(document.getElementsByClassName('switch-btn')[0]).includes(e.target)) return;
-    
-        const switchBtn = document.getElementsByClassName('switch-btn')[0];
-    
-        if (switchBtn.style.display == 'block') {
-            switchBtn.style.opacity = '0';
-            setTimeout(function() {
-                switchBtn.style.display = 'none';
-            }, 100);
-        }
-    });
+  addEventListener("click", function (e) {
+    if (
+      recursive(document.getElementsByClassName("switch-btn")[0]).includes(
+        e.target
+      )
+    )
+      return;
 
-    const onHover = (e) => {
-    if (e.target.tagName !== 'A') return;
-    
+    const switchBtn = document.getElementsByClassName("switch-btn")[0];
+
+    if (switchBtn.style.display == "block") {
+      switchBtn.style.opacity = "0";
+      setTimeout(function () {
+        switchBtn.style.display = "none";
+      }, 100);
+    }
+  });
+
+  const onHover = (e) => {
+    if (e.target.tagName !== "A") return;
+
     const rect = e.target.getBoundingClientRect();
 
-    document.getElementById('nav-move').style.width = (rect.width - 10) + 'px';
-    document.getElementById('nav-move').style.height = (rect.height + 4) + 'px';
+    document.getElementById("nav-move").style.width = rect.width - 10 + "px";
+    document.getElementById("nav-move").style.height = rect.height + 4 + "px";
 
     requestAnimationFrame(() => {
-        document.getElementById('nav-move').style.display = 'block';
-        document.getElementById('nav-move').style.opacity = '1';
+      document.getElementById("nav-move").style.display = "block";
+      document.getElementById("nav-move").style.opacity = "1";
     });
 
     if (!hovered) {
-        document.getElementById('nav-move').style.transition = `0`;
-        document.getElementById('nav-move').style.opacity = '0';
-        document.getElementById('nav-move').style.transition = `0.2s`;
+      document.getElementById("nav-move").style.transition = `0`;
+      document.getElementById("nav-move").style.opacity = "0";
+      document.getElementById("nav-move").style.transition = `0.2s`;
     }
 
-    document.getElementById('nav-move').style.left = `${rect.x - 14 + 5}px`;
+    document.getElementById("nav-move").style.left = `${rect.x - 14 + 5}px`;
 
     hovered = true;
   };
 
   const noHover = (e) => {
-    if (e.target.tagName !== 'A') return;
+    if (e.target.tagName !== "A") return;
 
     const rect = e.target.getBoundingClientRect();
 
     if (e.clientY >= rect.bottom || e.clientY <= rect.top) {
-        hovered = false;
-        document.getElementById('nav-move').style.opacity = '0';
-        setTimeout(function() {
-            document.getElementById('nav-move').style.display = 'none';
-        }, 200);
+      hovered = false;
+      document.getElementById("nav-move").style.opacity = "0";
+      setTimeout(function () {
+        document.getElementById("nav-move").style.display = "none";
+      }, 200);
     }
   };
 
   const toggleSwitchBtn = (e) => {
-    const switchBtn = document.getElementsByClassName('switch-btn')[0];
+    const switchBtn = document.getElementsByClassName("switch-btn")[0];
 
-    if (switchBtn.style.display == 'block') {
-        switchBtn.style.opacity = '0';
-        setTimeout(function() {
-            switchBtn.style.display = 'none';
-        }, 100);
+    if (switchBtn.style.display == "block") {
+      switchBtn.style.opacity = "0";
+      setTimeout(function () {
+        switchBtn.style.display = "none";
+      }, 100);
     } else {
-        switchBtn.style.display = 'block';
-        requestAnimationFrame(() => {
-            switchBtn.style.opacity = '1';
-        });
+      switchBtn.style.display = "block";
+      requestAnimationFrame(() => {
+        switchBtn.style.opacity = "1";
+      });
     }
 
     return e.stopPropagation();
-  }
+  };
 
   const switchProxy = (e) => {
-    const proxy = e.target.getAttribute('value');
+    const proxy = e.target.getAttribute("value");
 
     document.cookie = `astro-proxy=${proxy}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;
 
-    e.target.parentNode.style.opacity = '0';
+    e.target.parentNode.style.opacity = "0";
 
-    document.querySelector('.switch-btn-current img').src = '/' + proxy + '.png';
+    document.querySelector(".switch-btn-current img").src =
+      "/" + proxy + ".png";
 
-    setTimeout(function() {
-        e.target.parentNode.style.display = 'none';
+    setTimeout(function () {
+      e.target.parentNode.style.display = "none";
     }, 100);
 
     return;
-  }
+  };
 
   const recursive = (el) => {
     var arr = [];
-    
-    function iterate(el) {
-        if (el.childNodes) el.childNodes.forEach(e=>(arr.push(e), iterate(e)));
 
-        return;
+    function iterate(el) {
+      if (el.childNodes)
+        el.childNodes.forEach((e) => (arr.push(e), iterate(e)));
+
+      return;
     }
 
     arr.push(el);
 
-    iterate(el)
+    iterate(el);
 
     return arr;
-  }
+  };
 
   const switchBtnCurrent = document.querySelector(".switch-btn-current");
-    const switchBtns = document.querySelectorAll("a[value]");
-    const hamburgerLink = document.querySelector(".hamburger-link");
-    const navBtns = document.querySelectorAll(".nav-btn");
+  const switchBtns = document.querySelectorAll("a[value]");
+  const hamburgerLink = document.querySelector(".hamburger-link");
+  const navBtns = document.querySelectorAll(".nav-btn");
 
-    switchBtnCurrent.onclick = toggleSwitchBtn;
-    switchBtns.forEach((btn) => btn.onclick = switchProxy);
-    hamburgerLink.onclick = (e) => e.preventDefault() || typeof window !== 'undefined' && window.location.replace('https://classroom.google.com');
-    navBtns.forEach((btn) => {
-        btn.onmouseover = onHover;
-        btn.onmouseleave = noHover;
-    });
+  switchBtnCurrent.onclick = toggleSwitchBtn;
+  switchBtns.forEach((btn) => (btn.onclick = switchProxy));
+  hamburgerLink.onclick = (e) =>
+    e.preventDefault() ||
+    (typeof window !== "undefined" &&
+      window.location.replace("https://classroom.google.com"));
+  navBtns.forEach((btn) => {
+    btn.onmouseover = onHover;
+    btn.onmouseleave = noHover;
+  });
+
+  let focusMode = "off";
+  const focusButton = document.querySelector(".focus-mode-container");
+  focusButton.onclick = () => {
+        const top = document.querySelector(".top");
+        const topRight = document.querySelector(".top-right");
+        const topLeft = document.querySelector(".top-left");
+        const navTime = document.querySelector(".nav-time");
+    const siteFooter = document.querySelector(".site-footer");
+    const navBtnsElement = document.querySelector(".nav-btns");
+    
+    if (focusMode == "off") {
+        focusMode = "on";
+        top.style.display = "none";
+        let hamburger = document.getElementById("burger-container")
+        navBtnsElement.insertBefore(focusButton, navBtnsElement.firstChild)
+        navTime.appendChild(hamburger);
+        siteFooter.style.display = "none";
+        document.body.requestFullscreen();
+        return;
+    }
+
+    if (focusMode == "on") {
+        focusMode = "off";
+        top.style.display = "flex";
+        topLeft.appendChild(focusButton);
+        let hamburger = document.getElementById("burger-container")
+        topRight.appendChild(hamburger);
+        siteFooter.style.display = "block";
+        document.exitFullscreen();
+        return;
+    }
+
+  };
 </script>

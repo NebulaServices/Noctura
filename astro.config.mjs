@@ -3,13 +3,13 @@ import react from "@astrojs/react";
 import nodejs from '@astrojs/node';
 import tailwind from "@astrojs/tailwind";
 
-// import compress from "astro-compress";
+import compress from "astro-compress";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), tailwind(), /* compress() */],
+  integrations: [react(), tailwind(), compress()],
   adapter: nodejs({
-    mode: "standalone"
+    mode: "middleware"
   }),
   server: {
     headers: {
