@@ -21,7 +21,10 @@
     padding: 5px 14px 10px 14px;
     text-align: center;
     z-index: 0;
+    min-height: 100%;
+    max-height: 100px;
     width: 100%;
+    transition: 0.8s ease;
     position: relative;
 }
 
@@ -31,6 +34,7 @@
     width: 600px;
     float: left;
     position: relative;
+    transition: 0.1s ease;
 }
 
 .nav-btn-title {
@@ -130,6 +134,10 @@
     display: inline-block;
     flex: 1;
     /*width: 50%;*/
+}
+
+.header .top-right, .header .switch-btn-container {
+    transition: 0.1s ease;
 }
 
 .feedback-btn {

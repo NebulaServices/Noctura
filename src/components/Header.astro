@@ -3,6 +3,9 @@ import Hamburger from "./Burger.astro";
 import "./header.css";
 import "./switch.css";
 
+// @ts-ignore
+import { IoExpandOutline, IoCloseOutline } from 'react-icons/io5'
+
 const { background, data: url } = Astro.props;
 let { cookie } = Astro.props;
 
@@ -24,7 +27,7 @@ const routes = [
   { id: 6, title: "Settings", path: "/settings" },
 ];
 
-const currentLocation = routes.find((route) => route.path === url);
+const currentLocation = routes.find((route) => route.path === url.pathname);
 
 const currentDate = new Date().getTime();
 ---

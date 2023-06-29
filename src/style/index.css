@@ -2,6 +2,7 @@
     position: relative;
     height: calc(100vh - 102px);
     padding-bottom: 50px;
+    transition: 0.1s ease;
 }
 
 .home-footer {

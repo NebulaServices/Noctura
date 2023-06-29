@@ -35,6 +35,8 @@ addEventListener('fetch', function(event) {
     event.respondWith((async function() {
         await p;
 
+        if (event.request.url.endsWith('?sw=ignore')) return await fetch(event.request);
+
         if (event.request.url.startsWith(location.origin + '/~/uv/')) {
             return await self.uv.fetch(event);
         }
