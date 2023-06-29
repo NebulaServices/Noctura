@@ -32,7 +32,7 @@ import "../components/switch.css";
                             'us-west.noctura.tech',
                             'eu-central.noctura.tech'
                         ].map(e=>{
-                            return <a id={"server-" + e.split('.')[0]} key={e} class="modify-split-a" value={e}>{e.split('.')[0].split('-').map(e=>e.split('').map((e,i)=>i==0?e.toUpperCase():e).join('')).join(' ')} <span class="server-ping">0ms</span></a>
+                            return <a id={"server-" + e.split('.')[0]} class="modify-split-a" data-value={e}>{e.split('.')[0].split('-').map(e=>e.split('').map((e,i)=>i==0?e.toUpperCase():e).join('')).join(' ')} <span class="server-ping">0ms</span></a>
                         })
                     }
                 </div>
@@ -124,7 +124,7 @@ import "../components/switch.css";
         const switchServer = (e) => {
             e.preventDefault();
     
-            const server = e.target.getAttribute('value');
+            const server = e.target.dataset.value;
     
             e.target.parentNode.style.opacity = '0';
     
