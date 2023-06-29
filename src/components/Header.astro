@@ -34,9 +34,9 @@ const currentDate = new Date().getTime();
 <div class="header">
   <div class="top">
     <div class="top-left">
-      <Link href="/"><img src="/favicon.ico" class="nav-icon" alt="logo" /></a>
+      <a href="/"><img src="/favicon.ico" class="nav-icon" alt="logo" /></a>
       <hr class="nav-slash" />
-      <Link target="_blank" href="https://titaniumnetwork.org">
+      <a target="_blank" href="https://titaniumnetwork.org">
         <img src="/tn.png" class="tn-icon" alt="logo" />
       </a>
 
@@ -45,15 +45,15 @@ const currentDate = new Date().getTime();
           <img src={cookie ? "/" + cookie + ".png" : "/Ultraviolet.png"} />
         </div>
         <div class="switch-btn" style={{ background: background || "#000" }}>
-          <Link data-value="Dynamic">
+          <a data-value="Dynamic">
             <img src="/Dynamic.png" class="nav-switch-img" />
             Dynamic
           </a>
-          <Link data-value="Ultraviolet">
+          <a data-value="Ultraviolet">
             <img src="/Ultraviolet.png" class="nav-switch-img" />
             Ultraviolet
           </a>
-          <Link data-value="Rammerhead">
+          <a data-value="Rammerhead">
             <img src="/Rammerhead.png" class="nav-switch-img" />
             Rammerhead
           </a>
@@ -85,31 +85,27 @@ const currentDate = new Date().getTime();
     </div>
 
     <div class="top-right">
-      <Link class="feedback-btn" href="mailto:akane@noctura.tech">
+      <a class="feedback-btn" href="mailto:akane@noctura.tech">
         <span class="nav-btn-title">Feedback</span>
       </a>
 
-      <Link class="extra-btn" href="https://discord.gg/unblock">
+      <a class="extra-btn" href="https://discord.gg/unblock">
         <span class="nav-btn-title">Discord</span>
       </a>
 
       <Link class="extra-btn" href="/changelog">
         <span class="nav-btn-title">Changelog</span>
-      </a>
+      </Link>
 
       <Link class="extra-btn" href="/docs">
         <span class="nav-btn-title">Docs</span>
-      </a>
+      </Link>
 
       <Hamburger>
-        <Link
-          href="https://classroom.google.com"
-          class="hamburger-link"
-          target="_self">Panic</a
-        >
-        <Link href="/credits" class="hamburger-link">Credits</a>
-        <Link href="/privacy" class="hamburger-link">Privacy Policy</a>
-        <Link href="/terms" class="hamburger-link">Terms of Service</a>
+        <a href="https://classroom.google.com" class="hamburger-link" target="_self">Panic</a>
+        <Link href="/credits" class="hamburger-link">Credits</Link>
+        <Link href="/privacy" class="hamburger-link">Privacy Policy</Link>
+        <Link href="/terms" class="hamburger-link">Terms of Service</Link>
       </Hamburger>
     </div>
   </div>
