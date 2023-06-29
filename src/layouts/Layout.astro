@@ -1,7 +1,6 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import Frame from '../components/Frame.astro';
 import Tabs from "../components/Tabs.astro";
 
 import "../styles.css";
@@ -59,7 +58,6 @@ const host = Astro.request.headers.get('host');
 		<div class="page-load-progress"></div>
 		<main class="">
 			<Header data={url} cookie={Astro.request.headers.get('cookie') || ''} />
-			<Frame />
 			<slot />
 			<Footer />
 			<Tabs />

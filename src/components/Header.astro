@@ -20,6 +20,7 @@ try {
 
 const routes = [
   { id: 1, title: "Search", path: "/" },
+  { id: 2, title: "AI", path: "/ai" },
   { id: 3, title: "Games", path: "/games" },
   { id: 4, title: "Media", path: "/media" },
   { id: 5, title: "Console", path: "/console" },
@@ -283,6 +284,7 @@ const currentDate = new Date().getTime();
   const focusButton = document.querySelector(".focus-mode-container");
   focusButton.onclick = () => {
         const top = document.querySelector(".top");
+        const bottom = document.querySelector(".bottom");
         const topRight = document.querySelector(".top-right");
         const topLeft = document.querySelector(".top-left");
         const navTime = document.querySelector(".nav-time");
@@ -292,6 +294,7 @@ const currentDate = new Date().getTime();
     if (focusMode == "off") {
         focusMode = "on";
         top.style.display = "none";
+        bottom.style.marginTop = "10px";
         let hamburger = document.getElementById("burger-container")
         navBtnsElement.insertBefore(focusButton, navBtnsElement.firstChild)
         navTime.appendChild(hamburger);
@@ -303,6 +306,7 @@ const currentDate = new Date().getTime();
     if (focusMode == "on") {
         focusMode = "off";
         top.style.display = "flex";
+        bottom.style.marginTop = "";
         topLeft.appendChild(focusButton);
         let hamburger = document.getElementById("burger-container")
         topRight.appendChild(hamburger);

@@ -115,10 +115,12 @@ import "../components/switch.css";
             iframe.style.height = "100%";
             iframe.style.border = "none";
             iframe.style.overflow = "hidden";
+            iframe.style.position = "absolute";
+            iframe.style.zIndex = '999999';
+            iframe.style.top = "0px";
 
             document.querySelector(".home").style.paddingBottom = "0px";
-            document.querySelector(".home-footer").remove();
-            homeContainer.replaceChildren(iframe);
+            homeContainer.parentNode.appendChild(iframe);
         }
     
         const switchServer = (e) => {

@@ -5,17 +5,27 @@ import "../style/ai.css";
 ---
 
 <Layout title="Noctura">
-    <div>
-        <div class="top-banner"></div>
+    <div class="top-banner"></div>
+    <div class="ai-container">
         <div class="chat-history"></div>
         <div class="main-content">
-            <div class="answer-box"></div>
-            <div class="message-box">
-                <input />
+            <div class="answer-box-container">
+                <div class="message-container">
+                    <div class="message">
+                        <!-- its temp
+                     -->
+                        <img src="openAI-chat-gpt-1.jpg" width="42" height="42">idc fuck off hoe, uhhhhhhhhhhhh ould i get a whooper with extra cheese<!-- wat is wrong with our image  -->
+                    </div>
+                </div>
             </div>
-            <a type="submit" class="send-img">
-                <img src="/public/send-icon.png" /></a
-            >
+            <div class="message-box">
+            <div class="smaller-box"> <!-- this smaller container box will allow for fixing the distance between the textbox and the enter button -->
+                <input />
+                <a type="submit" class="send-img">
+                    <img src="send-icon.png"/>
+                </a>
+            </div>
+            </div>
         </div>
     </div>
 </Layout>
