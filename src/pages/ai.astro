@@ -1,22 +1,21 @@
-import './style/style.css'
-import './style/ai.css';
+---
+import Layout from "../layouts/Layout.astro"
+import "../style/style.css";
+import "../style/ai.css";
+---
 
-export default function AI(props) {
-    return (
-        <div>
-            <div className="top-banner"></div>
-            <div className="chat-history"></div>
-            <div className="main-content">
-                <div className="answer-box"></div>
-                <div className="message-box">
-                    <input></input>
-                    <a type="submit" className="send-img">
-                    <img src="/public/send-icon.png"></img>
-                    
-                    </a>
-                    
-                </div>
+<Layout title="Noctura">
+    <div>
+        <div class="top-banner"></div>
+        <div class="chat-history"></div>
+        <div class="main-content">
+            <div class="answer-box"></div>
+            <div class="message-box">
+                <input />
             </div>
+            <a type="submit" class="send-img">
+                <img src="/public/send-icon.png" /></a
+            >
         </div>
-    )
-}
+    </div>
+</Layout>
