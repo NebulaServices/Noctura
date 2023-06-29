@@ -1,10 +1,8 @@
 ---
 import Hamburger from "./Burger.astro";
+import Link from "./Link.astro";
 import "./header.css";
 import "./switch.css";
-
-// @ts-ignore
-import { IoExpandOutline, IoCloseOutline } from 'react-icons/io5'
 
 const { background, data: url } = Astro.props;
 let { cookie } = Astro.props;
@@ -36,9 +34,9 @@ const currentDate = new Date().getTime();
 <div class="header">
   <div class="top">
     <div class="top-left">
-      <a href="/"><img src="/favicon.ico" class="nav-icon" alt="logo" /></a>
+      <Link href="/"><img src="/favicon.ico" class="nav-icon" alt="logo" /></a>
       <hr class="nav-slash" />
-      <a target="_blank" href="https://titaniumnetwork.org">
+      <Link target="_blank" href="https://titaniumnetwork.org">
         <img src="/tn.png" class="tn-icon" alt="logo" />
       </a>
 
@@ -47,15 +45,15 @@ const currentDate = new Date().getTime();
           <img src={cookie ? "/" + cookie + ".png" : "/Ultraviolet.png"} />
         </div>
         <div class="switch-btn" style={{ background: background || "#000" }}>
-          <a data-value="Dynamic">
+          <Link data-value="Dynamic">
             <img src="/Dynamic.png" class="nav-switch-img" />
             Dynamic
           </a>
-          <a data-value="Ultraviolet">
+          <Link data-value="Ultraviolet">
             <img src="/Ultraviolet.png" class="nav-switch-img" />
             Ultraviolet
           </a>
-          <a data-value="Rammerhead">
+          <Link data-value="Rammerhead">
             <img src="/Rammerhead.png" class="nav-switch-img" />
             Rammerhead
           </a>
@@ -87,31 +85,31 @@ const currentDate = new Date().getTime();
     </div>
 
     <div class="top-right">
-      <a class="feedback-btn" href="mailto:akane@noctura.tech">
+      <Link class="feedback-btn" href="mailto:akane@noctura.tech">
         <span class="nav-btn-title">Feedback</span>
       </a>
 
-      <a class="extra-btn" href="https://discord.gg/unblock">
+      <Link class="extra-btn" href="https://discord.gg/unblock">
         <span class="nav-btn-title">Discord</span>
       </a>
 
-      <a class="extra-btn" href="/changelog">
+      <Link class="extra-btn" href="/changelog">
         <span class="nav-btn-title">Changelog</span>
       </a>
 
-      <a class="extra-btn" href="/docs">
+      <Link class="extra-btn" href="/docs">
         <span class="nav-btn-title">Docs</span>
       </a>
 
       <Hamburger>
-        <a
+        <Link
           href="https://classroom.google.com"
           class="hamburger-link"
           target="_self">Panic</a
         >
-        <a href="/credits" class="hamburger-link">Credits</a>
-        <a href="/privacy" class="hamburger-link">Privacy Policy</a>
-        <a href="/terms" class="hamburger-link">Terms of Service</a>
+        <Link href="/credits" class="hamburger-link">Credits</a>
+        <Link href="/privacy" class="hamburger-link">Privacy Policy</a>
+        <Link href="/terms" class="hamburger-link">Terms of Service</a>
       </Hamburger>
     </div>
   </div>
@@ -125,7 +123,7 @@ const currentDate = new Date().getTime();
       <div id="nav-move" class="nav-move"></div>
       {
         routes.map((route) => (
-          <a
+          <Link
             class={`nav-btn ${
               currentLocation && currentLocation.id == route.id ? "active" : ""
             }`}
