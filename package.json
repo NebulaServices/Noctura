@@ -9,11 +9,13 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "bstart": "npm run build && node index.cjs"
+    "bstart": "npm run build && node index.cjs",
+    "depends": "npm i react cloudflare"
   },
   "dependencies": {
     "@fastify/middie": "^8.3.0",
     "@fastify/static": "^6.10.2",
+    "cloudflare": "^2.9.1",
     "express": "^4.18.2",
     "fastify": "^4.18.0",
     "flamethrower-router": "^0.0.0-meme.12",
