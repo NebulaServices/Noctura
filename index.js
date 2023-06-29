@@ -12,13 +12,6 @@ await app
   })
   .register(fastifyMiddie);
 
-/**
- * @param {import('fastify').} req
- */
-app.use((req, res, next) => {
-
-})
-
 app.use(ssrHandler);
 
 app.listen({ port: 80 });
