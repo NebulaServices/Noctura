@@ -9,7 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "bstart": "&& npm run build && node index.cjs",
+    "bstart": "npm run build && node index.cjs",
     "depends": "npm i react cloudflare"
   },
   "dependencies": {
