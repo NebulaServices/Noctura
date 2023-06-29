@@ -3,13 +3,11 @@ import Layout from "../layouts/Layout.astro";
 import "../style/style.css";
 import "../style/index.css";
 import "../components/switch.css"; 
-
-//const { background } = Astro.props;
 ---
 
 <Layout title="Noctura">
     <div class="home">
-        <div class="top-banner" />
+        <!-- <div class="top-banner" /> -->
 
         <form class="home-container">
             <h1>Noctura</h1>
@@ -23,7 +21,7 @@ import "../components/switch.css";
                 <div class="switch-btn-current">
                     <span class="server-indicator">
                         Server:
-                        <span class={"server-indicator-value"}><span class="indicator-dot"></span>Connecting...<span class="server-name"></span></span>
+                        <span class="server-indicator-value"><span class="indicator-dot"></span>Connecting...<span class="server-name"></span></span>
                     </span>
                 </div>
                 <div class="switch-btn open-up" style={{background: '#000'}}>
@@ -50,6 +48,10 @@ import "../components/switch.css";
             'Dynamic': 'dynamic',
             'Rammerhead': 'rh'
         }
+
+        const homeContainer = document.querySelector(".home-container");
+        const switchBtnCurrentBare = document.querySelector(".switch-btn-current .server-indicator");
+        const modifySplitA = document.querySelectorAll(".modify-split-a");
     
         const toggleSwitchBtnBare = (e) => {
             const switchBtn = document.getElementsByClassName('switch-btn')[1];
@@ -105,7 +107,18 @@ import "../components/switch.css";
     
             var prefix = document.cookie.split('; ').map(e=>e.split('=')).find(e=>e[0]=='astro-proxy') ? prefixes[document.cookie.split('; ').map(e=>e.split('=')).find(e=>e[0]=='astro-proxy')[1]] : prefixes['Ultraviolet'];
     
-            location.href = `/~/${prefix}/` + encodeURIComponent(url);
+            // this is the basic idea for what i'm trying to do
+            // waiting for sylvie to finish the menu component and cat for the focus mode
+            const iframe = document.createElement("iframe");
+            iframe.src = `/~/${prefix}/${encodeURIComponent(url)}`;
+            iframe.style.width = "100%";
+            iframe.style.height = "100%";
+            iframe.style.border = "none";
+            iframe.style.overflow = "hidden";
+
+            document.querySelector(".home").style.paddingBottom = "0px";
+            document.querySelector(".home-footer").remove();
+            homeContainer.replaceChildren(iframe);
         }
     
         const switchServer = (e) => {
@@ -136,10 +149,6 @@ import "../components/switch.css";
                 e.target.parentNode.style.display = 'none';
             }, 100);
         }
-
-        const homeContainer = document.querySelector(".home-container");
-        const switchBtnCurrentBare = document.querySelector(".switch-btn-current .server-indicator");
-        const modifySplitA = document.querySelectorAll(".modify-split-a");
     
         homeContainer.onsubmit = submit;
         switchBtnCurrentBare.onclick = toggleSwitchBtnBare;
