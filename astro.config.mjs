@@ -25,5 +25,5 @@ export default defineConfig({
       "X-Content-Type-Options": "nosniff"
     }
   },
-  output: "server"
+  output: "static"
 });

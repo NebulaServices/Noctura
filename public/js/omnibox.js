@@ -4,7 +4,7 @@ if (input) {
     let autofill = false;
 
     const request = async function() {
-        const req = await fetch('/search.json?q=' + encodeURIComponent(input.value));
+        const req = await fetch('/search=' + encodeURIComponent(input.value));
 
         return await req.json();
     }
