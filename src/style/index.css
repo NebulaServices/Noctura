@@ -130,3 +130,12 @@
 .server-ping {
     text-align: left;
 }
+
+.logo-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.logo-image {
+    height: 80px;
+}
