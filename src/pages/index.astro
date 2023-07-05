@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import "../style/style.css";
 import "../style/index.css";
 import "../components/switch.css"; 
+import Obfuscated from "../components/Obfuscated.astro";
 ---
 
 <Layout title="Noctura">
@@ -12,9 +13,9 @@ import "../components/switch.css";
         <form class="home-container">
             <div class="logo-container">
                 <img src="tiny.svg" class="logo-image">
-                <h1>octura</h1>
+                <h1><Obfuscated word="octura"></h1>
             </div>
-            <input class="home-input" placeholder="Enter URL or Search Query"/>
+            <input class="home-input" placeholder="Search freely..."/>
 
             <div class="home-results"></div>
         </form>

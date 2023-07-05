@@ -1,5 +1,6 @@
 ---
 import "./footer.css";
+import Obfuscated from "../components/Obfuscated.astro";
 let currentYear = getCurrentYear();
 function getCurrentYear() {
   return new Date().getFullYear(); // We would do this client side but doing it at build time won't require importing another framework
@@ -11,14 +12,14 @@ function getCurrentYear() {
     <div class="footer-container">
         <div class="footer-section">
             <h1><img src="/favicon.png" />Noctura</h1>
-            <p>© {currentYear} Noctura. All rights reserved.</p>
+            <p class="copyright">© {currentYear} Noctura. All rights reserved.</p>
         </div>
         <div class="footer-section">
             <div class="flex-footer-container">
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/console">Console</a></li>
-                    <li><a href="/games">Games</a></li>
+                    <li><a href="/games"><Obfuscated word="Games" /></a></li>
                 </ul>
 
                 <ul>
@@ -37,7 +38,7 @@ function getCurrentYear() {
 
         <div class="footer-section">
             <ul>
-                <li><a href="https://titaniumnetwork.org">TitaniumNetwork</a></li>
+                <li><a href="https://titaniumnetwork.org"><Obfuscated word="TitaniumNetwork" /></a></li>
                 <li><a href="https://docs.titaniumnetwork.org">Oxide Docs</a></li>
                 <li><a href="https://github.com/titaniumnetwork-dev/">Source Code</a></li>
             </ul>

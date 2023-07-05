@@ -123,3 +123,13 @@
     align-items: center;
     gap: 20px;
 }
+
+.footer-section span {
+    color: #707070;
+    text-decoration: none;
+    transition: 0.1s ease;
+}
+
+.footer-section span:hover {
+    color: #a8a8a8;
+}
