@@ -1,0 +1,29 @@
+---
+const props = Astro.props;
+---
+
+<a class={`flamethrower-link ${props.class}`} {...props} target={props.target || "_self"}>
+    <slot />
+</a>
+
+<script>
+    import flame from "flamethrower-router";
+    const flamethrower = flame({
+        log: false,
+        prefetch: "visible"
+    });
+
+    const link: HTMLAnchorElement = document.querySelector(`.flamethrower-link`);
+
+    const handler = (e) => {
+        if (flamethrower) {
+            if ((link.href.startsWith('http://') || link.href.startsWith('https://') || link.href.match(/^(mailto:|javascript:|about:)/g)) && !link.href.startsWith(location.origin)) return;
+
+            e.preventDefault();
+
+            return flamethrower.go(link.href);
+        }
+    }
+
+    link.onclick = handler;
+</script>

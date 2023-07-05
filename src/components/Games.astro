@@ -1,0 +1,33 @@
+---
+import Metadata from "./Metadata.astro";
+import Search from "./Search.astro";
+
+const games = [
+    "https://api.github.com/repos/Vendicated/Vencord"
+];
+---
+
+<div>
+    {games.map(repo => <Games repo={repo} />)}
+</div>
+
+<style>
+        div {
+            --cols: 3;
+            display: grid;
+            grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+            gap: 0.75em;
+        }
+
+        @media screen and (max-width: 1400px) {
+            div {
+                --cols: 2;
+            }
+        }
+
+        @media screen and (max-width: 1000px) {
+            div {
+                --cols: 1;
+            }
+        }
+</style>

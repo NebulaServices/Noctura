@@ -1,16 +1,23 @@
 import { defineConfig } from 'astro/config';
-import react from "@astrojs/react";
-import nodejs from '@astrojs/node';
+import cloudflare from "@astrojs/cloudflare";
+import node from "@astrojs/node"
 import tailwind from "@astrojs/tailwind";
+import compress from "astro-compress";
 
-// import compress from "astro-compress";
-
-// https://astro.build/config
 export default defineConfig({
-  integrations: [react(), tailwind(), /* compress() */],
-  adapter: nodejs({
-    mode: "standalone"
-  }),
+  integrations: [tailwind(), compress({
+    exclude: [
+      (file) => file.includes("$server_build")
+    ],
+
+    logger: 0
+  })],
+  // adapter: cloudflare({
+  //   mode: "directory"
+  // }),
+  // adapter: node({
+  //   mode: "standalone"
+  // }), 
   server: {
     headers: {
       "Access-Control-Allow-Origin": "*",

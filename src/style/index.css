@@ -2,6 +2,7 @@
     position: relative;
     height: calc(100vh - 102px);
     padding-bottom: 50px;
+    transition: 0.1s ease;
 }
 
 .home-footer {
@@ -92,7 +93,7 @@
     border-bottom-right-radius: 7px;
     border-bottom-left-radius: 7px;
     margin-top: 0;
-    background-color: #000;
+    background-color: var(--primary-bg-color);
     border: 1px solid #363636;
     border-top: 0 !important;
     display: none;

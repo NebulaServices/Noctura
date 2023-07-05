@@ -5,7 +5,7 @@
     padding: 20px 10px;
     text-align: center;
     height: min-content;
-    background: #000;
+    background: var(--primary-bg-color);
 }
 
 .footer-container {
@@ -15,14 +15,14 @@
     position: relative;
     justify-content: space-evenly;
     align-items: center;
-    gap: 20px;
+    gap: 2px;
 }
 
 .site-footer .top-banner {
     height: auto;
     width: 100%;
     font-size: 20px;
-    color: white;
+    color: var(--font-color);
     top: -16px;
     position: relative;
     text-align: center;
@@ -54,6 +54,10 @@
     margin-bottom: 10px;
 }
 
+.footer-section p {
+    color: white;
+}
+
 .footer-section h3::before {
     content: "";
     display: block;
@@ -80,7 +84,7 @@
     font-size: 20px;
     margin: 0;
     padding: 0;
-    color: white;
+    color: var(--font-color);
     position: relative;
     text-align: center;
     margin-bottom: 10px;
