@@ -27,48 +27,22 @@ function SubmitTitle() {
 function SetFavicon() {
     var initurl = document.getElementById("FaviconInput").value;
     
-    if (!initurl.startsWith('http') && !initurl.startsWith('https')) {
-      initurl = 'https://' + initurl;
-    }
-    
     var url = '/~/uv/' + encodeURIComponent(initurl);
     
     fetch(url)
       .then(response => response.text())
       .then(html => {
         var faviconPath = getFaviconPath(html);
-        console.log('Favicon path:', faviconPath);
-        setFavicon(faviconPath);
+        var faviconLink = document.querySelector('link[rel="icon"]');
+        faviconLink.href = url;
+        localStorage.setItem('savedFavicon', url);
+        console.log('Favicon set:', url);
       })
       .catch(error => {
         console.error('Error fetching URL:', error);
       });
 }
-  
-  
-function getFaviconPath(html) {
-    var regex = /<link.*?rel=["'](?:shortcut )?icon["'].*?href=["'](.*?)["'].*?>/i;
-    var match = regex.exec(html);
-    return match ? match[1] : null;
-}
-
-function setFavicon(faviconPath1) {
-    var faviconPath = '/~/uv/' + encodeURIComponent('https://' + faviconPath1);
-    var faviconLink = document.querySelector('link[rel="icon"]');
-    if (!faviconLink) {
-      faviconLink = document.createElement('link');
-      faviconLink.rel = 'icon';
-      document.head.appendChild(faviconLink);
-    }
-    faviconLink.href = faviconPath;
-    localStorage.setItem('savedFavicon', faviconPath);
-    console.log('Favicon set:', faviconPath);
-}
 
 const abCloak = document.querySelector(".ab")
-const titleCloak = document.querySelector(".title")
-const faviconCloak = document.querySelector(".faviconc")
 
 abCloak.onclick = ab_cloak;
-titleCloak.onclick = title_cloak;
-faviconCloak.onclick = favicon_cloak;
