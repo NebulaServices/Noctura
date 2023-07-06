@@ -16,9 +16,9 @@ function ab_cloak() {
     };
 };
 
-function title_cloak() {
+function SubmitTitle() {
     if (typeof document !== 'undefined') {
-        var title = prompt('Title: ', '');
+        var title = document.getElementById("TitleInput").value;
         document.title = title;
         localStorage.setItem('savedTitle', title);
     }

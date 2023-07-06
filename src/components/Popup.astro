@@ -1,7 +1,7 @@
 ---
 // take in Big Text, small text, placeholder, and a button class as input
 // we need both buttons to close thingy
-const { BigText, SmallText, Placeholder, ButtonClass, PopupID, closeFunction } = Astro.props;
+const { BigText, SmallText, Placeholder, ButtonClass, PopupID, closeFunction, InputID, submitfunction } = Astro.props;
 ---
 <div id={PopupID} class="hideThis">
     <div>
@@ -9,8 +9,8 @@ const { BigText, SmallText, Placeholder, ButtonClass, PopupID, closeFunction } =
             <div id="PopupSolid">
                 <h1>{BigText}</h1>
                 <p>{SmallText}</p>
-                <input type="text" placeholder={Placeholder} />
-                <button class={ButtonClass}>Click me</button>
+                <input type="text" id={InputID} placeholder={Placeholder} />
+                <button class={ButtonClass} onclick={submitfunction}>Submit</button>
                 <button id="closeButton" class="close" onclick={closeFunction}>Close</button>
             </div>
         </div>
@@ -55,6 +55,7 @@ const { BigText, SmallText, Placeholder, ButtonClass, PopupID, closeFunction } =
     }
     
     #PopupSolid input[type="text"] {
+        color: #000;
         width: 100%;
         padding: 10px;
         margin-bottom: 10px;
