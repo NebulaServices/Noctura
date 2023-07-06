@@ -32,7 +32,6 @@ function SetFavicon() {
     fetch(url)
       .then(response => response.text())
       .then(html => {
-        var faviconPath = getFaviconPath(html);
         var faviconLink = document.querySelector('link[rel="icon"]');
         faviconLink.href = url;
         localStorage.setItem('savedFavicon', url);
