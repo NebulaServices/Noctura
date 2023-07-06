@@ -67,10 +67,14 @@
     }
     
     .cloak {
-        font-weight: bold;
+        font-weight: 700;
         font-size: 40px;
         padding: 10px;
-        text-align: center;
-        margin-top: 20px;
-        margin-left: 50px;
+    }
+
+    .settingscontainer {
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 102px);
+        width: 100%;
     }
