@@ -65,7 +65,8 @@
 }
 
 .home-container h1 {
-    font-size: 120px;
+    font-size: 75px;
+    margin-left: 5px;
 }
 
 .home-container input {
@@ -137,5 +138,5 @@
 }
 
 .logo-image {
-    height: 160px;
+    height: 100px;
 }

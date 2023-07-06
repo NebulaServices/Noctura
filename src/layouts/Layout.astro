@@ -11,17 +11,7 @@ export interface Props {
 
 const { title } = Astro.props;
 
-let cookie;
-
-try {
-	cookie = Astro.request.headers.get('cookie').split(';').find((c) => c.trim().startsWith('astro-bare=')).split('=')[1];
-} catch {
-	cookie = null;
-}
-
 const { url } = Astro;
-
-const host = Astro.request.headers.get('host');
 ---
 
 <!DOCTYPE html>
@@ -32,11 +22,9 @@ const host = Astro.request.headers.get('host');
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<script defer data-domain={ host } src="https://analytics.noctura.tech/js/script.js"></script>
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
 		<link href="/font/font.css" rel="stylesheet">
-		<link rel="preconnect" href={ cookie ? 'https://' + cookie : '' } crossorigin>
 		<link rel="preconnect" crossorigin href="https://classroom.google.com" />
 		{
 			[
@@ -48,8 +36,8 @@ const host = Astro.request.headers.get('host');
 				return <link rel="prefetch" as="fetch" href={'https://' + e} />;
 			})
 		}
-		<meta name="generator" content={Astro.generator} />
-		<script defer src="/js/clock.js"></script>
+		<meta name="generator" content={ Astro.generator } />
+		<script defer src="/js/ui.js"></script>
 		<script async src="/js/sw.js"></script>
 
 		<title>{title}</title>
@@ -57,7 +45,7 @@ const host = Astro.request.headers.get('host');
 	<body>
 		<div class="page-load-progress"></div>
 		<main class="">
-			<Header data={url} cookie={Astro.request.headers.get('cookie') || ''} />
+			<Header data={url} />
 			<slot />
 			<Footer />
 			<Tabs />

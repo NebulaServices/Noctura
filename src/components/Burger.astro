@@ -32,7 +32,7 @@ const { background } = Astro.props;
         });
     }
     
-    const toggle = (e, only = false) => {
+    toggle = (e, only = false) => {
         if (!only && e.target.parentNode !== document.getElementsByClassName('burger-container')[0] && e.target !== document.getElementsByClassName('burger-container')[0]) return;
 
         const one = document.getElementById('_b1');
@@ -72,7 +72,7 @@ const { background } = Astro.props;
         }
     }
 
-    const burger = document.getElementById("burger-container");
+    burger = document.getElementById("burger-container");
 
     burger.addEventListener("click", (e) => toggle(e));
 </script>
