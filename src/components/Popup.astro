@@ -1,0 +1,76 @@
+---
+// take in Big Text, small text, placeholder, and a button class as input
+// we need both buttons to close thingy
+const { BigText, SmallText, Placeholder, ButtonClass, PopupID, closeFunction } = Astro.props;
+---
+<div id={PopupID} class="hideThis">
+    <div>
+        <div id="PopupContainer">
+            <div id="PopupSolid">
+                <h1>{BigText}</h1>
+                <p>{SmallText}</p>
+                <input type="text" placeholder={Placeholder} />
+                <button class={ButtonClass}>Click me</button>
+                <button id="closeButton" class="close" onclick={closeFunction}>Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hideThis {
+        display: none;
+    }
+
+    #PopupContainer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #PopupSolid {
+        z-index: 2;
+        border-width: 2px;
+        border-image: linear-gradient(to right, #0000 0, #4d008c 20%, #6f00ff 50%, #4d008c 80%, #0000 100%);
+        border-image-slice: 1;
+        background-color: #000000;
+        color: #ffffff;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+    }
+    
+    #PopupSolid h1 {
+        font-size: 60px;
+        margin-top: 0;
+    }
+    
+    #PopupSolid p {
+        margin-bottom: 20px;
+    }
+    
+    #PopupSolid input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    
+    #PopupSolid button {
+        color: #ffffff;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    
+    #PopupSolid button.close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+</style>

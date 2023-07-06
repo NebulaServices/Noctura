@@ -4,12 +4,12 @@ import "../style/style.css";
 import "../style/index.css";
 import "../components/switch.css"; 
 import Obfuscated from "../components/Obfuscated.astro";
+import Popup from "../components/Popup.astro";
 ---
 
 <Layout title="Noctura">
     <div class="home">
         <!-- <div class="top-banner" /> -->
-
         <form class="home-container">
             <div class="logo-container">
                 <img src="tiny.svg" class="logo-image">
@@ -43,6 +43,17 @@ import Obfuscated from "../components/Obfuscated.astro";
             </div>
         </div>
     </div>
+    <script is:inline> // Define our own popup ID here depending on the popup being shown
+        function showPopup() {
+            var popup = document.getElementById("popup");
+            popup.style.display = "block";
+        }
+
+        function hidePopup() {
+            var popup = document.getElementById("popup");
+            popup.style.display = "none";
+        }
+    </script>
     <script is:inline src="/js/omnibox.js" />
     <script is:inline src="/js/bareServer.js"></script>
     <script is:inline>

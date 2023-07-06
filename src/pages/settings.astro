@@ -1,11 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import "../style/style.css";
+import Popup from "../components/Popup.astro";
 ---
 
 <Layout title="Noctura">
     <div>
+        <Popup BigText="Popup UNO" SmallText="Popup" Placeholder="Pupup" ButtonClass="78ughre" PopupID="rootpopup" closeFunction="hidePopup();"/>
+        <Popup BigText="Popup DOS" SmallText="Popup" Placeholder="Pupup" ButtonClass="78ughre" PopupID="rootpopupdos" closeFunction="hidePopup2();"/>
         <div class="settingscontainer">
+            <button onclick="showPopup();">Popup 1</button>        
+            <button onclick="showPopup2();">Popup 2</button> 
             <div class="cloak">
                 <h1>Cloaking</h1>
             </div>
@@ -22,7 +27,27 @@ import "../style/style.css";
             </div>
         </div>
     </div>
+    <script is:inline> // Define our own popup ID here depending on the popup being shown
+        function showPopup() {
+            var popup = document.getElementById("rootpopup");
+            popup.style.display = "block";
+        }
 
+        function hidePopup() {
+            var popup = document.getElementById("rootpopup");
+            popup.style.display = "none";
+        }
+
+        function showPopup2() {
+            var popup = document.getElementById("rootpopupdos");
+            popup.style.display = "block";
+        }
+
+        function hidePopup2() {
+            var popup = document.getElementById("rootpopupdos");
+            popup.style.display = "none";
+        }
+    </script>
     <script src="/js/settings.js" is:inline>
     </script>
 </Layout>
