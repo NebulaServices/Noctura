@@ -26,21 +26,72 @@ function SubmitTitle() {
 
 function SetFavicon() {
     var initurl = document.getElementById("FaviconInput").value;
-    
+
     var url = '/~/uv/' + encodeURIComponent(initurl);
-    
+
     fetch(url)
-      .then(response => response.text())
-      .then(html => {
-        var faviconLink = document.querySelector('link[rel="icon"]');
-        faviconLink.href = url;
-        localStorage.setItem('savedFavicon', url);
-        console.log('Favicon set:', url);
-      })
-      .catch(error => {
-        console.error('Error fetching URL:', error);
-      });
+        .then(response => response.text())
+        .then(html => {
+            var faviconLink = document.querySelector('link[rel="icon"]');
+            faviconLink.href = url;
+            localStorage.setItem('savedFavicon', url);
+            console.log('Favicon set:', url);
+        })
+        .catch(error => {
+            console.error('Error fetching URL:', error);
+        });
 }
+
+function TitlePreset(title) {
+    if (typeof document !== 'undefined') {
+        document.title = title;
+        localStorage.setItem('savedTitle', title);
+    }
+};
+
+function FaviconPreset(url) {
+    var encodedUrl = '/~/uv/' + encodeURIComponent(url);
+
+    fetch(encodedUrl)
+        .then(response => response.text())
+        .then(html => {
+            var faviconLink = document.querySelector('link[rel="icon"]');
+            faviconLink.href = encodedUrl;
+            localStorage.setItem('savedFavicon', encodedUrl);
+            console.log('Favicon set:', encodedUrl);
+        })
+        .catch(error => {
+            console.error('Error fetching URL:', error);
+        });
+};
+
+function Preset(temp) {
+    if (temp == "googleclassroom") {
+        TitlePreset("Google Classroom");
+        FaviconPreset("https://ssl.gstatic.com/classroom/ic_product_classroom_32.png");
+    };
+
+    if (temp == "google") {
+        TitlePreset("Google");
+        FaviconPreset("https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png");
+    };
+
+    if (temp == "googledrive") {
+        TitlePreset("Google Drvie")
+        FaviconPreset("https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png");
+
+    };
+
+    if (temp == "edpuzzle") {
+        TitlePreset("Edpuzzle");
+        FaviconPreset("https://edpuzzle.imgix.net/favicons/favicon-32.png");
+    };
+
+    if (temp == "powerschool") {
+        TitlePreset("Powerschool");
+        FaviconPreset("https://www.powerschool.com/favicon.ico");
+    };
+};
 
 const abCloak = document.querySelector(".ab")
 
