@@ -6,10 +6,9 @@ import Popup from "../components/Popup.astro";
 
 <Layout title="Noctura">
     <div>
-        <Popup BigText="Title Cloaker" SmallText="Disguise this tab with a custom title!" Placeholder="Google Classroom" ButtonClass="78ughre" PopupID="rootpopup" closeFunction="hidePopup();" InputID="TitleInput" submitfunction="SubmitTitle();hidePopup();"/>
-        <Popup BigText="Popup DOS" SmallText="Popup" Placeholder="Pupup" ButtonClass="78ughre" PopupID="rootpopupdos" closeFunction="hidePopup2();" InputID="Whopper" submitfunction="SetTitle();"/>
+        <Popup BigText="Title Cloaker" SmallText="Disguise this tab with a custom title!" Placeholder="Enter Title (ex: Google Classroom)" ButtonClass="78ughre" PopupID="rootpopup" closeFunction="hidePopup();" InputID="TitleInput" submitfunction="SubmitTitle();hidePopup();"/>
+        <Popup BigText="Favicon Cloaker" SmallText="Disguise this tab with a custom favicon!" Placeholder="Enter URL (ex: drive.google.com)" ButtonClass="FaviconSub" PopupID="rootpopupdos" closeFunction="hidePopup2();" InputID="FaviconInput" submitfunction="SetFavicon();hidePopup2();"/>
         <div class="settingscontainer">
-            <button onclick="showPopup2();">Popup 2</button> 
             <div class="cloak">
                 <h1>Cloaking</h1>
             </div>
@@ -21,7 +20,7 @@ import Popup from "../components/Popup.astro";
                     <button onclick="showPopup();">Title Cloaker</button>
                 </div>
                 <div class='faviconc'>
-                    <button>Favicon Cloaker</button>
+                    <button onclick="showPopup2();">Favicon Cloaker</button>
                 </div>
             </div>
         </div>

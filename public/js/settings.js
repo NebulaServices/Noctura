@@ -24,10 +24,10 @@ function SubmitTitle() {
     }
 };
 
-function favicon_cloak() {
-    var initurl = prompt('Enter a URL: ', '');
+function SetFavicon() {
+    var initurl = document.getElementById("FaviconInput").value;
     
-    if (!initurl.startsWith('http://') && !initurl.startsWith('https://')) {
+    if (!initurl.startsWith('http') && !initurl.startsWith('https')) {
       initurl = 'https://' + initurl;
     }
     
@@ -43,7 +43,7 @@ function favicon_cloak() {
       .catch(error => {
         console.error('Error fetching URL:', error);
       });
-  }
+}
   
   
 function getFaviconPath(html) {
