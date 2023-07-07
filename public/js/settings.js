@@ -66,6 +66,14 @@ function FaviconPreset(url) {
 };
 
 function Preset(temp) {
+    if (temp == "default") {
+        localStorage.removeItem('savedFavicon');
+        localStorage.removeItem('savedTitle');
+        var faviconLink = document.querySelector('link[rel="icon"]');
+        faviconLink.href = '/favicon.svg';
+        document.title = 'Noctura';
+    };
+
     if (temp == "googleclassroom") {
         TitlePreset("Google Classroom");
         FaviconPreset("https://ssl.gstatic.com/classroom/ic_product_classroom_32.png");
@@ -73,7 +81,7 @@ function Preset(temp) {
 
     if (temp == "google") {
         TitlePreset("Google");
-        FaviconPreset("https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png");
+        FaviconPreset("https://www.google.com/favicon.ico");
     };
 
     if (temp == "googledrive") {

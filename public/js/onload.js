@@ -16,5 +16,9 @@ function titleLoad() {
     document.title = title;
 };
 
-faviconLoad();
-titleLoad();
+if (localStorage.getItem('savedFavicon')) {
+  faviconLoad();
+}
+if (localStorage.getItem('savedTitle')) {
+  titleLoad();
+}
