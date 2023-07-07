@@ -55,12 +55,19 @@ const { BigText, SmallText, Placeholder, ButtonClass, PopupID, closeFunction, In
     }
     
     #PopupSolid input[type="text"] {
-        color: #000;
+        border: 2px solid #4d008c;
+        background-color: #000;
+        color: #fff;
         width: 100%;
         padding: 10px;
         margin-bottom: 10px;
     }
     
+    #PopupSolid input[type="text"]:focus {
+        outline: none;
+        border: 2px solid #7800db;
+    }
+
     #PopupSolid button {
         color: #ffffff;
         background-color: transparent;
