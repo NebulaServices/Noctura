@@ -60,16 +60,27 @@
     padding-left: 13.33333px;
     
 }
-/* input is the textbox 
-TODO: have font in textbox, make textbox input align well */
+/* input is the textbox */
 
 /* i think the broken padding on the input is because its being overwritten somewhere */
-input {
+#input {
     width: 80%;
     border-radius: 15px;
     background-color: #161616;
     position: relative;
     height: 45%;
+    padding: 15px;
+    cursor: default;
+}
+
+#input::placeholder {
+    position: absolute;
+    left: 15px;
+    margin: 0;
+}
+
+input:focus, textarea {
+    outline: none !important;
 }
 /* TODO: make all of the image clickable  */
 .send-img {
@@ -86,8 +97,7 @@ input {
     color: #FFF;
     height: 15%;
     position: relative; 
-    border-top: 3px solid #ff0000; /*  not that subtle that when making the thing you cant see it*/
-    display: flex;
+    border-top: 3px solid #ff0000;
     align-items: center;
     top: -450px;
     
