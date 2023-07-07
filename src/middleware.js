@@ -3,7 +3,7 @@ import { defineMiddleware } from 'astro/middleware'
 export const onRequest = defineMiddleware(async (_, next) => {
     if (_.url.pathname) {
         var path = _.url.pathname.split('?')[0];
-        if (!path.includes('.') && !['/', '/ai', '/console', '/games', '/library', '/settings', '/docs', '/feedback', '/404'].includes(path)) return (next());
+        if (!path.includes('.') && !['/', '/ai', '/console', '/games', '/music', '/settings', '/docs', '/feedback', '/404'].includes(path)) return (next());
     }
 
     const response = await next();
