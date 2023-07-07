@@ -1,4 +1,4 @@
-function ab_cloak() {
+function ab_cloakReal() {
     if (typeof document !== 'undefined') {
         var iframe = document.createElement("iframe");
         iframe.src = window.location.href;
@@ -101,6 +101,6 @@ function Preset(temp) {
     };
 };
 
-const abCloak = document.querySelector(".ab")
+var abCloakButton = document.querySelector(".ab")
 
-abCloak.onclick = ab_cloak;
+abCloakButton.onclick = ab_cloakReal;
