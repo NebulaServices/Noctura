@@ -18,14 +18,6 @@ const requestInit = {
   }),
 } satisfies RequestInit;
 
-if (repo.includes("api.github.com")) {
-  const env = import.meta.env;
-
-  const token = getEnv(Astro.request, env, "GITHUB_TOKEN");
-
-  requestInit.headers.set("Accept", "application/vnd.github.v3+json");
-  requestInit.headers.set("Authorization", `Bearer ${token}`);
-}
 
 const data = await fetch(repo, requestInit).then(async (r) => {
   if (!r.ok) {
