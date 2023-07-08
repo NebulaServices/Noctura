@@ -1,0 +1,18 @@
+---
+export interface Props {
+  margin?: string;
+}
+
+const { margin } = Astro.props;
+---
+
+<div>
+  <slot />
+</div>
+
+<style define:vars={{ margin }}>
+  div {
+    margin: 2em
+      min(var(--margin, var(--horizontal-margin)), var(--horizontal-margin));
+  }
+</style>

@@ -1,58 +1,43 @@
 ---
-const data = {
-    name: "Fireboy and Watergirl in the Forest Temple",
-    description: "Fireboy and Watergirl 1 is the first cooperative platformer game in the Fireboy and Watergirl series. In this adventure, you explore 32 levels of the Forest Temple, controlling both the Fireboy and Watergirl characters through various puzzles.",
-    genre: "Casual",
-    url: "https://html5.gamedistribution.com/rvvASMiM/a55c9cc9c21e4fc683c8c6857f3d0c75/index.html?gd_sdk_referrer_url=https%3A%2F%2Fwww.crazygames.com%2Fgame%2Ffireboy-and-watergirl-the-forest-temple&gd_zone_config=eyJwYXJlbnRVUkwiOiJodHRwczovL3d3dy5jcmF6eWdhbWVzLmNvbS9nYW1lL2ZpcmVib3ktYW5kLXdhdGVyZ2lybC10aGUtZm9yZXN0LXRlbXBsZSIsInBhcmVudERvbWFpbiI6ImNyYXp5Z2FtZXMuY29tIiwidG9wRG9tYWluIjoidW5kZWZpbmVkIiwiaGFzSW1wcmVzc2lvbiI6ZmFsc2UsImxvYWRlckVuYWJsZWQiOnRydWUsImhvc3QiOiJodG1sNS5nYW1lZGlzdHJpYnV0aW9uLmNvbSIsInZlcnNpb24iOiIxLjUuMTYifQ%253D%253D",
-};
+import Repositories from "./Repositories.astro";
 
-const { name, description, genre, url } = data;
+const repos = [
+  "https://api.github.com/repos/Dave-and-Mike/game-off-2012",
+  "https://api.github.com/repos/cykod/AlienInvasion",
+  "https://api.github.com/repos/stephank/arashi-js",
+  "https://api.github.com/repos/dmcinnes/HTML5-Asteroids",
+  "https://api.github.com/repos/Zolmeister/avabranch",
+  "https://api.github.com/repos/budnix/ball-and-wall",
+  "https://api.github.com/repos/Couchfriends/breakout",
+  "https://api.github.com/repos/EnclaveGames/Captain-Rogers",
+  "https://api.github.com/repos/gamebytes/cellmates",
+  "https://api.github.com/repos/mjhasbach/ceros-snake",
+  "https://api.github.com/repos/RothschildGames/change",
+  "https://api.github.com/repos/Murkantilism/game-off-2013",
+];
 ---
 
-<a href={url}>
-    <h3>{name}</h3>
-    <span class="description">{description}</span>
-    <div class="info">
-        <span class="genre">{genre}</span>
-    </div>
-</a>
+<div>
+  {repos.map((repo) => <Repositories repo={repo} />)}
+</div>
 
-<style lang="scss">
-    a {
-        all: unset;
-        cursor: pointer;
-        position: relative;
-        background: var(--surface2);
-        border: 1px solid var(--color-semi-trans);
-        padding: 1em;
-        border-radius: 8px;
-        display: grid;
-        transition: 200ms box-shadow var(--box-shadow-transition), 200ms background;
-    }
+<style>
+  div {
+    --cols: 3;
+    display: grid;
+    grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+    gap: 0.75em;
+  }
 
-    a:is(:hover, :active) {
-        box-shadow: var(--box-shadow-stronger);
-        background: var(--surface);
+  @media screen and (max-width: 1400px) {
+    div {
+      --cols: 2;
     }
+  }
 
-    h3 {
-        margin: 0;
+  @media screen and (max-width: 1000px) {
+    div {
+      --cols: 1;
     }
-
-    span {
-        font-size: 0.9em;
-    }
-
-    .description {
-        margin-top: 0.3em;
-        margin-bottom: 0.8em;
-    }
-
-    .info {
-        line-height: 1.2em;
-    }
-
-    .genre {
-        margin-right: 0.6em;
-    }
+  }
 </style>
