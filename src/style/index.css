@@ -1,3 +1,9 @@
+@font-face {
+    font-family: MajorMonoDisplay;
+    src: url(/MajorMonoDisplay-Regular.ttf);
+}
+
+  
 .home {
     position: relative;
     height: calc(100vh - 102px);
@@ -62,11 +68,6 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-}
-
-.home-container h1 {
-    font-size: 75px;
-    margin-left: 5px;
 }
 
 .home-container input {
@@ -139,4 +140,9 @@
 
 .logo-image {
     height: 100px;
+}
+
+.logotext {
+    font-size: 75px;
+    font-family: MajorMonoDisplay, Arial, sans-serif;
 }

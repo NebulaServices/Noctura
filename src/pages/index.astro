@@ -11,12 +11,8 @@ import Popup from "../components/Popup.astro";
     <div class="home">
         <!-- <div class="top-banner" /> -->
         <form class="home-container">
-            <div class="logo-container">
-                <img src="tiny.svg" class="logo-image">
-                <h1><Obfuscated word="octura"></h1>
-            </div>
+            <h1 class="logotext"><Obfuscated word="Noctura"></h1>
             <input class="home-input" placeholder="Search freely..."/>
-
             <div class="home-results"></div>
         </form>
 
@@ -32,9 +28,6 @@ import Popup from "../components/Popup.astro";
                     {
                         [
                             'tomp.app',
-                            'us-east.noctura.tech',
-                            'us-west.noctura.tech',
-                            'eu-central.noctura.tech'
                         ].map(e=>{
                             return <a id={"server-" + e.split('.')[0]} class="modify-split-a" data-value={e}>{e.split('.')[0].split('-').map(e=>e.split('').map((e,i)=>i==0?e.toUpperCase():e).join('')).join(' ')} <span class="server-ping">0ms</span></a>
                         })
