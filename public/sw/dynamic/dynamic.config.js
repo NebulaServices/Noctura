@@ -4,7 +4,7 @@ self.__dynamic$config = {
   mode: 'production', // development: zero caching, no minification, production: speed-oriented
   bare: {
     version: 3,
-    path: 'https://tomp.app/',
+    path: '/bare/',
   },
   tab: {
     title: 'Service',
