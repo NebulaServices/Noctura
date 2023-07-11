@@ -1,9 +1,9 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import "../../style/style.css";
-import "../../style/settings.css";
-import Link from '../../components/Link.astro';
-import Obfuscated from '../../components/Obfuscated.astro';
+import Layout from '@layout';
+import "@css/style.css";
+import "@css/settings.css";
+import Link from '@components/Link.astro';
+import Obfuscated from '@components/Obfuscated.astro';
 
 const page = Astro.url.pathname.replace(/\/$/g, '').split('/').pop();
 

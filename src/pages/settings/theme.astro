@@ -1,8 +1,8 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import "../../style/style.css";
-import "../../style/settings.css";
-import Link from '../../components/Link.astro';
+import Layout from '@layout';
+import "@css/style.css";
+import "@css/settings.css";
+import Link from '@components/Link.astro';
 
 const page = Astro.url.pathname.replace(/\/$/g, '').split('/').pop();
 
