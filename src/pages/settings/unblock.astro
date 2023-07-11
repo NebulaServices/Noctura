@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import "../../style/style.css";
 import "../../style/settings.css";
 import Link from '../../components/Link.astro';
+import Obfuscated from '../../components/Obfuscated.astro';
 
 const page = Astro.url.pathname.replace(/\/$/g, '').split('/').pop();
 
@@ -27,10 +28,10 @@ const tabs = [
             </div>
             <div class="settings-right">
                 <div class="settings-page">
-                    <h1 class="text-3xl"><span>Pr</span>oxy Settings</h1>
+                    <h1 class="text-3xl"><Obfuscated word="Proxy Settings"></h1>
                     <div class="settings-section">
                         <form id="set-proxy-form">
-                            <h1 class="text-lg"><span>Pr</span>oxy</h1>
+                            <h1 class="text-lg"><Obfuscated word="Proxy"></h1>
 
                             <div class="flex justify-around">
                                 <button id="Ultraviolet" type="submit" class="settings-img-container">
