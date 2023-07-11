@@ -110,12 +110,13 @@
 }
 
 .nav-slash {
-    border-top: 1px solid #737373;
+    border-top: var(--borders-1);
     width: 24px;
     display: inline-block;
     rotate: 120deg;
     position: relative;
     bottom: 4px;
+    background-color: var(--primary-text-color);
 }
 
 #nav-move {
@@ -145,14 +146,14 @@
     border-radius: 6px;
     flex: auto;
     font-size: 14px;
-    color: #fff;
-    border: 1px solid rgb(39, 39, 39);
+    color: var(--font-color);
+    border: var(--borders-2);
     position: relative;
     transition: 0.1s ease;
 }
 
 .feedback-btn:hover {
-    background: #36363681;
+    background: var(--surface-2);
 }
 
 .extra-btn {
@@ -182,7 +183,7 @@
 }
 
 .nav-time-text {
-    color: var(--nav-btn-color);
+    color: var(--font-color);
     margin-right: 10px;
 }
 

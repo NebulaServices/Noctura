@@ -23,7 +23,7 @@
     left: 0;
     top: 0;
     content: '';
-    background: linear-gradient(to right, #0000 0%, #4d008c 20%, #6f00ff 50%, #4d008c 80%, #0000 100%);
+    background: var(--banner-gradient);
     background-size: 100% 100%;
     filter: blur(1px);
     animation: blur-breathe 6s ease infinite;

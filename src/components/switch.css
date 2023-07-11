@@ -65,7 +65,7 @@
 .switch-btn a {
     display: block;
     padding: 10px 20px;
-    color: white;
+    color: var(--font-color);
     text-decoration: none;
     text-align: center;
     font-size: 14px;

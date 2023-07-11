@@ -36,11 +36,11 @@
 }
 
 .server-indicator-value:not(.connected), .server-indicator-value:not(.connected) * {
-    color: #ffffff;
+    color: var(--secondary-bg-color);
 }
 
 .server-indicator-value.connected, .server-indicator-value.connected * {
-    color: white !important;
+    color: var(--secondary-bg-color) !important;
 }
 
 .server-indicator-value:not(.connected) .indicator-dot {
@@ -74,10 +74,10 @@
     width: 100%;
     max-width: 500px;
     padding: 10px 20px;
-    border: 1px solid #363636;
+    border: var(--borders-1);
     border-radius: 7px;
-    background-color: #000;
-    color: white;
+    background-color: var(--primary-bg-color);
+    color: var(--font-color);
     font-size: 16px;
     font-weight: 500;
     outline: none;

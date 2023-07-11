@@ -71,7 +71,7 @@
     border-radius: 5px;
     border: 1px solid #333;
     background: #222;
-    color: #fff;
+    color: var(--font-color);
     padding: 5px 10px;
     width: 100%;
     outline: none;
@@ -81,5 +81,25 @@
 }
 
 .settings-submit:hover {
-    background: #333;
+    background: #333 !important;
+}
+
+.mocha_theme {
+    background-color: #1e1e2e !important;
+}
+
+.amoled_theme {
+    background-color: #000000 !important;
+}
+
+.macchiato_theme {
+    background-color: #24273a !important;
+}
+
+.frappe_theme {
+    background-color: #303446 !important;
+}
+
+.latte_theme {
+    background-color: #eff1f5 !important;
 }

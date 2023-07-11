@@ -9,7 +9,7 @@ const { background } = Astro.props;
     <span id="_b2" class="burger-line-2"></span>
     <span id="_b3" class="burger-line-3"></span>
 
-    <div class="burger-child-container" style={{background: background || "#000"}}>
+    <div class="burger-child-container" style={{background: background || "var(--primary-bg-color)"}}>
         <slot />
     </div>
 </div>

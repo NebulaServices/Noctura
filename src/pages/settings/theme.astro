@@ -27,16 +27,50 @@ const tabs = [
             </div>
             <div class="settings-right">
                 <div class="settings-page">
-                    <h1 class="text-3xl">General</h1>
+                    <h1 class="text-3xl">Themes</h1>
                     <div class="settings-section">
-                        <form>
-                            <h1 class="text-lg">Custom Bare Server</h1>
+                        <form id="about-blank-form">
+                            <h1 class="text-lg">Select Theme</h1>
 
-                            <input class="settings-input">
+                            <button type="submit" id="theme-amoled" class="settings-submit amoled_theme">AMOLED</button>
+                            <button id="theme-mocha" class="settings-submit mocha_theme">Catppuccin - Mocha</button>
+                            <button id="theme-macchiato" class="settings-submit macchiato_theme">Catppuccin - Macchiato</button>
+                            <button id="theme-frappe" class="settings-submit frappe_theme">Catppuccin - Frappé</button>
+                            <button id="theme-latte" class="settings-submit latte_theme">Catppuccin - Latte</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            let theme = localStorage.getItem('theme') || 'amoled';
+            document.documentElement.setAttribute('data-theme', theme);
+
+            document.getElementById('theme-amoled').addEventListener('click', () => {
+                localStorage.setItem('theme', 'amoled');
+                document.documentElement.setAttribute('data-theme', 'amoled');
+            });
+
+            document.getElementById('theme-mocha').addEventListener('click', () => {
+                localStorage.setItem('theme', 'mocha');
+                document.documentElement.setAttribute('data-theme', 'mocha');
+            });
+
+            document.getElementById('theme-macchiato').addEventListener('click', () => {
+                localStorage.setItem('theme', 'macchiato');
+                document.documentElement.setAttribute('data-theme', 'macchiato');
+            });
+
+            document.getElementById('theme-frappe').addEventListener('click', () => {
+                localStorage.setItem('theme', 'frappe');
+                document.documentElement.setAttribute('data-theme', 'frappe');
+            });
+
+            document.getElementById('theme-latte').addEventListener('click', () => {
+                localStorage.setItem('theme', 'latte');
+                document.documentElement.setAttribute('data-theme', 'latte');
+            });
+        </script>
+
     </>
 </Layout>

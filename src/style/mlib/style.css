@@ -641,7 +641,6 @@ a {
 .back-arrow:hover {
   transform: scale(1.05);
   transition: 0.1s;
-  box-shadow: #000000 0px 0px 1vh 0px;
 }
 
 .pause-play {
@@ -655,7 +654,6 @@ a {
 .pause-play:hover {
   transform: scale(1.05);
   transition: 0.1s;
-  box-shadow: #000000 0px 0px 1vh 0px;
 }
 
 .back-arrow {
@@ -669,7 +667,6 @@ a {
 .forward-arrow:hover {
   transform: scale(1.05);
   transition: 0.1s;
-  box-shadow: #000000 0px 0px 1vh 0px;
 }
 
 
