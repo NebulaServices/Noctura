@@ -5,7 +5,7 @@
 }
 
 .settings-left {
-    width: 32%;
+    width: 300px;
     float: left;
     display: flex;
     flex-direction: column;
@@ -31,7 +31,7 @@
 }
 
 .settings-right {
-    width: 68%;
+    width: calc(100% - 300px);
     float: left;
 }
 

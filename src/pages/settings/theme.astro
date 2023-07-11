@@ -29,7 +29,7 @@ const tabs = [
                 <div class="settings-page">
                     <h1 class="text-3xl">Themes</h1>
                     <div class="settings-section">
-                        <form id="about-blank-form">
+                        <form id="theme-switch-form">
                             <h1 class="text-lg">Select Theme</h1>
 
                             <button type="submit" id="theme-amoled" class="settings-submit amoled_theme">AMOLED</button>
@@ -42,9 +42,9 @@ const tabs = [
                 </div>
             </div>
         </div>
-        <script>
-            let theme = localStorage.getItem('theme') || 'amoled';
-            document.documentElement.setAttribute('data-theme', theme);
+
+        <script type="module">
+            var notify = window.notify;
 
             document.getElementById('theme-amoled').addEventListener('click', () => {
                 localStorage.setItem('theme', 'amoled');
@@ -70,7 +70,12 @@ const tabs = [
                 localStorage.setItem('theme', 'latte');
                 document.documentElement.setAttribute('data-theme', 'latte');
             });
-        </script>
 
+            document.getElementById('theme-switch-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                notify.show('Saved', 'success', 2000);
+            });
+        </script>
     </>
 </Layout>

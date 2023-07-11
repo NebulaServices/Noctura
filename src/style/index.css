@@ -36,11 +36,11 @@
 }
 
 .server-indicator-value:not(.connected), .server-indicator-value:not(.connected) * {
-    color: var(--secondary-bg-color);
+    color: var(--font-color);
 }
 
 .server-indicator-value.connected, .server-indicator-value.connected * {
-    color: var(--secondary-bg-color) !important;
+    color: var(--font-color) !important;
 }
 
 .server-indicator-value:not(.connected) .indicator-dot {

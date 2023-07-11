@@ -3,6 +3,8 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Tabs from "../components/Tabs.astro";
 
+import Notifications from 'react-notify-toast';
+
 import "../styles.css";
 import "../style/global.css"
 
@@ -18,6 +20,42 @@ const { url } = Astro;
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<script is:inline type="module">
+			let theme = localStorage.getItem('theme') || 'amoled';
+            document.documentElement.setAttribute('data-theme', theme);
+
+			window.faviconLoad = function faviconLoad() {
+				var faviconPath = localStorage.getItem('savedFavicon');
+				var faviconLink = document.querySelector('link[rel="icon"]');
+				if (!faviconLink) {
+				faviconLink = document.createElement('link');
+				faviconLink.rel = 'icon';
+				document.head.appendChild(faviconLink);
+				}
+				faviconLink.href = faviconPath;
+				localStorage.setItem('savedFavicon', faviconPath);
+			}
+
+			window.titleLoad = function titleLoad() {
+				var title = localStorage.getItem('savedTitle');
+				document.title = title;
+			};
+		</script>
+        <script>
+            import { notify } from 'react-notify-toast';
+
+            window.notify = notify;
+
+            window.console.error = new Proxy(window.console.error, {
+                apply: function(target, thisArg, argumentsList) {
+                    if (argumentsList[0].includes('Warning: ReactDOM.render is no longer supported in React 18')) {
+                        return;
+                    } else {
+                        return Reflect.apply(target, thisArg, argumentsList);
+                    }
+                }
+            });
+        </script>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description">
 		<meta name="viewport" content="width=device-width" />
@@ -36,7 +74,6 @@ const { url } = Astro;
 		}
 		<meta name="generator" content={ Astro.generator } />
 		<script defer src="/js/ui.js"></script>
-		<script async src="/js/onload.js"></script>
 		<script async src="/js/sw.js"></script>
 
 		<title>{title}</title>
@@ -45,10 +82,19 @@ const { url } = Astro;
 		<div class="page-load-progress"></div>
 		<main class="">
 			<Header data={url} />
+			<Notifications />
 			<slot />
 			<Footer />
 			<Tabs />
 		</main>
+		<script is:inline type="module">
+			if (localStorage.getItem('savedFavicon')) {
+				faviconLoad();
+			}
+			if (localStorage.getItem('savedTitle')) {
+				titleLoad();
+			}
+		</script>
 	</body>
 </html>
 <style is:global>
