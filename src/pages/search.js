@@ -1,4 +1,5 @@
 export async function get(req) {
+    console.log(req.request.headers)
     const param = decodeURIComponent(req.url.pathname.split('=')[1]);
 
     try {

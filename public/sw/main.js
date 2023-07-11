@@ -22,8 +22,10 @@ const p = new Promise(async (res) => {
         bareServer = await (await cache.match('/bare.txt')).text();
     }
 
-    self.__uv$config.bare = `https://${bareServer}`;
-    self.__dynamic$config.bare.path = `https://${bareServer}`;
+    //console.log('bare server', bareServer)
+
+    self.__uv$config.bare = `http://${bareServer}`;
+    self.__dynamic$config.bare.path = `http://${bareServer}`;
 
     self.dynamic = new Dynamic(self.__dynamic$config);
     self.uv = new UVServiceWorker(self.__uv$config);
@@ -40,6 +42,8 @@ addEventListener('fetch', function(event) {
         if (event.request.url.startsWith(location.origin + '/~/uv/')) {
             return await self.uv.fetch(event);
         }
+
+        //console.log(event.request.url, await self.dynamic.route(event), await self.dynamic.fetch(event));
 
         if (await self.dynamic.route(event)) {
             return await self.dynamic.fetch(event);

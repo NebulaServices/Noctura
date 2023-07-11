@@ -4,10 +4,7 @@ if (input) {
     let autofill = false;
 
     const request = async function() {
-        const req = await fetch('/search', {
-            method: 'POST',
-            body: encodeURIComponent(input.value)
-        });
+        const req = await fetch('/~/uv/' + encodeURIComponent(`http://api.duckduckgo.com/ac?q=${encodeURIComponent(decodeURIComponent(input.value) || '')}&format=json`));
 
         return await req.json();
     }

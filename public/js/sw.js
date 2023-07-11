@@ -1,5 +1,5 @@
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js', { scope: '/', module: true })
+    if (!navigator.serviceWorker.controller) navigator.serviceWorker.register('/sw.js', { scope: '/', module: true })
         .then(function(registration) {
             console.log('Registration successful, scope is:', registration.scope);
         })

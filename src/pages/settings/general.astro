@@ -62,7 +62,9 @@ const tabs = [
         <script>
             import Notifications, {notify} from 'react-notify-toast';
 
-            function loadSettings() {                
+            function loadSettings() {            
+                if (!window.location.pathname.startsWith('/settings/general')) return;
+
                 document.getElementById('about-blank-form').addEventListener('submit', function(e) {
                     e.preventDefault();
 
@@ -140,7 +142,7 @@ const tabs = [
                 })
             };
 
-            window.addEventListener('flamethrower:router:end', loadSettings);
+            window.addEventListener('flamethrower:router:end', _=>loadSettings());
             loadSettings();
         </script>
     </>
