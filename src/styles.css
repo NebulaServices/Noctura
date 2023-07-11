@@ -29,6 +29,9 @@
     --font-color: #cdd6f4; /* Text */
     --banner-gradient: linear-gradient(to right, var(--primary-bg-color) 0%, #89dceb 20%, #74c7ec 50%, #89b4fa 80%, var(--primary-bg-color) 100%);
     --surface-2: #585b70; /* Surface 2 */
+    --settings-1: #11111b; /* settings section background  Crust */
+    --settings-2: #181825; /* settings section background  Mantle */
+    --settings-3: #313244; /* settings section background  Surface 0*/
     --borders-1: 1px solid rgb(72, 72, 72);
     --borders-2: 1px solid #7f849c; /* Overlay 1 */
 }
@@ -43,6 +46,9 @@
     --font-color: #cad3f5; /* Text */
     --banner-gradient: linear-gradient(to right, var(--primary-bg-color) 0%, #89dceb 20%, #74c7ec 50%, #89b4fa 80%, var(--primary-bg-color) 100%);
     --surface-2: #5b6078; /* Surface 2 */
+    --settings-1: #181926; /* settings section background  Crust */
+    --settings-2: #1e2030; /* settings section background  Mantle */
+    --settings-3: #363a4f; /* settings section background  Surface 0*/
     --borders-1: 1px solid rgb(72, 72, 72);
     --borders-2: 1px solid #8087a2; /* Overlay 1 */
 }
@@ -57,6 +63,9 @@
     --font-color: #c6d0f5; /* Text */
     --banner-gradient: linear-gradient(to right, var(--primary-bg-color) 0%, #89dceb 20%, #74c7ec 50%, #89b4fa 80%, var(--primary-bg-color) 100%);
     --surface-2: #626880; /* Surface 2 */
+    --settings-1: #232634; /* settings section background  Crust */
+    --settings-2: #292c3c; /* settings section background  Mantle */
+    --settings-3: #414559; /* settings section background  Surface 0*/
     --borders-1: 1px solid rgb(72, 72, 72);
     --borders-2: 1px solid #838ba7; /* Overlay 1 */
 }
@@ -71,6 +80,9 @@
     --font-color: #4c4f69; /* Text */
     --banner-gradient: linear-gradient(to right, var(--primary-bg-color) 0%, #89dceb 20%, #74c7ec 50%, #89b4fa 80%, var(--primary-bg-color) 100%);
     --surface-2: #acb0be; /* Surface 2 */
+    --settings-1: #dce0e8; /* settings section background  Crust */
+    --settings-2: #e6e9ef; /* settings section background  Mantle */
+    --settings-3: #ccd0da; /* settings section background  Surface 0*/
     --borders-1: 1px solid rgb(72, 72, 72);
     --borders-2: 1px solid #8c8fa1; /* Overlay 1 */
 }
