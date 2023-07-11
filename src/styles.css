@@ -17,7 +17,7 @@
     --settings-3: #333; /* settings section background */
     --borders-1: 1px solid rgb(72, 72, 72);
     --borders-2: 1px solid rgb(36, 36, 36);
-    --tn-hue: hue-rotate(357deg);
+    --tn-filter: brightness(2.5) hue-rotate(357deg);
 }
 
 [data-theme="mocha"] {
@@ -35,6 +35,7 @@
     --settings-3: #313244; /* settings section background  Surface 0*/
     --borders-1: 1px solid rgb(72, 72, 72);
     --borders-2: 1px solid #7f849c; /* Overlay 1 */
+    --tn-filter: brightness(0) saturate(100%) invert(77%) sepia(12%) saturate(1762%) hue-rotate(166deg) brightness(96%) contrast(92%); /* Sapphire - Converted to filter */
 }
 
 [data-theme="macchiato"] {
@@ -52,6 +53,7 @@
     --settings-3: #363a4f; /* settings section background  Surface 0*/
     --borders-1: 1px solid rgb(72, 72, 72);
     --borders-2: 1px solid #8087a2; /* Overlay 1 */
+    --tn-filter: brightness(0) saturate(100%) invert(71%) sepia(60%) saturate(312%) hue-rotate(163deg) brightness(94%) contrast(89%); /* Sapphire - Converted to filter */
 }
 
 [data-theme="frappe"] {
@@ -69,6 +71,7 @@
     --settings-3: #414559; /* settings section background  Surface 0*/
     --borders-1: 1px solid rgb(72, 72, 72);
     --borders-2: 1px solid #838ba7; /* Overlay 1 */
+    --tn-filter: brightness(0) saturate(100%) invert(76%) sepia(33%) saturate(395%) hue-rotate(156deg) brightness(90%) contrast(91%); /* Sapphire - Converted to filter */
 }
 
 [data-theme="latte"] {
@@ -86,7 +89,28 @@
     --settings-3: #ccd0da; /* settings section background  Surface 0*/
     --borders-1: 1px solid rgb(72, 72, 72);
     --borders-2: 1px solid #8c8fa1; /* Overlay 1 */
+    --tn-filter: brightness(0) saturate(100%) invert(45%) sepia(100%) saturate(370%) hue-rotate(141deg) brightness(97%) contrast(89%); /* Sapphire - Converted to filter */
 }
+
+[data-theme="baja"] {
+    --primary-bg-color: #008881; /* Color 1 */
+    --secondary-bg-color: #000000; /* Surface 2 */
+    --primary-text-color: #ffffff; /* Text */
+    --nav-btn-color: #f9f4cf; /* active button       -- also applies to extra nav buttons   -- Sapphire */
+    --nav-btn-color-darker: #ffffff; /* not active   -- also applies to extra nav buttons   -- Overlay 2 */
+    --header-font: "Inter", sans-serif;
+    --font-color: #ffffff; /* Text */
+    --banner-gradient: linear-gradient(to right, var(--primary-bg-color) 0%, #226466 20%, #3b5fd4 50%, #031b1b 80%, var(--primary-bg-color) 100%);
+    --surface-2: #c7ffec; /* Surface 2 */
+    --settings-1: #005550; /* settings section background  Crust */
+    --settings-2: #006a63; /* settings section background  Mantle */
+    --settings-3: #009e94; /* settings section background  Surface 0*/
+    --borders-1: 1px solid #676f78;
+    --borders-2: 1px solid #96ffdb; /* Overlay 1 */
+    --tn-filter: brightness(0) saturate(100%) invert(22%) sepia(45%) saturate(5539%) hue-rotate(344deg) brightness(92%) contrast(98%); /* Sapphire - Converted to filter */
+}
+
+
 
 
 body, html {

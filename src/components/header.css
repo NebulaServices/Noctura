@@ -91,7 +91,7 @@
     height: 40px;
     margin-left: 10px;
     display: inline-block;
-    filter: brightness(2.5) var(--tn-hue);
+    filter: var(--tn-filter);
     transform: scale(1.02);
 }
 
