@@ -48,13 +48,13 @@
     transition: 0.1s ease;
     border-radius: 5px;
     margin-top: 10px;
-    background: #111;
+    background: var(--settings-1);
 }
 
 .settings-input {
     border-radius: 5px;
-    border: 1px solid #333;
-    background: #222;
+    border: 1px solid var(--settings-3);
+    background: var(--settings-2);
     color: #fff;
     padding: 5px 10px;
     width: 100%;
@@ -69,8 +69,8 @@
 
 .settings-submit {
     border-radius: 5px;
-    border: 1px solid #333;
-    background: #222;
+    border: 1px solid var(--settings-3);
+    background: var(--settings-2);
     color: var(--font-color);
     padding: 5px 10px;
     width: 100%;
@@ -81,7 +81,7 @@
 }
 
 .settings-submit:hover {
-    background: #333 !important;
+    background: var(--settings-3) !important;
 }
 
 .mocha_theme {
@@ -102,4 +102,25 @@
 
 .latte_theme {
     background-color: #eff1f5 !important;
+}
+
+.settings-img-button {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.settings-img-container {
+    background: var(--settings-2);
+    color: var(--font-color);
+    padding: 5px 10px;
+    width: 200px;
+    height: 200px;
+    outline: none;
+    transition: 0.1s ease;
+    margin-top: 5px;
+    cursor: pointer;
 }

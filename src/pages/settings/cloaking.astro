@@ -52,6 +52,8 @@ const tabs = [
             let notify = window.notify;
 
             function loadSettings() {
+                if (!window.location.pathname.startsWith('/settings/cloaking')) return;
+
                 async function getData(url) {
                     if (!url.match(/^\w+:/) && url.includes('.') && !/\s+/.test(url)) {
                         url = `http://${url}`;
