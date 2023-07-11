@@ -5,16 +5,6 @@ import "./header.css";
 import "./switch.css";
 
 const { background, data: url } = Astro.props;
-/*let { cookie } = Astro.props;
-
-try {
-  cookie = cookie
-    .split("; ")
-    .find((row) => row.startsWith("astro-proxy"))
-    .split("=")[1];
-} catch {
-  cookie = null;
-}*/
 
 const routes = [
   { id: 1, title: "Search", path: "/" },
@@ -22,7 +12,7 @@ const routes = [
   { id: 3, title: "Games", path: "/games" },
   { id: 4, title: "Music", path: "/music" },
   { id: 5, title: "Console", path: "/console" },
-  { id: 6, title: "Settings", path: "/settings" },
+  { id: 6, title: "Settings", path: "/settings/general" },
 ];
 
 const currentLocation = routes.find((route) => route.path === url.pathname);
@@ -97,12 +87,12 @@ const currentDate = new Date().getTime();
         <span class="nav-btn-title">Changelog</span>
       </Link>
 
-      <Link class="extra-btn" href="/docs">
+      <Link class="extra-btn" href="https://docs.titaniumnetwork.dev">
         <span class="nav-btn-title">Docs</span>
       </Link>
 
       <Hamburger>
-        <a href="https://classroom.google.com" class="hamburger-link" target="_self">Panic</a>
+        <a href="https://classroom.google.com" class="hamburger-link" id="panic-button" target="_self">Panic</a>
         <Link href="/credits" class="hamburger-link">Credits</Link>
         <Link href="/privacy" class="hamburger-link">Privacy Policy</Link>
         <Link href="/terms" class="hamburger-link">Terms of Service</Link>
@@ -310,5 +300,7 @@ const currentDate = new Date().getTime();
           return;
       }
     };
+    
+    document.getElementById('panic-button').href = localStorage.getItem('panic-url') || 'https://classroom.google.com/';
   })();
 </script>

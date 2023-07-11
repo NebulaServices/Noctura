@@ -1,0 +1,42 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import "../../style/style.css";
+import "../../style/settings.css";
+import Link from '../../components/Link.astro';
+
+const page = Astro.url.pathname.split('/').pop();
+
+const tabs = [
+    ["General", "/settings/general"],
+    ["Privacy", "/settings/privacy"],
+    ["Cloaking", "/settings/cloaking"],
+    ["Unblock", "/settings/unblock"],
+    ["Theme", "/settings/theme"],
+]
+---
+
+<Layout title="Noctura">
+    <>
+        <div class="settings">
+            <div class="settings-left">
+                {
+                    tabs.map(tab => (
+                        <Link class="settings-navlink" href={tab[1]}>{tab[0]}</Link>
+                    ))
+                }
+            </div>
+            <div class="settings-right">
+                <div class="settings-page">
+                    <h1 class="text-3xl">General</h1>
+                    <div class="settings-section">
+                        <form>
+                            <h1 class="text-lg">Custom Bare Server</h1>
+
+                            <input class="settings-input">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </>
+</Layout>

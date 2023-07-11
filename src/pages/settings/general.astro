@@ -1,0 +1,147 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import "../../style/style.css";
+import "../../style/settings.css";
+import Link from '../../components/Link.astro';
+
+// @ts-ignore
+import Notifications, {notify} from 'react-notify-toast';
+import 'react-toastify/dist/ReactToastify.css';
+
+const page = Astro.url.pathname.replace(/\/$/g, '').split('/').pop();
+
+const tabs = [
+    ["General", "/settings/general"],
+    ["Privacy", "/settings/privacy"],
+    ["Cloaking", "/settings/cloaking"],
+    ["Unblock", "/settings/unblock"],
+    ["Theme", "/settings/theme"],
+]
+---
+
+<Layout title="Noctura">
+    <>
+        <Notifications />
+        <div class="settings">
+            <div class="settings-left">
+                {
+                    tabs.map(tab => (
+                        <Link class={"settings-navlink" + (tab[1].split('/').pop() == page ? " settings-navlink-active" : "")} href={tab[1]}>{tab[0]}</Link>
+                    ))
+                }
+            </div>
+            <div class="settings-right">
+                <div class="settings-page">
+                    <h1 class="text-3xl">General</h1>
+                    <div class="settings-section">
+                        <form id="custom-bare-form">
+                            <h1 class="text-lg">Custom Bare Server</h1>
+
+                            <input class="settings-input">
+                        </form>
+                    </div>
+                    <div class="settings-section">
+                        <form id="about-blank-form">
+                            <h1 class="text-lg">Tab Cloaking</h1>
+
+                            <button type="submit" id="init-about" class="settings-submit">About:Blank</button>
+                            <button type="submit" id="init-blob" class="settings-submit">Blob</button>
+                        </form>
+                    </div>
+                    <div class="settings-section">
+                        <form id="panic-url-form">
+                            <h1 class="text-lg">Panic URL</h1>
+
+                            <input class="settings-input" placeholder="https://classroom.google.com/">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            import Notifications, {notify} from 'react-notify-toast';
+
+            function loadSettings() {                
+                document.getElementById('about-blank-form').addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    switch(e.submitter.id) {
+                        case 'init-about':
+                            var newWindow = window.open("about:blank", "_blank");
+                            break;
+                        case 'init-blob':
+                            var newWindow = window.open(URL.createObjectURL(new Blob(['<html><body></body></html>'], {type: 'text/html'})), "_blank");
+                            break;
+                    }
+
+                    var iframe = document.createElement("iframe");
+                    iframe.src = window.location.href;
+                    iframe.style.width = "100%";
+                    iframe.style.height = "100%";
+                    iframe.style.border = "none";
+                    iframe.style.overflow = "hidden";
+
+                    newWindow.onload = function() {
+                        newWindow.document.body.style.background = "black";
+                        newWindow.document.body.appendChild(iframe);
+                        newWindow.document.body.style.width = "100%";
+                        newWindow.document.body.style.height = "100%";
+                        newWindow.document.body.style.margin = "0";
+                        newWindow.document.body.style.padding = "0";
+                    }
+                });
+
+                document.querySelector('#panic-url-form input').value = localStorage.getItem('panic-url') || 'https://classroom.google.com/';
+
+                document.getElementById('panic-url-form').addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    var url = document.querySelector('#panic-url-form input').value;
+
+                    if (url) {
+                        localStorage.setItem('panic-url', url);
+
+                        notify.show(`Saved`, "success", 2000);
+                    } else {
+                        return;
+                    }
+                });
+
+                document.querySelector('#custom-bare-form input').value = localStorage.getItem('server') || '';
+
+                document.getElementById('custom-bare-form').addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    let bare = document.querySelector('#custom-bare-form input').value;
+
+                    if (bare) {
+                        bare = bare.replace(/^https?:\/\//g, '')
+                        localStorage.setItem('server', bare);
+
+                        caches.open('astro-data').then(cache => {
+                            cache.put('/bare.txt', new Response(bare)).then(() => {
+                                notify.show(`Saved`, "success", 2000);
+                            });
+                        });
+                    } else {
+                        return;
+                    }
+                });
+
+                window.console.error = new Proxy(window.console.error, {
+                    apply: function(target, thisArg, argumentsList) {
+                        if (argumentsList[0].includes('Warning: ReactDOM.render is no longer supported in React 18')) {
+                            return;
+                        } else {
+                            return Reflect.apply(target, thisArg, argumentsList);
+                        }
+                    }
+                })
+            };
+
+            window.addEventListener('flamethrower:router:end', loadSettings);
+            loadSettings();
+        </script>
+    </>
+</Layout>

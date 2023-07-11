@@ -1,0 +1,85 @@
+.settings {
+    height: calc(100vh - 105px);
+    width: 90%;
+    margin: auto;
+}
+
+.settings-left {
+    width: 32%;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.settings-left a {
+    width: 95%;
+    height: auto;
+    padding: 10px 20px;
+    background: transparent;
+    color: #9b9b9b;
+    transition: 0.1s ease;
+    border-radius: 5px;
+}
+
+.settings-navlink-active {
+    color: white !important;
+}
+
+.settings-left a:hover {
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.settings-right {
+    width: 68%;
+    float: left;
+}
+
+.settings-left, .settings-right {
+    height: 100%;
+    padding: 20px;
+}
+
+.settings-section {
+    width: 100%;
+    height: auto;
+    padding: 10px 20px;
+    background: transparent;
+    transition: 0.1s ease;
+    border-radius: 5px;
+    margin-top: 10px;
+    background: #111;
+}
+
+.settings-input {
+    border-radius: 5px;
+    border: 1px solid #333;
+    background: #222;
+    color: #fff;
+    padding: 5px 10px;
+    width: 100%;
+    outline: none;
+    transition: 0.1s ease;
+    margin-top: 5px;
+}
+
+.settings-input:focus {
+    border: 1px solid #828282;
+}
+
+.settings-submit {
+    border-radius: 5px;
+    border: 1px solid #333;
+    background: #222;
+    color: #fff;
+    padding: 5px 10px;
+    width: 100%;
+    outline: none;
+    transition: 0.1s ease;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.settings-submit:hover {
+    background: #333;
+}

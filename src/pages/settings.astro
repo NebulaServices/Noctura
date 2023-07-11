@@ -1,89 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import "../style/style.css";
-import Popup from "../components/Popup.astro";
+import "../style/settings.css";
+import Link from '../components/Link.astro';
+
+const tabs = [
+    ["General", "/settings/general"],
+    ["Privacy", "/settings/privacy"],
+    ["Cloaking", "/settings/cloaking"],
+    ["Unblock", "/settings/unblock"],
+    ["Theme", "/settings/theme"],
+]
 ---
 
 <Layout title="Noctura">
-    <div>
-        <Popup
-            BigText="Title Cloaker"
-            SmallText="Disguise this tab with a custom title!"
-            Placeholder="Enter Title"
-            ButtonClass="78ughre"
-            PopupID="rootpopup"
-            closeFunction="hidePopup();"
-            InputID="TitleInput"
-            submitfunction="SubmitTitle();hidePopup();"
-        />
-        <Popup
-            BigText="Favicon Cloaker"
-            SmallText="Disguise this tab with a custom favicon!"
-            Placeholder="Enter image path"
-            ButtonClass="FaviconSub"
-            PopupID="rootpopupdos"
-            closeFunction="hidePopup2();"
-            InputID="FaviconInput"
-            submitfunction="SetFavicon();hidePopup2();"
-        />
-        <div class="settingscontainer">
-            <div class="cloak">
-                <h1>Cloaking</h1>
-            </div>
-            <div class="button-container">
-                <div class="ab">
-                    <button>About:Blank Cloaker</button>
-                </div>
-                <div class="title">
-                    <button onclick="showPopup(); ">Title Cloaker</button>
-                </div>
-                <div class="faviconc">
-                    <button onclick="showPopup2(); ">Favicon Cloaker</button>
-                </div>
-            </div>
-            <div class="preset">
-                <button onclick="Preset('default');" class="presetButton">
-                    <img src="/favicon.svg" />
-                </button>
-                <button onclick="Preset('google');" class="presetButton">
-                    <img src="/google.ico" />
-                </button>
-                <button onclick="Preset('edpuzzle');" class="presetButton">
-                    <img src="/icons/edpuzzle.png" />
-                </button>
-                <button onclick="Preset('googleclassroom');" class="presetButton">
-                    <img src="/icons/googleclassroom.png" />
-                </button>
-                <button onclick="Preset('googledrive');" class="presetButton">
-                    <img src="/icons/googledrive.png" />
-                </button>
-                <button onclick="Preset('powerschool');" class="presetButton">
-                    <img src="/icons/powerschool.png" />
-                </button>
-            </div>
-        </div>
-        <script is:inline>
-            // Define our own popup ID here depending on the popup being shown
-            function showPopup() {
-                var popup = document.getElementById("rootpopup");
-                popup.style.display = "block";
-            }
-
-            function hidePopup() {
-                var popup = document.getElementById("rootpopup");
-                popup.style.display = "none";
-            }
-
-            function showPopup2() {
-                var popup = document.getElementById("rootpopupdos");
-                popup.style.display = "block";
-            }
-
-            function hidePopup2() {
-                var popup = document.getElementById("rootpopupdos");
-                popup.style.display = "none";
-            }
-        </script>
-        <script src="/js/settings.js" is:inline></script>
-    </div>
+    <>
+        <script is:inline>location.href = '/settings/general'</script>
+    </>
 </Layout>

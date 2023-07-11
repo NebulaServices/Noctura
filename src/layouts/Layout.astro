@@ -4,6 +4,7 @@ import Footer from "../components/Footer.astro";
 import Tabs from "../components/Tabs.astro";
 
 import "../styles.css";
+import "../style/global.css"
 
 export interface Props {
 	title: string;
@@ -29,9 +30,6 @@ const { url } = Astro;
 		{
 			[
 				'tomp.app',
-				'us-east.noctura.tech',
-				'us-west.noctura.tech',
-				'eu-central.noctura.tech'
 			].map(e=>{
 				return <link rel="prefetch" as="fetch" href={'https://' + e} />;
 			})
