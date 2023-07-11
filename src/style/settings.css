@@ -17,13 +17,13 @@
     height: auto;
     padding: 10px 20px;
     background: transparent;
-    color: #9b9b9b;
+    color: var(--font-color);
     transition: 0.1s ease;
     border-radius: 5px;
 }
 
 .settings-navlink-active {
-    color: white !important;
+    color: var(--nav-btn-color) !important;
 }
 
 .settings-left a:hover {
@@ -55,7 +55,7 @@
     border-radius: 5px;
     border: 1px solid var(--settings-3);
     background: var(--settings-2);
-    color: #fff;
+    color: var(--font-color);
     padding: 5px 10px;
     width: 100%;
     outline: none;

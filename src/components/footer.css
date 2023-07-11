@@ -55,7 +55,7 @@
 }
 
 .footer-section p {
-    color: white;
+    color: var(--font-color);
 }
 
 .footer-section h3::before {
