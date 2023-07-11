@@ -116,7 +116,10 @@ const tabs = [
                         localStorage.setItem('server', bare);
 
                         caches.open('astro-data').then(cache => {
-                            cache.put('/bare.txt', new Response(bare)).then(() => {
+                            cache.put('/bare.txt', new Response(bare)).then(async () => {
+                                await navigator.serviceWorker.register('/sw.js', { scope: '/', module: true });
+                                await navigator.serviceWorker.register('/sw/aero/worker.js', { scope: '/~/aero', module: true });
+                                
                                 notify.show(`Saved`, "success", 2000);
                             });
                         });
