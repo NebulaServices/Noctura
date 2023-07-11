@@ -62,13 +62,14 @@ async function fetchEvent({ request }) {
   
     if (!request.url.startsWith(location.origin+__aero$config.scope)) rUrl = __aero$encodeURL(request.url.replace(location.origin, ''), referrer);
       
-    var url = __aero$decodeURL(rUrl);//new URL(__aero$decodeURL(rUrl).href.split('&__aero$referrer=')[0].split('?__aero$referrer=')[0]);
-  
+    var url = new URL(__aero$decodeURL(rUrl).href.replace(/^http:/i, 'https:'));//new URL(__aero$decodeURL(rUrl).href.split('&__aero$referrer=')[0].split('?__aero$referrer=')[0]);
+
     if (url.protocol!=='https:'&&url.protocol!=='http:') return fetch(request);
     
     var bareResponse = await makeBareRequest(url, request);
 
     bareResponse.headers.delete('Content-Security-Policy');
+    bareResponse.headers.delete('X-Frame-Options');
   
     var resHeaders = Object.fromEntries(bareResponse.headers);
   
@@ -117,7 +118,7 @@ async function fetchEvent({ request }) {
   
       if (request.destination=='script'||request.destination=='worker') {
         var a = await bareResponse.text();
-        a = a.replace(/location/gmi, '__aero$location').replace(/postMessage/gmi, '__aero$postMessage/gmi');
+        a = a.replace(/location/gmi, '__aero$location').replace(/postMessage/gmi, '__aero$postMessage');
   
         return new Response(a, {
           status: bareResponse.status,

@@ -71,7 +71,7 @@ window.WebSocket = new Proxy(window.WebSocket, {
             forward_headers: ["accept-encoding", "accept-language", "sec-websocket-extensions", "sec-websocket-key", "sec-websocket-version"]
         };        
       
-        var socket = Reflect.construct(e, [ window.location.protocol.replace('http', 'ws') + "//" + location.hostname + "/bare/v1/?id="+WsId, [  'bare', encode_protocol(JSON.stringify(r)) ] ]);
+        var socket = Reflect.construct(e, [ window.location.origin.replace('http', 'ws') + "/bare/v1/?id="+WsId, [  'bare', encode_protocol(JSON.stringify(r)) ] ]);
 
         var listener = function(e) {
           __aero$websockets.splice(__aero$websockets.findIndex(e=>e[0]==WsId), 1)
