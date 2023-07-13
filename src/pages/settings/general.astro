@@ -1,73 +1,57 @@
 ---
-import Layout from '@layout';
-import "@css/style.css";
-import "@css/settings.css";
-import Link from '@components/Link.astro';
-
-const page = Astro.url.pathname.replace(/\/$/g, '').split('/').pop();
-
-const tabs = [
-    ["General", "/settings/general"],
-    ["Privacy", "/settings/privacy"],
-    ["Cloaking", "/settings/cloaking"],
-    ["Unblock", "/settings/unblock"],
-    ["Theme", "/settings/theme"],
-]
+import Settings from "@settings";
 ---
 
-<Layout title="Noctura">
-    <>
-        <div class="settings">
-            <div class="settings-left">
-                {
-                    tabs.map(tab => (
-                        <Link class={"settings-navlink" + (tab[1].split('/').pop() == page ? " settings-navlink-active" : "")} href={tab[1]}>{tab[0]}</Link>
-                    ))
-                }
-            </div>
-            <div class="settings-right">
-                <div class="settings-page">
-                    <h1 class="text-3xl">General</h1>
-                    <div class="settings-section">
-                        <form id="custom-bare-form">
-                            <h1 class="text-lg">Custom Bare Server</h1>
+<Settings title="General">
+    <div class="settings-section">
+        <form id="custom-bare-form">
+            <h1 class="text-lg">Custom Bare Server</h1>
 
-                            <input class="settings-input">
-                        </form>
-                    </div>
-                    <div class="settings-section">
-                        <form id="about-blank-form">
-                            <h1 class="text-lg">Tab Cloaking</h1>
+            <input class="settings-input" />
+        </form>
+    </div>
+    <div class="settings-section">
+        <form id="about-blank-form">
+            <h1 class="text-lg">Tab Cloaking</h1>
 
-                            <button type="submit" id="init-about" class="settings-submit">About:Blank</button>
-                            <button type="submit" id="init-blob" class="settings-submit">Blob</button>
-                        </form>
-                    </div>
-                    <div class="settings-section">
-                        <form id="panic-url-form">
-                            <h1 class="text-lg">Panic URL</h1>
+            <button type="submit" id="init-about" class="settings-submit">About:Blank</button>
+            <button type="submit" id="init-blob" class="settings-submit">Blob</button>
+        </form>
+    </div>
+    <div class="settings-section">
+        <form id="panic-url-form">
+            <h1 class="text-lg">Panic URL</h1>
 
-                            <input class="settings-input" placeholder="https://classroom.google.com/">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <input class="settings-input" placeholder="https://classroom.google.com/" />
+        </form>
+    </div>
+    <script defer type="module">
+        var notify = window.notify;
+        function loadSettings() {
+            if (!window.location.pathname.startsWith("/settings/general"))
+                return;
 
-        <script defer type="module">
-            var notify = window.notify;
-            function loadSettings() {            
-                if (!window.location.pathname.startsWith('/settings/general')) return;
-
-                document.getElementById('about-blank-form').addEventListener('submit', function(e) {
+            document
+                .getElementById("about-blank-form")
+                .addEventListener("submit", function (e) {
                     e.preventDefault();
 
-                    switch(e.submitter.id) {
-                        case 'init-about':
-                            var newWindow = window.open("about:blank", "_blank");
+                    switch (e.submitter.id) {
+                        case "init-about":
+                            var newWindow = window.open(
+                                "about:blank",
+                                "_blank"
+                            );
                             break;
-                        case 'init-blob':
-                            var newWindow = window.open(URL.createObjectURL(new Blob(['<html><body></body></html>'], {type: 'text/html'})), "_blank");
+                        case "init-blob":
+                            var newWindow = window.open(
+                                URL.createObjectURL(
+                                    new Blob(["<html><body></body></html>"], {
+                                        type: "text/html",
+                                    })
+                                ),
+                                "_blank"
+                            );
                             break;
                     }
 
@@ -78,25 +62,31 @@ const tabs = [
                     iframe.style.border = "none";
                     iframe.style.overflow = "hidden";
 
-                    newWindow.onload = function() {
+                    newWindow.onload = function () {
                         newWindow.document.body.style.background = "black";
                         newWindow.document.body.appendChild(iframe);
                         newWindow.document.body.style.width = "100%";
                         newWindow.document.body.style.height = "100%";
                         newWindow.document.body.style.margin = "0";
                         newWindow.document.body.style.padding = "0";
-                    }
+                    };
                 });
 
-                document.querySelector('#panic-url-form input').value = localStorage.getItem('panic-url') || 'https://classroom.google.com/';
+            document.querySelector("#panic-url-form input").value =
+                localStorage.getItem("panic-url") ||
+                "https://classroom.google.com/";
 
-                document.getElementById('panic-url-form').addEventListener('submit', function(e) {
+            document
+                .getElementById("panic-url-form")
+                .addEventListener("submit", function (e) {
                     e.preventDefault();
 
-                    var url = document.querySelector('#panic-url-form input').value;
+                    var url = document.querySelector(
+                        "#panic-url-form input"
+                    ).value;
 
                     if (url) {
-                        localStorage.setItem('panic-url', url);
+                        localStorage.setItem("panic-url", url);
 
                         notify.show(`Saved`, "success", 2000);
                     } else {
@@ -104,33 +94,47 @@ const tabs = [
                     }
                 });
 
-                document.querySelector('#custom-bare-form input').value = localStorage.getItem('server') || '';
+            document.querySelector("#custom-bare-form input").value =
+                localStorage.getItem("server") || "";
 
-                document.getElementById('custom-bare-form').addEventListener('submit', function(e) {
+            document
+                .getElementById("custom-bare-form")
+                .addEventListener("submit", function (e) {
                     e.preventDefault();
 
-                    let bare = document.querySelector('#custom-bare-form input').value;
+                    let bare = document.querySelector(
+                        "#custom-bare-form input"
+                    ).value;
 
                     if (bare) {
-                        bare = bare.replace(/^https?:\/\//g, '')
-                        localStorage.setItem('server', bare);
+                        bare = bare.replace(/^https?:\/\//g, "");
+                        localStorage.setItem("server", bare);
 
-                        caches.open('astro-data').then(cache => {
-                            cache.put('/bare.txt', new Response(bare)).then(async () => {
-                                await navigator.serviceWorker.register('/sw.js', { scope: '/', module: true });
-                                await navigator.serviceWorker.register('/sw/aero/worker.js', { scope: '/~/aero', module: true });
-                                
-                                notify.show(`Saved`, "success", 2000);
-                            });
+                        caches.open("astro-data").then((cache) => {
+                            cache
+                                .put("/bare.txt", new Response(bare))
+                                .then(async () => {
+                                    await navigator.serviceWorker.register(
+                                        "/sw.js",
+                                        { scope: "/", module: true }
+                                    );
+                                    await navigator.serviceWorker.register(
+                                        "/sw/aero/worker.js",
+                                        { scope: "/~/aero", module: true }
+                                    );
+
+                                    notify.show(`Saved`, "success", 2000);
+                                });
                         });
                     } else {
                         return;
                     }
                 });
-            };
+        }
 
-            window.addEventListener('flamethrower:router:end', _=>loadSettings());
-            loadSettings();
-        </script>
-    </>
-</Layout>
+        window.addEventListener("flamethrower:router:end", (_) =>
+            loadSettings()
+        );
+        loadSettings();
+    </script>
+</Settings>

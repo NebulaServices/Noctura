@@ -1,83 +1,61 @@
 ---
-import Layout from '@layout';
-import "@css/style.css";
-import "@css/settings.css";
-import Link from '@components/Link.astro';
-import Obfuscated from '@components/Obfuscated.astro';
-
-const page = Astro.url.pathname.replace(/\/$/g, '').split('/').pop();
-
-const tabs = [
-    ["General", "/settings/general"],
-    ["Privacy", "/settings/privacy"],
-    ["Cloaking", "/settings/cloaking"],
-    ["Unblock", "/settings/unblock"],
-    ["Theme", "/settings/theme"],
-]
+import Settings from "@settings";
+import Obfuscated from "@components/Obfuscated.astro";
 ---
 
-<Layout title="Noctura">
-    <>
-        <div class="settings">
-            <div class="settings-left">
-                {
-                    tabs.map(tab => (
-                        <Link class={"settings-navlink" + (tab[1].split('/').pop() == page ? " settings-navlink-active" : "")} href={tab[1]}>{tab[0]}</Link>
-                    ))
-                }
-            </div>
-            <div class="settings-right">
-                <div class="settings-page">
-                    <h1 class="text-3xl"><Obfuscated word="Proxy Settings"></h1>
-                    <div class="settings-section">
-                        <form id="set-proxy-form">
-                            <h1 class="text-lg"><Obfuscated word="Proxy"></h1>
+<Settings title="Proxy Settings">
+    <div class="settings-section">
+        <form id="set-proxy-form">
+            <h1 class="text-lg">
+                <Obfuscated word="Proxy" />
 
-                            <div class="flex justify-around">
-                                <button id="Ultraviolet" type="submit" class="settings-img-container">
-                                    <img src="/Ultraviolet.png" class="settings-img-button" />
-                                </button>
+                <div class="flex justify-around">
+                    <button id="Ultraviolet" type="submit" class="settings-img-container">
+                        <img src="/Ultraviolet.png" class="settings-img-button" />
+                    </button>
 
-                                <button id="Dynamic" type="submit" class="settings-img-container">
-                                    <img src="/Dynamic.png" class="settings-img-button" />
-                                </button>
+                    <button id="Dynamic" type="submit" class="settings-img-container">
+                        <img src="/Dynamic.png" class="settings-img-button" />
+                    </button>
 
-                                <button id="Rammerhead" type="submit" class="settings-img-container">
-                                    <img src="/Rammerhead.png" class="settings-img-button" />
-                                </button>
+                    <button id="Rammerhead" type="submit" class="settings-img-container">
+                        <img src="/Rammerhead.png" class="settings-img-button" />
+                    </button>
 
-                                <button id="Aero" type="submit" class="settings-img-container">
-                                    <img src="/Aero.png" class="settings-img-button" />
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                    <button id="Aero" type="submit" class="settings-img-container">
+                        <img src="/Aero.png" class="settings-img-button" />
+                    </button>
                 </div>
-            </div>
-        </div>
+            </h1>
+        </form>
 
         <script type="module">
             let notify = window.notify;
 
             function loadSettings() {
-                if (!window.location.pathname.startsWith('/settings/unblock')) return;
+                if (!window.location.pathname.startsWith("/settings/unblock"))
+                    return;
 
-                let form = document.getElementById('set-proxy-form');
+                let form = document.getElementById("set-proxy-form");
 
-                form.addEventListener('submit', e => {
+                form.addEventListener("submit", (e) => {
                     e.preventDefault();
 
                     const proxy = e.submitter.id;
 
-                    document.querySelector('.header .switch-btn-current img').src = `/${proxy}.png`;
-                    document.cookie = 'astro-proxy=' + proxy + ';path=/';
+                    document.querySelector(
+                        ".header .switch-btn-current img"
+                    ).src = `/${proxy}.png`;
+                    document.cookie = "astro-proxy=" + proxy + ";path=/";
 
-                    notify.show('Proxy changed to ' + proxy, 'success', 2000);
+                    notify.show("Proxy changed to " + proxy, "success", 2000);
                 });
             }
 
-            window.addEventListener('flamethrower:router:end', _=>loadSettings());
+            window.addEventListener("flamethrower:router:end", (_) =>
+                loadSettings()
+            );
             loadSettings();
         </script>
-    </>
-</Layout>
+    </div>
+</Settings>
