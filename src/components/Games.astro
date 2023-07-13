@@ -1,20 +1,17 @@
 ---
 import Metadata from "./Metadata.astro";
 import Search from "./Search.astro";
+import GameList from './json/games.json'
 ---
 
-<script>
-    import GameList from './json/games.json'
-    
-    const gameDiv = document.getElementById('gameDiv');
-    GameList.forEach(game => {
-        let elm = document.createElement('div');
-        elm.innerHTML = `<a href="${game.file}">${game.title}</a>`;
-        gameDiv.appendChild(elm);
-    })
 
-</script>
-
-<div id="gameDiv">
-
+<div>
+    {GameList.map((game) => (
+      <div id={game.id}>
+        <h2>{game.title}</h2>
+        <img src={game.image} alt={game.title} />
+        <p>{game.description}</p>
+        <a href={game.file}>Play Now</a>
+      </div>
+    ))}
 </div>
