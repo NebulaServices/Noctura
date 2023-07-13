@@ -1,10 +1,3 @@
-.top-page-bar-title {
-    text-align: left;
-    font-size: 4vw;
-    padding-top: 0vh;
-    padding-left: 1vw;
-    margin-top: 1vh;
-}
 
 .top-page-bar {
     display: flex;
@@ -17,93 +10,6 @@
 .main-size {
   font-size: 4vh;
 }
-
-.search-box{
-    width: fit-content;
-    height: fit-content;
-    position: relative;
-    margin-top: 4vh;
-    margin-left: 16vw;
-  }
-  .input-search{
-    height: 1vh;
-    width: 20vw;
-    border-style: none;
-    padding: 1vw;
-    font-size: 2vh;
-    letter-spacing: 0.2vw;
-    outline: none;
-    border-radius: 3vh;
-    transition: all .5s ease-in-out;
-    background-color: #22a6b3;
-    padding-right: 3vw;
-    color:#fff;
-  }
-  .input-search::placeholder{
-    color:rgba(255,255,255,.5);
-    font-size: 2vh;
-    letter-spacing: 2px;
-    font-weight: 100;
-  }
-  .btn-search{
-    width: 20vw;
-    height: 1vh;
-    border-style: none;
-    font-size: 2vh;
-    font-weight: bold;
-    outline: none;
-    cursor: pointer;
-    border-radius: 50%;
-    position: absolute;
-    right: 0px;
-    color:#ffffff ;
-    background-color:transparent;
-    pointer-events: painted;  
-  }
-  .btn-search:focus ~ .input-search{
-    width: 20vw;
-    border-radius: 0px;
-    background-color: transparent;
-    border-bottom:1px solid rgba(255,255,255,.5);
-    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
-  }
-  .input-search:focus{
-    width: 20vw;
-    border-radius: 0px;
-    background-color: transparent;
-    border-bottom:1px solid rgba(255,255,255,.5);
-    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
-  }
-
-
-  .search-question {
-    width: 3vw;
-    height: 3vw;
-    color: var(--h1-color);
-    margin-top: 4vh;
-  }
-
-  .grid-size {
-    width: 3vw;
-    height: 3vw;
-    color: var(--h1-color);
-    margin-top: 4vh;
-    margin-left: 28vw;
-  }
-
-  .theme-mode {
-    width: 3vw;
-    height: 3vw;
-    color: var(--h1-color);
-    margin-top: 4vh;
-  }
-
-  .settings-mode {
-    width: 3vw;
-    height: 3vw;
-    color: var(--h1-color);
-    margin-top: 4vh;
-  }
 
   .upload-button {
     width: 3vw;
@@ -180,10 +86,6 @@
     margin-bottom: 0;
     cursor: pointer;
     transition: 0.2s;
-}
-
-.song-container {
-
 }
 
 #recentlyPlayedv2 {
