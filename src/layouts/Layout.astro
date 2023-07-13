@@ -70,6 +70,8 @@ const { url } = Astro;
 
 					var notif = document.getElementById('toast-notification');
 
+					notif.onclick = notify.hide;
+
 					notif.style.transform = 'translateY(100%)';
 					notif.style.background = colors[status].backgroundColor;
 					notif.style.color = colors[status].color;
@@ -77,7 +79,7 @@ const { url } = Astro;
 
 					queue.push([...arguments]);
 
-					setTimeout(function() {
+					if (time > -1) setTimeout(function() {
 						notif.style.transform = 'translateY(0)';
 
 						setTimeout(function() {
@@ -89,7 +91,12 @@ const { url } = Astro;
 				hide() {
 					var notif = document.getElementById('toast-notification');
 
-					notif.style.transform = 'translateY(100%)';
+					notif.style.transform = 'translateY(0)';
+
+					setTimeout(function() {
+						queue.splice(0, 1);
+						if (queue.length) notify.show(...queue.splice(0, 1)[0], true);
+					}, 300);
 				}
 			}
 
