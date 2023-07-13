@@ -3,7 +3,8 @@ import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import Tabs from "@components/Tabs.astro";
 
-import Notifications from 'react-notify-toast';
+// @ts-ignore
+import Notifications from '@dynamic-pkg/react-notify-toast';
 
 import "../styles.css";
 import "../style/global.css"
@@ -42,7 +43,7 @@ const { url } = Astro;
 			};
 		</script>
         <script>
-            import { notify } from 'react-notify-toast';
+            import { notify } from '@dynamic-pkg/react-notify-toast';
 
             window.notify = notify;
 
@@ -82,7 +83,7 @@ const { url } = Astro;
 		<div class="page-load-progress"></div>
 		<main class="">
 			<Header data={url} />
-			<Notifications />
+			<Notifications client:only="react" />
 			<slot />
 			<Footer />
 			<Tabs />
@@ -102,6 +103,7 @@ const { url } = Astro;
 		--accent: 124, 58, 237;
 		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
 	}
+	
 	code {
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
 			Bitstream Vera Sans Mono, Courier New, monospace;

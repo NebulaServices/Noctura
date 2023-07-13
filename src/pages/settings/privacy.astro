@@ -2,6 +2,7 @@
 import Settings from "@settings";
 ---
 
+<<<<<<< HEAD
 <Settings title="Privacy">
     <div class="settings-section">
         <form>
@@ -11,3 +12,23 @@ import Settings from "@settings";
         </form>
     </div>
 </Settings>
+=======
+<Layout title="Noctura">
+    <>
+        <div class="settings">
+            <div class="settings-left">
+                {
+                    tabs.map(tab => (
+                        <Link class={"settings-navlink" + (tab[1].split('/').pop() == page ? " settings-navlink-active" : "")} href={tab[1]}>{tab[0]}</Link>
+                    ))
+                }
+            </div>
+            <div class="settings-right">
+                <div class="settings-page">
+                    <h1 class="text-5xl">Coming Soon</h1>
+                </div>
+            </div>
+        </div>
+    </>
+</Layout>
+>>>>>>> origin/main

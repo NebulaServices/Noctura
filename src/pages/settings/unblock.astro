@@ -22,9 +22,25 @@ import Obfuscated from "@components/Obfuscated.astro";
                         <img src="/Rammerhead.png" class="settings-img-button" />
                     </button>
 
+<<<<<<< HEAD
                     <button id="Aero" type="submit" class="settings-img-container">
                         <img src="/Aero.png" class="settings-img-button" />
                     </button>
+=======
+                                <button id="Aero" type="submit" class="settings-img-container">
+                                    <img src="/Aero.png" class="settings-img-button" />
+                                </button>
+                            </div>
+                        </form>
+                        <form id="search-engine-form">
+                            <h1 class="text-lg">Search Engine</h1>
+                            <p class="text-stone-600">%s: search query</p>
+
+                            <input class="settings-input" placeholder="Search Engine URL">
+                            <button type="submit" class="settings-submit">Save</button>
+                        </form>
+                    </div>
+>>>>>>> origin/main
                 </div>
             </h1>
         </form>
@@ -50,6 +66,17 @@ import Obfuscated from "@components/Obfuscated.astro";
 
                     notify.show("Proxy changed to " + proxy, "success", 2000);
                 });
+
+                document.getElementById('search-engine-form').addEventListener('submit', e => {
+                    e.preventDefault();
+
+                    var engine = e.target.querySelector('input').value;
+
+                    localStorage.setItem('search-engine', engine);
+                    notify.show('Saved', 'success', 2000);
+                });
+
+                document.querySelector('#search-engine-form input').value = localStorage.getItem('search-engine') || 'https://www.google.com/search?q=%s';
             }
 
             window.addEventListener("flamethrower:router:end", (_) =>

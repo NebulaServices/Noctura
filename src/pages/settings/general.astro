@@ -7,12 +7,23 @@ import Settings from "@settings";
         <form id="custom-bare-form">
             <h1 class="text-lg">Custom Bare Server</h1>
 
+<<<<<<< HEAD
             <input class="settings-input" />
         </form>
     </div>
     <div class="settings-section">
         <form id="about-blank-form">
             <h1 class="text-lg">Tab Cloaking</h1>
+=======
+                            <input class="settings-input">
+                            <button type="submit" style="visibility: hidden; position: absolute; z-index: -1;"></button>
+                            <button type="submit" id="reset-bare" class="settings-submit">Reset</button>
+                        </form>
+                    </div>
+                    <div class="settings-section">
+                        <form id="about-blank-form">
+                            <h1 class="text-lg">Tab Cloaking</h1>
+>>>>>>> origin/main
 
             <button type="submit" id="init-about" class="settings-submit">About:Blank</button>
             <button type="submit" id="init-blob" class="settings-submit">Blob</button>
@@ -102,9 +113,28 @@ import Settings from "@settings";
                 .addEventListener("submit", function (e) {
                     e.preventDefault();
 
+<<<<<<< HEAD
                     let bare = document.querySelector(
                         "#custom-bare-form input"
                     ).value;
+=======
+                    console.log(e);
+
+                    if (e.submitter.id == 'reset-bare') {
+                        localStorage.removeItem('server');
+                        document.querySelector('#custom-bare-form input').value = localStorage.getItem('server') || '';
+                        return caches.open('astro-data').then(cache => {
+                            cache.put('/bare.txt', new Response('tomp.app')).then(async () => {
+                                await navigator.serviceWorker.register('/sw.js', { scope: '/', module: true });
+                                await navigator.serviceWorker.register('/sw/aero/worker.js', { scope: '/~/aero', module: true });
+                                
+                                notify.show(`Reset Server`, "success", 2000);
+                            });
+                        });
+                    }
+
+                    let bare = document.querySelector('#custom-bare-form input').value;
+>>>>>>> origin/main
 
                     if (bare) {
                         bare = bare.replace(/^https?:\/\//g, "");
