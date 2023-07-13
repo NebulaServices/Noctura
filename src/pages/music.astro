@@ -528,11 +528,11 @@ function raiseSidebar() {
 
         <script>
           window.addEventListener("flamethrower:router:end", (_) => {
-            if (!window.location.pathname.startsWith("/music/"))
+            if (!window.location.pathname.startsWith("/music/")) {
                 return;
+            }
               displayAllSongs(false, 15, true);
               showAlbums();
-              raiseSidebar();
           });
         function displayAllSongs(isMore, maxSongs = 15, resetPlayer) {
   const openRequest = indexedDB.open("songs_db", 2);
@@ -611,8 +611,7 @@ slider.oninput = function() {
   }, 1000);
 };
 }
-
-displayAllSongs();
+  displayAllSongs();
 
 
 function createEventListeners() {
