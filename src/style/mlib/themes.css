@@ -1,14 +1,14 @@
 :root {
   --title-color: #14FFEC;
-  --h1-color: white;
-  --card-color: #0d7377;
-  --card-color-darker: #0a4446;
-  --card-color-music: #062a2b;
+  --h1-color: var(--font-color);
+  --card-color: var(--settings-3);
+  --card-color-darker: var(--settings-2);
+  --card-color-music: var(--settings-1);
   --card-title-font: 'Blinker', sans-serif;
-  --card-title-color: rgb(255, 255, 255);
-  --card-text-color: rgb(255, 255, 255);
+  --card-title-color: var(--font-color);
+  --card-text-color: var(--font-color);
   --card-text-weight: bold;
-  --p-text-color: rgb(255, 255, 255);
+  --p-text-color: var(--font-color);
   --link-decoration: none;
   --settings-container: #212121;
   --media-skip-buttons: rgba(102, 40, 40, 0.7);

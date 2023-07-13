@@ -191,7 +191,7 @@
 }
 
 .album:hover {
-  background-color: #22a6b3;
+  background-color: var(--card-color);
   color: #fff;
   transform: scale(1.1);
 }
