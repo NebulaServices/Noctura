@@ -4,7 +4,7 @@ import Footer from "@components/Footer.astro";
 import Tabs from "@components/Tabs.astro";
 
 // @ts-ignore
-import Notifications from '@dynamic-pkg/react-notify-toast';
+import Notifications from '@components/Notification.astro';
 
 import "../styles.css";
 import "../style/global.css"
@@ -43,9 +43,55 @@ const { url } = Astro;
 			};
 		</script>
         <script>
-            import { notify } from '@dynamic-pkg/react-notify-toast';
+			window.colors = {
+				error: {
+					color: "#FFFFFF",
+					backgroundColor: '#E85742'
+				},
+				success: {
+					color: "#FFFFFF",
+					backgroundColor: '#55CA92'
+				},
+				warning: {
+					color: "#333333",
+					backgroundColor: '#F5E273'
+				},
+				info: {
+					color: "#FFFFFF",
+					backgroundColor: '#4990E2'
+				}
+			}
 
-            window.notify = notify;
+			const queue = [];
+
+			window.notify = {
+				show(msg = "", status = "info", time = 2000, force = false) {
+					if (queue.length && !force) return queue.push([...arguments]);
+
+					var notif = document.getElementById('toast-notification');
+
+					notif.style.transform = 'translateY(100%)';
+					notif.style.background = colors[status].backgroundColor;
+					notif.style.color = colors[status].color;
+					notif.innerHTML = msg;
+
+					queue.push([...arguments]);
+
+					setTimeout(function() {
+						notif.style.transform = 'translateY(0)';
+
+						setTimeout(function() {
+							queue.splice(0, 1);
+							if (queue.length) notify.show(...queue.splice(0, 1)[0], true);
+						}, 300);
+					}, time);
+				},
+				hide() {
+					var notif = document.getElementById('toast-notification');
+
+					notif.style.transform = 'translateY(100%)';
+				}
+			}
 
             window.console.error = new Proxy(window.console.error, {
                 apply: function(target, thisArg, argumentsList) {
@@ -83,7 +129,7 @@ const { url } = Astro;
 		<div class="page-load-progress"></div>
 		<main class="">
 			<Header data={url} />
-			<Notifications client:only="react" />
+			<Notifications />
 			<slot />
 			<Footer />
 			<Tabs />
@@ -103,7 +149,7 @@ const { url } = Astro;
 		--accent: 124, 58, 237;
 		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
 	}
-	
+
 	code {
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
 			Bitstream Vera Sans Mono, Courier New, monospace;

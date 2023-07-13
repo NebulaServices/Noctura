@@ -22,10 +22,12 @@ const p = new Promise(async (res) => {
         bareServer = await (await cache.match('/bare.txt')).text();
     }
 
+    const req = await fetch('http://' + bareServer.replace(/\/$/, '') + '/', {redirect: 'follow'});
+
     //console.log('bare server', bareServer)
 
-    self.__uv$config.bare = `http://${bareServer}`;
-    self.__dynamic$config.bare.path = `http://${bareServer}`;
+    self.__uv$config.bare = req.url;
+    self.__dynamic$config.bare.path = req.url;
 
     self.dynamic = new Dynamic(self.__dynamic$config);
     self.uv = new UVServiceWorker(self.__uv$config);
