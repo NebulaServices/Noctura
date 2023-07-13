@@ -9,7 +9,7 @@ container.innerHTML = `
 ${window.parent !== window ? '<button onclick="">Close</button>' : ''}
 <button id="noctura-close-menu">Close Menu</button>
 
-<input id="noctura-nav-input" value="${new Function('return this.location.href')()}">
+<input id="noctura-nav-input" value="${location.pathname.includes('/~/aero/') ? new Function('return __aero$meta.href')() : new Function('return this.location.href')()}">
 `
 
 container.querySelector('#noctura-close-menu').onclick = function() {
@@ -18,7 +18,7 @@ container.querySelector('#noctura-close-menu').onclick = function() {
 
 container.querySelector('#noctura-nav-input').onkeydown = function(e) {
     if (e.key == 'Enter') {
-        console.log(this.value)
+        location.pathname.includes('/~/aero/') ? new Function(`return this.location.href = "/~/aero/${encodeURIComponent(this.value)}"`)() : new Function(`return this.location.href = "${this.value}"`)()
         new Function(`return this.location.href = "${this.value}"`)();
     }
 

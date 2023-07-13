@@ -22,7 +22,8 @@ const p = new Promise(res => {
   caches.open('astro-data').then(cache => {
     cache.match('/bare.txt').then(async file => {
       var text = await file.text();
-      __aero$config.bare = 'http://' + text;
+      const req = await fetch('http://' + text.replace(/\/$/, '') + '/', {redirect: 'follow'});
+      __aero$config.bare = req.url;
 
       res();
     })
@@ -32,6 +33,8 @@ const p = new Promise(res => {
 async function fetchEvent({ request }) {
   try {
     await p;
+
+    if (request.url.endsWith('?sw=ignore')) return await fetch(request);
   
     if (assetURL.find(e=>request.url.startsWith(e))) return fetch(request);
   
