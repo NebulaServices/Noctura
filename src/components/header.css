@@ -113,7 +113,7 @@
     border-top: var(--borders-1);
     width: 24px;
     display: inline-block;
-    rotate: 120deg;
+    transform: rotate(120deg);
     position: relative;
     bottom: 4px;
     background-color: var(--primary-text-color);
