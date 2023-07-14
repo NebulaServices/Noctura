@@ -90,7 +90,7 @@ body {
   width: 60vw;
   height: 1.2vh;
   margin: 0 10px;
-  background: #ddd;
+  background: #fff;
   outline: none;
   opacity: 0.7;
   -webkit-transition: .2s;
@@ -107,7 +107,7 @@ body {
   width: 1.5vw;
   height: 1.5vw;
   border-radius: 50%;
-  background: #4CAF50;
+  background: #888;
   cursor: pointer;
 }
 
@@ -115,7 +115,7 @@ body {
   width: 1.5vw;
   height: 1.5vw;
   border-radius: 50%;
-  background: #4CAF50;
+  background: #888;
   cursor: pointer;
 }
 
@@ -181,6 +181,7 @@ h1 {
   font-family: var(--card-title-font);
   font-size: 2vw;
   color: var(--h1-color);
+  font-weight: bold;
 }
 
 
@@ -214,8 +215,9 @@ a {
   z-index: 10;
   bottom: 0;
   left: 0;
-  background-color: var(--music-bar);
   overflow-x: hidden;
+  
+  backdrop-filter: blur(10px);
   transition: 0.5s;
   overflow-y: hidden;
 }
@@ -248,6 +250,7 @@ a {
 .progress-container p {
   margin-top: 1vh;
 }
+
 
 .progress-bar {
   background: var(--card-color-music);
@@ -346,17 +349,17 @@ a {
 }
 
 .song-title-container {
-  width: 23%;
+  width: 100%;
   position: absolute;
 }
 
+
 .song-title {
-  font-size: 3.2vh;
+  font-size: 2.5vh;
   text-overflow: ellipsis;
   margin-left: 7vw;
   left: 0;
-  width: 100%;
-  padding: 0;
+  padding-top: 0.5vh;
   text-align: center;
   text-overflow: ellipsis;
   display: block;
@@ -371,13 +374,13 @@ a {
 }
 
 .song-artist {
-  font-size: 2vh;
+  font-size: 1.5vh;
   text-overflow: ellipsis;
-  margin-left: 6.8vw;
+  margin-left: 7vw;
   left: 0;
-  width: 100%;
   padding: 0;
-  margin-top: 5vh;
+  
+  margin-top: 4vh;
   text-align: center;
   text-overflow: ellipsis;
   display: block;
@@ -394,17 +397,15 @@ a {
 
 .song-photo {
   height: 20vh;
-  width: 10vw;
-  margin-left: 1vw;
+  width: 20vw;
+  margin-left: 0vw;
   left: 0;
   position: absolute;
 }
 
 .photo-style {
-  height: 9vh;
-  width: 5vw;
-  margin-left: 1vw;
+  height: 9.9vh;
+  width: auto;
   margin: 0;
-  margin-top: 0.5vh;
   padding: 0;
 }

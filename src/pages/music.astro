@@ -13,16 +13,7 @@ import "@css/mlib/themes.css";
         <div id="menuContent" class="menuContent">
 
         </div>
-            <div class="top-page-bar">
-                <h1 class="main-size"> Upload Music </h1>
-              <div class="upload-button">
-                <label for="f">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                    <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 011.06 0l4.5 4.5a.75.75 0 01-1.06 1.06l-3.22-3.22V16.5a.75.75 0 01-1.5 0V4.81L8.03 8.03a.75.75 0 01-1.06-1.06l4.5-4.5zM3 15.75a.75.75 0 01.75.75v2.25a1.5 1.5 0 001.5 1.5h13.5a1.5 1.5 0 001.5-1.5V16.5a.75.75 0 011.5 0v2.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V16.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
-                  </svg>
-                </label>    
-             </div>
-            </div>
+            
           <div class="scroll-here">
           <h1 class="hide" id="nameTitle"> Hello, User! </h1>
           <div class="styleish" id="siteContent">
@@ -32,22 +23,35 @@ import "@css/mlib/themes.css";
               <button onclick="localStorage.setItem('autoXenBg', 'on');">Automatically Change background to AlbumArt</button>
               <button onclick="localStorage.setItem('autoNotiSend', 'on');">Enable Music Notifications</button>
             </div>
-            <h1 class="subheading">Your Library</h1>
-            <div class="slider-container">
-              <label style="color: white;" for="song-count">Amount of Songs Displayed</label>
-              <span style="margin-left:1vw; margin-right: 0.3vw; color: white;">1</span>
-              <input type="range" id="song-count" min="1" max="300" value="50">
-              <div id="slider-labels">
-                <span style="color: white;">300</span>
-              </div>
-            </div>     
+            <h1 class="subheading"><span>Library</span></h1>
+            <br>
             <div id="songsDiv">
-        
+              <!-- lol -->
             </div>
-            <h1 class="subheading">Albums</h1>
+            <div class="slider-container">
+              <label style="color: #333; font-size: 0.7vw;" for="song-count">Amount of Songs Displayed</label>
+              <span style="margin-left:1vw; padding-right: 10px; color: #333; font-size: 0.7vw;">1 </span>
+              <input type="range" id="song-count" min="1" max="300" value="50">
+              
+                <span style="padding-left: 10px; color: #333; font-size: 0.7vw;">300</span>
+              
+
+            </div>
+            <h1 class="subheading-2"><span>Albums</span></h1>
             <div id="albumsDiv">
-        
+              <!-- hehe -->
             </div>
+
+            <div class="top-page-bar">
+            
+            <div class="upload-button">
+              <label for="f">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 upl">
+                  <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 011.06 0l4.5 4.5a.75.75 0 01-1.06 1.06l-3.22-3.22V16.5a.75.75 0 01-1.5 0V4.81L8.03 8.03a.75.75 0 01-1.06-1.06l4.5-4.5zM3 15.75a.75.75 0 01.75.75v2.25a1.5 1.5 0 001.5 1.5h13.5a1.5 1.5 0 001.5-1.5V16.5a.75.75 0 011.5 0v2.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V16.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
+                </svg>
+              </label>    
+           </div>
+          </div>
             <br><br><br>
           </div>
             </div>
@@ -56,6 +60,7 @@ import "@css/mlib/themes.css";
             <div class="song-photo">
               <img src="/mlib/default.jpg" class="photo-style" alt="Song Photo" id="songPhoto">
             </div>
+            
         
             <div class="song-title-container">
               <p class="song-artist" id="songArtist">Unknown Artist</p>
