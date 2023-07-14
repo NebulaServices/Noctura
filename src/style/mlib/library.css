@@ -235,6 +235,8 @@
   height: 2.5rem;
 }
 
+
+
 .album:hover {
   transform: scale(1.05);
   transition: 0.3s;

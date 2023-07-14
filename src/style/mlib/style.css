@@ -217,7 +217,7 @@ a {
   left: 0;
   overflow-x: hidden;
   
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(25px);
   transition: 0.5s;
   overflow-y: hidden;
 }
@@ -238,64 +238,68 @@ a {
 }
 
 .progress-container {
-  margin-top: 5.5vh;
-  margin-left: 30vw;
-  background: #5f5f5f;
-  border-radius: 3vh;
-  height: 1vh;
+  background: #1b1b1b;
+  border-radius: 0.3vh;
+  height: 0.3vh;
   width: 40%;
   position: absolute;
+  left: 29.8%;
+  margin-top: 5vh;
+  padding: 10px;
 }
 
 .progress-container p {
-  margin-top: 1vh;
+  margin-top: -1vh;
+  filter: brightness(50%);
 }
 
 
 .progress-bar {
-  background: var(--card-color-music);
+  background: #777;
   border-radius: 3vh;
-  height: 1vh;
+  height: 0.3vh;
   width: 0%;
 }
 
 .forward-arrow {
   height: 4vh;
-  width: 4vh;
-  left: 53.3%;
-  margin-top: 1vh;
+  width: 50%;
   position: absolute;
+  left: 50%;
+  transform: translate(43%, 0);
+  padding: 10px;
+  margin-top: 2.63vh;
 }
 
-.back-arrow:hover {
-  transform: scale(1.05);
-  transition: 0.1s;
+.forward-arrow:hover .back-arrow:hover {
+  cursor: pointer;
 }
+
 
 .pause-play {
-  height: 4vh;
-  width: 4vh;
-  left: 49.3%;
-  margin-top: 1vh;
+  height: 10px;
+  width: 10px;
+  left: 49.7%;
+  margin-top: 7.2vh;
   position: absolute;
+  transition: 0.3s;
+  
 }
 
 .pause-play:hover {
   transform: scale(1.05);
-  transition: 0.1s;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 .back-arrow {
   height: 4vh;
-  width: 4vh;
-  left: 45.3%;
-  margin-top: 1vh;
+  width: 50%;
   position: absolute;
-}
-
-.forward-arrow:hover {
-  transform: scale(1.05);
-  transition: 0.1s;
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding: 10px;
+  margin-top: 2.63vh;
 }
 
 
@@ -303,7 +307,7 @@ a {
   margin-top: 5vh;
   right: 1%;
   background: #000000;
-  border-radius: 3vh;
+  border-radius: 0.5px;
   height: 1vh;
   width: 10%;
   position: absolute;
@@ -312,7 +316,7 @@ a {
 
 .volume-bar {
   background: var(--alt-bg-color);
-  border-radius: 3vh;
+  border-radius: 0.5px;
   height: 1vh;
   width: 10%;
 }
@@ -333,7 +337,7 @@ a {
 }
 
 .volume-icon-mute {
-  display: none;
+  
   height: 5vh;
   width: 5vh;
   margin-left: 2vh;
@@ -355,17 +359,20 @@ a {
 
 
 .song-title {
-  font-size: 2.5vh;
+  font-size: 1.5vh;
   text-overflow: ellipsis;
-  margin-left: 7vw;
-  left: 0;
+  
+
   padding-top: 0.5vh;
   text-align: center;
   text-overflow: ellipsis;
-  display: block;
+  position: absolute;
+  left: 50.23%;
+  transform: translate(-50%, 0);
+  padding: 10px;
   overflow: hidden;
   white-space: nowrap;
-  position: absolute;
+ 
 }
 
 .song-title:hover {
@@ -374,20 +381,18 @@ a {
 }
 
 .song-artist {
-  font-size: 1.5vh;
+  font-size: 1vh;
   text-overflow: ellipsis;
-  margin-left: 7vw;
-  left: 0;
-  padding: 0;
   
-  margin-top: 4vh;
+  margin-top: 3.3vh;
   text-align: center;
   text-overflow: ellipsis;
-  display: block;
+  position: absolute;
+  left: 50.23%;
+  transform: translate(-50%, 0);
   overflow: hidden;
   white-space: nowrap;
-  position: absolute;
-  filter: brightness(50%);
+  filter: brightness(70%);
 }
 
 .song-artist:hover {
