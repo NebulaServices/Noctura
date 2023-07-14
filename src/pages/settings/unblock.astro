@@ -68,7 +68,7 @@ import Obfuscated from "@components/Obfuscated.astro";
                 document.querySelector('#search-engine-form input').value = localStorage.getItem('search-engine') || 'https://www.google.com/search?q=%s';
             }
 
-            window.addEventListener("flamethrower:router:end", (_) =>
+            window.addEventListener("router:end", (_) =>
                 loadSettings()
             );
             loadSettings();

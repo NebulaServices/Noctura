@@ -8,7 +8,7 @@ if (date && time) {
     }, 1000);
 }
 
-addEventListener('flamethrower:router:end', function() {
+addEventListener('router:end', function() {
     const time = document.querySelector('.clock-text');
     const date = document.querySelector('.date-text');
 
@@ -35,7 +35,7 @@ if (proxy) {
     proxy.querySelector('img').src = cookie ? '/' + cookie + '.png' : '/Ultraviolet.png';
 }
 
-addEventListener('flamethrower:router:end', function() {
+addEventListener('router:end', function() {
     const proxy = document.querySelector('.header .switch-btn-container');
 
     if (proxy) {
