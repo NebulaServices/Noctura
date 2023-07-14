@@ -119,7 +119,8 @@ import "@css/mlib/themes.css";
         <div id="songData">
         </div>
         </div>
-        <audio style="display:none" id="audio"></audio> 
+        <audio style="display:none;" id="audio"></audio> 
+        <div style="display:none;" id="server"></div>
         <script is:inline src="/js/mlib/jsmediatags.min.js"></script>
         <script is:inline>
 songs = [];
@@ -251,7 +252,7 @@ function unmutePlay() {
 
 
 function progressBar() {
-  if (!isPlaying && !document.getElementById("progressBar") == null) {
+  if (!isPlaying) {
     setInterval(function() {
       const currentTime = aud.currentTime;
       const duration = aud.duration;
@@ -531,13 +532,24 @@ function raiseSidebar() {
 
 
 
-        <script>
-          window.addEventListener("flamethrower:router:end", (_) => {
+        <script is:inline>
+          window.addEventListener("router:end", (_) => {
             if (!window.location.pathname.startsWith("/music/")) {
                 return;
             }
               displayAllSongs(false, 15, true);
               showAlbums();
+              cursor = undefined;
+              db = undefined;
+              objectStore = undefined;
+              transaction = undefined;
+              openRequest = undefined;
+              songData = undefined;
+              songName = undefined;
+              songArtist = undefined;
+              songAlbum = undefined;
+              songPhoto = undefined;
+              title = undefined;
           });
         function displayAllSongs(isMore, maxSongs = 15, resetPlayer) {
   const openRequest = indexedDB.open("songs_db", 2);
