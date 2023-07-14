@@ -1,7 +1,7 @@
 class Router {
     constructor() {
         document.addEventListener("click", (e) => this.#handleClick(e));
-        addEventListener("popstate", (e) => this.#handlePopstate());
+        window.addEventListener("popstate", (e) => this.#handlePopstate(e));
         this.prefetched = new Set();
         this.#prefetch();
     }
@@ -10,17 +10,16 @@ class Router {
         this.#replaceBody(href);
     }
 
-    async #replaceBody(href) {
+    async #replaceBody(href, popstate = false) {
         const parser = new DOMParser();
         const prev = location.href;
         const next = new URL(href, location.origin).href;
-        const oldWin = window;
-
         if (prev === next) {
             return;
         }
-        
-        window.history.pushState({ next }, "", next);
+        if (!popstate && (!window.history.state || window.history.state.url !== next)) {
+            window.history.pushState({ next }, 'internalLink', next);
+        }
 
         window.dispatchEvent(new CustomEvent("router:begin"));
 
@@ -28,19 +27,12 @@ class Router {
             .then((res) => res.text())
             .then((text) => parser.parseFromString(text, "text/html"));
 
-        document.body.replaceWith(doc.body);
+        const selector = "main.layout:not(.header, .top-banner, .footer)";
+
+        document.body.querySelector(selector).replaceWith(doc.body.querySelector(selector));
         this.#mergeHead(doc);
-
         this.#runScripts();
-
-        for (const obj in window) {
-            if (!obj in oldWin) {
-                delete window[obj]
-            }
-        }
-
         window.dispatchEvent(new CustomEvent("router:end"));
-
         console.log(next);
     }
 
@@ -54,7 +46,6 @@ class Router {
         staleNodes.forEach((node) => node.remove());
 
         document.head.append(...freshNodes);
-
     }
 
     #runScripts() {
@@ -63,8 +54,8 @@ class Router {
         scripts.forEach((script) => {
             const newScript = document.createElement("script");
             const attr = Array.from(script.attributes);
-            for (const {key, prop} of attr) {
-                newScript[key] = [prop];
+            for (const { key, prop } of attr) {
+                newScript[key] = prop;
             }
 
             newScript.append(script.textContent);
@@ -115,7 +106,7 @@ class Router {
     }
 
     #url(url) {
-        const href = new URL(url || window.location.href, window.location.origin).href;
+        const href = new URL(url || window.location.href).href;
         return href.endsWith('/') || href.includes('.') || href.includes('#') ? href : `${href}/`;
     }
 
@@ -146,8 +137,9 @@ class Router {
         }
     }
 
-    #handlePopstate() {
-        this.#replaceBody(this.#url());
+    #handlePopstate(e) {
+        console.log(this.#url())
+        this.#replaceBody(this.#url(), true);
     }
 
     #partitionNodes(oldNodes, nextNodes) {

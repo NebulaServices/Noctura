@@ -27,8 +27,7 @@ import Settings from "@settings";
             <input class="settings-input" placeholder="https://classroom.google.com/" />
         </form>
     </div>
-    <script defer type="module">
-        var notify = window.notify;
+    <script type="module">
         function loadSettings() {
             if (!window.location.pathname.startsWith("/settings/general"))
                 return;
@@ -148,9 +147,6 @@ import Settings from "@settings";
                 });
         }
 
-        window.addEventListener("router:end", (_) =>
-            loadSettings()
-        );
-        loadSettings();
+        window.addEventListener("router:end", (_) => loadSettings());
     </script>
 </Settings>

@@ -69,6 +69,7 @@ if (!window.__init) {
     if (navigator.onLine) requestBare(); else if (document.querySelector('.server-indicator-value')) document.querySelector('.server-indicator-value').childNodes[1].textContent = 'Offline';
 
     addEventListener('router:end', () => requestBare());
+    
     // addEventListener('flamethrower:router:fetch-progress', function(e) {
     //     if (e.detail.progress === 100) {
     //         setTimeout(function() {
