@@ -2,15 +2,12 @@
 const props = Astro.props;
 ---
 
-<a class={`flamethrower-link ${props.class}`} {...props} target={props.target || "_self"}>
+<a {...props} target={props.target || "_self"}>
     <slot />
 </a>
 
-<script>
-    import flame from "flamethrower-router";
+<!-- <script>
+    import router from "../js/router";
 
-    flame({
-        log: false,
-        prefetch: "visible"
-    });
-</script>
+    router();
+</script> -->

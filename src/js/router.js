@@ -1,22 +1,62 @@
 class Router {
-    constructor(parent = null) {
-        parent ? this.parent = parent : this.parent = document.body;
+    constructor() {
         document.addEventListener("click", (e) => this.#handleClick(e));
         addEventListener("popstate", (e) => this.#handlePopstate());
+        this.prefetched = new Set();
+        this.#prefetch();
     }
     
-    go(href, parent = null) {
-        this.#replaceBody(href, parent);
+    go(href) {
+        this.#replaceBody(href);
     }
     
     #prefetch() {
+        const intersectionOpts = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 1.0,
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                const url = entry.target.getAttribute('href');
+
+                if (this.prefetched.has(url)) {
+                    observer.unobserve(entry.target);
+                    return;
+                }
+
+                if (entry.isIntersecting) {
+                    const link = document.createElement("link");
+                    link.rel = "prefetch";
+                    link.href = url;
+                    link.as = "document";
+
+                    document.head.appendChild(link);
+
+                    this.prefetched.add(url);
+                    observer.unobserve(entry.target);
+                }
+            }, intersectionOpts);
+        });
         
+        this.#allLinks().forEach((link) => observer.observe(link));
+    }
+
+    #allLinks() {
+        return Array.from(document.links).filter((link) => {
+            link.href.includes(document.location.origin) &&
+            !link.href.includes('#') && // not an id anchor
+            link.href !== (document.location.href || document.location.href + '/') &&
+            !this.prefetched.has(link.href)
+        });
     }
 
     async #replaceBody(href) {
         const parser = new DOMParser();
         const prev = location.href;
-        const next = this.#url(href);
+        const next = new URL(href, location.origin).href;
+        const oldWin = window;
 
         if (prev === next) {
             return;
@@ -30,10 +70,16 @@ class Router {
             .then((res) => res.text())
             .then((text) => parser.parseFromString(text, "text/html"));
 
-        this.parent.replaceWith(doc.body);
+        document.body.replaceWith(doc.body);
         this.#mergeHead(doc);
 
         this.#runScripts();
+
+        for (const obj in window) {
+            if (!obj in oldWin) {
+                delete window[obj]
+            }
+        }
 
         window.dispatchEvent(new CustomEvent("router:end"));
 
@@ -94,13 +140,17 @@ class Router {
 
             e.preventDefault();
 
-            const next = this.#url(url.href)
+            const next = this.#url(url.href);
 
             this.#replaceBody(next);
         }
     }
 
-    #partitionNodes(oldNodes, nextNode) {
+    #handlePopstate() {
+        this.#replaceBody(this.#url());
+    }
+
+    #partitionNodes(oldNodes, nextNodes) {
         const staleNodes = [];
         const freshNodes = []
         let oldMark = 0;
@@ -133,16 +183,12 @@ class Router {
       
         return { staleNodes, freshNodes };
     }
-
-    #handlePopstate() {
-        this.#replaceBody(this.#url());
-    }
 }
     
-export default (parent = null) => {
+export default ((parent = null) => {
     const router = new Router(parent);
 
     window.router = router;
 
     return router;
-}
+})()
