@@ -29,7 +29,7 @@ import Popup from "@components/Popup.astro";
                         [
                             'tomp.app',
                         ].map(e=>{
-                            return <a id={"server-" + e.split('.')[0]} class="modify-split-a" data-value={e}>{e.split('.')[0].split('-').map(e=>e.split('').map((e,i)=>i==0?e.toUpperCase():e).join('')).join(' ')} <span class="server-ping">0ms</span></a>
+                            return <a href={ "http://" + e } id={"server-" + e.split('.')[0]} class="modify-split-a" data-value={e}>{e.split('.')[0].split('-').map(e=>e.split('').map((e,i)=>i==0?e.toUpperCase():e).join('')).join(' ')} <span class="server-ping">0ms</span></a>
                         })
                     }
                 </div>
