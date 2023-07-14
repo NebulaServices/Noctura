@@ -4,9 +4,9 @@
   --card-color: var(--settings-3);
   --card-color-darker: var(--settings-2);
   --card-color-music: var(--settings-1);
-  --card-title-font: 'Blinker', sans-serif;
-  --card-title-color: var(--font-color);
-  --card-text-color: var(--font-color);
+  /* --card-title-font: 'Blinker', sans-serif; */
+  --card-title-color: #666;
+  --card-text-color: #666;
   --card-text-weight: bold;
   --p-text-color: var(--font-color);
   --link-decoration: none;

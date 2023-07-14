@@ -12,31 +12,52 @@
 }
 
   .upload-button {
-    width: 3vw;
-    height: 3vw;
     color: var(--h1-color);
     margin-left: 1vw;
-    margin-top: 3vh;
+    margin-right: 1vw;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .upload-button:active {
+    transform: scale(0.8);
+    transition: 0.3s;
   }
 
   .subheading {
     text-align: left;
-    font-size: 4vw;
-    padding-top: 0vh;
-    padding-left: 1vw;
+    font-size: 3vw;
+    padding-top: 3vh;
+    filter: brightness(0.9);
+    margin-left: 2vw;
     margin-top: 1vh;
     transition: 0.2s;
     margin-bottom: 0;
+    border-bottom: 1px solid #666; 
+    line-height: 0.1em;
+  }
+
+  .subheading span {
+    background: #000; 
+    padding: 0 10px;
   }
 
   .subheading-2 {
-    text-align: center;
-    font-size: 4vw;
-    padding-top: 0vh;
-    padding-left: 1vw;
+    text-align: left;
+    font-size: 2vw;
+    padding-top: 3vh;
+    filter: brightness(0.9);
+    margin-left: 1vw;
     margin-top: 1vh;
     transition: 0.2s;
     margin-bottom: 0;
+    border-bottom: 1px solid #666; 
+    line-height: 0.1em;
+  }
+
+  .subheading-2 span {
+    background: #000; 
+    padding: 0 10px;
   }
 
   .grid-size:hover {
@@ -46,7 +67,8 @@
 
   .upload-button:hover {
     color: #22a6b3;
-    transform: scale(1.1);
+    transform: scale(1.2);
+    transition: 0.3s;
   }
 
   .theme-mode:hover {
@@ -67,7 +89,7 @@
 .song-image {
     width: 10vw;
     height: 10vw;
-    border-radius: 10%;
+    
     margin-top: 2vh;
     margin-left: 1vw;
     margin-right: 0;
@@ -77,15 +99,15 @@
 }
 
 .album-art {
-  width: 10vw;
-    height: 10vw;
-    border-radius: 10%;
-    margin-top: 2vh;
+  width: 12vw;
+    height: 12vw;
+    border-radius: 0%;
+    
     margin-left: 0vw;
     margin-right: 0;
     margin-bottom: 0;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.3s;
 }
 
 #recentlyPlayedv2 {
@@ -139,7 +161,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap; /* add this line to wrap content */
-  margin-top: 2vh;
+  margin-top: 0vh;
   margin-right: 1vw;
   margin-left: 0vw;
   margin-bottom: 2vh;
@@ -166,6 +188,7 @@
   overflow-x: auto;
 }
 
+
 #albumsDivs {
   display: flex;
   flex-direction: row;
@@ -182,18 +205,45 @@
   margin-top: 2vh;
   margin-left: 1vw;
   margin-bottom: 2vh;
-  padding: 1vw;
+  
   overflow-y: auto; /* add this line to enable vertical scrollbar */
   background-color: var(--card-color-music);
   color: var(--card-text-color);
-  border-radius: 1vw;
-  width: 12vw;
+  border-bottom-right-radius: 0.4vw;
+  border-bottom-left-radius: 0.4vw;
+  /* width: 12vw; */
+  transition: 0.3s;
+}
+
+.album p {
+  margin-top: 0.5vw;
+  margin-bottom: 0.5vw;
+  margin-left: 0vw;
+  margin-right: 0;
+  padding: 0;
+  font-size: 0.7vw;
+  text-align: center;
+  filter: brightness(0.5);
+  transition: 0.2s;
+}
+
+.w-6 {
+  width: 2.5rem;
+}
+
+.h-6 {
+  height: 2.5rem;
 }
 
 .album:hover {
-  background-color: var(--card-color);
-  color: #fff;
-  transform: scale(1.1);
+  transform: scale(1.05);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.album:active {
+  transform: scale(0.90);
+  transition: 0.3s;
 }
 
 .songDiv {
@@ -201,31 +251,40 @@
   flex-direction: column;
   margin-top: 2vh;
   margin-left: 2vw;
-  margin-bottom: 2vh;
+  margin-bottom: 1vh;
   padding: 0vw;
   overflow-y: auto; /* add this line to enable vertical scrollbar */
   background-color: var(--card-color-music);
   color: var(--card-text-color);
-  border-radius: 0.4vw;
+  border-bottom-left-radius: 0.4vw;
+  border-bottom-right-radius: 0.4vw;
   flex-basis: 10%; /* set the initial width of the element */
   flex-grow: 1; /* allow the element to grow as necessary to fill the container */
-  max-width: 15vw; /* set a maximum width for the element */
-  min-width: 10vw; /* set a minimum width for the element */
+  max-width: 12vw; /* set a maximum width for the element */
+  min-width: 7vw; /* set a minimum width for the element */
+  transition: 0.3s;
 }
 
 .songDiv:hover {
   transform: scale(1.05);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.songDiv:active {
+  transform: scale(0.90);
+  transition: 0.3s;
 }
 
 .songTitle {
-  margin-top: 0;
+  margin-top: 1vw;
   margin-bottom: 0;
   margin-left: 0vw;
   margin-right: 0;
   padding: 0;
-  font-size: 1vw;
+  font-size: 0.7vw;
   text-align: center;
-  border-radius: 1vw;
+  filter: brightness(0.5);
   transition: 0.2s;
 }
 
@@ -235,10 +294,10 @@
   margin-left: 0vw;
   margin-right: 0;
   padding: 0;
-  font-size: 1vw;
+  font-size: 0.7vw;
   text-align: center;
   border-radius: 1vw;
-  filter: brightness(0.5);
+  filter: brightness(0.3);
   transition: 0.2s;
 }
 
@@ -402,7 +461,7 @@
   width: 30vw;
   font-size: 1vw;
   text-align: center;
-  border-radius: 1vw;
+  border-radius: 0vw;
   filter: brightness(0.8);
   background-color: var(--card-color);
   cursor: pointer;
