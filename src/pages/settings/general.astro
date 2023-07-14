@@ -8,6 +8,8 @@ import Settings from "@settings";
             <h1 class="text-lg">Custom Bare Server</h1>
 
             <input class="settings-input" />
+            <button type="submit" class="settings-submit" style="visibility: hidden; position: absolute; z-index: -1;"></button>
+            <button type="submit" class="settings-submit" id="reset-bare">Reset</button>
         </form>
     </div>
     <div class="settings-section">
@@ -107,12 +109,16 @@ import Settings from "@settings";
                     if (e.submitter.id == 'reset-bare') {
                         localStorage.removeItem('server');
                         document.querySelector('#custom-bare-form input').value = localStorage.getItem('server') || '';
+
                         return caches.open('astro-data').then(cache => {
                             cache.put('/bare.txt', new Response('tomp.app')).then(async () => {
-                                await navigator.serviceWorker.register('/sw.js', { scope: '/', module: true });
-                                await navigator.serviceWorker.register('/sw/aero/worker.js', { scope: '/~/aero', module: true });
+                                await window.registerSW();
                                 
                                 notify.show(`Reset Server`, "success", 2000);
+
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 2000);
                             });
                         });
                     }
@@ -127,16 +133,13 @@ import Settings from "@settings";
                             cache
                                 .put("/bare.txt", new Response(bare))
                                 .then(async () => {
-                                    await navigator.serviceWorker.register(
-                                        "/sw.js",
-                                        { scope: "/", module: true }
-                                    );
-                                    await navigator.serviceWorker.register(
-                                        "/sw/aero/worker.js",
-                                        { scope: "/~/aero", module: true }
-                                    );
+                                    await window.registerSW();
 
                                     notify.show(`Saved`, "success", 2000);
+
+                                    setTimeout(function() {
+                                        location.reload();
+                                    }, 2000);
                                 });
                         });
                     } else {
