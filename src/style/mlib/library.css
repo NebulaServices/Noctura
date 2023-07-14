@@ -38,7 +38,7 @@
   }
 
   .subheading span {
-    background: #000; 
+    background: var(--primary-bg-color); 
     padding: 0 10px;
   }
 
@@ -56,7 +56,7 @@
   }
 
   .subheading-2 span {
-    background: #000; 
+    background: var(--primary-bg-color); 
     padding: 0 10px;
   }
 
