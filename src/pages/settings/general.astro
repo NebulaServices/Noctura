@@ -1,149 +1,155 @@
 ---
 import Settings from "@settings";
+import Section from "@components/Section.astro";
 ---
 
 <Settings title="General">
-    <div class="settings-section">
+    <Section class="settings-section">
         <form id="custom-bare-form">
             <h1 class="text-lg">Custom Bare Server</h1>
 
             <input class="settings-input" />
+            <button type="submit" class="settings-submit" style="visibility: hidden; position: absolute; z-index: -1;"></button>
+            <button type="submit" class="settings-submit" id="reset-bare">Reset</button>
         </form>
-    </div>
-    <div class="settings-section">
+    </Section>
+    <Section class="settings-section">
         <form id="about-blank-form">
             <h1 class="text-lg">Tab Cloaking</h1>
 
             <button type="submit" id="init-about" class="settings-submit">About:Blank</button>
             <button type="submit" id="init-blob" class="settings-submit">Blob</button>
         </form>
-    </div>
-    <div class="settings-section">
+    </Section>
+    <Section class="settings-section">
         <form id="panic-url-form">
             <h1 class="text-lg">Panic URL</h1>
 
             <input class="settings-input" placeholder="https://classroom.google.com/" />
         </form>
-    </div>
+    </Section>
+
     <script type="module">
-        function loadSettings() {
-            if (!window.location.pathname.startsWith("/settings/general"))
-                return;
+        document
+            .getElementById("about-blank-form")
+            .addEventListener("submit", function (e) {
+                e.preventDefault();
 
-            document
-                .getElementById("about-blank-form")
-                .addEventListener("submit", function (e) {
-                    e.preventDefault();
+                switch (e.submitter.id) {
+                    case "init-about":
+                        var newWindow = window.open(
+                            "about:blank",
+                            "_blank"
+                        );
+                        break;
+                    case "init-blob":
+                        var newWindow = window.open(
+                            URL.createObjectURL(
+                                new Blob(["<html><body></body></html>"], {
+                                    type: "text/html",
+                                })
+                            ),
+                            "_blank"
+                        );
+                        break;
+                }
 
-                    switch (e.submitter.id) {
-                        case "init-about":
-                            var newWindow = window.open(
-                                "about:blank",
-                                "_blank"
-                            );
-                            break;
-                        case "init-blob":
-                            var newWindow = window.open(
-                                URL.createObjectURL(
-                                    new Blob(["<html><body></body></html>"], {
-                                        type: "text/html",
-                                    })
-                                ),
-                                "_blank"
-                            );
-                            break;
-                    }
+                var iframe = document.createElement("iframe");
+                iframe.src = window.location.href;
+                iframe.style.width = "100%";
+                iframe.style.height = "100%";
+                iframe.style.border = "none";
+                iframe.style.overflow = "hidden";
 
-                    var iframe = document.createElement("iframe");
-                    iframe.src = window.location.href;
-                    iframe.style.width = "100%";
-                    iframe.style.height = "100%";
-                    iframe.style.border = "none";
-                    iframe.style.overflow = "hidden";
+                newWindow.onload = function () {
+                    newWindow.onload = null;
 
-                    newWindow.onload = function () {
-                        newWindow.onload = null;
+                    newWindow.document.body.style.background = "black";
+                    newWindow.document.body.appendChild(iframe);
+                    newWindow.document.body.style.width = "100%";
+                    newWindow.document.body.style.height = "100%";
+                    newWindow.document.body.style.margin = "0";
+                    newWindow.document.body.style.padding = "0";
+                };
+            });
 
-                        newWindow.document.body.style.background = "black";
-                        newWindow.document.body.appendChild(iframe);
-                        newWindow.document.body.style.width = "100%";
-                        newWindow.document.body.style.height = "100%";
-                        newWindow.document.body.style.margin = "0";
-                        newWindow.document.body.style.padding = "0";
-                    };
-                });
+        document.querySelector("#panic-url-form input").value =
+            localStorage.getItem("panic-url") ||
+            "https://classroom.google.com/";
 
-            document.querySelector("#panic-url-form input").value =
-                localStorage.getItem("panic-url") ||
-                "https://classroom.google.com/";
+        document
+            .getElementById("panic-url-form")
+            .addEventListener("submit", function (e) {
+                e.preventDefault();
 
-            document
-                .getElementById("panic-url-form")
-                .addEventListener("submit", function (e) {
-                    e.preventDefault();
+                var url = document.querySelector(
+                    "#panic-url-form input"
+                ).value;
 
-                    var url = document.querySelector(
-                        "#panic-url-form input"
-                    ).value;
+                if (url) {
+                    localStorage.setItem("panic-url", url);
 
-                    if (url) {
-                        localStorage.setItem("panic-url", url);
+                    notify.show(`Saved`, "success", 2000);
+                } else {
+                    return;
+                }
+            });
 
-                        notify.show(`Saved`, "success", 2000);
-                    } else {
-                        return;
-                    }
-                });
+        document.querySelector("#custom-bare-form input").value =
+            localStorage.getItem("server") || "";
 
-            document.querySelector("#custom-bare-form input").value =
-                localStorage.getItem("server") || "";
+        document
+            .getElementById("custom-bare-form")
+            .addEventListener("submit", function (e) {
+                e.preventDefault();
 
-            document
-                .getElementById("custom-bare-form")
-                .addEventListener("submit", function (e) {
-                    e.preventDefault();
+                if (e.submitter.id == 'reset-bare') {
+                    localStorage.removeItem('server');
+                    document.querySelector('#custom-bare-form input').value = localStorage.getItem('server') || '';
 
-                    if (e.submitter.id == 'reset-bare') {
-                        localStorage.removeItem('server');
-                        document.querySelector('#custom-bare-form input').value = localStorage.getItem('server') || '';
-                        return caches.open('astro-data').then(cache => {
-                            cache.put('/bare.txt', new Response('tomp.app')).then(async () => {
-                                await navigator.serviceWorker.register('/sw.js', { scope: '/', module: true });
-                                await navigator.serviceWorker.register('/sw/aero/worker.js', { scope: '/~/aero', module: true });
-                                
-                                notify.show(`Reset Server`, "success", 2000);
-                            });
+                    return caches.open('astro-data').then(cache => {
+                        cache.put('/bare.txt', new Response('tomp.app')).then(async () => {
+                            await window.registerSW();
+                            
+                            notify.show(`Reset Server`, "success", 2000);
+
+                            setTimeout(function() {
+                                location.reload();
+                            }, 2000);
                         });
-                    }
+                    });
+                }
 
-                    let bare = document.querySelector('#custom-bare-form input').value;
+                let bare = document.querySelector('#custom-bare-form input').value;
 
-                    if (bare) {
-                        bare = bare.replace(/^https?:\/\//g, "");
+                if (bare) {
+                    bare = bare.replace(/^https?:\/\//g, "");
+
+                    caches.open("astro-data").then(async (cache) => {
+                        try {
+                            await fetch(`http://${bare}/`, { redirect: 'follow' });
+                        } catch (e) {
+                            notify.show(`Invalid Server: Failed to Fetch`, "error", 2000);
+                            return;
+                        }
+
                         localStorage.setItem("server", bare);
 
-                        caches.open("astro-data").then((cache) => {
-                            cache
-                                .put("/bare.txt", new Response(bare))
-                                .then(async () => {
-                                    await navigator.serviceWorker.register(
-                                        "/sw.js",
-                                        { scope: "/", module: true }
-                                    );
-                                    await navigator.serviceWorker.register(
-                                        "/sw/aero/worker.js",
-                                        { scope: "/~/aero", module: true }
-                                    );
+                        cache
+                            .put("/bare.txt", new Response(bare))
+                            .then(async () => {
+                                await window.registerSW();
 
-                                    notify.show(`Saved`, "success", 2000);
-                                });
-                        });
-                    } else {
-                        return;
-                    }
-                });
-        }
+                                notify.show(`Saved`, "success", 2000);
 
-        window.addEventListener("router:end", (_) => loadSettings());
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 2000);
+                            });
+                    });
+                } else {
+                    return;
+                }
+            });
     </script>
 </Settings>

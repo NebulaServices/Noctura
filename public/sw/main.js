@@ -1,4 +1,4 @@
-let bareServer = 'us-east.noctura.tech';
+let bareServer = 'tomp.app';
 
 importScripts('/sw/uv/uv.bundle.js');
 importScripts('/sw/uv/uv.config.js');
@@ -29,7 +29,8 @@ const p = new Promise(async (res) => {
 
         self.__uv$config.bare = req.url;
         self.__dynamic$config.bare.path = req.url;
-    } catch {};
+        console.log(req.url);
+    } catch(e) {console.log(e)};
 
     self.dynamic = new Dynamic(self.__dynamic$config);
     self.uv = new UVServiceWorker(self.__uv$config);
