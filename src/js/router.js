@@ -9,48 +9,6 @@ class Router {
     go(href) {
         this.#replaceBody(href);
     }
-    
-    #prefetch() {
-        const intersectionOpts = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 1.0,
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach((entry) => {
-                const url = entry.target.getAttribute('href');
-
-                if (this.prefetched.has(url)) {
-                    observer.unobserve(entry.target);
-                    return;
-                }
-
-                if (entry.isIntersecting) {
-                    const link = document.createElement("link");
-                    link.rel = "prefetch";
-                    link.href = url;
-                    link.as = "document";
-
-                    document.head.appendChild(link);
-
-                    this.prefetched.add(url);
-                    observer.unobserve(entry.target);
-                }
-            }, intersectionOpts);
-        });
-        
-        this.#allLinks().forEach((link) => observer.observe(link));
-    }
-
-    #allLinks() {
-        return Array.from(document.links).filter((link) => {
-            link.href.includes(document.location.origin) &&
-            !link.href.includes('#') && // not an id anchor
-            link.href !== (document.location.href || document.location.href + '/') &&
-            !this.prefetched.has(link.href)
-        });
-    }
 
     async #replaceBody(href) {
         const parser = new DOMParser();
@@ -112,6 +70,48 @@ class Router {
             newScript.append(script.textContent);
             script.replaceWith(newScript)
         })
+    }
+
+    #prefetch() {
+        const intersectionOpts = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 1.0,
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                const url = entry.target.getAttribute('href');
+
+                if (this.prefetched.has(url)) {
+                    observer.unobserve(entry.target);
+                    return;
+                }
+
+                if (entry.isIntersecting) {
+                    const link = document.createElement("link");
+                    link.rel = "prefetch";
+                    link.href = url;
+                    link.as = "document";
+
+                    document.head.appendChild(link);
+
+                    this.prefetched.add(url);
+                    observer.unobserve(entry.target);
+                }
+            }, intersectionOpts);
+        });
+        
+        this.#allLinks().forEach((link) => observer.observe(link));
+    }
+
+    #allLinks() {
+        return Array.from(document.links).filter((link) => {
+            link.href.includes(document.location.origin) &&
+            !link.href.includes('#') && // not an id anchor
+            link.href !== (document.location.href || document.location.href + '/') &&
+            !this.prefetched.has(link.href)
+        });
     }
 
     #url(url) {
