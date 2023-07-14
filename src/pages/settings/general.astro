@@ -25,7 +25,7 @@ import Settings from "@settings";
             <input class="settings-input" placeholder="https://classroom.google.com/" />
         </form>
     </div>
-    <script is:inline>
+    <script type="module">
         function loadSettings() {
             if (!window.location.pathname.startsWith("/settings/general"))
                 return;

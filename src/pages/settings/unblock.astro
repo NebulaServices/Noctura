@@ -34,7 +34,7 @@ import Obfuscated from "@components/Obfuscated.astro";
             <button type="submit" class="settings-submit">Save</button>
         </form>
 
-        <script is:inline>
+        <script type="module">
             function loadSettings() {
                 if (!window.location.pathname.startsWith("/settings/unblock"))
                     return;

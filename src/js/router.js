@@ -54,7 +54,7 @@ class Router {
         scripts.forEach((script) => {
             const newScript = document.createElement("script");
             const attr = Array.from(script.attributes);
-            for (const {key, prop} of attr) {
+            for (const [key, prop] of attr) {
                 newScript[key] = [prop];
             }
 
