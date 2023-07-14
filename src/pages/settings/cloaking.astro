@@ -1,9 +1,10 @@
 ---
 import Settings from "@settings";
+import Section from "@components/Section.astro";
 ---
-
+1
 <Settings title="Cloaking">
-    <div class="settings-section">
+    <Section>
         <form id="automatic-cloaking">
             <h1 class="text-lg">Automatic</h1>
 
@@ -22,169 +23,162 @@ import Settings from "@settings";
         <form id="reset-cloaking">
             <button type="submit" class="settings-submit mt-5">Reset</button>
         </form>
-    </div>
+    </Section>
 
     <script type="module">
-        function loadSettings() {
-            if (!window.location.pathname.startsWith("/settings/cloaking"))
-                return;
-
-            async function getData(url) {
-                if (
-                    !url.match(/^\w+:/) &&
-                    url.includes(".") &&
-                    !/\s+/.test(url)
-                ) {
-                    url = `http://${url}`;
-                }
-
-                const response = await fetch(
-                    "/~/uv/" + encodeURIComponent(url),
-                    { redirect: "follow" }
-                );
-
-                const dom = new DOMParser().parseFromString(
-                    await response.text(),
-                    "text/html"
-                );
-
-                const base = document.createElement("base");
-                base.href = response.finalURL;
-
-                dom.head.append(base);
-
-                let icon;
-
-                if (
-                    dom.querySelector('link[rel*="icon"]') &&
-                    dom.querySelector('link[rel*="icon"]').href !== ""
-                )
-                    icon = dom.querySelector('link[rel*="icon"]').href;
-                else icon = new URL("/favicon.ico", url).toString();
-
-                const outgoing = await fetch(
-                    "/~/uv/" + encodeURIComponent(icon)
-                );
-
-                icon = await blobToDataURL(
-                    new Blob([await outgoing.arrayBuffer()], {
-                        type: outgoing.headers.get("content-type"),
-                    })
-                );
-
-                let title = dom.title;
-
-                if (!title) {
-                    const url = new URL(response.finalURL);
-                    title = `${url.host}${url.pathname}${url.search}`;
-                }
-
-                return { icon, title, url: response.finalURL };
+        async function getData(url) {
+            if (
+                !url.match(/^\w+:/) &&
+                url.includes(".") &&
+                !/\s+/.test(url)
+            ) {
+                url = `http://${url}`;
             }
 
-            async function blobToDataURL(blob) {
-                const reader = new FileReader();
+            const response = await fetch(
+                "/~/uv/" + encodeURIComponent(url),
+                { redirect: "follow" }
+            );
 
-                return new Promise((resolve, reject) => {
-                    reader.addEventListener("load", () =>
-                        resolve(reader.result)
-                    );
-                    reader.addEventListener("error", reject);
-                    reader.readAsDataURL(blob);
-                });
+            const dom = new DOMParser().parseFromString(
+                await response.text(),
+                "text/html"
+            );
+
+            const base = document.createElement("base");
+            base.href = response.finalURL;
+
+            dom.head.append(base);
+
+            let icon;
+
+            if (
+                dom.querySelector('link[rel*="icon"]') &&
+                dom.querySelector('link[rel*="icon"]').href !== ""
+            )
+                icon = dom.querySelector('link[rel*="icon"]').href;
+            else icon = new URL("/favicon.ico", url).toString();
+
+            const outgoing = await fetch(
+                "/~/uv/" + encodeURIComponent(icon)
+            );
+
+            icon = await blobToDataURL(
+                new Blob([await outgoing.arrayBuffer()], {
+                    type: outgoing.headers.get("content-type"),
+                })
+            );
+
+            let title = dom.title;
+
+            if (!title) {
+                const url = new URL(response.finalURL);
+                title = `${url.host}${url.pathname}${url.search}`;
             }
 
-            document
-                .getElementById("automatic-cloaking")
-                .addEventListener("submit", async (e) => {
-                    e.preventDefault();
-                    const url = e.target.querySelector("input").value;
-
-                    notify.show("Loading Data", "info", -1);
-
-                    let data;
-
-                    try {
-                        data = await getData(url);
-                    } catch (e) {
-                        notify.hide();
-                        notify.show("Error Loading Data", "error", 2000);
-
-                        return;
-                    }
-
-                    notify.hide();
-
-                    localStorage.setItem("savedFavicon", data.icon);
-                    localStorage.setItem("savedTitle", data.title);
-
-                    localStorage.setItem("autoURL", url.toString());
-
-                    faviconLoad();
-                    titleLoad();
-
-                    notify.show("Saved Data", "success", 2000);
-                });
-
-            document
-                .getElementById("manual-cloaking")
-                .addEventListener("submit", async (e) => {
-                    e.preventDefault();
-                    const title = e.target.querySelectorAll("input")[0].value;
-                    const icon = e.target.querySelectorAll("input")[1].value;
-
-                    if (title || icon) {
-                        if (localStorage.getItem("autoURL"))
-                            localStorage.removeItem("autoURL"),
-                                (document.querySelector(
-                                    "#automatic-cloaking input"
-                                ).value = "");
-                    }
-
-                    if (title) {
-                        localStorage.setItem("savedTitle", title);
-                        titleLoad();
-                    }
-
-                    if (icon) {
-                        localStorage.setItem("savedFavicon", icon);
-                        faviconLoad();
-                    }
-
-                    notify.show("Saved", "success", 2000);
-                });
-
-                document
-                    .getElementById('reset-cloaking')
-                    .addEventListener('submit', (e) => {
-                        e.preventDefault();
-
-                        localStorage.setItem('savedTitle', 'Noctura');
-                        localStorage.setItem('savedFavicon', '/favicon.svg');
-                        localStorage.removeItem('autoURL');
-
-                        titleLoad();
-                        faviconLoad();
-
-                        localStorage.removeItem('autoURL');
-                        localStorage.removeItem('savedTitle');
-                        localStorage.removeItem('savedFavicon');
-
-                        document.querySelector('#automatic-cloaking input').value = localStorage.getItem('autoURL') || '';
-                        document.querySelectorAll('#manual-cloaking input')[0].value = localStorage.getItem('savedTitle') || '';
-                        document.querySelectorAll('#manual-cloaking input')[1].value = localStorage.getItem('savedFavicon') || '';
-
-                        notify.show("Reset Cloaking", "success", 2000);
-                    });
-
-            document.querySelector("#automatic-cloaking input").value =
-                localStorage.getItem("autoURL") || "";
-            document.querySelectorAll("#manual-cloaking input")[0].value =
-                localStorage.getItem("savedTitle") || "";
-            document.querySelectorAll("#manual-cloaking input")[1].value =
-                localStorage.getItem("savedFavicon") || "";
+            return { icon, title, url: response.finalURL };
         }
 
-        loadSettings();
+        async function blobToDataURL(blob) {
+            const reader = new FileReader();
+
+            return new Promise((resolve, reject) => {
+                reader.addEventListener("load", () =>
+                    resolve(reader.result)
+                );
+                reader.addEventListener("error", reject);
+                reader.readAsDataURL(blob);
+            });
+        }
+
+        document
+            .getElementById("automatic-cloaking")
+            .addEventListener("submit", async (e) => {
+                e.preventDefault();
+                const url = e.target.querySelector("input").value;
+
+                notify.show("Loading Data", "info", -1);
+
+                let data;
+
+                try {
+                    data = await getData(url);
+                } catch (e) {
+                    notify.hide();
+                    notify.show("Error Loading Data", "error", 2000);
+
+                    return;
+                }
+
+                notify.hide();
+
+                localStorage.setItem("savedFavicon", data.icon);
+                localStorage.setItem("savedTitle", data.title);
+
+                localStorage.setItem("autoURL", url.toString());
+
+                faviconLoad();
+                titleLoad();
+
+                notify.show("Saved Data", "success", 2000);
+            });
+
+        document
+            .getElementById("manual-cloaking")
+            .addEventListener("submit", async (e) => {
+                e.preventDefault();
+                const title = e.target.querySelectorAll("input")[0].value;
+                const icon = e.target.querySelectorAll("input")[1].value;
+
+                if (title || icon) {
+                    if (localStorage.getItem("autoURL"))
+                        localStorage.removeItem("autoURL"),
+                            (document.querySelector(
+                                "#automatic-cloaking input"
+                            ).value = "");
+                }
+
+                if (title) {
+                    localStorage.setItem("savedTitle", title);
+                    titleLoad();
+                }
+
+                if (icon) {
+                    localStorage.setItem("savedFavicon", icon);
+                    faviconLoad();
+                }
+
+                notify.show("Saved", "success", 2000);
+            });
+
+            document
+                .getElementById('reset-cloaking')
+                .addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    localStorage.setItem('savedTitle', 'Noctura');
+                    localStorage.setItem('savedFavicon', '/favicon.svg');
+                    localStorage.removeItem('autoURL');
+
+                    titleLoad();
+                    faviconLoad();
+
+                    localStorage.removeItem('autoURL');
+                    localStorage.removeItem('savedTitle');
+                    localStorage.removeItem('savedFavicon');
+
+                    document.querySelector('#automatic-cloaking input').value = localStorage.getItem('autoURL') || '';
+                    document.querySelectorAll('#manual-cloaking input')[0].value = localStorage.getItem('savedTitle') || '';
+                    document.querySelectorAll('#manual-cloaking input')[1].value = localStorage.getItem('savedFavicon') || '';
+
+                    notify.show("Reset Cloaking", "success", 2000);
+                });
+
+        document.querySelector("#automatic-cloaking input").value =
+            localStorage.getItem("autoURL") || "";
+        document.querySelectorAll("#manual-cloaking input")[0].value =
+            localStorage.getItem("savedTitle") || "";
+        document.querySelectorAll("#manual-cloaking input")[1].value =
+            localStorage.getItem("savedFavicon") || "";
     </script>
 </Settings>
