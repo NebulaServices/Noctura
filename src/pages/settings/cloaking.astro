@@ -20,9 +20,7 @@ import Settings from "@settings";
         </form>
     </div>
 
-    <script type="module">
-        let notify = window.notify;
-
+    <script is:inline>
         function loadSettings() {
             if (!window.location.pathname.startsWith("/settings/cloaking"))
                 return;
@@ -160,9 +158,6 @@ import Settings from "@settings";
                 localStorage.getItem("savedFavicon") || "";
         }
 
-        window.addEventListener("router:end", (_) =>
-            loadSettings()
-        );
-        loadSettings();
+        window.addEventListener("router:end", (_) => loadSettings());
     </script>
 </Settings>
