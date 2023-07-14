@@ -21,9 +21,12 @@ function query(req) {
 const p = new Promise(res => {
   caches.open('astro-data').then(cache => {
     cache.match('/bare.txt').then(async file => {
-      var text = await file.text();
-      const req = await fetch('http://' + text.replace(/\/$/, '') + '/', {redirect: 'follow'});
-      __aero$config.bare = req.url;
+      var text = file ? await file.text() : '';
+
+      try {
+        const req = await fetch('http://' + text.replace(/\/$/, '') + '/', {redirect: 'follow'});
+        __aero$config.bare = req.url;
+      } catch {}
 
       res();
     })

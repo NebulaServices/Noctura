@@ -35,8 +35,8 @@ style.innerHTML = `
     height: min-content;
     padding: 5px 10px;
     border-radius: 5px;
-    background-color: #000000;
-    color: #ffffff;
+    background-color: var(--primary-bg-color);
+    color: var(--font-color);
     transform: translate(-50%, 0);
     z-index: 99999;
     display: flex;
@@ -55,8 +55,8 @@ style.innerHTML = `
 #noctura-nav-input {
     border: none;
     outline: none;
-    background-color: transparent;
-    color: #ffffff;
+    background-color: var(--settings-1);
+    color: var(--font-color);
     padding: 5px 10px;
     border-radius: 5px;
     transition: 0.1s ease-in-out;
@@ -68,7 +68,7 @@ style.innerHTML = `
     border: none;
     outline: none;
     background-color: transparent;
-    color: #ffffff;
+    color: var(--font-color);
     cursor: pointer;
     padding: 5px 10px;
     border-radius: 5px;
@@ -76,7 +76,7 @@ style.innerHTML = `
 }
 
 #noctura-menu button:hover {
-    background-color: #ffffff;
+    background-color: var(--settings-3);
     color: #000000;
 }
 `;
