@@ -49,8 +49,9 @@ import "@css/mlib/themes.css";
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 upl">
                   <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 011.06 0l4.5 4.5a.75.75 0 01-1.06 1.06l-3.22-3.22V16.5a.75.75 0 01-1.5 0V4.81L8.03 8.03a.75.75 0 01-1.06-1.06l4.5-4.5zM3 15.75a.75.75 0 01.75.75v2.25a1.5 1.5 0 001.5 1.5h13.5a1.5 1.5 0 001.5-1.5V16.5a.75.75 0 011.5 0v2.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V16.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
                 </svg>
-              </label>    
+              </label>  
            </div>
+           <p style="padding:5px; cursor:pointer; border: 2px solid var(--settings-1)" onclick="clearDatabase(); location.reload();"> Clear Library </p>  
           </div>
             <br><br><br>
           </div>
@@ -74,7 +75,7 @@ import "@css/mlib/themes.css";
              </div>
           
              <div class="pause-play" id="pause" onclick="pausePlay();">
-             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="color:white;" fill="currentColor" class="w-6 h-6">
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="color:white; height: 25px; width: 25px;" fill="currentColor">
               <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zM9 8.25a.75.75 0 00-.75.75v6c0 .414.336.75.75.75h.75a.75.75 0 00.75-.75V9a.75.75 0 00-.75-.75H9zm5.25 0a.75.75 0 00-.75.75v6c0 .414.336.75.75.75H15a.75.75 0 00.75-.75V9a.75.75 0 00-.75-.75h-.75z" clip-rule="evenodd" />
             </svg>
             </div>
@@ -119,7 +120,8 @@ import "@css/mlib/themes.css";
         <div id="songData">
         </div>
         </div>
-        <audio style="display:none" id="audio"></audio> 
+        <audio style="display:none;" id="audio"></audio> 
+        <div style="display:none;" id="server"></div>
         <script is:inline src="/js/mlib/jsmediatags.min.js"></script>
         <script is:inline>
 songs = [];
@@ -251,7 +253,7 @@ function unmutePlay() {
 
 
 function progressBar() {
-  if (!isPlaying && !document.getElementById("progressBar") == null) {
+  if (!isPlaying) {
     setInterval(function() {
       const currentTime = aud.currentTime;
       const duration = aud.duration;
@@ -531,13 +533,12 @@ function raiseSidebar() {
 
 
 
-        <script>
-          window.addEventListener("flamethrower:router:end", (_) => {
+        <script is:inline>
+          window.addEventListener("router:end", (_) => {
             if (!window.location.pathname.startsWith("/music/")) {
                 return;
             }
-              displayAllSongs(false, 15, true);
-              showAlbums();
+              
           });
         function displayAllSongs(isMore, maxSongs = 15, resetPlayer) {
   const openRequest = indexedDB.open("songs_db", 2);

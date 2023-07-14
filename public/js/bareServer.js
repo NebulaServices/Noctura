@@ -68,27 +68,27 @@ if (!window.__init) {
     
     if (navigator.onLine) requestBare(); else if (document.querySelector('.server-indicator-value')) document.querySelector('.server-indicator-value').childNodes[1].textContent = 'Offline';
 
-    addEventListener('flamethrower:router:end', () => requestBare());
-    addEventListener('flamethrower:router:fetch-progress', function(e) {
-        if (e.detail.progress === 100) {
-            setTimeout(function() {
-                document.querySelector('.page-load-progress').style.display = 'block';
-                if (e.detail.progress !== 100) document.querySelector('.page-load-progress').style.width = e.detail.progress + '%';
+    addEventListener('router:end', () => requestBare());
+    // addEventListener('flamethrower:router:fetch-progress', function(e) {
+    //     if (e.detail.progress === 100) {
+    //         setTimeout(function() {
+    //             document.querySelector('.page-load-progress').style.display = 'block';
+    //             if (e.detail.progress !== 100) document.querySelector('.page-load-progress').style.width = e.detail.progress + '%';
 
-                setTimeout(function() {
-                    document.querySelector('.page-load-progress').style.opacity = '0';
+    //             setTimeout(function() {
+    //                 document.querySelector('.page-load-progress').style.opacity = '0';
 
-                    setTimeout(function() {
-                        document.querySelector('.page-load-progress').style.display = 'none';
-                        document.querySelector('.page-load-progress').style.opacity = '1';
-                    }, 150);
-                }, 100);
-            }, 100)
-        } else {
-            document.querySelector('.page-load-progress').style.display = 'block';
-            if (e.detail.progress !== 100) document.querySelector('.page-load-progress').style.width = e.detail.progress + '%';
-        }
-    });
+    //                 setTimeout(function() {
+    //                     document.querySelector('.page-load-progress').style.display = 'none';
+    //                     document.querySelector('.page-load-progress').style.opacity = '1';
+    //                 }, 150);
+    //             }, 100);
+    //         }, 100)
+    //     } else {
+    //         document.querySelector('.page-load-progress').style.display = 'block';
+    //         if (e.detail.progress !== 100) document.querySelector('.page-load-progress').style.width = e.detail.progress + '%';
+    //     }
+    // });
 
     addEventListener('offline', function() {
         document.querySelector('.server-name').innerText = '';
