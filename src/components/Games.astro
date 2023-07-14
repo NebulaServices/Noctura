@@ -1,7 +1,7 @@
 ---
 import Metadata from "./Metadata.astro";
 import Search from "./Search.astro";
-import GameList from './json/games.json' // test
+import GameList from '../games.json' // test
 ---
 
 <!-- You're welcome for the clusterfuck :) -->
@@ -115,9 +115,11 @@ import GameList from './json/games.json' // test
             <br>
             <p>{game.description}</p>
             <div class="play">
-              <div class="playbutton">
-                <p class="playtext"><a href={game.file}>Play</a></p>
-              </div>
+              <a href={'/games/' + game.id}>
+                <div class="playbutton">
+                  <p class="playtext">Play</p>
+                </div>
+              </a>
             </div>
             
         </div>

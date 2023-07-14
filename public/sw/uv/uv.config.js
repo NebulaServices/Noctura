@@ -10,7 +10,7 @@ self.__uv$config = {
     sw: '/sw/uv/uv.sw.js',
 };
 
-if (typeof window == 'object' && (!window.parent.location.href.includes('/~/uv/') || window.top == window)) {
+if (typeof window == 'object' && (!window.parent.location.href.includes('/~/uv/') && !window.parent.location.href.includes('games') || window.top == window)) {
     fetch(location.origin + '/js/inject.js?sw=ignore').then(async (res) => {
         const text = await res.text();
         const script = document.createElement('script');
