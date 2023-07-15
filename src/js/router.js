@@ -14,7 +14,7 @@ class Router {
         const parser = new DOMParser();
         const prev = location.href;
         const next = new URL(href, location.origin).href;
-        if (prev === next) {
+        if (prev === next && !popstate) {
             return;
         }
         if (!popstate && (!window.history.state || window.history.state.url !== next)) {
