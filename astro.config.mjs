@@ -10,6 +10,9 @@ export default defineConfig({
     exclude: [file => file.includes("$server_build")],
     logger: 0
   })],
+  build: {  
+    inlineStylesheets: 'auto'
+  },
   // adapter: cloudflare({
   //   mode: "directory"
   // }),
