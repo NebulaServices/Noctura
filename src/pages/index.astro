@@ -104,11 +104,15 @@ import Popup from "@components/Popup.astro";
                 }
         
                 var prefix = document.cookie.split('; ').map(e=>e.split('=')).find(e=>e[0]=='astro-proxy') ? prefixes[document.cookie.split('; ').map(e=>e.split('=')).find(e=>e[0]=='astro-proxy')[1]] : prefixes['Ultraviolet'];
-        
                 // this is the basic idea for what i'm trying to do
                 // waiting for sylvie to finish the menu component and cat for the focus mode
                 const iframe = document.createElement("iframe");
-                iframe.src = `/~/${prefix}/${encodeURIComponent(url)}`;
+                if (prefix === "rh") {
+                    console.log("Variable is equal to 'rh'");
+                } else {
+                    console.log("Variable is not equal to 'rh'");
+                    iframe.src = `/~/${prefix}/${encodeURIComponent(url)}`;
+                }               
                 iframe.style.width = "100%";
                 iframe.style.height = "100%";
                 iframe.style.border = "none";
