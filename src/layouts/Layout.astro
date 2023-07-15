@@ -6,6 +6,10 @@ import Tabs from "@components/Tabs.astro";
 // @ts-ignore
 import Notifications from '@components/Notification.astro';
 
+// @ts-ignore
+import { SEO } from "astro-seo";
+import { HoverPrefetch } from 'astro-hover-prefetch';
+
 import "../styles.css";
 import "../style/global.css"
 
@@ -21,106 +25,37 @@ const { url } = Astro;
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<script is:inline type="module">
-			let theme = localStorage.getItem('theme') || 'amoled';
-            document.documentElement.setAttribute('data-theme', theme);
-
-			window.faviconLoad = function faviconLoad() {
-				var faviconPath = localStorage.getItem('savedFavicon');
-				var faviconLink = document.querySelector('link[rel="icon"]');
-				if (!faviconLink) {
-				faviconLink = document.createElement('link');
-				faviconLink.rel = 'icon';
-				document.head.appendChild(faviconLink);
-				}
-				faviconLink.href = faviconPath;
-				localStorage.setItem('savedFavicon', faviconPath);
-			}
-
-			window.titleLoad = function titleLoad() {
-				var title = localStorage.getItem('savedTitle');
-				document.title = title;
-			};
-		</script>
-        <script>
-			window.colors = {
-				error: {
-					color: "#FFFFFF",
-					backgroundColor: '#E85742'
-				},
-				success: {
-					color: "#FFFFFF",
-					backgroundColor: '#55CA92'
-				},
-				warning: {
-					color: "#333333",
-					backgroundColor: '#F5E273'
-				},
-				info: {
-					color: "#FFFFFF",
-					backgroundColor: '#4990E2'
-				}
-			}
-
-			const queue = [];
-
-			window.notify = {
-				show(msg = "", status = "info", time = 2000, force = false) {
-					if (queue.length && !force) return queue.push([...arguments]);
-
-					var notif = document.getElementById('toast-notification');
-
-					notif.onclick = notify.hide;
-
-					notif.style.transform = 'translateY(100%)';
-					notif.style.background = colors[status].backgroundColor;
-					notif.style.color = colors[status].color;
-					notif.innerHTML = msg;
-
-					queue.push([...arguments]);
-
-					if (time > -1) setTimeout(function() {
-						notif.style.transform = 'translateY(0)';
-
-						setTimeout(function() {
-							queue.splice(0, 1);
-							if (queue.length) notify.show(...queue.splice(0, 1)[0], true);
-						}, 300);
-					}, time);
-				},
-				hide() {
-					var notif = document.getElementById('toast-notification');
-
-					notif.style.transform = 'translateY(0)';
-
-					setTimeout(function() {
-						queue.splice(0, 1);
-						if (queue.length) notify.show(...queue.splice(0, 1)[0], true);
-					}, 300);
-				}
-			}
-
-            window.console.error = new Proxy(window.console.error, {
-                apply: function(target, thisArg, argumentsList) {
-                    if (argumentsList[0].includes('Warning: ReactDOM.render is no longer supported in React 18')) {
-                        return;
-                    } else {
-                        return Reflect.apply(target, thisArg, argumentsList);
-                    }
-                }
-            });
-        </script>
 		<script>
 			import "../js/router.js";
+			import "../js/notify.js";
 		</script>
+		<HoverPrefetch />
+		<SEO
+			titleTemplate="%s - Noctura"
+			description="Noctura | the blazing fast solution to internet censorship. Access blocked websites with ease while maintaining anonymity and security."
+			twitter={{
+				creator: "@TitaniumNetDev"
+			}}
+			extend={{
+				link: [{ rel: "icon", href: "/icon.png", type: "image/png" }],
+				meta: [
+					{
+						name: "viewport",
+						content: "width=device-width",
+					},
+					{
+						name: "theme-color",
+						content: "#2D0060"
+					},
+					{
+						name: "generator",
+						content: Astro.generator
+					}
+				],
+			}}
+		/>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description">
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="/icon.png" />
-		<!--<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">-->
-		<link rel="preload" href="/font/MajorMonoDisplay-Regular.ttf" type="font/ttf" as="font">
+		<link rel="preload" crossorigin="anonymous" href="/font/MajorMonoDisplay-Regular.ttf" type="font/ttf" as="font">
 		<link href="/font/font.css" rel="stylesheet">
 		<link rel="preconnect" crossorigin href="https://classroom.google.com" />
 		{
@@ -130,9 +65,8 @@ const { url } = Astro;
 				return <link rel="prefetch" as="fetch" href={'https://' + e} />;
 			})
 		}
-		<meta name="generator" content={ Astro.generator } />
-		<script defer src="/js/ui.js"></script>
-		<script async src="/js/sw.js"></script>
+		<script defer src="/js/ui.js" />
+		<script async src="/js/sw.js" />
 
 		<title>{title}</title>
 	</head>
@@ -146,12 +80,31 @@ const { url } = Astro;
 			<Tabs />
 		</main>
 		<script is:inline type="module">
+			window.faviconLoad = function faviconLoad() {
+				var faviconPath = localStorage.getItem('savedFavicon');
+				var faviconLink = document.querySelector('link[rel="icon"]');
+				if (!faviconLink) {
+					faviconLink = document.createElement('link');
+					faviconLink.rel = 'icon';
+					document.head.appendChild(faviconLink);
+				}
+				faviconLink.href = faviconPath;
+				localStorage.setItem('savedFavicon', faviconPath);
+			}
+
+			window.titleLoad = function titleLoad() {
+				var title = localStorage.getItem('savedTitle');
+				document.title = title;
+			};
+
 			if (localStorage.getItem('savedFavicon')) {
 				faviconLoad();
 			}
 			if (localStorage.getItem('savedTitle')) {
 				titleLoad();
 			}
+
+            document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'amoled');
 		</script>
 	</body>
 </html>

@@ -52,4 +52,12 @@ addEventListener('router:end', function() {
     }
 });
 
-document.head.insertAdjacentHTML('beforeend', `<script defer data-domain=${ location.host } src="https://analytics.noctura.tech/js/script.js"></script>`)
+window.console.error = new Proxy(window.console.error, {
+    apply: function(target, thisArg, argumentsList) {
+        if (argumentsList[0].includes('Warning: ReactDOM.render is no longer supported in React 18')) {
+            return;
+        } else {
+            return Reflect.apply(target, thisArg, argumentsList);
+        }
+    }
+});
