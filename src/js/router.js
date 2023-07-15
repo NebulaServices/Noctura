@@ -98,7 +98,7 @@ class Router {
 
     #allLinks() {
         return Array.from(document.links).filter((link) => {
-            link.href.includes(document.location.origin) &&
+            return link.href.includes(document.location.origin) &&
             !link.href.includes('#') && // not an id anchor
             link.href !== (document.location.href || document.location.href + '/') &&
             !this.prefetched.has(link.href)
