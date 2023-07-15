@@ -5,17 +5,154 @@ import Section from "@components/Section.astro";
 
 var example = [
     {
-        name: "Bing AI Fix",
+        name: "Bing AI Always",
         author: "Riftriot",
-        url: "https://scripts.com/riftriot",
-        description: "Always Bing AI"
+        url: "/js/testscript.js",
+        description: "Always have Bing AI on any browser by setting the userAgent of the page. Injects in both worker and client-side",
+        id: "0001"
+    },
+    {
+        name: "Bing AI Always",
+        author: "Riftriot",
+        url: "/js/testscript.js",
+        description: "Always have Bing AI on any browser by setting the userAgent of the page. Injects in both worker and client-side",
+        id: "0002"
+    },
+    {
+        name: "Bing AI Always",
+        author: "Riftriot",
+        url: "/js/testscript.js",
+        description: "Always have Bing AI on any browser by setting the userAgent of the page. Injects in both worker and client-side",
+        id: "0003"
     }
 ]
 ---
 
 <Console title="User Scripts">
+    <Section>
+        <div id="container" style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+        }}>
+            {
+                example.map((script) => (
+                    <div id={script.id} class="element">
+        
+                        <style scoped>
+                        .play {
+                            width: 250px;
+                            height: 85px;
+                            border-bottom-right-radius: 25px;
+                            border-bottom-left-radius: 25px;
+                            bottom: 0;
+                            margin: 0 auto;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            position: absolute;
+                        }
+            
+                        .installbutton {
+                            width: 150px;
+                            height: 50px;
+                            border: 1px solid #333;
+                            margin-left: auto;
+                            margin-right: auto;
+                            border-radius: 15px;
+                            background-color: var(--settings-2);
+                            transition: 0.3s;
+                        }
+            
+                        .installbutton:hover {
+                            width: 175px;
+                            transition: 0.3s;
+                        }
+            
+                        .installtext {
+                            text-align: center;
+                            font-weight: bold;
+                            color: var(--font-color);
+                            font-size: 18px;
+                            padding-top: 10px;
+                        }
+            
+                        .element {
+                            border: 1px solid var(--settings-3);
+                            float: left;
+                            height: 205px;
+                            width: 250px;
+                            color: var(--font-color);
+                            background-color: var(--settings-1);
+                            border-radius: 25px;
+                            margin: 10px;
+                            position: relative;
+                        }
+            
+                        h2 {
+                            font-weight: bold;
+                            font-size: 20px;
+                            padding-right: 10px;
+                            padding-left: 10px;
+                            border-bottom: 1px solid var(--settings-3); 
+                            line-height: 0.1em;
+                        }
+            
+                        h2 span { 
+                            background:var(--settings-1); 
+                            padding:0 10px;
+                            
+                        }
+
+                        h3 {
+                            margin-top: 10px;
+                            margin-left: 5px;
+                        }
+
+                        h3 span {
+                            color: var(--nav-btn-color-darker);
+                        }
+            
+                        p {
+                            padding-right: 10px;
+                            padding-left: 10px;
+                            font-size: 13px;
+                            color: var(--nav-btn-color-darker);
+                        }
+                        </style>
+                        <br>
+                        <h2><span>{script.name}</span></h2>
+                        <h3><span>by {script.author}</span></h3>
+                        <p style="margin-top: 5px;">{script.description.length > 110 ? script.description.split('').slice(0, 110).join('') + '...' : script.description}</p>
+                        <div class="play">
+                        <button data-url={script.url} onclick={`window.installScript(JSON.parse('${JSON.stringify(script)}'))`}>
+                            <div class="installbutton">
+                            <p class="installtext">Install</p>
+                            </div>
+                        </button>
+                        </div>
+                    
+                    </div>
+                ))
+            }
+        </div>
+    </Section>
 
     <script type="module">
+        const reqScript = (url) => {
+            return new Promise((resolve, reject) => {
+                fetch(url).then((res) => {
+                    res.text().then((text) => {
+                        resolve(text)
+                    })
+                })
+            })
+        }
+        window.installScript = async (script) => {
+            const data = await reqScript(script.url);
 
+            console.log(data);
+        }
     </script>
 </Console>
