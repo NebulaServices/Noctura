@@ -19,7 +19,8 @@ import GameList from '../games.json' // test
 
   </style>
   <div id="container">
-    {GameList.map((game) => (
+      {
+        GameList.map((game) => (
           <div id={game.id} class="element">
 
             <style scoped>
@@ -123,5 +124,6 @@ import GameList from '../games.json' // test
             </div>
             
         </div>
-    ))}
+      ))
+    }
   </div>
