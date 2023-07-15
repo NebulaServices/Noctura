@@ -1,7 +1,6 @@
 .header {
     background-color: var(--primary-bg-color);
     text-align: center;
-    font-family: var(--header-font);
 }
 
 .top {
