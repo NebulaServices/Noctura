@@ -126,17 +126,9 @@ import Settings from "@settings";
 
                     if (bare) {
                         bare = bare.replace(/^https?:\/\//g, "");
+                        localStorage.setItem("server", bare);
 
-                        caches.open("astro-data").then(async (cache) => {
-                            try {
-                                await fetch(`http://${bare}/`, { redirect: 'follow' });
-                            } catch (e) {
-                                notify.show(`Invalid Server: Failed to Fetch`, "error", 2000);
-                                return;
-                            }
-
-                            localStorage.setItem("server", bare);
-
+                        caches.open("astro-data").then((cache) => {
                             cache
                                 .put("/bare.txt", new Response(bare))
                                 .then(async () => {
@@ -155,6 +147,6 @@ import Settings from "@settings";
                 });
         }
 
-        loadSettings();
+        window.addEventListener("router:end", (_) => loadSettings());
     </script>
 </Settings>

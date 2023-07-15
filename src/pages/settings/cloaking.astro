@@ -158,6 +158,6 @@ import Settings from "@settings";
                 localStorage.getItem("savedFavicon") || "";
         }
 
-        loadSettings();
+        window.addEventListener("router:end", (_) => loadSettings());
     </script>
 </Settings>
