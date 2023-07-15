@@ -1,4 +1,5 @@
 ---
+// @ts-ignore
 import { Img } from "astro-imagetools/components";
 
 const { quality, alt, src } = Astro.props;
@@ -8,4 +9,4 @@ const { quality, alt, src } = Astro.props;
     img: {
         class: Astro.props.class
     } 
-}} quality={65 || quality} format="webp" alt={alt || ""} src={src} />
+}} quality={60 || quality} format="webp" placeholder="tracedSVG" loading="lazy" alt={alt || ""} src={src} />

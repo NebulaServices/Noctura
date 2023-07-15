@@ -6,10 +6,11 @@ import compress from "astro-compress";
 import { astroImageTools } from "astro-imagetools";
 import links from 'astro-link-preview';
 import sitemap from '@astrojs/sitemap';
+import partytown from '@astrojs/partytown';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), links(), sitemap(), compress({
+  integrations: [tailwind(), partytown(), links(), sitemap(), compress({
     exclude: [file => file.includes("$server_build")],
     logger: 0
   }), astroImageTools],

@@ -13,6 +13,7 @@
     "depends": "npm i react cloudflare"
   },
   "dependencies": {
+    "@astrojs/partytown": "^1.2.3",
     "@astrojs/react": "^2.2.1",
     "@astrojs/sitemap": "^1.4.0",
     "@dynamic-pkg/react-notify-toast": "^0.5.1",

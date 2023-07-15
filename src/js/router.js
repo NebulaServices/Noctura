@@ -181,8 +181,8 @@ class Router {
     }
 }
     
-export default ((parent = null) => {
-    const router = new Router(parent);
+export default (() => {
+    const router = new Router();
 
     window.router = router;
 
