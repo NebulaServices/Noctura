@@ -20,6 +20,7 @@
     "@fastify/static": "^6.10.2",
     "@titaniumnetwork-dev/ultraviolet": "github:titaniumnetwork-dev/ultraviolet",
     "@tomphttp/bare-server-node": "^2.0.1",
+    "astro-imagetools": "^0.8.1",
     "cloudflare": "^2.9.1",
     "express": "^4.18.2",
     "fastify": "^4.18.0",

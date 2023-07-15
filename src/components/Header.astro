@@ -1,6 +1,7 @@
 ---
 import Hamburger from "./Burger.astro";
 import Link from "./Link.astro";
+import Img from "./Img.astro"
 import "./header.css";
 import "./switch.css";
 
@@ -33,24 +34,24 @@ const currentDate = new Date().getTime();
       <a href="/" data-cold><img src="/favicon.svg" class="nav-icon" alt="Website Logo" /></a>
       <hr class="nav-slash" />
       <a target="_blank" href="https://titaniumnetwork.org">
-        <img src="/tn.png" class="tn-icon" alt="TN Icon" />
+        <Img src="/tn.png" class="tn-icon" alt="TN Icon" />
       </a>
 
       <div class="switch-btn-container">
         <div class="switch-btn-current">
-          <img src="/Ultraviolet.png" alt="Current Proxy Logo" />
+          <Img src="/Ultraviolet.png" alt="Current Proxy Logo" />
         </div>
         <div class="switch-btn" style={{ background: background || "var(--primary-bg-color)" }}>
           <a data-value="Dynamic" href="#">
-            <img src="/Dynamic.png" class="nav-switch-img" alt="Dynamic Icon" />
+            <Img src="/Dynamic.png" class="nav-switch-img" alt="Dynamic Icon" />
             Dynamic
           </a>
           <a data-value="Ultraviolet" href="#">
-            <img src="/Ultraviolet.png" class="nav-switch-img" alt="Ultraviolet Icon" />
+            <Img src="/Ultraviolet.png" class="nav-switch-img" alt="Ultraviolet Icon" />
             Ultraviolet
           </a>
           <a data-value="Rammerhead" href="#">
-            <img src="/Rammerhead.png" class="nav-switch-img" alt="Rammerhead Icon" />
+            <Img src="/Rammerhead.png" class="nav-switch-img" alt="Rammerhead Icon" />
             Rammerhead
           </a>
         </div>

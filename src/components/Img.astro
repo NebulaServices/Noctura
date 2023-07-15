@@ -1,0 +1,11 @@
+---
+import { Img } from "astro-imagetools/components";
+
+const { quality, alt, src } = Astro.props;
+---
+
+<Img attributes={{ 
+    img: {
+        class: Astro.props.class
+    } 
+}} quality={65 || quality} format="webp" alt={alt || ""} src={src} />
