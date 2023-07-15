@@ -137,15 +137,15 @@ import Popup from "@components/Popup.astro";
 
                 document.querySelector(".home").style.paddingBottom = "0px";
 
-                /*iframe.onload = function() {
+                iframe.onload = function() {
                     iframe.onload = () => {};
                     iframe.style.display = 'block';
 
                     loader.remove();
-                }*/
+                }
 
                 homeContainer.parentNode.appendChild(loader);
-                //homeContainer.parentNode.appendChild(iframe);
+                homeContainer.parentNode.appendChild(iframe);
             }
         
             const switchServer = (e) => {
