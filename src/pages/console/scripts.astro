@@ -138,6 +138,8 @@ var example = [
     </Section>
 
     <script type="module">
+        const scripts = await caches.open('astro-scripts');
+
         const reqScript = (url) => {
             return new Promise((resolve, reject) => {
                 fetch(url).then((res) => {
@@ -148,9 +150,21 @@ var example = [
             })
         }
         window.installScript = async (script) => {
+            notify.show("Fetching Data", "info", 2000);
+
             const data = await reqScript(script.url);
 
-            console.log(data);
+            await notify.hide();
+            notify.show("Installing Script", "info", 2000);
+
+            await scripts.put('/' + script.id + '.js', new Response(data, {
+                headers: {
+                    'Content-Type': 'application/javascript'
+                }
+            }))
+
+            await notify.hide();
+            notify.show("Script Installed", "success", 2000);
         }
     </script>
 </Console>
