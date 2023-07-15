@@ -39,7 +39,7 @@ fastify.register(fastifyStatic, {
   decorateReply: false
 });
 
-fastify.get("/search", async (req, res) => {
+fastify.get("/search=:query", async (req, res) => {
   const { query } = req.params;
 
   try {

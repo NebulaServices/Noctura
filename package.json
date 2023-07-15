@@ -15,6 +15,7 @@
   "dependencies": {
     "@astrojs/react": "^2.2.1",
     "@dynamic-pkg/react-notify-toast": "^0.5.1",
+    "@fastify/compress": "^6.4.0",
     "@fastify/middie": "^8.3.0",
     "@fastify/static": "^6.10.2",
     "@titaniumnetwork-dev/ultraviolet": "github:titaniumnetwork-dev/ultraviolet",
