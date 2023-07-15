@@ -8,7 +8,8 @@
       "@components/*": ["src/components/*"],
       "@css/*": ["src/style/*"],
       "@layout": ["src/layouts/Layout.astro"],
-      "@settings": ["src/layouts/Settings.astro"]
+      "@settings": ["src/layouts/Settings.astro"],
+      "@console": ["src/layouts/Console.astro"]
     }
   },
 }

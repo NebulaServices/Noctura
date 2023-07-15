@@ -2,23 +2,16 @@
 import Metadata from "./Metadata.astro";
 import Search from "./Search.astro";
 import GameList from '../games.json' // test
+import General from "src/pages/settings/general.astro";
 ---
 
 <!-- You're welcome for the clusterfuck :) -->
-
-  <style scoped>
-
-    #container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    
-
-  </style>
-  <div id="container">
+  <div id="container" style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexWrap: 'wrap',
+  }}>
       {
         GameList.map((game) => (
           <div id={game.id} class="element">

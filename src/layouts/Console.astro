@@ -1,0 +1,39 @@
+---
+import Layout from '@layout';
+import "@css/style.css";
+import "@css/console.css";
+import Link from '@components/Link.astro';
+import Obfuscated from '@components/Obfuscated.astro';
+
+const page = Astro.url.pathname.replace(/\/$/g, '').split('/').pop();
+
+const tabs = [
+    ["Scripts", "/console/scripts"],
+    ["Style Injects", "/console/style"],
+    ["Themes", "/console/themes"],
+];
+
+const { title } = Astro.props;
+---
+
+<Layout title="Noctura">
+    <div class="console">
+        <div class="console-left">
+            {
+                tabs.map(tab => (
+                    <Link class={"console-navlink" + (tab[1].split('/').pop() == page ? " console-navlink-active" : "")} href={tab[1]}>{tab[0]}</Link>
+                ))
+            }
+        </div>
+        
+        <div class="console-right">
+            <div class="console-page">
+                <h1 class="text-3xl">
+                    <Obfuscated word={title} />
+                </h1>
+                
+                <slot />
+            </div>
+        </div>
+    </div>
+</Layout>
