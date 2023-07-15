@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://noctura.tech/sitemap-index.xml

@@ -4,14 +4,16 @@ import node from "@astrojs/node";
 import tailwind from "@astrojs/tailwind";
 import compress from "astro-compress";
 import { astroImageTools } from "astro-imagetools";
-import links from 'astro-link-preview'
+import links from 'astro-link-preview';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), links(), compress({
+  integrations: [tailwind(), links(), sitemap(), compress({
     exclude: [file => file.includes("$server_build")],
     logger: 0
   }), astroImageTools],
+  site: 'https://noctura.tech',
   build: {  
     inlineStylesheets: 'auto'
   },
