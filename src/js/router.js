@@ -125,6 +125,10 @@ class Router {
             return;
         }
 
+        if (anchor && anchor.hasAttribute('data-cold')) {
+            return;
+        }
+
         if (anchor?.hasAttribute('href')) {
             const ahref = anchor.getAttribute('href');
             const url = new URL(ahref, location.href);
