@@ -1,4 +1,9 @@
 const dom = new DOMParser().parseFromString('', 'text/html');
+const cache = await caches.open('astro-scripts');
+
+for (var key of await cache.keys()) {
+
+}
 
 var container = document.createElement('div');
 container.id = 'noctura-menu';
@@ -38,6 +43,7 @@ style.innerHTML = `
     background-color: var(--primary-bg-color);
     color: var(--font-color);
     transform: translate(-50%, 0);
+    width: 500px;
     z-index: 99999;
     display: flex;
     flex-direction: row;
@@ -88,7 +94,7 @@ container.appendChild(style);
 var x1 = 0, y1 = 0, x2 = 0, y2 = 0, drag = false;
 
 container.addEventListener('mousedown', function(e) {
-    if (e.target.tagName == 'input' || e.target.tagName == 'button') return;
+    if (e.target.tagName == 'INPUT' || e.target.tagName == 'BUTTON') return;
 
     e.preventDefault();
 
