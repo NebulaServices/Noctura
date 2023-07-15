@@ -58,6 +58,8 @@ class Router {
                 newScript[key] = prop;
             }
 
+            // weird: console.log(script.attributes, newScript.attributes);
+
             newScript.append(script.textContent);
             script.replaceWith(newScript)
         })

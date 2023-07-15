@@ -230,7 +230,10 @@ const currentDate = new Date().getTime();
       e.target.parentNode.style.opacity = "0";
 
       document.querySelector(".switch-btn-current img").src =
-        "/" + proxy + ".png";
+        document.querySelector("a[data-value='" + proxy + "'] img").src;
+
+      document.querySelector(".switch-btn-current img").srcset = 
+        document.querySelector("a[data-value='" + proxy + "'] img").srcset;
 
       setTimeout(function () {
         e.target.parentNode.style.display = "none";

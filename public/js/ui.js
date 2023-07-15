@@ -31,8 +31,9 @@ if (proxy) {
     } catch {
         var cookie = null;
     }
-
-    proxy.querySelector('img').src = cookie ? '/' + cookie + '.png' : '/Ultraviolet.png';
+    
+    proxy.querySelector('img').src = cookie ? document.querySelector("a[data-value='" + cookie + "'] img").src : document.querySelector("a[data-value='Ultraviolet'] img").src;
+    proxy.querySelector('img').srcset = cookie ? document.querySelector("a[data-value='" + cookie + "'] img").srcset : document.querySelector("a[data-value='Ultraviolet'] img").srcset;
 }
 
 addEventListener('router:end', function() {
@@ -47,8 +48,11 @@ addEventListener('router:end', function() {
         } catch {
             var cookie = null;
         }
-    
-        proxy.querySelector('img').src = cookie ? '/' + cookie + '.png' : '/Ultraviolet.png';
+
+        /*document.querySelector(".switch-btn-current img").srcset = 
+        document.querySelector("a[data-value='" + proxy + "'] img").srcset;*/
+        proxy.querySelector('img').src = cookie ? document.querySelector("a[data-value='" + cookie + "'] img").src : document.querySelector("a[data-value='Ultraviolet'] img").src;
+        proxy.querySelector('img').srcset = cookie ? document.querySelector("a[data-value='" + cookie + "'] img").srcset : document.querySelector("a[data-value='Ultraviolet'] img").srcset;
     }
 });
 
