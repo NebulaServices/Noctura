@@ -6,8 +6,11 @@ description: The Terms of Service for Noctura
 ---
 
 <style>
-    p {
+    p, h1 {
         color: var(--font-color);
+    }
+    h1 {
+        font-size: 2em;
     }
 </style>
 
