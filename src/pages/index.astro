@@ -122,6 +122,15 @@ import Popup from "@components/Popup.astro";
                 iframe.style.top = "0px";
 
                 document.querySelector(".home").style.paddingBottom = "0px";
+
+                iframe.onload = function() {
+                    iframe.onload = () => {};
+                    iframe.style.display = 'block';
+
+                    loader.remove();
+                }
+
+                homeContainer.parentNode.appendChild(loader);
                 homeContainer.parentNode.appendChild(iframe);
             }
         
