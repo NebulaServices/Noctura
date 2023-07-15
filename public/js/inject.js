@@ -88,7 +88,7 @@ container.appendChild(style);
 var x1 = 0, y1 = 0, x2 = 0, y2 = 0, drag = false;
 
 container.addEventListener('mousedown', function(e) {
-    if (e.target.tagName == 'INPUT' || e.target.tagName == 'BUTTON') return;
+    if (e.target.tagName == 'input' || e.target.tagName == 'button') return;
 
     e.preventDefault();
 
