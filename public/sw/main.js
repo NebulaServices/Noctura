@@ -35,12 +35,12 @@ const p = new Promise(async (res) => {
     self.dynamic = new Dynamic(self.__dynamic$config);
     self.uv = new UVServiceWorker(self.__uv$config);
 
-    res(true);
+    res(await caches.open('astro-cache'));
 });
 
 addEventListener('fetch', function(event) {
     event.respondWith((async function() {
-        await p;
+        const cache = await p;
 
         if (event.request.url.endsWith('?sw=ignore')) return await fetch(event.request);
 
@@ -48,10 +48,15 @@ addEventListener('fetch', function(event) {
             return await self.uv.fetch(event);
         }
 
-        //console.log(event.request.url, await self.dynamic.route(event), await self.dynamic.fetch(event));
-
         if (await self.dynamic.route(event)) {
             return await self.dynamic.fetch(event);
+        }
+
+        if (event.request.destination === "font") {
+            var res;
+            const req = await cache.match(event.request.url) || (res = await fetch(event.request), await cache.put(event.request.url, res.clone()), res);
+
+            return req;
         }
 
         return await fetch(event.request);
