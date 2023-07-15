@@ -22,6 +22,11 @@ import Settings from "@settings";
         <form id="reset-cloaking">
             <button type="submit" class="settings-submit mt-5">Reset</button>
         </form>
+    </div>
+
+        <form id="reset-cloaking">
+            <button type="submit" class="settings-submit mt-5">Reset</button>
+        </form>
 
         <script type="module">
             async function getData(url) {
@@ -148,30 +153,29 @@ import Settings from "@settings";
     
                     notify.show("Saved", "success", 2000);
                 });
-    
                 document
                     .getElementById('reset-cloaking')
                     .addEventListener('submit', (e) => {
                         e.preventDefault();
-    
+
                         localStorage.setItem('savedTitle', 'Noctura');
                         localStorage.setItem('savedFavicon', '/favicon.svg');
                         localStorage.removeItem('autoURL');
-    
+
                         titleLoad();
                         faviconLoad();
-    
+
                         localStorage.removeItem('autoURL');
                         localStorage.removeItem('savedTitle');
                         localStorage.removeItem('savedFavicon');
-    
+
                         document.querySelector('#automatic-cloaking input').value = localStorage.getItem('autoURL') || '';
                         document.querySelectorAll('#manual-cloaking input')[0].value = localStorage.getItem('savedTitle') || '';
                         document.querySelectorAll('#manual-cloaking input')[1].value = localStorage.getItem('savedFavicon') || '';
-    
+
                         notify.show("Reset Cloaking", "success", 2000);
                     });
-    
+
             document.querySelector("#automatic-cloaking input").value =
                 localStorage.getItem("autoURL") || "";
             document.querySelectorAll("#manual-cloaking input")[0].value =
