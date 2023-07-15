@@ -31,11 +31,6 @@ fastify.register(import("@fastify/compress"));
 fastify.register(fastifyStatic, {
   root: join(fileURLToPath(import.meta.url), "../dist"),
   decorateReply: false,
-  setHeaders(res, path, stat) {
-    res.setHeader("Service-Worker-Allowed", "/");
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("X-Content-Type-Options", "nosniff");
-  }
 });
 
 fastify.register(fastifyStatic, {

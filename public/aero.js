@@ -1,0 +1,1 @@
+importScripts('./aero/worker.js');

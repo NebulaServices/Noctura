@@ -28,7 +28,6 @@ if (typeof window == 'object' && (!window.parent.location.href.includes('/~/uv/'
         }
 
         if (document.readyState == 'complete' || document.readyState == 'interactive') {
-
             load();
         } else {
             document.addEventListener('readystatechange', () => {
