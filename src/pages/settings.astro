@@ -2,16 +2,8 @@
 import Layout from "@layout";
 import "@css/style.css";
 import "@css/settings.css";
-
-const tabs = [
-    ["General", "/settings/general"],
-    ["Privacy", "/settings/privacy"],
-    ["Cloaking", "/settings/cloaking"],
-    ["Unblock", "/settings/unblock"],
-    ["Theme", "/settings/theme"],
-]
 ---
 
 <Layout title="Noctura">
-    <script is:inline>location.replace("/settings/general")</script>
+    <script is:inline>typeof router == 'undefined' ? location.replace("/console/scripts") : router.go("/console/scripts")</script>
 </Layout>
