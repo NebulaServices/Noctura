@@ -1,10 +1,9 @@
 ---
 import Settings from "@settings";
-import Section from "@components/Section.astro";
 ---
 
 <Settings title="Themes">
-    <Section class="settings-section">
+    <div class="settings-section">
         <form id="theme-switch-form">
             <h1 class="text-lg">Select Theme</h1>
 
@@ -15,7 +14,7 @@ import Section from "@components/Section.astro";
             <button id="theme-latte" class="settings-submit latte_theme">Catppuccin - Latte</button>
             <button id="theme-baja" class="settings-submit baja_theme">Baja Blast</button>
         </form>
-    </Section>
+    </div>
 
     <script type="module">
         document

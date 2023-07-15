@@ -71,13 +71,13 @@
 }
 
 .footer-section a {
-    color: #707070;
+    color: #ababab;
     text-decoration: none;
     transition: 0.1s ease;
 }
 
 .footer-section a:hover {
-    color: #a8a8a8;
+    color: #d8d8d8;
 }
 
 .footer-section h1 {
@@ -125,11 +125,5 @@
 }
 
 .footer-section span {
-    color: #707070;
-    text-decoration: none;
-    transition: 0.1s ease;
-}
-
-.footer-section span:hover {
-    color: #a8a8a8;
+    color: inherit;
 }
