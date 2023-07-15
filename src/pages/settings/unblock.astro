@@ -37,9 +37,7 @@ import Section from "@components/Section.astro";
     </Section>
 
     <script type="module">
-        let form = document.getElementById("set-proxy-form");
-
-        form.addEventListener("submit", (e) => {
+        document.getElementById("set-proxy-form").addEventListener("submit", (e) => {
             e.preventDefault();
 
             const proxy = e.submitter.id;
