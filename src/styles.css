@@ -8,7 +8,6 @@
     --primary-text-color: #ffffff;
     --nav-btn-color: #fff; /* active button       -- also applies to extra nav buttons */
     --nav-btn-color-darker: #888; /* not active   -- also applies to extra nav buttons */
-    --header-font: "Inter", sans-serif;
     --font-color: #fff;
     --banner-gradient: linear-gradient(to right, #0000 0%, #4d008c 20%, #6f00ff 50%, #4d008c 80%, #0000 100%);
     --surface-2: #383838;
@@ -26,7 +25,6 @@
     --primary-text-color: #cdd6f4; /* Text */
     --nav-btn-color: #74c7ec; /* active button       -- also applies to extra nav buttons   -- Sapphire */
     --nav-btn-color-darker: #9399b2; /* not active   -- also applies to extra nav buttons   -- Overlay 2 */
-    --header-font: "Inter", sans-serif;
     --font-color: #cdd6f4; /* Text */
     --banner-gradient: linear-gradient(to right, var(--primary-bg-color) 0%, #89dceb 20%, #74c7ec 50%, #89b4fa 80%, var(--primary-bg-color) 100%);
     --surface-2: #585b70; /* Surface 2 */
@@ -44,7 +42,6 @@
     --primary-text-color: #cad3f5; /* Text */
     --nav-btn-color: #7dc4e4; /* active button       -- also applies to extra nav buttons   -- Sapphire */
     --nav-btn-color-darker: #939ab7; /* not active   -- also applies to extra nav buttons   -- Overlay 2 */
-    --header-font: "Inter", sans-serif;
     --font-color: #cad3f5; /* Text */
     --banner-gradient: linear-gradient(to right, var(--primary-bg-color) 0%, #89dceb 20%, #74c7ec 50%, #89b4fa 80%, var(--primary-bg-color) 100%);
     --surface-2: #5b6078; /* Surface 2 */
@@ -62,7 +59,6 @@
     --primary-text-color: #c6d0f5; /* Text */
     --nav-btn-color: #85c1dc; /* active button       -- also applies to extra nav buttons   -- Sapphire */
     --nav-btn-color-darker: #949cbb; /* not active   -- also applies to extra nav buttons   -- Overlay 2 */
-    --header-font: "Inter", sans-serif;
     --font-color: #c6d0f5; /* Text */
     --banner-gradient: linear-gradient(to right, var(--primary-bg-color) 0%, #89dceb 20%, #74c7ec 50%, #89b4fa 80%, var(--primary-bg-color) 100%);
     --surface-2: #626880; /* Surface 2 */
@@ -80,7 +76,6 @@
     --primary-text-color: #4c4f69; /* Text */
     --nav-btn-color: #209fb5; /* active button       -- also applies to extra nav buttons   -- Sapphire */
     --nav-btn-color-darker: #7c7f93; /* not active   -- also applies to extra nav buttons   -- Overlay 2 */
-    --header-font: "Inter", sans-serif;
     --font-color: #4c4f69; /* Text */
     --banner-gradient: linear-gradient(to right, var(--primary-bg-color) 0%, #89dceb 20%, #74c7ec 50%, #89b4fa 80%, var(--primary-bg-color) 100%);
     --surface-2: #acb0be; /* Surface 2 */
@@ -98,7 +93,6 @@
     --primary-text-color: #ffffff; /* Text */
     --nav-btn-color: #f9f4cf; /* active button       -- also applies to extra nav buttons   -- Sapphire */
     --nav-btn-color-darker: #ffffff; /* not active   -- also applies to extra nav buttons   -- Overlay 2 */
-    --header-font: "Inter", sans-serif;
     --font-color: #ffffff; /* Text */
     --banner-gradient: linear-gradient(to right, var(--primary-bg-color) 0%, #226466 20%, #3b5fd4 50%, #031b1b 80%, var(--primary-bg-color) 100%);
     --surface-2: #c7ffec; /* Surface 2 */
