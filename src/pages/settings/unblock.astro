@@ -1,11 +1,10 @@
 ---
 import Settings from "@settings";
 import Obfuscated from "@components/Obfuscated.astro";
-import Section from "@components/Section.astro";
 ---
 
 <Settings title="Proxy Settings">
-    <Section class="settings-section">
+    <div class="settings-section">
         <form id="set-proxy-form">
             <h1 class="text-lg"><Obfuscated word="Proxy" /></h1>
 
@@ -34,33 +33,40 @@ import Section from "@components/Section.astro";
             <input class="settings-input" placeholder="Search Engine URL">
             <button type="submit" class="settings-submit">Save</button>
         </form>
-    </Section>
 
-    <script type="module">
-        let form = document.getElementById("set-proxy-form");
+        <script type="module">
+            function loadSettings() {
+                if (!window.location.pathname.startsWith("/settings/unblock"))
+                    return;
 
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
+                let form = document.getElementById("set-proxy-form");
 
-            const proxy = e.submitter.id;
+                form.addEventListener("submit", (e) => {
+                    e.preventDefault();
 
-            document.querySelector(
-                ".header .switch-btn-current img"
-            ).src = `/${proxy}.png`;
-            document.cookie = "astro-proxy=" + proxy + ";path=/";
+                    const proxy = e.submitter.id;
 
-            notify.show("Proxy changed to " + proxy, "success", 2000);
-        });
+                    document.querySelector(
+                        ".header .switch-btn-current img"
+                    ).src = `/${proxy}.png`;
+                    document.cookie = "astro-proxy=" + proxy + ";path=/";
 
-        document.getElementById('search-engine-form').addEventListener('submit', e => {
-            e.preventDefault();
+                    notify.show("Proxy changed to " + proxy, "success", 2000);
+                });
 
-            var engine = e.target.querySelector('input').value;
+                document.getElementById('search-engine-form').addEventListener('submit', e => {
+                    e.preventDefault();
 
-            localStorage.setItem('search-engine', engine);
-            notify.show('Saved', 'success', 2000);
-        });
+                    var engine = e.target.querySelector('input').value;
 
-        document.querySelector('#search-engine-form input').value = localStorage.getItem('search-engine') || 'https://www.google.com/search?q=%s';
-    </script>
+                    localStorage.setItem('search-engine', engine);
+                    notify.show('Saved', 'success', 2000);
+                });
+
+                document.querySelector('#search-engine-form input').value = localStorage.getItem('search-engine') || 'https://www.google.com/search?q=%s';
+            }
+
+            loadSettings();
+        </script>
+    </div>
 </Settings>
