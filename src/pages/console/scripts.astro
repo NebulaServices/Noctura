@@ -121,7 +121,7 @@ var modules = [
                         <br />
                         <h2><span>{script.name}</span></h2>
                         <h3><span>by {script.author}</span></h3>
-                        <p style="margin-top: 5px;">{script.description.length > 110 ? script.description.split('').slice(0, 110).join('') + '...' : script.description}</p>
+                        <p style="margin-top: 5px;">{script.description.length > 100 ? script.description.split('').slice(0, 100).join('') + '...' : script.description}</p>
                         <div class="play">
                             <button data-url={script.url} onclick={`window.installScript(JSON.parse('${JSON.stringify(script)}'))`}>
                                 <div class="installbutton">
