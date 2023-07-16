@@ -1,0 +1,31 @@
+.changelog {
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.changelog-title {
+  font-size: 2em;
+  margin: 0px;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.changelog-version {
+  font-size: 1.5em;
+  margin: 0px;
+  padding-top: 15px;
+  text-align: center;
+}
+
+.changelog-content{
+  font-size: 1em;
+  margin: 0px;
+  padding-top: 0px;
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 15px;
+}

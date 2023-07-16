@@ -34,6 +34,7 @@
     "fastify-static": "^4.7.0",
     "flamethrower-router": "0.0.0-meme.12",
     "noty": "^3.2.0-beta-deprecated",
+    "rammerhead": "https://github.com/holy-unblocker/rammerhead/releases/download/v1.2.41-holy.5/rammerhead-1.2.41-holy.5.tgz",
     "react": "^18.2.0",
     "url": "^0.11.1"
   },
