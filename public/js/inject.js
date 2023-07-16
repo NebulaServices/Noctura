@@ -8,16 +8,6 @@ let settings3 = '#333';
 
 if (window.frameElement) {
     let doc = frameElement.ownerDocument;
-    let style;
-    const styles = doc.querySelectorAll('style');
-    
-    for (var sheet of styles) {
-        console.log(sheet.innerHTML);
-        if (sheet.innerHTML.includes('/* THEMES CSS */')) {
-            style = sheet;
-            break;
-        }
-    }
 
     color = getComputedStyle(doc.documentElement).getPropertyValue('--font-color');
     console.log(getComputedStyle(doc.documentElement).getPropertyValue('--font-color'));
@@ -65,6 +55,7 @@ style.innerHTML = `
     background-color: ${backgroundColor};
     color: #fff;
     transform: translate(-50%, 0);
+    margin: 0 !important;
     width: 500px;
     z-index: 99999;
     display: flex;

@@ -19,12 +19,14 @@ if (typeof window == 'object' && (!window.parent.location.href.includes('/~/uv/'
         script.textContent = text;
 
         function load() {
-            const shadow = document.createDocumentFragment();
-            shadow.appendChild(script);
+            var div = document.createElement('div');
+            div.style.display = "none";
+            const shadow = div.attachShadow({ mode: "open" });
+            shadow.append(script);
 
             if (self.frameElement) self.frameElement.style.display = 'block';
 
-            document.body.appendChild(shadow);
+            document.body.appendChild(div);
         }
 
         if (document.readyState == 'complete' || document.readyState == 'interactive') {
