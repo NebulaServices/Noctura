@@ -1,8 +1,8 @@
-importScripts('./config.js');
-importScripts('./url.js');
-importScripts('./headers.js');
-importScripts('./bare.js');
-importScripts('./css.js');
+importScripts('config.js');
+importScripts('url.js');
+importScripts('headers.js');
+importScripts('bare.js');
+importScripts('css.js');
 
 self.addEventListener('install', (e) => {
   e.waitUntil(skipWaiting());
