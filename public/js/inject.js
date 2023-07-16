@@ -6,6 +6,8 @@ let settings1 = '#111';
 let settings2 = '#222';
 let settings3 = '#333';
 
+let win = window.frameElement ? window.frameElement.ownerDocument.defaultView : window;
+
 if (window.frameElement) {
     let doc = frameElement.ownerDocument;
 
@@ -22,7 +24,7 @@ container.id = 'noctura-menu';
 
 container.innerHTML = `
 <button onclick="location.reload()">Reload</button>
-<button onclick="document.body.requestFullscreen()">Fullscreen</button>
+<button onclick="var d=document;d.fullscreenElement?d.exitFullscreen&&d.exitFullscreen():d.documentElement.requestFullscreen();">Fullscreen</button>
 ${window.frameElement ? '<button onclick="window.frameElement.remove()">Close</button>' : ''}
 <button id="noctura-close-menu">Close Menu</button>
 
@@ -45,17 +47,22 @@ container.querySelector('#noctura-nav-input').onkeydown = function(e) {
 var style = document.createElement('style');
 
 style.innerHTML = `
+html:fullscreen, body:fullscreen {
+    background: white;
+}
+
 #noctura-menu {
     position: fixed;
     top: 0;
     left: 50%;
+    font-weight: 400 !important;
     height: min-content;
     padding: 5px 10px;
     border-radius: 5px;
     background-color: ${backgroundColor};
     color: #fff;
     transform: translate(-50%, 0);
-    font-family: Inter, Arial, sans-serif !important;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
     margin: 0 !important;
     width: 500px;
     z-index: 99999;
@@ -65,7 +72,7 @@ style.innerHTML = `
     justify-content: center;
     gap: 5px;
     font-family: sans-serif;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
