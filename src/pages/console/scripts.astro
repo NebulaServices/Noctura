@@ -8,7 +8,7 @@ var example = [
         name: "Bing AI Always",
         author: "Sylvie",
         url: "/js/scripts/bingAI.js",
-        description: "Always have Bing AI on any browser by setting the userAgent of the page. Injects in both worker and client-side",
+        description: "DYNAMIC ONLY: Always have Bing AI on any browser by setting the userAgent of the page. Injects in both worker and client-side",
         id: "0001"
     }
 ]
@@ -231,7 +231,7 @@ var modules = [
                         <br />
                         <h2><span>{script.name}</span></h2>
                         <h3><span>by {script.author}</span></h3>
-                        <p style="margin-top: 5px;">{script.description.length > 110 ? script.description.split('').slice(0, 110).join('') + '...' : script.description}</p>
+                        <p style="margin-top: 5px;">{script.description.length > 100 ? script.description.split('').slice(0, 100).join('') + '...' : script.description}</p>
                         <div class="play">
                             <button data-url={script.url} onclick={`window.installModule(JSON.parse('${JSON.stringify(script)}'))`}>
                                 <div class="installbutton">
@@ -273,8 +273,14 @@ var modules = [
                 }
             }))
 
+            await window.registerSW();
+
             await notify.hide();
             notify.show("Script Installed", "success", 2000);
+
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
         }
 
         window.installModule = async (script) => {
