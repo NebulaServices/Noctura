@@ -29,6 +29,7 @@ const rammerheadScopes = [
 	'/needpassword',
 	'/syncLocalStorage',
 	'/api/shuffleDict',
+  '/mainport'
 ];
 
 const rammerheadSession = /^\/[a-z0-9]{32}/;

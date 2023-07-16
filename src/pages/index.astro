@@ -11,7 +11,7 @@ import Obfuscated from "@components/Obfuscated.astro";
         <!-- <div class="top-banner" /> -->
         <form class="home-container">
             <h1 class="logotext"><Obfuscated word="Noctura"></h1>
-            <input class="home-input" placeholder="Search freely..."/>
+            <input id="home-input" class="home-input" placeholder="Search freely..."/>
             <div class="home-results"></div>
         </form>
 
@@ -37,6 +37,8 @@ import Obfuscated from "@components/Obfuscated.astro";
     </div>
     <script is:inline src="/js/omnibox.js" />
     <script is:inline src="/js/bareServer.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+    <script is:inline src="/js/encoder.js"></script>
     <script is:inline>
         (function() {
             const prefixes = {
@@ -106,8 +108,16 @@ import Obfuscated from "@components/Obfuscated.astro";
                 // this is the basic idea for what i'm trying to do
                 // waiting for sylvie to finish the menu component and cat for the focus mode
                 const iframe = document.createElement("iframe");
+                iframe.classList.add('proxy-iframe');
                 if (prefix === "rh") {
                     console.log("Variable is equal to 'rh'");
+                    let session = localStorage.getItem('session-string')
+                    if (session == undefined) {
+                        if (session == undefined) {
+                            console.log("Session is undefined");
+                        }
+                    }
+
                 } else {
                     console.log("Variable is not equal to 'rh'");
                     iframe.src = `/~/${prefix}/${encodeURIComponent(url)}`;
