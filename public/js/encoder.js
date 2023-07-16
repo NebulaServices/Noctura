@@ -242,7 +242,7 @@ window.addEventListener('load', function () {
                         console.log("[ERROR] iframe not found! Try reloading.");
                     }
                     if (!isUrl(url)) {
-                        url = 'https://www.google.com/search?q=' + encodeURIComponent(url);
+                        url = (localStorage.getItem('search-engine') || 'https://www.google.com/search?q=%s').replace('%s', encodeURIComponent(url));
                     }
                     if (!shuffleDict) {
                         iframe.src = '/' + id + '/' + url;
