@@ -106,8 +106,20 @@ const { url } = Astro;
 			if (localStorage.getItem('savedTitle')) {
 				titleLoad();
 			}
-
+			const theme = localStorage.getItem('theme') || 'amoled';
+			if (theme == "custom") {
+				document.documentElement.style.setProperty('--primary-bg-color', localStorage.getItem('primary-bg-color'));
+                document.documentElement.style.setProperty('--secondary-bg-color', localStorage.getItem('secondary-bg-color'));
+                document.documentElement.style.setProperty('--settings-1', localStorage.getItem('settings-1'));
+                document.documentElement.style.setProperty('--settings-2', localStorage.getItem('settings-2'));
+                document.documentElement.style.setProperty('--settings-3', localStorage.getItem('settings-3'));
+                document.documentElement.style.setProperty('--font-color', localStorage.getItem('font-color'));
+                document.documentElement.style.setProperty('--primary-text-color', localStorage.getItem('primary-text-color'));
+                document.documentElement.style.setProperty('--nav-btn-color-darker', localStorage.getItem('nav-btn-color-darker'));
+                document.documentElement.style.setProperty('--nav-btn-color', localStorage.getItem('nav-btn-color'));
+			} else {
             document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'amoled');
+			}
 		</script>
 	</body>
 </html>
