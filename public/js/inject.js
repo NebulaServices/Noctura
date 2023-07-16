@@ -55,6 +55,7 @@ style.innerHTML = `
     background-color: ${backgroundColor};
     color: #fff;
     transform: translate(-50%, 0);
+    font-family: Inter, Arial, sans-serif !important;
     margin: 0 !important;
     width: 500px;
     z-index: 99999;
