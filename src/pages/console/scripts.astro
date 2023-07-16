@@ -26,6 +26,15 @@ var example = [
         id: "0003"
     }
 ]
+
+var modules = [
+    {
+        name: "Change something",
+        author: "Riftriot",
+        url: "/js/testscript.js",
+        description: "Change something in homepage",
+    }
+]
 ---
 
 <Console title="User Scripts">
@@ -149,6 +158,7 @@ var example = [
                 })
             })
         }
+
         window.installScript = async (script) => {
             notify.show("Fetching Data", "info", 2000);
 

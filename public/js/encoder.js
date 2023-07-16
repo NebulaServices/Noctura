@@ -208,18 +208,6 @@ function editSession(id, httpproxy, enableShuffling) {
     throw new TypeError('cannot find ' + id);
 }
 
-get('/mainport', function (data) {
-    var defaultPort = window.location.protocol === 'https:' ? 443 : 80;
-    var currentPort = window.location.port || defaultPort;
-    var mainPort = data || defaultPort;
-    if (currentPort != mainPort) window.location.port = mainPort;
-});
-
-api.needpassword(doNeed => {
-    if (doNeed) {
-        document.getElementById('password-wrapper').style.display = '';
-    }
-});
 window.addEventListener('load', function () {
     loadSessions();
 
@@ -230,7 +218,6 @@ window.addEventListener('load', function () {
         api.newsession(function (id) {
             addSession(id); //Generate it
             localStorage.setItem('session-string', id); // Set localstorage
-            document.getElementById('session-id').value = id; //Display the ID in the HTML
             alert(id);
         });
     };
