@@ -1,6 +1,7 @@
 @font-face {
     font-family: MajorMonoDisplay;
-    src: url(/font/MajorMonoDisplay-Regular.ttf);
+    font-display: swap;
+    src: url(/font/MajorMonoDisplay-Webfont.woff2) format(woff2);
 }
 
   
