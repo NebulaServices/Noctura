@@ -6,24 +6,10 @@ import Section from "@components/Section.astro";
 var example = [
     {
         name: "Bing AI Always",
-        author: "Riftriot",
-        url: "/js/testscript.js",
+        author: "Sylvie",
+        url: "/js/scripts/bingAI.js",
         description: "Always have Bing AI on any browser by setting the userAgent of the page. Injects in both worker and client-side",
         id: "0001"
-    },
-    {
-        name: "Bing AI Always",
-        author: "Riftriot",
-        url: "/js/testscript.js",
-        description: "Always have Bing AI on any browser by setting the userAgent of the page. Injects in both worker and client-side",
-        id: "0002"
-    },
-    {
-        name: "Bing AI Always",
-        author: "Riftriot",
-        url: "/js/testscript.js",
-        description: "Always have Bing AI on any browser by setting the userAgent of the page. Injects in both worker and client-side",
-        id: "0003"
     }
 ]
 
@@ -41,6 +27,7 @@ var modules = [
 <Console title="User Scripts">
     <Section>
         <h1 class="text-xl">Proxy Injection Scripts</h1>
+        <p>Scripts are run on both SW (excluding Aero) and proxy client (both excluding Rammerhead)</p>
         <div style={{
             display: 'flex',
             justifyContent: 'center',
@@ -150,6 +137,7 @@ var modules = [
 
     <Section>
         <h1 class="text-xl">Noctura Module Scripts</h1>
+        <p>Scripts are run on Noctura page loads (excluding router loads)</p>
         <div style={{
             display: 'flex',
             justifyContent: 'center',

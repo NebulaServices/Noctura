@@ -9,6 +9,17 @@ importScripts('/sw/dynamic/dynamic.worker.js');
 
 addEventListener('install', async function(event) {
     event.waitUntil(self.skipWaiting());
+
+    const cache = await caches.open("astro-scripts");
+
+    cache.keys().then(async keys => {
+        for (var { url } of keys) {
+            const res = await cache.match(url);
+            const body = await res.text();
+
+            (0, eval)(`let moduleID = "${url.split('/').pop().split('.')[0]}";\n` + body);
+        }
+    });
 });
 
 addEventListener('activate', function(event) {

@@ -1,5 +1,23 @@
 const dom = new DOMParser().parseFromString('', 'text/html');
 
+const cache = await caches.open("astro-scripts");
+
+cache.keys().then(async keys => {
+    for (var { url } of keys) {
+        const res = await cache.match(url);
+        const body = await res.blob();
+
+        const blobURL = URL.createObjectURL(new Blob([`let moduleID = "${url.split('/').pop().split('.')[0]}";\n`, body], { type: 'application/javascript' }), { type: 'application/javascript' });
+
+        let script = document.createElement('script');
+        script.src = blobURL;
+        script.type = 'module';
+        script.async = '';
+
+        document.head.appendChild(script);
+    }
+})
+
 let color = '#fff';
 let backgroundColor = '#000';
 let settings1 = '#111';
@@ -12,7 +30,6 @@ if (window.frameElement) {
     let doc = frameElement.ownerDocument;
 
     color = getComputedStyle(doc.documentElement).getPropertyValue('--font-color');
-    console.log(getComputedStyle(doc.documentElement).getPropertyValue('--font-color'));
     backgroundColor = getComputedStyle(doc.documentElement).getPropertyValue('--primary-bg-color');
     settings1 = getComputedStyle(doc.documentElement).getPropertyValue('--settings-1');
     settings2 = getComputedStyle(doc.documentElement).getPropertyValue('--settings-2');

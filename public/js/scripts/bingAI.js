@@ -1,0 +1,1 @@
+self.__dynamic$config.tab.ua = navigator.userAgent + (navigator.userAgent.contains("Mobile") ? "Edg/" : "EdgA/") + "0.0";
