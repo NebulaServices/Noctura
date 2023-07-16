@@ -10,7 +10,7 @@ import partytown from '@astrojs/partytown';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), partytown(), sitemap(), compress({
+  integrations: [tailwind(), partytown({ config: { debug: false } }), sitemap(), compress({
     exclude: [file => file.includes("$server_build")],
     logger: 0
   }), astroImageTools],
