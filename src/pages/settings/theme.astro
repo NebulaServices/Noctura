@@ -18,15 +18,29 @@ import Section from "@components/Section.astro";
     </Section>
 
     <script type="module">
+        function removeCustomTheme() {
+            document.documentElement.style.removeProperty('--primary-bg-color');
+            document.documentElement.style.removeProperty('--secondary-bg-color');
+            document.documentElement.style.removeProperty('--settings-1');
+            document.documentElement.style.removeProperty('--settings-2');
+            document.documentElement.style.removeProperty('--settings-3');
+            document.documentElement.style.removeProperty('--font-color');
+            document.documentElement.style.removeProperty('--primary-text-color');
+            document.documentElement.style.removeProperty('--nav-btn-color-darker');
+            document.documentElement.style.removeProperty('--nav-btn-color');
+        }
+
         document
             .getElementById("theme-amoled")
             .addEventListener("click", () => {
                 localStorage.setItem("theme", "amoled");
+                removeCustomTheme();
                 document.documentElement.setAttribute("data-theme", "amoled");
             });
 
         document.getElementById("theme-mocha").addEventListener("click", () => {
             localStorage.setItem("theme", "mocha");
+            removeCustomTheme();
             document.documentElement.setAttribute("data-theme", "mocha");
         });
 
@@ -34,6 +48,7 @@ import Section from "@components/Section.astro";
             .getElementById("theme-macchiato")
             .addEventListener("click", () => {
                 localStorage.setItem("theme", "macchiato");
+                removeCustomTheme();
                 document.documentElement.setAttribute(
                     "data-theme",
                     "macchiato"
@@ -44,16 +59,19 @@ import Section from "@components/Section.astro";
             .getElementById("theme-frappe")
             .addEventListener("click", () => {
                 localStorage.setItem("theme", "frappe");
+                removeCustomTheme();
                 document.documentElement.setAttribute("data-theme", "frappe");
             });
 
         document.getElementById("theme-latte").addEventListener("click", () => {
             localStorage.setItem("theme", "latte");
+            removeCustomTheme();
             document.documentElement.setAttribute("data-theme", "latte");
         });
 
         document.getElementById("theme-baja").addEventListener("click", () => {
             localStorage.setItem("theme", "baja");
+            removeCustomTheme();
             document.documentElement.setAttribute("data-theme", "baja");
         });
 
