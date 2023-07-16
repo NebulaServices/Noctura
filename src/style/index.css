@@ -146,3 +146,36 @@
     font-size: 75px;
     font-family: MajorMonoDisplay, Arial, sans-serif;
 }
+
+.proxy-loader div::before {
+    animation: loader ease 1.5s infinite;
+    height: 100%;
+    position: absolute;
+    background: #6f00ff9a;
+    border-radius: 3px;
+    left: -15%;
+    top: 6px;
+    width: 25%;
+    z-index: 1;
+    content: "";
+}
+
+.proxy-loader span {
+    z-index: 2;
+    position: relative;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+@keyframes loader {
+    0% {
+        left: -20%;
+    }
+    50% {
+        left: 97%;
+        background: #44007cb7;
+    }
+    100% {
+        left: -20%;
+    }
+}
