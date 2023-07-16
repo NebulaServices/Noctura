@@ -1,8 +1,30 @@
 const dom = new DOMParser().parseFromString('', 'text/html');
-const cache = await caches.open('astro-scripts');
 
-for (var key of await cache.keys()) {
+let color = '#fff';
+let backgroundColor = '#000';
+let settings1 = '#111';
+let settings2 = '#222';
+let settings3 = '#333';
 
+if (window.frameElement) {
+    let doc = frameElement.ownerDocument;
+    let style;
+    const styles = doc.querySelectorAll('style');
+    
+    for (var sheet of styles) {
+        console.log(sheet.innerHTML);
+        if (sheet.innerHTML.includes('/* THEMES CSS */')) {
+            style = sheet;
+            break;
+        }
+    }
+
+    color = getComputedStyle(doc.documentElement).getPropertyValue('--font-color');
+    console.log(getComputedStyle(doc.documentElement).getPropertyValue('--font-color'));
+    backgroundColor = getComputedStyle(doc.documentElement).getPropertyValue('--primary-bg-color');
+    settings1 = getComputedStyle(doc.documentElement).getPropertyValue('--settings-1');
+    settings2 = getComputedStyle(doc.documentElement).getPropertyValue('--settings-2');
+    settings3 = getComputedStyle(doc.documentElement).getPropertyValue('--settings-3');
 }
 
 var container = document.createElement('div');
@@ -11,7 +33,7 @@ container.id = 'noctura-menu';
 container.innerHTML = `
 <button onclick="location.reload()">Reload</button>
 <button onclick="document.body.requestFullscreen()">Fullscreen</button>
-${window.parent !== window ? '<button onclick="">Close</button>' : ''}
+${window.frameElement ? '<button onclick="window.frameElement.remove()">Close</button>' : ''}
 <button id="noctura-close-menu">Close Menu</button>
 
 <input id="noctura-nav-input" value="${location.pathname.includes('/~/aero/') ? new Function('return __aero$meta.href')() : new Function('return this.location.href')()}">
@@ -40,8 +62,8 @@ style.innerHTML = `
     height: min-content;
     padding: 5px 10px;
     border-radius: 5px;
-    background-color: var(--primary-bg-color);
-    color: var(--font-color);
+    background-color: ${backgroundColor};
+    color: #fff;
     transform: translate(-50%, 0);
     width: 500px;
     z-index: 99999;
@@ -61,20 +83,21 @@ style.innerHTML = `
 #noctura-nav-input {
     border: none;
     outline: none;
-    background-color: var(--settings-1);
-    color: var(--font-color);
+    background-color: ${settings1};
+    color: ${color};
     padding: 5px 10px;
     border-radius: 5px;
     transition: 0.1s ease-in-out;
     font-family: sans-serif;
     font-size: 12px;
+    flex: 1;
 }
 
 #noctura-menu button {
     border: none;
     outline: none;
     background-color: transparent;
-    color: var(--font-color);
+    color: ${color};
     cursor: pointer;
     padding: 5px 10px;
     border-radius: 5px;
@@ -82,8 +105,8 @@ style.innerHTML = `
 }
 
 #noctura-menu button:hover {
-    background-color: var(--settings-3);
-    color: #000000;
+    background-color: ${settings3};
+    color: ${color};
 }
 `;
 
