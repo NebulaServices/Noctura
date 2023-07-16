@@ -9,7 +9,6 @@ import Notifications from '@components/Notification.astro';
 
 // @ts-ignore
 import { SEO } from "astro-seo";
-import { HoverPrefetch } from 'astro-hover-prefetch';
 
 import "../styles.css";
 import "../style/global.css"
@@ -30,8 +29,8 @@ const { url } = Astro;
 			import "../js/router.js";
 			import "../js/notify.js";
 		</script>
-		<HoverPrefetch />
 		<SEO
+			title={title}
 			titleTemplate="%s - Noctura"
 			description="Noctura | the blazing fast solution to internet censorship. Access blocked websites with ease while maintaining anonymity and security."
 			charset="UTF-8"
@@ -71,8 +70,6 @@ const { url } = Astro;
 		}
 		<script defer src="/js/ui.js" />
 		<script async src="/js/sw.js" />
-
-		<title>{title}</title>
 	</head>
 	<body>
 		<div class="page-load-progress"></div>

@@ -81,6 +81,8 @@
 .nav-icon {
     width: 40px;
     height: 40px;
+    position: relative;
+    top: -2px;
     display: inline-block;
     /*animation: breathe 4s ease;*/
 }

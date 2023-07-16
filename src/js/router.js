@@ -14,7 +14,7 @@ class Router {
         const parser = new DOMParser();
         const prev = location.href;
         const next = new URL(href, location.origin).href;
-        if (prev === next) {
+        if (prev === next && !popstate) {
             return;
         }
         if (!popstate && (!window.history.state || window.history.state.url !== next)) {
@@ -54,8 +54,8 @@ class Router {
         scripts.forEach((script) => {
             const newScript = document.createElement("script");
             const attr = Array.from(script.attributes);
-            for (const { key, prop } of attr) {
-                newScript[key] = prop;
+            for (const { name, value } of attr) {
+                newScript[name] = value;
             }
 
             newScript.append(script.textContent);
@@ -98,7 +98,7 @@ class Router {
 
     #allLinks() {
         return Array.from(document.links).filter((link) => {
-            link.href.includes(document.location.origin) &&
+            return link.href.includes(document.location.origin) &&
             !link.href.includes('#') && // not an id anchor
             link.href !== (document.location.href || document.location.href + '/') &&
             !this.prefetched.has(link.href)

@@ -12,7 +12,7 @@ if ('serviceWorker' in navigator) {
                 console.log('Service worker registration failed, error:', error);
             });
 
-        if (!navigator.serviceWorker.controller) await navigator.serviceWorker.register('/sw/aero/worker.js', { scope: '/~/aero', module: true, updateViaCache: 'none' })
+        if (!navigator.serviceWorker.controller) await navigator.serviceWorker.register('/aero.js', { scope: '/~/aero', module: true, updateViaCache: 'none' })
             .then(function(registration) {
                 console.log('Registration successful, scope is:', registration.scope);
             })

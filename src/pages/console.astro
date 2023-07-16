@@ -1,11 +1,10 @@
 ---
 import Layout from "@layout";
 
+import "@css/console.css"
 import "@css/style.css";
 ---
 
-<Layout title="Noctura">
-    <div>
-        CONSOLE
-    </div>
+<Layout title="Console">
+    <script is:inline>typeof router == 'undefined' ? location.replace("/console/scripts") : router.go("/console/scripts")</script>
 </Layout>

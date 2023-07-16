@@ -44,13 +44,16 @@ window.notify = {
         }, time);
     },
     hide() {
-        var notif = document.getElementById('toast-notification');
+        return new Promise(res => {
+            var notif = document.getElementById('toast-notification');
 
-        notif.style.transform = 'translateY(0)';
+            notif.style.transform = 'translateY(0)';
 
-        setTimeout(function() {
-            queue.splice(0, 1);
-            if (queue.length) notify.show(...queue.splice(0, 1)[0], true);
-        }, 300);
+            setTimeout(function() {
+                queue.splice(0, 1);
+                if (queue.length) notify.show(...queue.splice(0, 1)[0], true);
+                res();
+            }, 300);
+        });
     }
 }

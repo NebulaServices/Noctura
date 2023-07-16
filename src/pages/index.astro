@@ -6,7 +6,7 @@ import "@components/switch.css";
 import Obfuscated from "@components/Obfuscated.astro";
 ---
 
-<Layout title="Noctura">
+<Layout title="Home">
     <div class="home">
         <!-- <div class="top-banner" /> -->
         <form class="home-container">
@@ -115,7 +115,7 @@ import Obfuscated from "@components/Obfuscated.astro";
                 iframe.style.width = "100%";
                 iframe.style.height = "100%";
                 iframe.style.border = "none";
-                iframe.style.background = "#111";
+                iframe.style.background = "var(--settings-1)";
                 iframe.style.overflow = "hidden";
                 iframe.style.position = "absolute";
                 iframe.style.zIndex = '999999';
@@ -126,21 +126,34 @@ import Obfuscated from "@components/Obfuscated.astro";
                 loader.style.width = "100%";
                 loader.style.height = "100%";
                 loader.style.border = "none";
-                loader.style.background = "#111";
+                loader.style.background = "var(--settings-1)";
                 loader.style.overflow = "hidden";
                 loader.style.position = "absolute";
-                loader.style.zIndex = '99999';
+                loader.style.zIndex = '9999999';
+                loader.style.fontFamily = "MajorMonoDisplay, Arial, sans-serif";
                 loader.style.top = "0px";
-                loader.innerHTML = `Loading`;
+                loader.innerHTML = `<div><span>N</span></div>`
+                loader.style.display = "flex";
+                loader.querySelector("div").style.position = "relative";
+                loader.style.fontSize = "150px";
+                loader.style.paddingBottom = "10%";
+                loader.style.alignItems = "center";
+                loader.style.justifyContent = "center";
+                loader.style.color = "var(--font-color)";
+                loader.style.opacity = "1";
+                loader.style.transition = "opacity 0.5s ease-in-out";
                 loader.classList.add('proxy-loader');
 
                 document.querySelector(".home").style.paddingBottom = "0px";
 
                 iframe.onload = function() {
                     iframe.onload = () => {};
+                    loader.style.opacity = "0";
                     iframe.style.display = 'block';
-
-                    loader.remove();
+                    
+                    setTimeout(function() {
+                        loader.remove();
+                    }, 500);
                 }
 
                 homeContainer.parentNode.appendChild(loader);

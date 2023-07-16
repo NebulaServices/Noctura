@@ -1,35 +1,33 @@
 ---
 import Layout from '@layout';
 import "@css/style.css";
-import "@css/settings.css";
+import "@css/console.css";
 import Link from '@components/Link.astro';
 import Obfuscated from '@components/Obfuscated.astro';
 
 const page = Astro.url.pathname.replace(/\/$/g, '').split('/').pop();
 
 const tabs = [
-    ["General", "/settings/general"],
-    ["Privacy", "/settings/privacy"],
-    ["Cloaking", "/settings/cloaking"],
-    ["Unblock", "/settings/unblock"],
-    ["Theme", "/settings/theme"],
+    ["Scripts", "/console/scripts"],
+    ["Style Injects", "/console/style"],
+    ["Themes", "/console/themes"],
 ];
 
 const { title } = Astro.props;
 ---
 
-<Layout title="Settings">
-    <div class="settings">
-        <div class="settings-left">
+<Layout title="Console">
+    <div class="console">
+        <div class="console-left">
             {
                 tabs.map(tab => (
-                    <Link class={"settings-navlink" + (tab[1].split('/').pop() == page ? " settings-navlink-active" : "")} href={tab[1]}>{tab[0]}</Link>
+                    <Link class={"console-navlink" + (tab[1].split('/').pop() == page ? " console-navlink-active" : "")} href={tab[1]}>{tab[0]}</Link>
                 ))
             }
         </div>
         
-        <div class="settings-right">
-            <div class="settings-page">
+        <div class="console-right">
+            <div class="console-page">
                 <h1 class="text-3xl">
                     <Obfuscated word={title} />
                 </h1>
