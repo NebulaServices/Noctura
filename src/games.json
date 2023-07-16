@@ -51,7 +51,7 @@
     {
       "id": "ctr-tr",
       "title": "Cut the Rope TT",
-      "image": "/games/logo.png",
+      "image": "/games/ctrTR.png",
       "description": "Cut the rope to feed the monster. This is a Time Travel version of ctr.",
       "file": "https://mathlover1.github.io/msgweb-assets/ctr-tr/index.html"
     },
@@ -93,7 +93,7 @@
     {
       "id": "jetpack-joyride",
       "title": "Jetpack Joyride",
-      "image": "/games/splash.jpg",
+      "image": "/games/jetpack.jpg",
       "description": " Jetpack Joyride. Fly through the levels and collect coins. If you hit a wall, you lose. If you hit a laser, you lose.",
       "file": "https://mathlover1.github.io/msgweb-assets/jetpack-joyride/index.html"
     },
@@ -205,7 +205,7 @@
     {
       "id": "motox3m-pool",
       "title": "Moto X3M Pool",
-      "image": "/games/splash.jpg",
+      "image": "/games/motopool.jpg",
       "description": "Moto X3M Pool, a game where you have to ride your bike through the pool.",
       "file": "https://mathlover1.github.io/msgweb-assets/motox3m-pool/index.html"
     },
@@ -226,7 +226,7 @@
     {
       "id": "motox3m",
       "title": "Moto X3M",
-      "image": "/games/splash.jpg",
+      "image": "/games/motoOG.jpg",
       "description": "Moto X3M, a game where you have to ride your bike through the forest.",
       "file": "https://mathlover1.github.io/msgweb-assets/motox3m/index.html"
     },
