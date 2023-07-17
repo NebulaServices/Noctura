@@ -152,6 +152,7 @@
     height: 100%;
     position: absolute;
     background: #6f00ff9a;
+    transition: 0.4s ease;
     border-radius: 3px;
     left: -15%;
     top: 6px;

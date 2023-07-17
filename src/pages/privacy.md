@@ -4,14 +4,14 @@ title: Privacy Policy
 author: Noctura
 description: The Privacy Policy for Noctura
 ---
-# Updated on July 15th 2023
+# Last Updated: July 15th 2023
 
 <style>
     p, h1 {
         color: var(--font-color);
     }
     h1 {
-        font-size: 2em;
+        font-size: 1.75em;
     }
 </style>
 

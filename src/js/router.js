@@ -27,6 +27,8 @@ class Router {
             .then((res) => res.text())
             .then((text) => parser.parseFromString(text, "text/html"));
 
+        if (doc.title) document.title = doc.title;
+
         const selector = "main.layout:not(.header, .top-banner, .footer)";
 
         document.body.querySelector(selector).replaceWith(doc.body.querySelector(selector));
@@ -37,7 +39,7 @@ class Router {
     }
 
     #mergeHead(doc) {
-        const getValidNodes = (doc) => Array.from(doc.querySelectorAll('head>:not([rel="prefetch"]'));
+        const getValidNodes = (doc) => Array.from(doc.querySelectorAll('head>:not([rel="prefetch"], [data-cold])'));
         const oldNodes = getValidNodes(document);
         const newNodes = getValidNodes(doc);
 
@@ -49,7 +51,7 @@ class Router {
     }
 
     #runScripts() {
-        const scripts = document.body.querySelectorAll("script");
+        const scripts = document.querySelectorAll("body script, script[data-load]");
 
         scripts.forEach((script) => {
             const newScript = document.createElement("script");
@@ -99,7 +101,7 @@ class Router {
     #allLinks() {
         return Array.from(document.links).filter((link) => {
             return link.href.includes(document.location.origin) &&
-            !link.href.includes('#') && // not an id anchor
+            link.href.indexOf('#') == -1 && // not an id anchor
             link.href !== (document.location.href || document.location.href + '/') &&
             !this.prefetched.has(link.href)
         });
@@ -118,6 +120,16 @@ class Router {
                 anchor = n;
                 break;
             }
+        }
+
+        if (anchor && this.#allLinks().indexOf(anchor) == -1) {
+            if (anchor && anchor.hasAttribute('data-cold')) {
+                return;
+            }
+
+            e.stopPropagation();
+            e.preventDefault();
+            return;
         }
 
         if (anchor && anchor.host !== location.host) {
@@ -142,7 +154,21 @@ class Router {
     }
 
     #handlePopstate(e) {
-        console.log(this.#url())
+        let anchor;
+
+        for (let n = e.target; n.parentNode; n = n.parentNode) {
+            if (n.nodeName === 'A') {
+                anchor = n;
+                break;
+            }
+        }
+
+        console.log(e, this.#allLinks().indexOf(anchor));
+
+        if (anchor && this.#allLinks().indexOf(anchor) == -1) {
+            return;
+        }
+
         this.#replaceBody(this.#url(), true);
     }
 
