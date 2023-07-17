@@ -106,7 +106,7 @@ import Layout from "@layout";
                 <br />
                 <h2><span>{game.title}</span></h2>
                 <br />
-                <p>{game.description}</p>
+                <p>{game.description.length > 190 ? game.description.split('').slice(0, 190).join('') + '...' : game.description}</p>
                 <div class="play">
                   <a href={'/games/' + game.id}>
                     <div class="playbutton">
