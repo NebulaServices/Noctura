@@ -91,17 +91,32 @@ input:focus, textarea {
 /* REPLACE THE BLUE | get the css set up for how the messages will look */
 
 .message {
-    font-size: 20px;
     width: 100%; /*  */
-    background-color: blue; 
     color: #FFF;
-    height: 15%;
+    height: 20%;
     position: relative; 
-    border-top: 3px solid #ff0000;
+    border-top: 3px solid #0e0e0e;
     align-items: center;
-    top: -450px;
-    
+    top: -400px;
+    background-color: #0a0a0a;
+    box-sizing: border-box;
 }   
+
+.chatgpt-img {
+    position: relative;
+    display: inline-block;
+    top: 25px;
+    left: 150px;
+    box-sizing: border-box;
+}
+.response {
+    position: relative;
+    display: inline-block;
+    top: -15px;
+    left: 200px;
+    box-sizing: border-box;
+    font-size: 17px;
+}
 .message-container {
     width: 100%;
     height: 100%;
