@@ -59,11 +59,13 @@ var modules = [
                                 border-bottom-right-radius: 25px;
                                 border-bottom-left-radius: 25px;
                                 bottom: 0;
+                                padding-top: 18px;
                                 margin: 0 auto;
                                 display: flex;
                                 align-items: center;
                                 justify-content: center;
                                 position: absolute;
+                                
                             }
                 
                             .installbutton {
@@ -109,6 +111,7 @@ var modules = [
                                 padding-left: 10px;
                                 border-bottom: 1px solid var(--settings-3); 
                                 line-height: 0.1em;
+                                padding-top: px;
                             }
                 
                             h2 span { 
@@ -120,6 +123,8 @@ var modules = [
                             h3 {
                                 margin-top: 10px;
                                 margin-left: 5px;
+                                padding-left: 15px;
+                                font-size: 14px;
                             }
 
                             h3 span {
@@ -136,7 +141,7 @@ var modules = [
                         <br />
                         <h2><span>{script.name}</span></h2>
                         <h3><span>by {script.author}</span></h3>
-                        <p style="margin-top: 5px;">{script.description.length > 100 ? script.description.split('').slice(0, 100).join('') + '...' : script.description}</p>
+                        <p style="margin-top: 20px;">{script.description.length > 100 ? script.description.split('').slice(0, 100).join('') + '...' : script.description}</p>
                         <div class="play">
                             <button class="script-button" data-url={script.url} onclick={`scriptEvent(JSON.parse('${JSON.stringify(script)}'))`}>
                                 <div class="installbutton">
