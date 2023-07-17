@@ -27,6 +27,8 @@ class Router {
             .then((res) => res.text())
             .then((text) => parser.parseFromString(text, "text/html"));
 
+        if (doc.title) document.title = doc.title;
+
         const selector = "main.layout:not(.header, .top-banner, .footer)";
 
         document.body.querySelector(selector).replaceWith(doc.body.querySelector(selector));
