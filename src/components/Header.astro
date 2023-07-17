@@ -231,7 +231,7 @@ const currentDate = new Date().getTime();
     let switchProxy = (e) => {
       e.stopPropagation();
       e.preventDefault();
-      
+
       const proxy = e.target.dataset.value;
 
       document.cookie = `astro-proxy=${proxy}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;
@@ -319,7 +319,9 @@ const currentDate = new Date().getTime();
           return;
       }
     };
-    
+
+
+    document.querySelector('a[href="/console/scripts"]').setAttribute('data-cold', '');
     document.getElementById('panic-button').href = localStorage.getItem('panic-url') || 'https://classroom.google.com/';
   })();
 </script>
