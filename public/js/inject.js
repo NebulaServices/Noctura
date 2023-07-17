@@ -36,7 +36,7 @@ if (window.frameElement) {
     settings3 = getComputedStyle(doc.documentElement).getPropertyValue('--settings-3');
 }
 
-if (!win.location.pathname.startsWith('/games')) {
+if (!Reflect.get(win, 'location').pathname.startsWith('/games')) {
     var container = document.createElement('div');
     container.id = 'noctura-menu';
 
