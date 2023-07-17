@@ -59,7 +59,8 @@ var themes = [
             const reader = new FileReader();
             reader.onload = (event) => {
                 const fileContent = event.target.result;
-                const theme = JSON.parse(fileContent);
+                const sanitizedContent = fileContent.replace(/\/\/+/g, '');
+                const theme = JSON.parse(sanitizedContent);
                 console.log(theme);
 
                 const colors = Object.entries(theme.colors).map(([name, value]) => ({ name, value }));
