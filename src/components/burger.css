@@ -9,7 +9,7 @@
 }
 
 .burger-line-1 {
-    background: var(--secondary-bg-color);
+    background: var(--font-color);
     height: 1px;
     width: 100%;
     position: absolute;
@@ -19,7 +19,7 @@
 }
 
 .burger-line-2 {
-    background: var(--secondary-bg-color);
+    background: var(--font-color);
     height: 1px;
     width: 100%;
     position: absolute;
@@ -30,7 +30,7 @@
 }
 
 .burger-line-3 {
-    background: var(--secondary-bg-color);
+    background: var(--font-color);
     height: 1px;
     width: 100%;
     left: 0;
@@ -40,7 +40,7 @@
 }
 
 .burger-line-1-active {
-    background: var(--secondary-bg-color);
+    background: var(--font-color);
     height: 1px;
     width: 100%;
     position: absolute;
@@ -50,7 +50,7 @@
 }
 
 .burger-line-2-active {
-    background: var(--secondary-bg-color);
+    background: var(--font-color);
     height: 1px;
     width: 100%;
     position: absolute;

@@ -27,9 +27,12 @@ const { url } = Astro;
 	<head>
 		<script>
 			import "../js/router.js";
+			import '../js/cookie.js';
 			import "../js/notify.js";
+			import '../js/module.js';
 		</script>
 		<SEO
+			title={title}
 			titleTemplate="%s - Noctura"
 			description="Noctura | the blazing fast solution to internet censorship. Access blocked websites with ease while maintaining anonymity and security."
 			charset="UTF-8"
@@ -57,7 +60,7 @@ const { url } = Astro;
 				],
 			}}
 		/>
-		<link rel="preload" crossorigin="anonymous" href="/font/MajorMonoDisplay-Regular.ttf" type="font/ttf" as="font">
+		<link rel="preload" crossorigin="anonymous" href="/font/MajorMonoDisplay-Webfont.woff2" type="font/woff2" as="font">
 		<link href="/font/font.css" rel="stylesheet">
 		<link rel="preconnect" crossorigin href="https://classroom.google.com" />
 		{
@@ -69,8 +72,6 @@ const { url } = Astro;
 		}
 		<script defer src="/js/ui.js" />
 		<script async src="/js/sw.js" />
-
-		<title>{title}</title>
 	</head>
 	<body>
 		<div class="page-load-progress"></div>
@@ -106,8 +107,20 @@ const { url } = Astro;
 			if (localStorage.getItem('savedTitle')) {
 				titleLoad();
 			}
-
+			const theme = localStorage.getItem('theme') || 'amoled';
+			if (theme == "custom") {
+				document.documentElement.style.setProperty('--primary-bg-color', localStorage.getItem('primary-bg-color'));
+                document.documentElement.style.setProperty('--secondary-bg-color', localStorage.getItem('secondary-bg-color'));
+                document.documentElement.style.setProperty('--settings-1', localStorage.getItem('settings-1'));
+                document.documentElement.style.setProperty('--settings-2', localStorage.getItem('settings-2'));
+                document.documentElement.style.setProperty('--settings-3', localStorage.getItem('settings-3'));
+                document.documentElement.style.setProperty('--font-color', localStorage.getItem('font-color'));
+                document.documentElement.style.setProperty('--primary-text-color', localStorage.getItem('primary-text-color'));
+                document.documentElement.style.setProperty('--nav-btn-color-darker', localStorage.getItem('nav-btn-color-darker'));
+                document.documentElement.style.setProperty('--nav-btn-color', localStorage.getItem('nav-btn-color'));
+			} else {
             document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'amoled');
+			}
 		</script>
 	</body>
 </html>

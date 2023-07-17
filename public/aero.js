@@ -1,1 +1,1 @@
-importScripts('./aero/worker.js');
+importScripts('./sw/aero/worker.js');

@@ -12,7 +12,7 @@ const routes = [
   { id: 2, title: "AI", path: ["/ai", "/ai/"] },
   { id: 3, title: "Games", path: ["/games", "/games/"] },
   { id: 4, title: "Music", path: ["/music", "/music/"] },
-  { id: 5, title: "Console", path: [
+  { id: 5, title: "Console (Beta)", path: [
     "/console/scripts", "/console/scripts/",
     "/console/style", "/console/style/",
     "/console/themes", "/console/themes/"
@@ -35,7 +35,7 @@ const currentDate = new Date().getTime();
 <div class="header">
   <div class="top">
     <div class="top-left">
-      <a href="/" data-cold><img src="/favicon.svg" class="nav-icon" alt="Website Logo" /></a>
+      <a href="/" data-cold><img src="/logo.png" class="nav-icon" alt="Website Logo" /></a>
       <hr class="nav-slash" />
       <a target="_blank" href="https://titaniumnetwork.org">
         <Img src="/tn.png" class="tn-icon" alt="TN Icon" />
@@ -57,6 +57,10 @@ const currentDate = new Date().getTime();
           <a data-value="Rammerhead" href="#">
             <Img src="/Rammerhead.png" class="nav-switch-img" alt="Rammerhead Icon" />
             Rammerhead
+          </a>
+          <a data-value="Aero" href="#">
+            <Img src="/Aero.png" class="nav-switch-img" alt="Aero Icon" />
+            Aero 2.0
           </a>
         </div>
       </div>

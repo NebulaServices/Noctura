@@ -1,8 +1,8 @@
-importScripts('./config.js');
-importScripts('./url.js');
-importScripts('./headers.js');
-importScripts('./bare.js');
-importScripts('./css.js');
+importScripts('/sw/aero/config.js');
+importScripts('/sw/aero/url.js');
+importScripts('/sw/aero/headers.js');
+importScripts('/sw/aero/bare.js');
+importScripts('/sw/aero/css.js');
 
 self.addEventListener('install', (e) => {
   e.waitUntil(skipWaiting());

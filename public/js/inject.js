@@ -1,12 +1,48 @@
 const dom = new DOMParser().parseFromString('', 'text/html');
 
+const cache = await caches.open("astro-scripts");
+
+cache.keys().then(async keys => {
+    for (var { url } of keys) {
+        const res = await cache.match(url);
+        const body = await res.blob();
+
+        const blobURL = URL.createObjectURL(new Blob([`let moduleID = "${url.split('/').pop().split('.')[0]}";\n`, body], { type: 'application/javascript' }), { type: 'application/javascript' });
+
+        let script = document.createElement('script');
+        script.src = blobURL;
+        script.type = 'module';
+        script.async = '';
+
+        document.head.appendChild(script);
+    }
+})
+
+let color = '#fff';
+let backgroundColor = '#000';
+let settings1 = '#111';
+let settings2 = '#222';
+let settings3 = '#333';
+
+let win = window.frameElement ? window.frameElement.ownerDocument.defaultView : window;
+
+if (window.frameElement) {
+    let doc = frameElement.ownerDocument;
+
+    color = getComputedStyle(doc.documentElement).getPropertyValue('--font-color');
+    backgroundColor = getComputedStyle(doc.documentElement).getPropertyValue('--primary-bg-color');
+    settings1 = getComputedStyle(doc.documentElement).getPropertyValue('--settings-1');
+    settings2 = getComputedStyle(doc.documentElement).getPropertyValue('--settings-2');
+    settings3 = getComputedStyle(doc.documentElement).getPropertyValue('--settings-3');
+}
+
 var container = document.createElement('div');
 container.id = 'noctura-menu';
 
 container.innerHTML = `
 <button onclick="location.reload()">Reload</button>
-<button onclick="document.body.requestFullscreen()">Fullscreen</button>
-${window.parent !== window ? '<button onclick="">Close</button>' : ''}
+<button onclick="var d=document;d.fullscreenElement?d.exitFullscreen&&d.exitFullscreen():d.documentElement.requestFullscreen();">Fullscreen</button>
+${window.frameElement ? '<button onclick="window.frameElement.remove()">Close</button>' : ''}
 <button id="noctura-close-menu">Close Menu</button>
 
 <input id="noctura-nav-input" value="${location.pathname.includes('/~/aero/') ? new Function('return __aero$meta.href')() : new Function('return this.location.href')()}">
@@ -28,16 +64,24 @@ container.querySelector('#noctura-nav-input').onkeydown = function(e) {
 var style = document.createElement('style');
 
 style.innerHTML = `
+html:fullscreen, body:fullscreen {
+    background: white;
+}
+
 #noctura-menu {
     position: fixed;
     top: 0;
     left: 50%;
+    font-weight: 400 !important;
     height: min-content;
     padding: 5px 10px;
     border-radius: 5px;
-    background-color: var(--primary-bg-color);
-    color: var(--font-color);
+    background-color: ${backgroundColor};
+    color: #fff;
     transform: translate(-50%, 0);
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+    margin: 0 !important;
+    width: 500px;
     z-index: 99999;
     display: flex;
     flex-direction: row;
@@ -45,7 +89,7 @@ style.innerHTML = `
     justify-content: center;
     gap: 5px;
     font-family: sans-serif;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -55,20 +99,21 @@ style.innerHTML = `
 #noctura-nav-input {
     border: none;
     outline: none;
-    background-color: var(--settings-1);
-    color: var(--font-color);
+    background-color: ${settings1};
+    color: ${color};
     padding: 5px 10px;
     border-radius: 5px;
     transition: 0.1s ease-in-out;
     font-family: sans-serif;
     font-size: 12px;
+    flex: 1;
 }
 
 #noctura-menu button {
     border: none;
     outline: none;
     background-color: transparent;
-    color: var(--font-color);
+    color: ${color};
     cursor: pointer;
     padding: 5px 10px;
     border-radius: 5px;
@@ -76,8 +121,8 @@ style.innerHTML = `
 }
 
 #noctura-menu button:hover {
-    background-color: var(--settings-3);
-    color: #000000;
+    background-color: ${settings3};
+    color: ${color};
 }
 `;
 
@@ -88,7 +133,7 @@ container.appendChild(style);
 var x1 = 0, y1 = 0, x2 = 0, y2 = 0, drag = false;
 
 container.addEventListener('mousedown', function(e) {
-    if (e.target.tagName == 'input' || e.target.tagName == 'button') return;
+    if (e.target.tagName == 'INPUT' || e.target.tagName == 'BUTTON') return;
 
     e.preventDefault();
 

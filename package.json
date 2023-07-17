@@ -5,11 +5,11 @@
     "dev": "astro dev --port 3000 --host",
     "start": "astro dev --port 8080 --host",
     "run": "astro dev --port 80 --host",
-    "prod": "node index.cjs",
+    "prod": "node index.js",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "bstart": "npm run build && node index.cjs",
+    "bstart": "npm run build && node .",
     "depends": "npm i react cloudflare"
   },
   "dependencies": {
@@ -33,8 +33,11 @@
     "fastify": "^4.18.0",
     "fastify-static": "^4.7.0",
     "flamethrower-router": "0.0.0-meme.12",
+    "globby": "^13.2.2",
     "noty": "^3.2.0-beta-deprecated",
+    "rammerhead": "https://github.com/holy-unblocker/rammerhead/releases/download/v1.2.41-holy.5/rammerhead-1.2.41-holy.5.tgz",
     "react": "^18.2.0",
+    "sharp": "^0.32.3",
     "url": "^0.11.1"
   },
   "type": "module",
