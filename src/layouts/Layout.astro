@@ -72,6 +72,7 @@ const { url } = Astro;
 		}
 		<script defer src="/js/ui.js" />
 		<script async src="/js/sw.js" />
+		<style id="dynamic-style" is:inline>* {}</style>
 	</head>
 	<body>
 		<div class="page-load-progress"></div>
@@ -84,6 +85,14 @@ const { url } = Astro;
 		</main>
 		<Analytics id="G-WE1NBQQ361" />
 		<script is:inline type="module">
+			const theme = localStorage.getItem('theme') || 'amoled';
+			if (theme == "custom") {
+				document.querySelector('style#dynamic-style').innerHTML = `[data-theme="custom"] {${['primary-bg-color', 'secondary-bg-color', 'settings-1', 'settings-2', 'settings-3', 'font-color', 'primary-text-color', 'nav-btn-color-darker', 'nav-btn-color'].map(e=>`--${e}: ${localStorage.getItem(e) ? localStorage.getItem(e) + ' !important' : ''}`).join(';')}}`;
+				document.documentElement.dataset.theme = "custom";
+			} else {
+            	document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'amoled');
+			}
+
 			window.faviconLoad = function faviconLoad() {
 				var faviconPath = localStorage.getItem('savedFavicon');
 				var faviconLink = document.querySelector('link[rel="icon"]');
@@ -106,20 +115,6 @@ const { url } = Astro;
 			}
 			if (localStorage.getItem('savedTitle')) {
 				titleLoad();
-			}
-			const theme = localStorage.getItem('theme') || 'amoled';
-			if (theme == "custom") {
-				document.documentElement.style.setProperty('--primary-bg-color', localStorage.getItem('primary-bg-color'));
-                document.documentElement.style.setProperty('--secondary-bg-color', localStorage.getItem('secondary-bg-color'));
-                document.documentElement.style.setProperty('--settings-1', localStorage.getItem('settings-1'));
-                document.documentElement.style.setProperty('--settings-2', localStorage.getItem('settings-2'));
-                document.documentElement.style.setProperty('--settings-3', localStorage.getItem('settings-3'));
-                document.documentElement.style.setProperty('--font-color', localStorage.getItem('font-color'));
-                document.documentElement.style.setProperty('--primary-text-color', localStorage.getItem('primary-text-color'));
-                document.documentElement.style.setProperty('--nav-btn-color-darker', localStorage.getItem('nav-btn-color-darker'));
-                document.documentElement.style.setProperty('--nav-btn-color', localStorage.getItem('nav-btn-color'));
-			} else {
-            document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'amoled');
 			}
 		</script>
 	</body>

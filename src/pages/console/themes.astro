@@ -73,24 +73,24 @@ var themes = [
                 const settings2 = adjust(sideBarBackground.value, -10)
                 const settings3 = adjust(sideBarBackground.value, -20)
 
-                document.documentElement.style.setProperty('--primary-bg-color', activityBarBackground.value);
-                localStorage.setItem('primary-bg-color', activityBarBackground.value);
-                document.documentElement.style.setProperty('--secondary-bg-color', adjust(activityBarBackground.value, -50));
-                localStorage.setItem('secondary-bg-color', adjust(activityBarBackground.value, -50));
-                document.documentElement.style.setProperty('--settings-1', sideBarBackground.value);
-                localStorage.setItem('settings-1', sideBarBackground.value);
-                document.documentElement.style.setProperty('--settings-2', settings2);
-                localStorage.setItem('settings-2', settings2);
-                document.documentElement.style.setProperty('--settings-3', settings3);
-                localStorage.setItem('settings-3', settings3);
-                document.documentElement.style.setProperty('--font-color', foreground.value);
-                localStorage.setItem('font-color', foreground.value);
-                document.documentElement.style.setProperty('--primary-text-color', foreground.value);
-                localStorage.setItem('primary-text-color', foreground.value);
-                document.documentElement.style.setProperty('--nav-btn-color-darker', adjust(foreground.value, -30));
-                localStorage.setItem('nav-btn-color-darker', adjust(foreground.value, -30));
-                document.documentElement.style.setProperty('--nav-btn-color', adjust(buttonBackground.value, 20));
-                localStorage.setItem('nav-btn-color', adjust(buttonBackground.value, 20));
+                if (activityBarBackground) document.documentElement.style.setProperty('--primary-bg-color', activityBarBackground.value);
+                if (activityBarBackground) localStorage.setItem('primary-bg-color', activityBarBackground.value);
+                if (activityBarBackground) document.documentElement.style.setProperty('--secondary-bg-color', adjust(activityBarBackground.value, -50));
+                if (activityBarBackground) localStorage.setItem('secondary-bg-color', adjust(activityBarBackground.value, -50));
+                if (sideBarBackground) document.documentElement.style.setProperty('--settings-1', sideBarBackground.value);
+                if (sideBarBackground) localStorage.setItem('settings-1', sideBarBackground.value);
+                if (settings2) document.documentElement.style.setProperty('--settings-2', settings2);
+                if (settings2) localStorage.setItem('settings-2', settings2);
+                if (settings3) document.documentElement.style.setProperty('--settings-3', settings3);
+                if (settings3) localStorage.setItem('settings-3', settings3);
+                if (foreground) document.documentElement.style.setProperty('--font-color', foreground.value);
+                if (foreground) localStorage.setItem('font-color', foreground.value);
+                if (foreground) document.documentElement.style.setProperty('--primary-text-color', foreground.value);
+                if (foreground) localStorage.setItem('primary-text-color', foreground.value);
+                if (foreground) document.documentElement.style.setProperty('--nav-btn-color-darker', adjust(foreground.value, -30));
+                if (foreground) localStorage.setItem('nav-btn-color-darker', adjust(foreground.value, -30));
+                if (buttonBackground) document.documentElement.style.setProperty('--nav-btn-color', adjust(buttonBackground.value, 20));
+                if (buttonBackground) localStorage.setItem('nav-btn-color', adjust(buttonBackground.value, 20));
                 localStorage.setItem('theme', 'custom');
                 
             }
@@ -106,7 +106,7 @@ var themes = [
             str += "[data-theme=\"" + theme + "\"] {\n";
 
             ['--primary-bg-color', '--secondary-bg-color', '--primary-text-color', '--nav-btn-color', '--nav-btn-color-darker', '--font-color', '--banner-gradient', '--surface-2', '--settings-1', '--settings-2', '--settings-3', '--borders-1', '--borders-2', '--tn-filter'].forEach(color => {
-                str += "\t--" + color + ": " + getComputedStyle(document.documentElement).getPropertyValue(color) + ";\n";
+                str += "\t" + color + ": " + getComputedStyle(document.documentElement).getPropertyValue(color) + ";\n";
             });
 
             str += "}";
