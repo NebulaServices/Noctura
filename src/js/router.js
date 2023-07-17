@@ -123,6 +123,10 @@ class Router {
         }
 
         if (anchor && this.#allLinks().indexOf(anchor) == -1) {
+            if (anchor && anchor.hasAttribute('data-cold')) {
+                return;
+            }
+            
             e.stopPropagation();
             e.preventDefault();
             return;

@@ -61,6 +61,7 @@ const { url } = Astro;
 			}}
 		/>
 		<link rel="preload" crossorigin="anonymous" href="/font/MajorMonoDisplay-Webfont.woff2" type="font/woff2" as="font">
+		<link rel="preload" crossorigin="anonymous" href="/js/sw.js" type="application/javascript" as="script">
 		<link href="/font/font.css" rel="stylesheet">
 		<link rel="preconnect" crossorigin href="https://classroom.google.com" />
 		{
@@ -85,14 +86,6 @@ const { url } = Astro;
 		</main>
 		<Analytics id="G-WE1NBQQ361" />
 		<script is:inline type="module">
-			const theme = localStorage.getItem('theme') || 'amoled';
-			if (theme == "custom") {
-				document.querySelector('style#dynamic-style').innerHTML = `[data-theme="custom"] {${['primary-bg-color', 'secondary-bg-color', 'settings-1', 'settings-2', 'settings-3', 'font-color', 'primary-text-color', 'nav-btn-color-darker', 'nav-btn-color'].map(e=>localStorage.getItem(e) ? `--${e}: ${localStorage.getItem(e) + ' !important'}` : '').join(';')}}`;
-				document.documentElement.dataset.theme = "custom";
-			} else {
-            	document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'amoled');
-			}
-
 			window.faviconLoad = function faviconLoad() {
 				var faviconPath = localStorage.getItem('savedFavicon');
 				var faviconLink = document.querySelector('link[rel="icon"]');
