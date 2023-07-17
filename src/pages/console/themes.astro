@@ -20,7 +20,6 @@ var themes = [
             width: 100%;
         }
     </style>
-    <script is:inline src="/monaco-editor/min/vs/loader.js"></script>
     <Section>
         <h1 class="text-xl">Upload VScode theme</h1>
         <input type="file" id="file" accept=".json,.vstheme,application/json,application/xml"/>
@@ -98,7 +97,9 @@ var themes = [
         });
     </script>
 
-    <script is:inline>
+    <script is:inline src="/monaco-editor/min/vs/loader.js"></script>
+
+    <script type="module">
         function getCurrentTheme() {
             var str = "";
             var theme = localStorage.getItem('theme') || 'amoled';
