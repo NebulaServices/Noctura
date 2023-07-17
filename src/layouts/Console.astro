@@ -20,7 +20,7 @@ const { title } = Astro.props;
     <div class="console">
         <div class="console-left">
             {
-                tabs.map(tab =>tab[0]=='Themes'?<Link class={"console-navlink" + (tab[1].split('/').pop() == page ? " console-navlink-active" : "")} data-cold="" href={tab[1]}>{tab[0]}</Link>:(
+                tabs.map(tab => (tab[0]=='Themes'||tab[0]=='Scripts')?<Link class={"console-navlink" + (tab[1].split('/').pop() == page ? " console-navlink-active" : "")} data-cold="" href={tab[1]}>{tab[0]}</Link>:(
                     <Link class={"console-navlink" + (tab[1].split('/').pop() == page ? " console-navlink-active" : "")} href={tab[1]}>{tab[0]}</Link>
                 ))
             }
