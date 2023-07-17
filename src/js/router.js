@@ -99,7 +99,7 @@ class Router {
     #allLinks() {
         return Array.from(document.links).filter((link) => {
             return link.href.includes(document.location.origin) &&
-            !link.href.includes('#') && // not an id anchor
+            link.href.indexOf('#') == -1 && // not an id anchor
             link.href !== (document.location.href || document.location.href + '/') &&
             !this.prefetched.has(link.href)
         });
@@ -118,6 +118,12 @@ class Router {
                 anchor = n;
                 break;
             }
+        }
+
+        if (anchor && this.#allLinks().indexOf(anchor) == -1) {
+            e.stopPropagation();
+            e.preventDefault();
+            return;
         }
 
         if (anchor && anchor.host !== location.host) {
@@ -142,7 +148,21 @@ class Router {
     }
 
     #handlePopstate(e) {
-        console.log(this.#url())
+        let anchor;
+
+        for (let n = e.target; n.parentNode; n = n.parentNode) {
+            if (n.nodeName === 'A') {
+                anchor = n;
+                break;
+            }
+        }
+
+        console.log(e, this.#allLinks().indexOf(anchor));
+
+        if (anchor && this.#allLinks().indexOf(anchor) == -1) {
+            return;
+        }
+
         this.#replaceBody(this.#url(), true);
     }
 
