@@ -218,7 +218,7 @@
             api.newsession(function (id) {
                 addSession(id); //Generate it
                 localStorage.setItem('session-string', id); // Set localstorage
-                alert(id);
+                console.log("New RH session made.")
             });
         };
         function isUrl(val = ''){
