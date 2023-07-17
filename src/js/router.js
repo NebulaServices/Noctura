@@ -39,7 +39,7 @@ class Router {
     }
 
     #mergeHead(doc) {
-        const getValidNodes = (doc) => Array.from(doc.querySelectorAll('head>:not([rel="prefetch"]'));
+        const getValidNodes = (doc) => Array.from(doc.querySelectorAll('head>:not([rel="prefetch"], [data-cold])'));
         const oldNodes = getValidNodes(document);
         const newNodes = getValidNodes(doc);
 
@@ -51,7 +51,7 @@ class Router {
     }
 
     #runScripts() {
-        const scripts = document.body.querySelectorAll("script");
+        const scripts = document.querySelectorAll("body script, script[data-load]");
 
         scripts.forEach((script) => {
             const newScript = document.createElement("script");
@@ -126,7 +126,7 @@ class Router {
             if (anchor && anchor.hasAttribute('data-cold')) {
                 return;
             }
-            
+
             e.stopPropagation();
             e.preventDefault();
             return;

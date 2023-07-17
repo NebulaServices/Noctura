@@ -30,6 +30,7 @@ const { url } = Astro;
 			import '../js/cookie.js';
 			import "../js/notify.js";
 		</script>
+		<style id="dynamic-style" data-cold is:inline>* {}</style>
 		<link rel="preload" crossorigin="anonymous" href="/font/MajorMonoDisplay-Webfont.woff2" type="font/woff2" as="font">
 		<link rel="prefetch" crossorigin="anonymous" href="/js/loader.js" type="application/javascript" as="script">
 		<link href="/font/font.css" rel="stylesheet">
@@ -73,7 +74,6 @@ const { url } = Astro;
 		}
 		<script defer src="/js/ui.js" />
 		<script async src="/js/sw.js" />
-		<style id="dynamic-style" is:inline>* {}</style>
 	</head>
 	<body>
 		<div class="page-load-progress"></div>
