@@ -3,16 +3,54 @@
 import Console from "@console";
 import Section from "@components/Section.astro";
 
+var themes = [
+    {
+        name: "Monochrome",
+        data: {
+
+        }
+    }
+]
 ---
 
 <Console title="Themes Library">
+    <style scoped>
+        #monaco-editor {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+    <script is:inline src="/monaco-editor/min/vs/loader.js"></script>
     <Section>
         <h1 class="text-xl">Upload VScode theme</h1>
         <input type="file" id="file" accept=".json,.vstheme,application/json,application/xml"/>
         <p> You can run the command "Developer: Generate Color Theme From Current Settings" in VScode to generate a theme file from you current theme.</p> 
     </Section>
 
+    <Section>
+        <h1 class="text-xl">Create Custom Theme</h1>
+        <div id="monaco-editor"></div>
+    </Section>
+
     <script type="module">
+        function parse(theme) {
+            var data = {
+                data: {}
+            };
+
+            data.name = theme.match(/^\[data-theme=.?([a-zA-Z0-9]+).?\]/)[1];
+
+            var parsed = theme.replace(/\/\*(.*?)\*\//gi, '').replace(/\s/g, '').split('').slice(theme.split('').findIndex(e=>e=='{')).slice(0, theme.split('').findIndex(e=>e=='}') -1).join('').replace(/;?\}$/, '');
+
+            parsed.split(';').forEach(prop => {
+                const [ name, value ] = prop.split(':');
+
+                data.data[name] = value;
+            }); 
+
+            return data;
+        }
+
         function adjust(color, amount) {
             return '#' + color.replace(/^#/, '').replace(/../g, color => ('0'+Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)).substr(-2));
         }
@@ -57,6 +95,35 @@ import Section from "@components/Section.astro";
                 
             }
             reader.readAsText(file);
+        });
+    </script>
+
+    <script is:inline>
+        function getCurrentTheme() {
+            var str = "";
+            var theme = localStorage.getItem('theme') || 'amoled';
+
+            str += "[data-theme=\"" + theme + "\"] {\n";
+
+            ['--primary-bg-color', '--secondary-bg-color', '--primary-text-color', '--nav-btn-color', '--nav-btn-color-darker', '--font-color', '--banner-gradient', '--surface-2', '--settings-1', '--settings-2', '--settings-3', '--borders-1', '--borders-2', '--tn-filter'].forEach(color => {
+                str += "\t--" + color + ": " + getComputedStyle(document.documentElement).getPropertyValue(color) + ";\n";
+            });
+
+            str += "}";
+
+            return str;
+        }
+
+        require.config({ paths: { vs: '/monaco-editor/min/vs' } });
+        require(['/monaco-editor/min/vs/editor/editor.main'], async function () {
+            // wait for window.monaco to exist
+            function w() {return new Promise(e=>setTimeout(e, 10)).then(e=>window.monaco?true:w())};
+            await w();
+            var editor = monaco.editor.create(document.getElementById('monaco-editor'), {
+                value: getCurrentTheme(),
+                language: 'css',
+                theme: 'vs-dark'
+            });
         });
     </script>
 </Console>
