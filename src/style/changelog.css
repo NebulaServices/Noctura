@@ -25,9 +25,31 @@
 }
 
 ul {
-  list-style-type: none;
   margin: 0;
   padding: 15px;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+.list-bullet li {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.list-subheader {
+  font-size: 1.2em;
+  margin: 0px;
+  padding-top: 2px;
+  font-weight: bold;
+}
+
+.list-header {
+  font-size: 1.4em;
+  margin: 0px;
+  padding-top: 5px;
+  font-weight: bold;
+}
+
+* {
+  color: var(--font-color)
 }
