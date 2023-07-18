@@ -17,7 +17,7 @@ import Layout from "@layout";
     }}>
         <style scoped>
             #container img {
-                width: 275px;
+                width: 100%;
                 height: 135px;
                 object-fit: cover;
                 border-top-right-radius: 25px;
@@ -31,9 +31,18 @@ import Layout from "@layout";
                 height: 50px;
             }
 
+            #container a {
+                width: min-content;
+                display: block;
+                margin: auto;
+            }
+
             #container .play {
-                width: 275px;
+                width: 100%;
                 height: 85px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 border-bottom-right-radius: 25px;
                 border-bottom-left-radius: 25px;
                 bottom: 0;
