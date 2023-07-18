@@ -4,7 +4,7 @@ const { id } = Astro.props;
 const gtagUrl = `https://www.googletagmanager.com/gtag/js?id=${id}`;
 ---
 
-<script async type="text/partytown" src={gtagUrl}></script>
+<script async src={gtagUrl}></script>
 <script define:vars={{id}}>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
