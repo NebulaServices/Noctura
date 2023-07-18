@@ -1,10 +1,9 @@
 ---
 let defaults = {
-    wrapperId: 'notification-wrapper',
     animationDuration: 300,
     timeout: 5000,
     zIndex: 1000,
-    top: 0, // Controls the offset from top of viewport.
+    top: 0,
     colors: {
         error: {
             color: "#FFFFFF",
@@ -38,8 +37,6 @@ const styles = {
         pointerEvents: 'none',
         transition: 'all ' + defaults.animationDuration + 'ms ease',
         transform: 'translateY(-100%)',
-
-        // Vendor Prefixes
         msTransition: 'all ' + defaults.animationDuration + 'ms ease',
         msTransform: 'translateY(-100%)',
         WebkitTransition: 'all ' + defaults.animationDuration + 'ms ease',
@@ -59,20 +56,6 @@ const styles = {
         padding: '10px 30px',
         pointerEvents: 'all'
     },
-    show: {
-        transform: 'translateY(0)',
-        msTransform: 'translateY(0)',
-        WebkitTransform: 'translateY(0)',
-        OTransform: 'translateY(0)',
-        MozTransform: 'translateY(0)'
-    },
-    hide: {
-        transform: 'translateY(-100%)',
-        msTransform: 'translateY(-100%)',
-        WebkitTransform: 'translateY(-100%)',
-        OTransform: 'translateY(-100%)',
-        MozTransform: 'translateY(-100%)'
-    }
 };
 ---
 
