@@ -13,7 +13,6 @@
     "depends": "npm i react cloudflare"
   },
   "dependencies": {
-    "@astrojs/partytown": "^1.2.3",
     "@astrojs/react": "^2.2.1",
     "@astrojs/sitemap": "^1.4.0",
     "@codemirror/lang-javascript": "^6.1.9",
@@ -26,8 +25,6 @@
     "astro-analytics": "^2.6.0",
     "astro-hover-prefetch": "^1.0.7",
     "astro-imagetools": "^0.8.1",
-    "astro-link": "^1.2.1",
-    "astro-link-preview": "^0.3.1",
     "astro-seo": "^0.7.5",
     "cloudflare": "^2.9.1",
     "codemirror": "^6.0.1",
@@ -38,7 +35,6 @@
     "flamethrower-router": "0.0.0-meme.12",
     "globby": "^13.2.2",
     "monaco-editor": "^0.40.0",
-    "noty": "^3.2.0-beta-deprecated",
     "rammerhead": "https://github.com/holy-unblocker/rammerhead/releases/download/v1.2.41-holy.5/rammerhead-1.2.41-holy.5.tgz",
     "react": "^18.2.0",
     "sharp": "^0.32.3",
