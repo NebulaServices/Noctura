@@ -163,7 +163,7 @@ var modules = [
                         <h3><span>by {script.author}</span></h3>
                         <p style="margin-top: 20px;">{script.description.length > 100 ? script.description.split('').slice(0, 100).join('') + '...' : script.description}</p>
                         <div class="play">
-                            <button class="script-button" data-url={script.url} onclick={`scriptEvent(JSON.parse('${JSON.stringify(script)}'))`}>
+                            <button class="script-button" data-url={script.url} data-script={btoa(JSON.stringify(script))}>
                                 <div class="installbutton">
                                     <p class="installtext" data-id={script.id}>Install</p>
                                 </div>
@@ -273,7 +273,7 @@ var modules = [
                         <h3><span>by {script.author}</span></h3>
                         <p style="margin-top: 5px;">{script.description.length > 100 ? script.description.split('').slice(0, 100).join('') + '...' : script.description}</p>
                         <div class="play">
-                            <button class="script-button" data-url={script.url} onclick={`scriptEvent(JSON.parse('${JSON.stringify(script)}'))`}>
+                            <button class="script-button" data-url={script.url} data-script={btoa(JSON.stringify(script))}>
                                 <div class="installbutton">
                                     <p class="installtext" data-id={script.id}>Install</p>
                                 </div>
@@ -303,6 +303,14 @@ var modules = [
 
             (!scriptInfo || scriptInfo === "uninstalled") ? text.innerText = "Install" : text.innerText = "Uninstall";
         });
+
+        document.querySelectorAll(".script-button").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const script = JSON.parse(atob(btn.dataset.script));
+
+                scriptEvent(script);
+            })
+        })
 
         window.scriptEvent = (script) => {
             const type = script.id.split("-")[0];
