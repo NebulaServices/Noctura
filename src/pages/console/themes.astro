@@ -23,12 +23,17 @@ var themes = [
     <Section>
         <h1 class="text-xl">Upload VScode theme</h1>
         <input type="file" id="file" accept=".json,.vstheme,application/json,application/xml"/>
-        <p> You can run the command "Developer: Generate Color Theme From Current Settings" in VScode to generate a theme file from you current theme.</p> 
+        <p> You can run the command "Developer: Generate Color Theme From Current Settings" in VScode to generate a theme file from you current theme. </p> 
     </Section>
 
     <Section>
         <h1 class="text-xl">Create Custom Theme</h1>
+        <h2>Drag & Drop theme JSON below:</h2>
+        <input type="file" id="theme-import" class="mb-2" accept=".json,.vstheme,application/json,application/xml"/>
         <div id="monaco-editor"></div>
+        <button class="console-submit" id="save-theme">Save</button>
+        <button class="console-submit" id="export-theme">Export</button>
+        <button class="console-submit" id="reset-theme">Reset</button>
     </Section>
 
     <script type="module">
@@ -105,7 +110,7 @@ var themes = [
     <script type="module">
         function getCurrentTheme() {
             var str = "";
-            var theme = localStorage.getItem('theme') || 'amoled';
+            var theme = 'custom';
 
             str += "[data-theme=\"" + theme + "\"] {\n";
 
@@ -118,12 +123,109 @@ var themes = [
             return str;
         }
 
+        function genTheme(data) {
+            if (!data.data) throw "";
+            var str = "";
+            var theme = 'custom';
+
+            str += "[data-theme=\"" + theme + "\"] {\n";
+
+            Object.keys(data.data).forEach(key => str += `\t${key}: ${data.data[key]};\n`);
+
+            str += "}";
+
+            return str;
+        }
+
+        function parseTheme(theme) {
+            var data = {
+                data: {}
+            };
+
+            data.name = theme.match(/^\[data-theme=.?([a-zA-Z0-9]+).?\]/)[1];
+
+            var parsed = theme.replace(/\/\*(.*?)\*\//gi, '').replace(/\s/g, '').split('').slice(theme.split('').findIndex(e=>e=='{')).slice(0, theme.split('').findIndex(e=>e=='}') -1).join('').replace(/;?\}$/, '');
+
+            parsed.split(';').forEach(prop => {
+                const [ name, value ] = prop.split(':');
+
+                data.data[name] = value;
+            }); 
+
+            return data;
+        }
+
+        var imports = document.getElementById('theme-import');
+
+        const loadMonaco = function w() {return new Promise(e=>setTimeout(e, 10)).then(e=>window.monaco?true:w())}();
+
+        document.getElementById('save-theme').addEventListener('click', async (event) => {
+            if (!window.editor) await loadMonaco;
+
+            var parsed = parseTheme(window.editor.getValue());
+
+            Object.keys(parsed.data).forEach(key => {
+                localStorage.setItem(key.replace('--', ''), parsed.data[key]);
+            });
+
+            if (localStorage.getItem('theme') !== 'custom') localStorage.setItem('saved-theme', localStorage.getItem('theme') || 'amoled');
+            localStorage.setItem('theme', 'custom');
+
+            document.documentElement.dataset.theme = "custom";
+            document.querySelector('style#dynamic-style').innerHTML = `[data-theme="custom"] {${['primary-bg-color', 'secondary-bg-color', 'settings-1', 'settings-2', 'settings-3', 'font-color', 'primary-text-color', 'nav-btn-color-darker', 'nav-btn-color'].map(e=>localStorage.getItem(e) ? `--${e}: ${localStorage.getItem(e) + ' !important'}` : '').join(';')}}`;
+
+            notify.show("Saved", "success", 2000);
+        });
+
+        imports.addEventListener('change', async event => {
+            if (!window.editor) await loadMonaco;
+
+            const file = imports.files[0];
+
+            try {
+                const data = JSON.parse(await file.text());
+
+                window.editor.setValue(genTheme(data));
+
+            } catch {
+                notify.show("Invalid Theme Data", "error", 2000);
+            }
+        });
+
+        document.getElementById('reset-theme').addEventListener('click', async (event) => {
+            if (!window.editor) await loadMonaco;
+
+            var parsed = parseTheme(window.editor.getValue());
+
+            Object.keys(parsed.data).forEach(key => {
+                localStorage.removeItem(key.replace('--', ''));
+            });
+
+            localStorage.setItem('theme', localStorage.getItem('saved-theme') || 'amoled');
+
+            document.documentElement.dataset.theme = localStorage.getItem('theme');
+            document.querySelector('style#dynamic-style').innerHTML = ``;
+
+            notify.show("Reset", "success", 2000);
+        });
+
+        document.getElementById('export-theme').addEventListener('click', async (event) => {
+            if (!window.editor) await loadMonaco;
+
+            var parsed = parseTheme(window.editor.getValue());
+
+            var a = document.createElement('a');
+            a.download = "theme.json";
+            a.href = 'data:application/json,' + encodeURIComponent(JSON.stringify(parsed));
+
+            a.click();
+        });
+
         require.config({ paths: { vs: '/monaco-editor/min/vs' } });
         require(['/monaco-editor/min/vs/editor/editor.main'], async function () {
-            // wait for window.monaco to exist
-            function w() {return new Promise(e=>setTimeout(e, 10)).then(e=>window.monaco?true:w())};
-            await w();
-            var editor = monaco.editor.create(document.getElementById('monaco-editor'), {
+            // wait for window.monaco to exist (i love require) (real)
+            await loadMonaco;
+            window.editor = monaco.editor.create(document.getElementById('monaco-editor'), {
                 value: getCurrentTheme(),
                 language: 'css',
                 theme: 'vs-dark'
