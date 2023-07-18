@@ -53,17 +53,3 @@ addEventListener('router:end', function() {
         proxy.querySelector('img').srcset = cookie ? document.querySelector("a[data-value='" + cookie + "'] img").srcset : document.querySelector("a[data-value='Ultraviolet'] img").srcset;
     }
 });
-
-window.console.error = new Proxy(window.console.error, {
-    apply: function(target, thisArg, argumentsList) {
-        try {
-            if (argumentsList.length && argumentsList[0].includes('Warning: ReactDOM.render is no longer supported in React 18')) {
-                return;
-            } else {
-                return Reflect.apply(target, thisArg, argumentsList);
-            }
-        } catch {
-            return Reflect.apply(target, thisArg, argumentsList);
-        }
-    }
-});

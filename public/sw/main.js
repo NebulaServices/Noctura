@@ -26,6 +26,28 @@ addEventListener('activate', function(event) {
     event.waitUntil(self.clients.claim());
 });
 
+const warn = (err, src, lin, col) => {
+    return console.warn(`%c[%cWORKER ERROR%c] %c${err}\n%c[%cAT%c] %c${src || 'UNKNOWN'}:${lin || 'UNKNOWN'}:${col || 'UNKNOWN'}`, "color: white; font-weight: bold;", "color: red; font-weight: bold;", "color: white; font-weight: bold;", "font-weight: 100; color: white", "color: white; font-weight: bold;", "color: red; font-weight: bold;", "color: white; font-weight: bold;", "font-weight: 100; color: white")
+}
+
+const oglist = self.onerror;
+self.onerror = function(event, source, line, col, error) {
+    if (oglist) oglist(...arguments);
+
+    warn(error.toString(), source, line, col);
+
+    return true;
+}
+
+const ogrej = self.onunhandledrejection;
+self.onunhandledrejection = function(event, source, line, col, error) {
+    if (ogrej) ogrej(...arguments);
+
+    warn(event.reason.toString(), event.stack, '', '');
+
+    return true;
+}
+
 const p = new Promise(async (res) => {
     const cache = await caches.open('astro-data');
 
@@ -36,42 +58,53 @@ const p = new Promise(async (res) => {
     try {
         const req = await fetch('http://' + bareServer.replace(/\/$/, '') + '/', {redirect: 'follow'});
 
-        //console.log('bare server', bareServer)
-
         self.__uv$config.bare = req.url;
         self.__dynamic$config.bare.path = req.url;
-        console.log(req.url);
-    } catch(e) {console.log(e)};
+    } catch {};
 
-    self.dynamic = new Dynamic(self.__dynamic$config);
-    self.uv = new UVServiceWorker(self.__uv$config);
+    if (navigator.onLine) {
+        self.dynamic = new Dynamic(self.__dynamic$config);
+        self.uv = new UVServiceWorker(self.__uv$config);
+    }
 
     res(await caches.open('astro-cache'));
 });
 
 addEventListener('fetch', function(event) {
     event.respondWith((async function() {
-        const cache = await p;
+        try {
+            const cache = await p;
 
-        if (await cache.match(event.request.url)) return await cache.match(event.request.url);
+            if (await cache.match(event.request.url)) return await cache.match(event.request.url);
 
-        if (event.request.url.endsWith('?sw=ignore')) return await fetch(event.request);
+            if (event.request.url.endsWith('?sw=ignore')) return await fetch(event.request);
 
-        if (event.request.url.startsWith(location.origin + '/~/uv/')) {
-            return await self.uv.fetch(event);
+            if (navigator.onLine) {
+                if (event.request.url.startsWith(location.origin + '/~/uv/')) {
+                    return await self.uv.fetch(event);
+                }
+
+                if (await self.dynamic.route(event)) {
+                    return await self.dynamic.fetch(event);
+                }
+            } else {
+                if (event.request.url.startsWith(location.origin + '/~/')) {
+                    return new Response("Offline", { status: 500 });
+                }
+            }
+
+            if (event.request.destination === "font" || event.request.url.startsWith(location.origin + '/icons/games/')) {
+                var res;
+                const req = await cache.match(event.request.url) || (res = await fetch(event.request), await cache.put(event.request.url, res.clone()), res);
+
+                return req;
+            }
+
+            return await fetch(event.request);
+        } catch(e) {
+            onerror('', event.request.url, '', '', e);
+
+            return new Response(e.toString(), { status: 500 });
         }
-
-        if (await self.dynamic.route(event)) {
-            return await self.dynamic.fetch(event);
-        }
-
-        if (event.request.destination === "font" || event.request.url.startsWith(location.origin + '/icons/games/')) {
-            var res;
-            const req = await cache.match(event.request.url) || (res = await fetch(event.request), await cache.put(event.request.url, res.clone()), res);
-
-            return req;
-        }
-
-        return await fetch(event.request);
     })());
 });
