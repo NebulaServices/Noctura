@@ -9,7 +9,7 @@ import compression from './compress';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), partytown({ config: { debug: false } }), sitemap(), compression(), compress({
+  integrations: [tailwind(), sitemap(), compression(), compress({
     exclude: [file => file.includes("$server_build") || file.includes("/sw")],
     logger: 0,
     js: false,

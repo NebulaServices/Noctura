@@ -8,7 +8,7 @@ export default function compression() {
         name: "noctura-compress",
         hooks: {
             'astro:build:done': async({ dir }) => {
-                const files = await globby(`./dist/**/*.{css,js}`, {
+                const files = await globby([`./dist/**/*.{css,js}`, "!./dist/sw"], {
                     expandDirectories: true
                 });
                 files.map(async (file) => {
