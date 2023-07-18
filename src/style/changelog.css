@@ -7,25 +7,27 @@
   font-size: 2em;
   margin: 0px;
   padding-top: 20px;
-  text-align: center;
+  text-align: left;
 }
 
 .changelog-version {
   font-size: 1.5em;
   margin: 0px;
   padding-top: 15px;
-  text-align: center;
+  text-align: left;
 }
 
 .changelog-content{
   font-size: 1em;
   margin: 0px;
-  padding-top: 0px;
-  text-align: center;
+  padding-top: 15px;
+  text-align: left;
 }
 
 ul {
   list-style-type: none;
   margin: 0;
   padding: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
