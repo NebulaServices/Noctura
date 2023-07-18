@@ -281,8 +281,8 @@ var modules = [
     <Section>
         <h1 class="text-xl">Script Editor</h1>
         <p>very cool</p>
-        <button class="console-submit" onclick="this.classList.add('selected-opt'); this.nextElementSibling.classList.remove('selected-opt'); window.editing = 'inject'; window.editor ? window.editor.setValue(localStorage.getItem('saved-inject') || injectText) : window.defaultText = injectText">Proxy Injection</button>
-        <button class="console-submit mb-1" onclick="this.classList.add('selected-opt'); this.previousElementSibling.classList.remove('selected-opt'); window.editing = 'module'; window.editor ? window.editor.setValue(localStorage.getItem('saved-module') || moduleText) : window.defaultText = moduleText">Noctura Module</button>
+        <button class="console-submit" onclick="window.setInject(this);">Proxy Injection</button>
+        <button class="console-submit mb-1" onclick="window.setModule(this);">Noctura Module</button>
         <div id="monaco-editor"></div>
         <button class="console-submit" onclick="window.saveEdits();">Save</button>
     </Section>
@@ -409,6 +409,9 @@ var modules = [
         (typeof define == 'function') && define();
 
         require.config({ paths: { vs: '/monaco-editor/min/vs' } });
+
+        window.setInject = (that) => {that.classList.add('selected-opt'); that.nextElementSibling.classList.remove('selected-opt'); window.editing = 'inject'; window.editor ? window.editor.setValue(localStorage.getItem('saved-inject') || injectText) : window.defaultText = injectText};
+        window.setModule = (that) => {that.classList.add('selected-opt'); that.previousElementSibling.classList.remove('selected-opt'); window.editing = 'module'; window.editor ? window.editor.setValue(localStorage.getItem('saved-module') || moduleText) : window.defaultText = moduleText};
 
         window.saveEdits = async function() {
             switch(window.editing) {

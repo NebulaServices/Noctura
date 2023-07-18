@@ -11,7 +11,7 @@ import partytown from '@astrojs/partytown';
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), partytown({ config: { debug: false } }), sitemap(), compress({
-    exclude: [file => file.includes("$server_build") || file.includes("/console/scripts")],
+    exclude: [file => file.includes("$server_build")],
     logger: 0
   }), astroImageTools],
   site: 'https://noctura.tech',
@@ -24,12 +24,5 @@ export default defineConfig({
   // adapter: node({
   //   mode: "standalone"
   // }), 
-  server: {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Service-Worker-Allowed": "/",
-      "X-Content-Type-Options": "nosniff"
-    }
-  },
   output: "static"
 });
