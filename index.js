@@ -6,7 +6,7 @@ import { createBareServer } from '@tomphttp/bare-server-node';
 import { uvPath } from '@titaniumnetwork-dev/ultraviolet';
 import fastifyStatic from "@fastify/static";
 import createRammerhead from 'rammerhead/src/server/index.js';
-
+// airplane
 // if anyone can figure out how to unfuck fastify not working on some things that would be great, ideally we want to use it over express whenever we can.
 const bare = createBareServer("/bare/");
 
