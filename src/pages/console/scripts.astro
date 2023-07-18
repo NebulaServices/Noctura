@@ -33,7 +33,7 @@ var modules = [
         author: "Riftriot",
         url: "/js/testscript.js",
         description: "Change something in homepage",
-        id: "modules-0001"
+        id: "module-0001"
     }
 ]
 ---
@@ -299,13 +299,12 @@ var modules = [
 
         window.scriptEvent = (script) => {
             const type = script.id.split("-")[0];
-            const scriptInfo = (JSON.parse(localStorage.getItem("scripts")) || {})[script.id];
+            const scriptInfo = (JSON.parse(localStorage.getItem("scripts") || "{}"))[script.id];
 
             if (type === "proxy") {
                 (!scriptInfo || scriptInfo === "uninstalled") ? window.installScript(script) : window.uninstallScript(script);
             } else if (type === "module") {
-                // for the script to be in an installed state it must have to be initialized previously
-                (scriptInfo === "installed") ? window.installModule(script) : window.uninstallModule(script);
+                (!scriptInfo || scriptInfo === "uninstalled") ? window.installModule(script) : window.uninstallModule(script);
             }
         }
 
@@ -394,7 +393,7 @@ var modules = [
         window.uninstallModule = async (script) => {
             notify.show("Uninstalling Script", "info", 2000);
             await notify.hide();
-            await scripts.delete("/" + script.id + ".js");
+            await modules.delete("/" + script.id + ".js");
 
             await notify.hide();
             notify.show("Script Uninstalled", "success", 2000);
