@@ -236,5 +236,26 @@
       "image": "/games/moto-x3m-pool-party-icon.png",
       "description": "Moto X3M 2, a game where you have to ride your bike through the forest.",
       "file": "https://mathlover1.github.io/msgweb-assets/motox3m2/index.html"
+    },
+    {
+      "id": "gba",
+      "title": "Game Boy Advanced",
+      "image": "/games/gba.png",
+      "description": "A Game Boy Advanced emulator with 1000s of games!",
+      "file": "https://cattn.github.io/gba/gba.html"
+    },
+    {
+      "id": "gb",
+      "title": "Game Boy",
+      "image": "/games/gb.png",
+      "description": "A Game Boy emulator with 1000s of games!",
+      "file": "https://cattn.github.io/gba/gb.html"
+    },
+    {
+      "id": "gbc",
+      "title": "Game Boy Color",
+      "image": "/games/gbc.png",
+      "description": "A Game Boy Color emulator with 1000s of games!",
+      "file": "https://cattn.github.io/gba/gbc.html"
     }
 ]
