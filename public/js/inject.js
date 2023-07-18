@@ -1,21 +1,44 @@
 const dom = new DOMParser().parseFromString('', 'text/html');
 
-const cache = await caches.open("astro-scripts");
+// const cache = await caches.open("astro-scripts");
 
-cache.keys().then(async keys => {
-    for (var { url } of keys) {
-        const res = await cache.match(url);
-        const body = await res.blob();
+// console.log(cache)
 
-        const blobURL = URL.createObjectURL(new Blob([`let moduleID = "${url.split('/').pop().split('.')[0]}";\n`, body], { type: 'application/javascript' }), { type: 'application/javascript' });
+// cache.keys().then(async (keys) => {
+//     console.log(keys);
+//     for (const { url } of keys) {
+//         // const body = await (await cache.match(url)).blob();
+//         // const body = await res.blob();
 
-        let script = document.createElement('script');
-        script.src = blobURL;
-        script.type = 'module';
-        script.async = '';
+//         // const blobURL = URL.createObjectURL(new Blob([`let moduleID = "${url.split('/').pop().split('.')[0]}";\n`, body], { type: 'application/javascript' }), { type: 'application/javascript' });
 
-        document.head.appendChild(script);
-    }
+//         // let script = document.createElement('script');
+//         // script.src = blobURL;
+//         // script.type = 'module';
+//         // script.defer = true
+
+//         // document.head.appendChild(script);
+//         console.log(url);
+//     }
+// });
+
+window.addEventListener("inject:cache", (event) => {
+    const { cache } = event.detail;
+
+    cache.keys().then(async (keys) => {
+        for (const { url } of keys) {
+            const body = await (await cache.match(url)).blob();
+
+            const blobURL = URL.createObjectURL(new Blob([`let moduleID = "${url.split('/').pop().split('.')[0]}";\n`, body], { type: 'application/javascript' }), { type: 'application/javascript' });
+
+            let script = document.createElement('script');
+            script.src = blobURL;
+            script.type = 'module';
+            script.defer = true
+
+            document.head.appendChild(script);
+        }
+    })
 })
 
 let color = '#fff';

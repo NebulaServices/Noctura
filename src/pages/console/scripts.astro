@@ -24,6 +24,13 @@ var proxy = [
         url: "/js/scripts/darkMode.js",
         description: "If the website is not in dark mode, this script will invert all colors on the website.",
         id: "proxy-0003"
+    },
+    {
+        name: ":3",
+        author: "avd3",
+        url: "/js/scripts/3.js",
+        description: ":3",
+        id: "proxy-0004"
     }
 ]
 
@@ -336,7 +343,7 @@ var modules = [
 
             await scripts.put('/' + script.id + '.js', new Response(data, {
                 headers: {
-                    'Content-Type': 'application/javascript'
+                    'Content-Type': 'text/javascript'
                 }
             }));
 

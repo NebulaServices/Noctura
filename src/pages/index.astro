@@ -155,10 +155,18 @@ import Obfuscated from "@components/Obfuscated.astro";
 
                 document.querySelector(".home").style.paddingBottom = "0px";
 
-                iframe.onload = function() {
-                    iframe.onload = () => {};
+                iframe.onload = async function() {
+                    iframe.onload = async () => {};
                     loader.style.opacity = "0";
                     iframe.style.display = 'block';
+
+                    const cache = await caches.open("astro-scripts");
+
+                    iframe.contentWindow.dispatchEvent(new CustomEvent("inject:cache", {
+                        detail: {
+                            cache
+                        }
+                    }));
                     
                     setTimeout(function() {
                         loader.remove();
