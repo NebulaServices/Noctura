@@ -7,6 +7,7 @@ const { quality, alt, src } = Astro.props;
 
 <Img attributes={{ 
     img: {
-        class: Astro.props.class
+        class: Astro.props.class,
+        style: Astro.props.style || ""
     } 
 }} quality={60 || quality} format="webp" placeholder="tracedSVG" loading="lazy" alt={alt || ""} src={src} />

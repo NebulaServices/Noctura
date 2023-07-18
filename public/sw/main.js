@@ -93,7 +93,7 @@ addEventListener('fetch', function(event) {
                 }
             }
 
-            if (event.request.destination === "font" || event.request.url.startsWith(location.origin + '/icons/games/')) {
+            if (event.request.destination === "font" || event.request.url.startsWith(location.origin + '/icons/')) {
                 var res;
                 const req = await cache.match(event.request.url) || (res = await fetch(event.request), await cache.put(event.request.url, res.clone()), res);
 
