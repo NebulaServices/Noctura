@@ -2,6 +2,7 @@
 //import Metadata from "./Metadata.astro";
 //import Search from "./Search.astro";
 import GameList from '../games.json';
+import "@css/style.css";
 //import General from "src/pages/settings/general.astro";
 import Layout from "@layout";
 ---
@@ -67,8 +68,8 @@ import Layout from "@layout";
             #container .element {
                 border: 1px solid var(--settings-3);
                 float: left;
-                height: 385px;
-                width: 275px;
+                height: 350px;
+                width: 250px;
                 color: var(--font-color);
                 background-color: var(--settings-1);
                 border-radius: 25px;
@@ -106,7 +107,7 @@ import Layout from "@layout";
                 <br />
                 <h2><span>{game.title}</span></h2>
                 <br />
-                <p>{game.description.length > 190 ? game.description.split('').slice(0, 190).join('') + '...' : game.description}</p>
+                <p>{game.description.length > 135 ? game.description.split('').slice(0, 135).join('') + '...' : game.description}</p>
                 <div class="play">
                   <a href={'/games/' + game.id}>
                     <div class="playbutton">
