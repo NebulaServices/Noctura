@@ -127,7 +127,7 @@ import Section from "@components/Section.astro";
 
                     caches.open("astro-data").then(async (cache) => {
                         try {
-                            await fetch(`http://${bare}/`, { redirect: 'follow' });
+                            await fetch(`http://${bare}/`, { redirect: 'follow' }).catch(e=>fetch('https://tomp.app/', { redirect: 'follow' })).then(e=>e.json());
                         } catch (e) {
                             notify.show(`Invalid Server: Failed to Fetch`, "error", 2000);
                             return;
