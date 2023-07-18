@@ -132,6 +132,8 @@ import Preset from "@components/Preset.astro"
                 faviconLoad();
                 titleLoad();
 
+                navigator.serviceWorker.controller.postMessage('updateCloak');
+
                 notify.show("Saved Data", "success", 2000);
             });
 
@@ -160,6 +162,8 @@ import Preset from "@components/Preset.astro"
                     faviconLoad();
                 }
 
+                navigator.serviceWorker.controller.postMessage('updateCloak');
+
                 notify.show("Saved", "success", 2000);
             });
 
@@ -175,6 +179,12 @@ import Preset from "@components/Preset.astro"
                 localStorage.setItem('savedFavicon', img);
                 localStorage.removeItem('autoURL');
 
+                document.querySelector('#automatic-cloaking input').value = localStorage.getItem('autoURL') || '';
+                document.querySelectorAll('#manual-cloaking input')[0].value = localStorage.getItem('savedTitle') || '';
+                document.querySelectorAll('#manual-cloaking input')[1].value = localStorage.getItem('savedFavicon') || '';
+
+                navigator.serviceWorker.controller.postMessage('updateCloak');
+
                 titleLoad();
                 faviconLoad();
             });
@@ -185,21 +195,25 @@ import Preset from "@components/Preset.astro"
                 e.preventDefault();
 
                 localStorage.setItem('savedTitle', 'Noctura');
-                localStorage.setItem('savedFavicon', '/favicon.svg');
+                localStorage.setItem('savedFavicon', '/icon.png');
                 localStorage.removeItem('autoURL');
+
+                navigator.serviceWorker.controller.postMessage('updateCloak');
 
                 titleLoad();
                 faviconLoad();
 
-                localStorage.removeItem('autoURL');
-                localStorage.removeItem('savedTitle');
-                localStorage.removeItem('savedFavicon');
+                setTimeout(function() {
+                    localStorage.removeItem('autoURL');
+                    localStorage.removeItem('savedTitle');
+                    localStorage.removeItem('savedFavicon');
 
-                document.querySelector('#automatic-cloaking input').value = localStorage.getItem('autoURL') || '';
-                document.querySelectorAll('#manual-cloaking input')[0].value = localStorage.getItem('savedTitle') || '';
-                document.querySelectorAll('#manual-cloaking input')[1].value = localStorage.getItem('savedFavicon') || '';
+                    document.querySelector('#automatic-cloaking input').value = localStorage.getItem('autoURL') || '';
+                    document.querySelectorAll('#manual-cloaking input')[0].value = localStorage.getItem('savedTitle') || '';
+                    document.querySelectorAll('#manual-cloaking input')[1].value = localStorage.getItem('savedFavicon') || '';
 
-                notify.show("Reset Cloaking", "success", 2000);
+                    notify.show("Reset Cloaking", "success", 2000);
+                }, 100);
             });
 
         document.querySelector("#automatic-cloaking input").value =

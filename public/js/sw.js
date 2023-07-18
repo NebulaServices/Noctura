@@ -24,4 +24,12 @@ if ('serviceWorker' in navigator) {
     }));
 
     if (!navigator.serviceWorker.controller) registerSW();
+    else {
+        navigator.serviceWorker.addEventListener('message', async function(e) {
+            if (e.data == 'updateCloak') {
+                faviconLoad();
+                titleLoad();
+            }
+        })
+    }
 }

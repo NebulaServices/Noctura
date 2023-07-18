@@ -70,6 +70,18 @@ const p = new Promise(async (res) => {
     res(await caches.open('astro-cache'));
 });
 
+addEventListener('message', async (e) => {
+    if (e.data == 'updateCloak') {
+        self.clients.matchAll().then(list => {
+            for (var client of list) {
+                if (client.id == e.source.id) continue;
+
+                client.postMessage('updateCloak');
+            }
+        });
+    }
+})
+
 addEventListener('fetch', function(event) {
     event.respondWith((async function() {
         try {
@@ -93,7 +105,7 @@ addEventListener('fetch', function(event) {
                 }
             }
 
-            if (event.request.destination === "font" || event.request.url.startsWith(location.origin + '/icons/')) {
+            if (event.request.destination === "font" || (event.request.destination === "image" && event.request.url.startsWith(location.origin + '/_astro/'))) {
                 var res;
                 const req = await cache.match(event.request.url) || (res = await fetch(event.request), await cache.put(event.request.url, res.clone()), res);
 
