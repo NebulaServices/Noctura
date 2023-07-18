@@ -11,7 +11,7 @@ import partytown from '@astrojs/partytown';
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), partytown({ config: { debug: false } }), sitemap(), compress({
-    exclude: [file => file.includes("$server_build")],
+    exclude: [file => file.includes("$server_build") || file.includes("/console/scripts")],
     logger: 0
   }), astroImageTools],
   site: 'https://noctura.tech',
