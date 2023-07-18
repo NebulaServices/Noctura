@@ -69,11 +69,12 @@ const { url } = Astro;
 			[
 				'tomp.app',
 			].map(e=>{
-				return <link rel="prefetch" as="fetch" href={'https://' + e} />;
+				return <link rel="preconnect" href={'https://' + e} />;
 			})
 		}
 		<script defer src="/js/ui.js" />
 		<script async src="/js/sw.js" />
+		<Analytics id="G-WE1NBQQ361" />
 	</head>
 	<body>
 		<div class="page-load-progress"></div>
@@ -84,7 +85,6 @@ const { url } = Astro;
 			<Footer />
 			<Tabs />
 		</main>
-		<Analytics id="G-WE1NBQQ361" />
 		<script is:inline type="module">
 			window.faviconLoad = function faviconLoad() {
 				var faviconPath = localStorage.getItem('savedFavicon');
