@@ -2,7 +2,6 @@
 import Layout from '@layout';
 import "@css/style.css";
 import "@css/settings.css";
-import Link from '@components/Link.astro';
 import Obfuscated from '@components/Obfuscated.astro';
 
 const page = Astro.url.pathname.replace(/\/$/g, '').split('/').pop();
@@ -23,7 +22,7 @@ const { title } = Astro.props;
         <div class="settings-left">
             {
                 tabs.map(tab => (
-                    <Link class={"settings-navlink" + (tab[1].split('/').pop() == page ? " settings-navlink-active" : "")} href={tab[1]}>{tab[0]}</Link>
+                    <a class={"settings-navlink" + (tab[1].split('/').pop() == page ? " settings-navlink-active" : "")} href={tab[1]}>{tab[0]}</a>
                 ))
             }
         </div>

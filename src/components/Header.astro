@@ -1,6 +1,5 @@
 ---
 import Hamburger from "./Burger.astro";
-import Link from "./Link.astro";
 import Img from "./Img.astro"
 import "./header.css";
 import "./switch.css";
@@ -100,19 +99,19 @@ const currentDate = new Date().getTime();
         <span class="nav-btn-title">Discord</span>
       </a>
 
-      <Link class="extra-btn" href="/changelog">
+      <a class="extra-btn" href="/changelog">
         <span class="nav-btn-title">Changelog</span>
-      </Link>
+      </a>
 
-      <Link class="extra-btn" href="https://docs.titaniumnetwork.org">
+      <a class="extra-btn" href="https://docs.titaniumnetwork.org">
         <span class="nav-btn-title">Docs</span>
-      </Link>
+      </a>
 
       <Hamburger>
         <a href="https://classroom.google.com" class="hamburger-link" id="panic-button" target="_self">Panic</a>
-        <Link href="/credits" class="hamburger-link">Credits</Link>
-        <Link href="/privacy" class="hamburger-link">Privacy Policy</Link>
-        <Link href="/terms" class="hamburger-link">Terms of Service</Link>
+        <a href="/credits" class="hamburger-link">Credits</a>
+        <a href="/privacy" class="hamburger-link">Privacy Policy</a>
+        <a href="/terms" class="hamburger-link">Terms of Service</a>
       </Hamburger>
     </div>
   </div>
@@ -122,7 +121,7 @@ const currentDate = new Date().getTime();
       <div id="nav-move" class="nav-move"></div>
       {
         routes.map((route) => (
-          <Link
+          <a
             class={`nav-btn ${
               currentLocation && currentLocation.id == route.id ? "active" : ""
             }`}
