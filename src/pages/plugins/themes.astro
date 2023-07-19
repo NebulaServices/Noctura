@@ -113,7 +113,7 @@ var themes = [
 
             str += "[data-theme=\"" + theme + "\"] {\n";
 
-            ['--primary-bg-color', '--secondary-bg-color', '--primary-text-color', '--nav-btn-color', '--nav-btn-color-darker', '--font-color', '--banner-gradient', '--surface-2', '--settings-1', '--settings-2', '--settings-3', '--borders-1', '--borders-2', '--tn-filter'].forEach(color => {
+            ['--primary-bg-color', '--secondary-bg-color', '--banner-gradient', '--tn-filter', '--primary-text-color', '--nav-btn-color', '--nav-btn-color-darker', '--font-color', '--banner-gradient', '--surface-2', '--settings-1', '--settings-2', '--settings-3', '--borders-1', '--borders-2', '--tn-filter'].forEach(color => {
                 str += "\t" + color + ": " + getComputedStyle(document.documentElement).getPropertyValue(color) + ";\n";
             });
 
@@ -171,7 +171,7 @@ var themes = [
             localStorage.setItem('theme', 'custom');
 
             document.documentElement.dataset.theme = "custom";
-            document.querySelector('style#dynamic-style').innerHTML = `[data-theme="custom"] {${['primary-bg-color', 'secondary-bg-color', 'settings-1', 'settings-2', 'settings-3', 'font-color', 'primary-text-color', 'nav-btn-color-darker', 'nav-btn-color'].map(e=>localStorage.getItem(e) ? `--${e}: ${localStorage.getItem(e) + ' !important'}` : '').join(';')}}`;
+            document.querySelector('style#dynamic-style').innerHTML = `[data-theme="custom"] {${['primary-bg-color', 'banner-gradient', 'tn-filter', 'secondary-bg-color', 'settings-1', 'settings-2', 'settings-3', 'font-color', 'primary-text-color', 'nav-btn-color-darker', 'nav-btn-color'].map(e=>localStorage.getItem(e) ? `--${e}: ${localStorage.getItem(e) + ' !important'}` : '').join(';')}}`;
 
             notify.show("Saved", "success", 2000);
         });
