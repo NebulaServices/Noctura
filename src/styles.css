@@ -6,7 +6,7 @@
 
 :root {
     --primary-bg-color: #000000;
-    --secondary-bg-color: #ffffff;
+    --secondary-bg-color: #5e5e5e;
     --primary-text-color: #ffffff;
     --nav-btn-color: #fff; /* active button       -- also applies to extra nav buttons */
     --nav-btn-color-darker: #888; /* not active   -- also applies to extra nav buttons */
