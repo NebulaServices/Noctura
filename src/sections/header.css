@@ -74,9 +74,11 @@
 .top-left {
     text-align: left;
     display: inline-block;
-    /*width: 49%;*/
+    
     flex: 1;
     transition: padding-left 0.3s ease;
+    
+    
 }
 
 .nav-icon {
