@@ -29,10 +29,13 @@ window.onunhandledrejection = function(event, source, line, col, error) {
 };
 
 window.addEventListener('router:end', (event) => {
-    var url = '/' + location.pathname.split('?')[0].replace(/(\/$|^\/)/g, '');
+    var url = '/' + location.pathname.split('?')[0].replace(/(\/$|^\/)/g, '').replace(/settings\/(privacy|cloaking|unblock|theme)/, 'settings/general').replace(/console\/(scripts|themes)/, 'console/scripts');
 
     document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
     document.querySelector(`.nav-btn[href="${url}"]`).classList.add('active');
+
+    titleLoad();
+    faviconLoad();
 });
 
 caches.open('astro-modules').then(async modules => {
@@ -58,18 +61,14 @@ window.faviconLoad = function faviconLoad() {
         faviconLink.rel = 'icon';
         document.head.appendChild(faviconLink);
     }
-    faviconLink.href = faviconPath;
+    faviconLink.href = faviconPath || '/icon.png';
     localStorage.setItem('savedFavicon', faviconPath);
 }
 
 window.titleLoad = function titleLoad() {
-    var title = localStorage.getItem('savedTitle');
+    var title = localStorage.getItem('savedTitle') || 'Noctura';
     document.title = title;
 };
 
-if (localStorage.getItem('savedFavicon')) {
-    faviconLoad();
-}
-if (localStorage.getItem('savedTitle')) {
-    titleLoad();
-}
+faviconLoad();
+titleLoad();
