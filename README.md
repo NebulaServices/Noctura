@@ -23,7 +23,7 @@ Noctura is a submission to the 2023 TN Proxathon that aims to provide a proxy th
     - Dark Mode
     - And more!
 - Themes
-    - And a VSCode theme converted for those Devs out there
+    - And a VSCode theme converter for those Devs out there
 - Custom Bare Server Usage
 - And more!
 
