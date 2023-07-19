@@ -19,7 +19,7 @@ import './tabs.css';
             tl = document.querySelector('.header .top-left'),
             nb = document.querySelector('.header .nav-btns'),
             open = false,
-            offset = 220,
+            offset = 250,
             cache = await caches.open('astro-tabs');
 
         list.style.width = `${offset}px`;
@@ -58,13 +58,27 @@ import './tabs.css';
         }
 
         async function getPicture(href) {
-            return '/tab-filler.png';
+            try {
+                var res = await fetch('/gen-scrot?url=' + encodeURIComponent(href)).then(res => res.blob());
+
+                return URL.createObjectURL(res);
+            } catch {
+                return '/tab-filler.png';
+            }
         }
 
-        window.saveTab = async function saveTab(title, href) {
-            var data = { title, href, picture: await getPicture(href) };
+        window.saveTab = async function saveTab(id, title, href) {
+            var data = { id, title, href, picture: await getPicture(href) };
 
-            await cache.put('/' + encodeURIComponent(href), new Response(JSON.stringify(data), { headers: { 'Content-Type': 'application/json' }}));
+            await cache.put('/' + id + '.json', new Response(JSON.stringify(data), { headers: { 'Content-Type': 'application/json' }}));
+
+            await loadTabs();
+
+            return true;
+        }
+
+        window.removeTab = async function(id) {
+            await cache.delete('/' + id + '.json');
 
             await loadTabs();
 
@@ -73,11 +87,9 @@ import './tabs.css';
 
         async function loadTabs() {
             let data = await getData();
-            return list.innerHTML = data.length ? data.map(({ href, title, picture }) => `<div class="tabs-tab"><img class="tab-picture" src="${picture}" alt="Picture of ${title}" /><div class="tab-info"><span class="tab-close">x</span><h1 class="tab-title">${title}</h1><h2 class="tab-link">${href}</h2></div>`).join('</div>\n') : "No Tabs";
+            return list.innerHTML = data.length ? data.map(({ id, href, title, picture }) => `<div class="tabs-tab"><img class="tab-picture" src="${picture}" alt="Picture of ${title}" /><div class="tab-info"><span class="tab-close" id="${id}" onclick="window.removeTab(this.id);">x</span><h1 class="tab-title">${title}</h1><h2 class="tab-link">${href}</h2></div>`).join('</div>\n') : "No Tabs";
         }
         
         await loadTabs();
-
-        // var data = [{href: 'https://www.google.com/', title: 'Google', picture: '/tab-filler.png'}, {href: 'https://discord.com/', title: 'Discord', picture: '/tab-filler.png'}];
     </script>
 </div>

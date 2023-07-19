@@ -105,9 +105,17 @@
 .tab-title {
     color: var(--font-color);
     font-size: 17px;
+    max-width: calc(100% - 20px);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .tab-link {
     color: var(--nav-btn-color-darker);
     font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
 }
