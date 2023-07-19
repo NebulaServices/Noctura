@@ -10,53 +10,59 @@
     display: flex;
     justify-content: center;
     align-tracks: center;
-    height: 70px;
+    height: 60px;
     border-radius: 0 10px 10px 0;
-    background: var(--settings-3);
+    background: var(--primary-bg-color);
     transition: background 0.1s ease, left 0.3s ease;
     cursor: pointer;
     flex-direction: column;
-    border: 1px solid var(--font-color);
+    border: 1px solid var(--nav-btn-color-darker);
     border-left: 0;
     z-index: 9999999999999;
 }
 
 .tabs-btn:hover {
-    background: var(--secondary-bg-color);
+    background: var(--settings-1);
 }
 
 .tabs-btn:active {
-    background: var(--nav-btn-color-darker);
+    background: var(--settings-2);
+}
+
+.tabs-btn:hover .arrow-1, .tabs-btn:hover .arrow-2 {
+    background: var(--nav-btn-color);
 }
 
 .arrow-1 {
-    width: 18px;
+    width: 16px;
     transform: rotate(65deg);
-    background: var(--font-color);
+    background: var(--nav-btn-color-darker);
     height: 2px;
-    margin-bottom: -5px;
-    margin-left: 3px;
+    margin-bottom: -6px;
+    margin-left: 4px;
 }
 
 .arrow-2 {
-    width: 18px;
+    width: 16px;
     transform: rotate(-65deg);
-    background: var(--font-color);
+    background: var(--nav-btn-color-darker);
     height: 2px;
-    margin-top: -5px;
-    margin-left: 3px;
+    margin-top: -6px;
+    margin-left: 4px;
 }
 
 .arrow-1.arrow-open {
     transform: rotate(-65deg);
+    background: var(--nav-btn-color);
 }
 
 .arrow-2.arrow-open {
     transform: rotate(65deg);
+    background: var(--nav-btn-color);
 }
 
 .arrow {
-    transition: 0s;
+    transition: transform 0s;
 }
 
 .tabs-list {
@@ -67,7 +73,7 @@
     height: 100%;
     transition: 0.3s ease;
     width: 210px;
-    background: var(--settings-3);
+    background: var(--settings-1);
     z-index: 9999999999999;
     border-right: 1px solid var(--font-color);
     display: flex;
@@ -105,9 +111,17 @@
 .tab-title {
     color: var(--font-color);
     font-size: 17px;
+    max-width: calc(100% - 20px);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .tab-link {
     color: var(--nav-btn-color-darker);
     font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
 }

@@ -35,6 +35,7 @@
     "flamethrower-router": "0.0.0-meme.12",
     "globby": "^13.2.2",
     "monaco-editor": "^0.40.0",
+    "playwright": "^1.36.1",
     "rammerhead": "https://github.com/holy-unblocker/rammerhead/releases/download/v1.2.41-holy.5/rammerhead-1.2.41-holy.5.tgz",
     "react": "^18.2.0",
     "sharp": "^0.32.3",
