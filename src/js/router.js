@@ -35,7 +35,6 @@ class Router {
         this.#mergeHead(doc);
         this.#runScripts();
         window.dispatchEvent(new CustomEvent("router:end"));
-        console.log(next);
     }
 
     #mergeHead(doc) {
@@ -162,8 +161,6 @@ class Router {
                 break;
             }
         }
-
-        console.log(e, this.#allLinks().indexOf(anchor));
 
         if (anchor && this.#allLinks().indexOf(anchor) == -1) {
             return;
