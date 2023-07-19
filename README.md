@@ -2,24 +2,23 @@
 The web proxy you always wanted!
 
 ## What is Noctura?
-Noctura is a submission to the 2023 Titanium Network Proxython. Our app aims to provide a capable web proxy designed to enhance the user experience beyond a conventional web proxy. Noctura comes bundled with several features, such as an audio player, custom themes, plugin support, and even ChatGPT.
-
+Noctura is a submission to the 2023 Titanium Network Proxathon.
 ---
 
 ## Features
 
 #### Proxy Selection
 Noctura allows you to switch between a selection of proxies to suit whatever you need.
-We support *UV*, *Dynamic*, *Rammerhead*, and *Aero*.
+We support *UV*, *Dynamic*, *Rammerhead*, and *Aero 2*.
 
 #### AI
-If you want AI to work, wait a little bit because its being worked on.
+Coming soon!
 
 #### Games
-Noctura provides a fairly sized library of games. Enough to keep you busy for a while. Noctura also has several emulators, which pretty much expand the library to the thousands.
+Noctura provides a fairly sized library of games. Enough to keep you busy for a while. Noctura also has several emulators!
 
 #### Music
-Noctura also has a Music Library. Its as simple as uploading your locally saved music and pressing play. If you upload several songs from the same album, it will automatically sort them for you.
+Noctura also has a Music Library. It's as simple as uploading your locally saved music and pressing play! If you upload several songs from the same album, it will automatically sort them for you.
 
 #### Plugins
 On the plugins page, you can browse a library of scripts that you can apply to Noctura. Proxy Injection scripts affect web browsing, whilst Modules affect Noctura itself. If you wan't to create your own modules or scripts, use the script editor to create and modify anything you want in Noctura.
