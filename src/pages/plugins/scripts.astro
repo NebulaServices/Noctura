@@ -1,6 +1,6 @@
 ---
 // @ts-nocheck
-import Console from "@console";
+import Plugins from "@plugins";
 import Section from "@components/Section.astro";
 
 var proxy = [
@@ -45,7 +45,7 @@ var modules = [
 ]
 ---
 
-<Console title="User Scripts">
+<Plugins title="User Scripts">
     <style scoped>
         #monaco-editor {
             height: 500px;
@@ -288,10 +288,10 @@ var modules = [
     <Section>
         <h1 class="text-xl">Script Editor</h1>
         <p>very cool</p>
-        <button class="console-submit" onclick="window.setInject(this);">Proxy Injection</button>
-        <button class="console-submit mb-1" onclick="window.setModule(this);">Noctura Module</button>
+        <button class="plugins-submit" onclick="window.setInject(this);">Proxy Injection</button>
+        <button class="plugins-submit mb-1" onclick="window.setModule(this);">Noctura Module</button>
         <div id="monaco-editor"></div>
-        <button class="console-submit" onclick="window.saveEdits();">Save</button>
+        <button class="plugins-submit" onclick="window.saveEdits();">Save</button>
     </Section>
 
     <script type="module">
@@ -512,4 +512,4 @@ if (typeof __aero$config == 'object') {
             });
         });
     </script>
-</Console>
+</Plugins>

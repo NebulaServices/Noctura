@@ -1,6 +1,6 @@
 ---
 // @ts-nocheck
-import Console from "@console";
+import Plugins from "@plugins";
 import Section from "@components/Section.astro";
 
 var themes = [
@@ -13,7 +13,7 @@ var themes = [
 ]
 ---
 
-<Console title="Themes Library">
+<Plugins title="Themes Library">
     <style scoped>
         #monaco-editor {
             height: 500px;
@@ -31,9 +31,9 @@ var themes = [
         <h2>Drag & Drop theme JSON below:</h2>
         <input type="file" id="theme-import" class="mb-2" accept=".json,.vstheme,application/json,application/xml"/>
         <div id="monaco-editor"></div>
-        <button class="console-submit" id="save-theme">Save</button>
-        <button class="console-submit" id="export-theme">Export</button>
-        <button class="console-submit" id="reset-theme">Reset</button>
+        <button class="plugins-submit" id="save-theme">Save</button>
+        <button class="plugins-submit" id="export-theme">Export</button>
+        <button class="plugins-submit" id="reset-theme">Reset</button>
     </Section>
 
     <script type="module">
@@ -68,7 +68,6 @@ var themes = [
                 const fileContent = event.target.result;
                 const sanitizedContent = fileContent.replace(/\/\/+/g, '');
                 const theme = JSON.parse(sanitizedContent);
-                console.log(theme);
 
                 const colors = Object.entries(theme.colors).map(([name, value]) => ({ name, value }));
 
@@ -232,4 +231,4 @@ var themes = [
             });
         });
     </script>
-</Console>
+</Plugins>

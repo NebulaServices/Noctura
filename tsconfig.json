@@ -9,7 +9,7 @@
       "@css/*": ["src/style/*"],
       "@layout": ["src/layouts/Layout.astro"],
       "@settings": ["src/layouts/Settings.astro"],
-      "@console": ["src/layouts/Console.astro"]
+      "@plugins": ["src/layouts/Plugins.astro"]
     }
   },
 }

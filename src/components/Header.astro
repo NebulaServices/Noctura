@@ -12,8 +12,8 @@ const routes = [
   { id: 3, title: "Games", path: ["/games", "/games/"] },
   { id: 4, title: "Music", path: ["/music", "/music/"] },
   { id: 5, title: "Plugins", path: [
-    "/console/scripts", "/console/scripts/",
-    "/console/themes", "/console/themes/"
+    "/plugins/scripts", "/plugins/scripts/",
+    "/plugins/themes", "/plugins/themes/"
   ] },
   { id: 6, title: "Settings", path: [
     "/settings/general", "/settings/general/",
@@ -318,7 +318,7 @@ const currentDate = new Date().getTime();
     };
 
 
-    document.querySelector('a[href="/console/scripts"]').setAttribute('data-cold', '');
+    document.querySelector('a[href="/plugins/scripts"]').setAttribute('data-cold', '');
     document.getElementById('panic-button').href = localStorage.getItem('panic-url') || 'https://classroom.google.com/';
   })();
 </script>

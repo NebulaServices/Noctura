@@ -1,4 +1,4 @@
-.console {
+.plugins {
     min-height: calc(100vh - 105px);
     width: 90%;
     margin: auto;
@@ -12,7 +12,7 @@ p {
     color: var(--nav-btn-color-darker);
 }
 
-.console-left {
+.plugins-left {
     width: 300px;
     float: left;
     display: flex;
@@ -20,7 +20,7 @@ p {
     gap: 5px;
 }
 
-.console-left a {
+.plugins-left a {
     width: 95%;
     height: auto;
     padding: 10px 20px;
@@ -30,20 +30,20 @@ p {
     border-radius: 5px;
 }
 
-.console-navlink-active {
+.plugins-navlink-active {
     color: var(--nav-btn-color) !important;
 }
 
-.console-left a:hover {
+.plugins-left a:hover {
     background: rgba(255, 255, 255, 0.09);
 }
 
-.console-right {
+.plugins-right {
     width: calc(100% - 300px);
     float: left;
 }
 
-.console-left, .console-right {
+.plugins-left, .plugins-right {
     height: 100%;
     padding: 20px;
 }
@@ -59,7 +59,7 @@ p {
     background: var(--settings-1);
 }
 
-.console-input {
+.plugins-input {
     border-radius: 5px;
     border: 1px solid var(--settings-3);
     background: var(--settings-2);
@@ -71,11 +71,11 @@ p {
     margin-top: 5px;
 }
 
-.console-input:focus {
+.plugins-input:focus {
     border: 1px solid #828282;
 }
 
-.console-submit {
+.plugins-submit {
     border-radius: 5px;
     border: 1px solid var(--settings-3);
     background: var(--settings-2);
@@ -88,11 +88,11 @@ p {
     cursor: pointer;
 }
 
-.console-submit:hover {
+.plugins-submit:hover {
     background: var(--settings-3) !important;
 }
 
-.console-img-button {
+.plugins-img-button {
     width: 100%;
     height: 100%;
     background: transparent;
@@ -101,7 +101,7 @@ p {
     cursor: pointer;
 }
 
-.console-img-container {
+.plugins-img-container {
     background: var(--settings-2);
     color: var(--font-color);
     padding: 5px 10px;
