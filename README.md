@@ -2,29 +2,32 @@
 The web proxy you always wanted!
 
 ## What is Noctura?
-Noctura is a submission to the 2023 TN Proxathon that aims to provide a web proxy with many features and utilities, such as a proxy selector and a plugins system!
-### Features
-- 4 different proxies to choose from:
-    - Dynamic
-    - Ultraviolet (Default)
-    - Rammerhead
-    - Aero 2
-- A game page that features games like 
-    - Slope
-    - 2048
-    - Bloons
-    - Cookie Clicker
-    - Emulators
-    - And more!
-- A music player that plays any song you have locally on your system. (Noctura does not provide any songs)
-- Plugins to enhance your proxy usage
-    - Adblock
-    - Dark Mode
-    - And more!
-- Themes
-    - And a VSCode theme converter for those devs out there 🔥🗣️
-- Custom Bare Server Selector
-- And more!
+Noctura is a submission to the 2023 Titanium Network Proxython. Our app aims to provide a capable web proxy designed to enhance the user experience beyond a conventional web proxy. Noctura comes bundled with several features, such as an audio player, custom themes, plugin support, and even ChatGPT.
+
+---
+
+## Features
+
+#### Proxy Selection
+Noctura allows you to switch between a selection of proxies to suit whatever you need.
+We support *UV*, *Dynamic*, *Rammerhead*, and *Aero*.
+
+#### AI
+If you want AI to work, wait a little bit because its being worked on.
+
+#### Games
+Noctura provides a fairly sized library of games. Enough to keep you busy for a while. Noctura also has several emulators, which pretty much expand the library to the thousands.
+
+#### Music
+Noctura also has a Music Library. Its as simple as uploading your locally saved music and pressing play. If you upload several songs from the same album, it will automatically sort them for you.
+
+#### Plugins
+On the plugins page, you can browse a library of scripts that you can apply to Noctura. Proxy Injection scripts affect web browsing, whilst Modules affect Noctura itself. If you wan't to create your own modules or scripts, use the script editor to create and modify anything you want in Noctura.
+
+#### Themes (Plugins and Settings)
+If you go to Settings > Theme, you may notice a library of premade themes you can choose. If you want to make your own custom Noctura theme, go to Plugins > Themes where you can import VSCode themes or edit the themes directly.
+
+---
 
 ## How to Deploy?
 Deployment is very easy! Just follow the steps below:
