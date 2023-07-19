@@ -123,6 +123,22 @@
     --tn-filter: brightness(0) saturate(100%) invert(22%) sepia(45%) saturate(5539%) hue-rotate(344deg) brightness(92%) contrast(98%); /* Sapphire - Converted to filter */
 }
 
+[data-theme="discord"] {
+	--primary-bg-color: #36393e;
+	--secondary-bg-color: #282b30;
+	--primary-text-color: #fff;
+	--nav-btn-color: #7289da;
+	--nav-btn-color-darker: #fff;
+	--font-color: #fff;
+	--banner-gradient: #36393e;
+	--surface-2: #383838;
+	--settings-1: #282b30;
+	--settings-2: #7289da;
+	--settings-3: #424549;
+	--borders-1: 1px solid rgb(72, 72, 72);
+	--borders-2: 1px solid rgb(36, 36, 36);
+	--tn-filter: brightness(2.5) hue-rotate(357deg);
+}
 
 
 

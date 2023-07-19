@@ -14,6 +14,7 @@ import Section from "@components/Section.astro";
             <button id="theme-frappe" class="settings-submit frappe_theme">Catppuccin - Frappé</button>
             <button id="theme-latte" class="settings-submit latte_theme">Catppuccin - Latte</button>
             <button id="theme-light" class="settings-submit light_theme">Bright</button>
+            <button id="theme-discord" class="settings-submit discord_theme">Discord</button>
             <button id="theme-baja" class="settings-submit baja_theme">Baja Blast</button>
         </form>
 
@@ -82,6 +83,12 @@ import Section from "@components/Section.astro";
             localStorage.setItem("theme", "baja");
             removeCustomTheme();
             document.documentElement.setAttribute("data-theme", "baja");
+        });
+
+        document.getElementById("theme-discord").addEventListener("click", () => {
+            localStorage.setItem("theme", "discord");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "discord");
         });
 
         document
