@@ -115,7 +115,7 @@ if (!Reflect.get(win, 'location').pathname.startsWith('/games')) {
         height: min-content;
         padding: 5px 10px;
         border-radius: 5px;
-        background-color: ${backgroundColor};
+        background: ${backgroundColor};
         color: #fff;
         transform: translate(-50%, 0);
         font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
