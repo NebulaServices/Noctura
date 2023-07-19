@@ -129,6 +129,11 @@
     color: #fff !important;
 }
 
+.mid_theme {
+    background-color: #000 !important;
+    color: #777 !important;
+}
+
 .trans_theme {
     background-image: linear-gradient(#5BCEFA,#F5A9B8,#fff,#F5A9B8,#5BCEFA) !important;
     color: #555 !important;
