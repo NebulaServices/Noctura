@@ -35,7 +35,7 @@ Deployment is very easy! Just follow the steps below:
 3. Build Noctura
 `npm run build`
 4. Run Noctura
-`node .` OR `node index.js`
+`node .` OR `node index.js`    
 You can also do `npm run bstart` if you wish to build and start the server all in one command.
 
 ## How to Contribute?
