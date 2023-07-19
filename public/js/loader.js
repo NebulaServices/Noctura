@@ -1,3 +1,5 @@
+// FILE IS RUN BEFORE PAGE LOAD
+
 const theme = localStorage.getItem('theme') || 'amoled';
 document.documentElement.dataset.theme = theme;
 if (theme == "custom") {
@@ -47,3 +49,27 @@ caches.open('astro-modules').then(async modules => {
         document.head.appendChild(script);
     }
 });
+
+window.faviconLoad = function faviconLoad() {
+    var faviconPath = localStorage.getItem('savedFavicon');
+    var faviconLink = document.querySelector('link[rel="icon"]');
+    if (!faviconLink) {
+        faviconLink = document.createElement('link');
+        faviconLink.rel = 'icon';
+        document.head.appendChild(faviconLink);
+    }
+    faviconLink.href = faviconPath;
+    localStorage.setItem('savedFavicon', faviconPath);
+}
+
+window.titleLoad = function titleLoad() {
+    var title = localStorage.getItem('savedTitle');
+    document.title = title;
+};
+
+if (localStorage.getItem('savedFavicon')) {
+    faviconLoad();
+}
+if (localStorage.getItem('savedTitle')) {
+    titleLoad();
+}
