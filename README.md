@@ -15,10 +15,10 @@ We support *UV*, *Dynamic*, *Rammerhead*, and *Aero 2*.
 Coming soon!
 
 #### Games
-Noctura provides a fairly sized library of games. Enough to keep you busy for a while. Noctura also has several emulators!
+Noctura provides a fairly sized library of games. Enough to keep you busy for a while. Noctura also has several emulators.
 
 #### Music
-Noctura also has a Music Library. It's as simple as uploading your locally saved music and pressing play! If you upload several songs from the same album, it will automatically sort them for you.
+Noctura also has a Music Library. It's as simple as uploading your locally saved music and pressing play. If you upload several songs from the same album, it will automatically sort them for you.
 
 #### Plugins
 On the plugins page, you can browse a library of scripts that you can apply to Noctura. Proxy Injection scripts affect web browsing, whilst Modules affect Noctura itself. If you wan't to create your own modules or scripts, use the script editor to create and modify anything you want in Noctura.
