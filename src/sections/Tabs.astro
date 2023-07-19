@@ -2,94 +2,94 @@
 import './tabs.css';
 ---
 
+<script type="module" data-cold>
+    let list = document.getElementById('tabs-list'),
+        btn = document.getElementById('tabs-btn'),
+        tl = document.querySelector('.header .top-left'),
+        nb = document.querySelector('.header .nav-btns'),
+        open = false,
+        offset = 250,
+        cache = await caches.open('astro-tabs');
+
+    list.style.width = `${offset}px`;
+
+    if (!window._init) btn.addEventListener('click', function() {
+        document.querySelectorAll('.arrow').forEach(e=>e.classList.toggle('arrow-open'));
+
+        if (!open) {
+            requestAnimationFrame(() => {
+                list.style.left = `${offset}px`;
+                btn.style.left = `${offset}px`;
+                tl.style.paddingLeft = `${offset}px`;
+                nb.style.marginLeft = `${offset}px`;
+            });
+            open = true;
+        } else {
+            requestAnimationFrame(() => {
+                list.style.left = "";
+                btn.style.left = "";
+                tl.style.paddingLeft = "";
+                nb.style.marginLeft = "";
+            });
+            open = false;
+        }
+    });
+
+    window._init = true;
+
+    async function getData() {
+        var keys = await cache.keys();
+        var data = [];
+
+        for await (var key of keys) {
+            data.push(await cache.match(key).then(res => res.json()));
+        }
+
+        return data;
+    }
+
+    async function getPicture(href) {
+        try {
+            var res = await fetch('/gen-scrot?url=' + encodeURIComponent(href)).then(res => res.blob());
+
+            return URL.createObjectURL(res);
+        } catch {
+            return '/tab-filler.png';
+        }
+    }
+
+    window.saveTab = async function saveTab(id, title, href) {
+        var data = { id, title, href, picture: await getPicture(href) };
+
+        await cache.put('/' + id + '.json', new Response(JSON.stringify(data), { headers: { 'Content-Type': 'application/json' }}));
+
+        await loadTabs();
+
+        return true;
+    }
+
+    window.removeTab = async function(id) {
+        await cache.delete('/' + id + '.json');
+
+        await loadTabs();
+
+        return true;
+    }
+
+    async function loadTabs() {
+        let data = await getData();
+        return list.innerHTML = data.length ? data.map(({ id, href, title, picture }) => `<div class="tabs-tab"><img class="tab-picture" src="${picture}" alt="Picture of ${title}" /><div class="tab-info"><span class="tab-close" id="${id}" onclick="window.removeTab(this.id);">x</span><h1 class="tab-title">${title}</h1><h2 class="tab-link">${href}</h2></div>`).join('</div>\n') : "No Tabs";
+    }
+    
+    await loadTabs();
+</script>
+
 <div class="tabs">
     <div class="tabs-btn" id="tabs-btn">
-        <div class="arrow arrow-1"></div>
+        <div class="arrow arrow-1" />
         <br />
-        <div class="arrow arrow-2"></div>
+        <div class="arrow arrow-2" />
     </div>
 
-    <div class="tabs-list" id="tabs-list">
-        
-    </div>
-
-    <script type="module" data-cold>
-        let list = document.getElementById('tabs-list'),
-            btn = document.getElementById('tabs-btn'),
-            tl = document.querySelector('.header .top-left'),
-            nb = document.querySelector('.header .nav-btns'),
-            open = false,
-            offset = 250,
-            cache = await caches.open('astro-tabs');
-
-        list.style.width = `${offset}px`;
-
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('.arrow').forEach(e=>e.classList.toggle('arrow-open'));
-
-            if (!open) {
-                requestAnimationFrame(() => {
-                    list.style.left = `${offset}px`;
-                    btn.style.left = `${offset}px`;
-                    tl.style.paddingLeft = `${offset}px`;
-                    nb.style.marginLeft = `${offset}px`;
-                });
-                open = true;
-            } else {
-                requestAnimationFrame(() => {
-                    list.style.left = "";
-                    btn.style.left = "";
-                    tl.style.paddingLeft = "";
-                    nb.style.marginLeft = "";
-                });
-                open = false;
-            }
-        });
-
-        async function getData() {
-            var keys = await cache.keys();
-            var data = [];
-
-            for await (var key of keys) {
-                data.push(await cache.match(key).then(res => res.json()));
-            }
-
-            return data;
-        }
-
-        async function getPicture(href) {
-            try {
-                var res = await fetch('/gen-scrot?url=' + encodeURIComponent(href)).then(res => res.blob());
-
-                return URL.createObjectURL(res);
-            } catch {
-                return '/tab-filler.png';
-            }
-        }
-
-        window.saveTab = async function saveTab(id, title, href) {
-            var data = { id, title, href, picture: await getPicture(href) };
-
-            await cache.put('/' + id + '.json', new Response(JSON.stringify(data), { headers: { 'Content-Type': 'application/json' }}));
-
-            await loadTabs();
-
-            return true;
-        }
-
-        window.removeTab = async function(id) {
-            await cache.delete('/' + id + '.json');
-
-            await loadTabs();
-
-            return true;
-        }
-
-        async function loadTabs() {
-            let data = await getData();
-            return list.innerHTML = data.length ? data.map(({ id, href, title, picture }) => `<div class="tabs-tab"><img class="tab-picture" src="${picture}" alt="Picture of ${title}" /><div class="tab-info"><span class="tab-close" id="${id}" onclick="window.removeTab(this.id);">x</span><h1 class="tab-title">${title}</h1><h2 class="tab-link">${href}</h2></div>`).join('</div>\n') : "No Tabs";
-        }
-        
-        await loadTabs();
-    </script>
+    <div class="tabs-list" id="tabs-list" />
 </div>
