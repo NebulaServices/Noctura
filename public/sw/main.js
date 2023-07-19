@@ -105,7 +105,7 @@ addEventListener('fetch', function(event) {
                 }
             }
 
-            if (event.request.destination === "font" || (event.request.destination === "image" && event.request.url.startsWith(location.origin + '/_astro/'))) {
+            if (event.request.destination === "font" || (event.request.destination === "image" && event.request.url.startsWith(location.origin + '/icons/games/') || event.request.url.startsWith(location.origin + '/_astro/'))) {
                 var res;
                 const req = await cache.match(event.request.url) || (res = await fetch(event.request), await cache.put(event.request.url, res.clone()), res);
 

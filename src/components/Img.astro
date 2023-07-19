@@ -10,4 +10,4 @@ const { quality, alt, src } = Astro.props;
         class: Astro.props.class,
         style: Astro.props.style || ""
     } 
-}} quality={60 || quality} format="webp" placeholder="tracedSVG" loading="lazy" alt={alt || ""} src={src} />
+}} quality={quality || 60} format="webp" placeholder="tracedSVG" loading="lazy" alt={alt || ""} src={src} />

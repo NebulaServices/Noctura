@@ -16,7 +16,7 @@
     {
       "id": "bloonstd",
       "title": "BloonsTD",
-      "image": "/games/bloonstd.jpg",
+      "image": "/games/bloonstd.jpeg",
       "description": "Defend yourself from the ballons by popping them and buying upgrades.",
       "file": "https://mathlover1.github.io/msgweb-assets/bloonstd/index.html"
     },
@@ -44,7 +44,7 @@
     {
       "id": "ctr-holiday",
       "title": "Cut the Rope Holiday",
-      "image": "/games/Holiday_Gift.webp",
+      "image": "/games/Holiday_Gift.png",
       "description": "Cut the rope to feed the monster. This is a holiday version of ctr.",
       "file": "https://mathlover1.github.io/msgweb-assets/ctr-holiday/index.html"
     },
@@ -58,7 +58,7 @@
     {
       "id": "deal-or-no-deal",
       "title": "Deal or No Deal",
-      "image": "/games/index.jpg",
+      "image": "/games/index.jpeg",
       "description": "Choose a box and see if you get the most money. You can also choose to take the deal. If you don't like the deal, you can choose to open another box.",
       "file": "https://mathlover1.github.io/msgweb-assets/deal-or-no-deal/index.html"
     },
@@ -93,7 +93,7 @@
     {
       "id": "jetpack-joyride",
       "title": "Jetpack Joyride",
-      "image": "/games/jetpack.jpg",
+      "image": "/games/jetpack.jpeg",
       "description": " Jetpack Joyride. Fly through the levels and collect coins. If you hit a wall, you lose. If you hit a laser, you lose.",
       "file": "https://mathlover1.github.io/msgweb-assets/jetpack-joyride/index.html"
     },
@@ -107,7 +107,7 @@
     {
       "id": "learntofly2",
       "title": "Learn to Fly 2",
-      "image": "/games/learn-to-fly-2.jpg",
+      "image": "/games/learn-to-fly-2.jpeg",
       "description": "Learn to Fly 2, learn to fly as a penguin. This time, you can fly better.",
       "file": "https://mathlover1.github.io/msgweb-assets/learntofly2/index.html"
     },
@@ -121,7 +121,7 @@
     {
       "id": "stealingthediamond",
       "title": "Stealing the Diamond",
-      "image": "/games/stealingthediamond.jpg",
+      "image": "/games/stealingthediamond.jpeg",
       "description": "",
       "file": "https://mathlover1.github.io/msgweb-assets/stealingthediamond/index.html"
     },
@@ -156,14 +156,14 @@
     {
       "id": "cluster-rush",
       "title": "Cluster Rush",
-      "image": "/games/icon.jpg",
+      "image": "/games/icon.jpeg",
       "description": "Cluster Rush, a game where you have to jump from truck to truck.",
       "file": "https://mathlover1.github.io/msgweb-assets/cluster-rush/index.html"
     },
     {
       "id": "drift-boss",
       "title": "Drift Boss",
-      "image": "/games/cover-start.jpg",
+      "image": "/games/cover-start.jpeg",
       "description": "Drift Boss, a game where you have to drift around the track.",
       "file": "https://mathlover1.github.io/msgweb-assets/drift-boss/index.html"
     },
@@ -191,7 +191,7 @@
     {
       "id": "ducklife4",
       "title": "Duck Life 4",
-      "image": "/games/splash.jpg",
+      "image": "/games/splash.png",
       "description": "Duck Life 4, a game where you have to train your duck to be the best duck.",
       "file": "https://mathlover1.github.io/msgweb-assets/ducklife4/index.html"
     },
@@ -205,7 +205,7 @@
     {
       "id": "motox3m-pool",
       "title": "Moto X3M Pool",
-      "image": "/games/motopool.jpg",
+      "image": "/games/motopool.jpeg",
       "description": "Moto X3M Pool, a game where you have to ride your bike through the pool.",
       "file": "https://mathlover1.github.io/msgweb-assets/motox3m-pool/index.html"
     },
@@ -226,7 +226,7 @@
     {
       "id": "motox3m",
       "title": "Moto X3M",
-      "image": "/games/motoOG.jpg",
+      "image": "/games/motoOG.jpeg",
       "description": "Moto X3M, a game where you have to ride your bike through the forest.",
       "file": "https://mathlover1.github.io/msgweb-assets/motox3m/index.html"
     },
