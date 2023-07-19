@@ -170,9 +170,14 @@ const currentDate = new Date().getTime();
     };
 
     let onHover = (e) => {
-      if (e.target.tagName !== "A") return;
+      if (e.target.tagName !== "A") {
+        for (var n = e.target.tagName; n.parentElement; n = n.parentElement) {
+          if (n.tagName == "A") e.target = n;
+        }
+      }
 
       const rect = e.target.getBoundingClientRect();
+      const btnRect = document.querySelector('.nav-btns').getBoundingClientRect();
 
       document.getElementById("nav-move").style.width = rect.width - 10 + "px";
       document.getElementById("nav-move").style.height = rect.height + 4 + "px";
@@ -188,7 +193,7 @@ const currentDate = new Date().getTime();
         document.getElementById("nav-move").style.transition = `0.2s`;
       }
 
-      document.getElementById("nav-move").style.left = `${rect.x - 14 + 5}px`;
+      document.getElementById("nav-move").style.left = `${rect.x - btnRect.x + 5}px`;
 
       hovered = true;
     };
@@ -202,6 +207,7 @@ const currentDate = new Date().getTime();
         hovered = false;
         document.getElementById("nav-move").style.opacity = "0";
         setTimeout(function () {
+          if (hovered) return;
           document.getElementById("nav-move").style.display = "none";
         }, 200);
       }
