@@ -113,7 +113,7 @@ var themes = [
 
             str += "[data-theme=\"" + theme + "\"] {\n";
 
-            ['--primary-bg-color', '--secondary-bg-color', '--banner-gradient', '--tn-filter', '--primary-text-color', '--nav-btn-color', '--nav-btn-color-darker', '--font-color', '--banner-gradient', '--surface-2', '--settings-1', '--settings-2', '--settings-3', '--borders-1', '--borders-2', '--tn-filter'].forEach(color => {
+            ['--primary-bg-color', '--secondary-bg-color', '--primary-text-color', '--nav-btn-color', '--nav-btn-color-darker', '--font-color', '--banner-gradient', '--surface-2', '--settings-1', '--settings-2', '--settings-3', '--borders-1', '--borders-2', '--tn-filter'].forEach(color => {
                 str += "\t" + color + ": " + getComputedStyle(document.documentElement).getPropertyValue(color) + ";\n";
             });
 
