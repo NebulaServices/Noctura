@@ -140,7 +140,22 @@
 	--tn-filter: brightness(2.5) hue-rotate(357deg);
 }
 
-
+[data-theme="ludicrous"] {
+	--primary-bg-color: linear-gradient(90deg,#0c2f4b,#030b11);
+	--secondary-bg-color: #101c2c;
+	--primary-text-color: #ffffff;
+	--nav-btn-color: #fff;
+	--nav-btn-color-darker: #fff;
+	--font-color: #fff;
+	--banner-gradient: linear-gradient(to right, #0000 0%, #4d008c 20%, #6f00ff 50%, #4d008c 80%, #0000 100%);
+	--surface-2: #383838;
+	--settings-1: #101c2c;
+	--settings-2: #101c2c;
+	--settings-3: #fff;
+	--borders-1: 1px solid rgb(72, 72, 72);
+	--borders-2: 1px solid rgb(36, 36, 36);
+	--tn-filter: brightness(2.5) hue-rotate(357deg);
+}
 
 body, html {
     height: 100%;
