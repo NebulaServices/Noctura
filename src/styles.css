@@ -89,6 +89,23 @@
     --tn-filter: brightness(0) saturate(100%) invert(45%) sepia(100%) saturate(370%) hue-rotate(141deg) brightness(97%) contrast(89%); /* Sapphire - Converted to filter */
 }
 
+[data-theme="light"] {
+	--primary-bg-color: #F6F6F6;
+	--secondary-bg-color: #dddddd;
+	--primary-text-color: #303030;
+	--nav-btn-color: #303030;
+	--nav-btn-color-darker: #303030;
+	--font-color: #303030;
+	--banner-gradient: linear-gradient(to right, #fff 0%, #AAAAAA 20%,#303030 50%,#AAAAAA 80%,#fff 100%);
+	--surface-2: #383838;
+	--settings-1: #DDDDDD;
+	--settings-2: #B3B3B3;
+	--settings-3: #B3B3B3;
+	--borders-1: 1px solid #DEDEDE;
+	--borders-2: 1px solid #DEDEDE;
+	--tn-filter: brightness(0);
+}
+
 [data-theme="baja"] {
     --primary-bg-color: #008881; /* Color 1 */
     --secondary-bg-color: #000000; /* Surface 2 */

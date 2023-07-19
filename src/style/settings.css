@@ -108,6 +108,10 @@
     background-color: #008881 !important;
 }
 
+.light_theme {
+    background-color: #DDDDDD !important;
+}
+
 .settings-img-button {
     width: 100%;
     height: 100%;

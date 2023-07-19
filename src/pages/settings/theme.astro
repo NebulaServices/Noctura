@@ -13,6 +13,7 @@ import Section from "@components/Section.astro";
             <button id="theme-macchiato" class="settings-submit macchiato_theme">Catppuccin - Macchiato</button>
             <button id="theme-frappe" class="settings-submit frappe_theme">Catppuccin - Frappé</button>
             <button id="theme-latte" class="settings-submit latte_theme">Catppuccin - Latte</button>
+            <button id="theme-light" class="settings-submit light_theme">Bright</button>
             <button id="theme-baja" class="settings-submit baja_theme">Baja Blast</button>
         </form>
 
@@ -69,6 +70,12 @@ import Section from "@components/Section.astro";
             localStorage.setItem("theme", "latte");
             removeCustomTheme();
             document.documentElement.setAttribute("data-theme", "latte");
+        });
+
+        document.getElementById("theme-light").addEventListener("click", () => {
+            localStorage.setItem("theme", "light");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "light");
         });
 
         document.getElementById("theme-baja").addEventListener("click", () => {
