@@ -2,6 +2,7 @@
 
 * {
     color: var(--font-color);
+    transition: 0.2s ease;
 }
 
 .top-banner {
