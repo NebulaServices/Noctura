@@ -39,7 +39,7 @@ window.addEventListener("inject:cache", (event) => {
             document.head.appendChild(script);
         }
     })
-})
+});
 
 let color = '#fff';
 let backgroundColor = '#000';
@@ -49,7 +49,22 @@ let settings3 = '#333';
 
 let win = window.frameElement ? window.frameElement.ownerDocument.defaultView : window;
 
+var uuid = function () {
+    var uid = () =>
+        Math.floor(Math.random() * 0x10000).toString(16)
+
+    return uid() + uid() + "-" + uid() + "-" + uid() + "-" + uid() + "-" + uid() + uid() + uid()
+};
+
+window.UUID = uuid();
+
 if (window.frameElement) {
+    if (win.saveTab) {
+        setTimeout(function() {
+            Promise.resolve().then(async () => win.saveTab(window.UUID, document.title, location.pathname.includes('/~/aero/') ? new Function('return __aero$meta.href')() : new Function('return this.location.href')()));
+        }, 5000);
+    }
+
     let doc = frameElement.ownerDocument;
 
     color = getComputedStyle(doc.documentElement).getPropertyValue('--font-color');
