@@ -143,23 +143,23 @@
 
 
 .red_theme {
-    background-color: #000 !important;
-    color: #777 !important;
+    background-image: linear-gradient(90deg, #FF9A8B, #FF6A88, #FF99AC) !important;
+    color: #fff !important;
 }
 
 .green_theme {
-    background-color: #000 !important;
-    color: #777 !important;
+    background-image: linear-gradient(90deg, #85FFBD , #FFFB7D) !important;
+    color: #444 !important;
 }
 
 .blue_theme {
-    background-color: #000 !important;
-    color: #777 !important;
+    background-image: linear-gradient(90deg,#0093E9, #80D0C7) !important;
+    color: #fff !important;
 }
 
 .yellow_theme {
-    background-color: #000 !important;
-    color: #777 !important;
+    background-image: linear-gradient(90deg, #FBAB7E, #F7CE68) !important;
+    color: #fff !important;
 }
 
 
@@ -182,4 +182,8 @@
     transition: 0.1s ease;
     margin-top: 5px;
     cursor: pointer;
+}
+
+.sec {
+    color: var(--font-color) !important;
 }

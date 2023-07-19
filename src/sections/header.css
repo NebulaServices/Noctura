@@ -38,7 +38,7 @@
 
 .nav-btn-title {
     pointer-events: none;
-    color: inherit;
+    color: var(--logo-color);
 }
 
 .nav-btn {
@@ -154,16 +154,14 @@
     transition: 0.1s ease;
 }
 
-.feedback-btn:hover {
-    background: var(--surface-2);
-}
+
 
 .extra-btn {
     margin-left: 15px;
     padding: 6px 0;
     flex: auto;
     font-size: 14px;
-    color: var(--nav-btn-color-darker);
+    color: var(--logo-color);
     position: relative;
     transition: 0.1s ease;
 }
@@ -177,7 +175,7 @@
     padding: 6px 0 6px 0;
     flex: auto;
     font-size: 14px;
-    color: #888;
+    color: var(--logo-color);
     position: relative;
     transition: 0.1s ease;
     z-index: -1;
@@ -185,7 +183,7 @@
 }
 
 .nav-time-text {
-    color: var(--font-color);
+    color: var(--logo-color);
     margin-right: 10px;
 }
 

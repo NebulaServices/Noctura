@@ -224,6 +224,62 @@
     --logo-color: #fff;
 }
 
+[data-theme="green"] {
+    --primary-bg-color: linear-gradient(90deg, #85FFBD , #FFFB7D);
+    --secondary-bg-color: #ddd;
+    --primary-text-color: #444;
+    --nav-btn-color: #444;
+    --nav-btn-color-darker: #fff;
+    --font-color: #444;
+    --banner-gradient: #fff;
+    --surface-2: #444;
+    --settings-1: #fff;
+    --settings-2: #ccc;
+    --settings-3: #ddd;
+    --borders-1: 1px solid #444;
+    --borders-2: 1px solid #444;
+    --tn-filter: brightness(2.5) hue-rotate(357deg);
+    --logo-color: #444;
+}
+
+[data-theme="blue"] {
+    --primary-bg-color: linear-gradient(90deg,#0093E9, #80D0C7);
+    --secondary-bg-color: #ddd;
+    --primary-text-color: #444;
+    --nav-btn-color: #fff;
+    --nav-btn-color-darker: #fff;
+    --font-color: #444;
+    --banner-gradient: #fff;
+    --surface-2: #444;
+    --settings-1: #fff;
+    --settings-2: #ccc;
+    --settings-3: #ddd;
+    --borders-1: 1px solid #fff;
+    --borders-2: 1px solid #fff;
+    --tn-filter: brightness(2.5) hue-rotate(357deg);
+    --logo-color: #fff;
+}
+
+[data-theme="yellow"] {
+    --primary-bg-color: linear-gradient(90deg, #FBAB7E, #F7CE68);
+    --secondary-bg-color: #ddd;
+    --primary-text-color: #444;
+    --nav-btn-color: #fff;
+    --nav-btn-color-darker: #fff;
+    --font-color: #444;
+    --banner-gradient: #fff;
+    --surface-2: #444;
+    --settings-1: #fff;
+    --settings-2: #ccc;
+    --settings-3: #ddd;
+    --borders-1: 1px solid #fff;
+    --borders-2: 1px solid #fff;
+    --tn-filter: brightness(2.5) hue-rotate(357deg);
+    --logo-color: #fff;
+}
+
+
+
 body, html {
     height: 100%;
     margin: 0;
