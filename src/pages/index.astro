@@ -34,181 +34,182 @@ import Obfuscated from "@components/Obfuscated.astro";
                 </div>
             </div>
         </div>
-    </div>
-    <script is:inline src="/js/omnibox.js" />
-    <script is:inline src="/js/bareServer.js"></script>
-    <script is:inline src="/js/encoder.js"></script>
-    <script is:inline>
-        (function() {
-            const prefixes = {
-                'Ultraviolet': 'uv',
-                'Dynamic': 'dynamic',
-                'Rammerhead': 'rh',
-                'Aero': 'aero',
-            }
 
-            const homeContainer = document.querySelector(".home-container");
-            const switchBtnCurrentBare = document.querySelector(".switch-btn-current .server-indicator");
-            const modifySplitA = document.querySelectorAll(".modify-split-a");
-        
-            const toggleSwitchBtnBare = (e) => {
-                const switchBtn = document.getElementsByClassName('switch-btn')[1];
-        
-                if (switchBtn.style.display == 'block') {
-                    switchBtn.style.opacity = '0';
-                    setTimeout(function() {
-                        switchBtn.style.display = 'none';
-                    }, 100);
-                } else {
-                    switchBtn.style.display = 'block';
-                    requestAnimationFrame(() => {
-                    switchBtn.style.opacity = '1';
-                    });
+        <script is:inline src="/js/omnibox.js" />
+        <script is:inline src="/js/bareServer.js"></script>
+        <script is:inline src="/js/encoder.js"></script>
+        <script is:inline>
+            (function() {
+                const prefixes = {
+                    'Ultraviolet': 'uv',
+                    'Dynamic': 'dynamic',
+                    'Rammerhead': 'rh',
+                    'Aero': 'aero',
                 }
-        
-                return e.stopPropagation();
-            }
-        
-            // const recursive = (el) => {
-            //     var arr = [];
+    
+                const homeContainer = document.querySelector(".home-container");
+                const switchBtnCurrentBare = document.querySelector(".switch-btn-current .server-indicator");
+                const modifySplitA = document.querySelectorAll(".modify-split-a");
             
-            //     function iterate(el) {
-            //         if (el.childNodes) el.childNodes.forEach(e=>(arr.push(e), iterate(e)));
-        
-            //         return;
-            //     }
-        
-            //     arr.push(el);
-        
-            //     iterate(el)
-        
-            //     return arr;
-            // }
-        
-            const submit = (e) => {
-                e.preventDefault();
-        
-                const input = document.querySelector('.home-input');
-                const results = document.querySelector('.home-results');
-        
-                if (!input.value) return;
-        
-                results.innerHTML = '';
-        
-                let url;
-        
-                if (input.value.match(/^https?:\/\//g)) {
-                    url = input.value;
-                } else {
-                    url = 'https://www.google.com/search?q=' + encodeURIComponent(input.value);
-                }
-        
-                var prefix = document.cookie.split('; ').map(e=>e.split('=')).find(e=>e[0]=='astro-proxy') ? prefixes[document.cookie.split('; ').map(e=>e.split('=')).find(e=>e[0]=='astro-proxy')[1]] : prefixes['Ultraviolet'];
-                // this is the basic idea for what i'm trying to do
-                // waiting for sylvie to finish the menu component and cat for the focus mode
-                const iframe = document.createElement("iframe");
-                iframe.classList.add('proxy-iframe');
-                if (prefix === "rh") {
-                    console.log("Variable is equal to 'rh'");
-                    let session = localStorage.getItem('session-string')
-                    if (session == undefined) {
-                        if (session == undefined) {
-                            console.log("Session is undefined");
-                        }
+                const toggleSwitchBtnBare = (e) => {
+                    const switchBtn = document.getElementsByClassName('switch-btn')[1];
+            
+                    if (switchBtn.style.display == 'block') {
+                        switchBtn.style.opacity = '0';
+                        setTimeout(function() {
+                            switchBtn.style.display = 'none';
+                        }, 100);
+                    } else {
+                        switchBtn.style.display = 'block';
+                        requestAnimationFrame(() => {
+                        switchBtn.style.opacity = '1';
+                        });
                     }
-
-                } else {
-                    console.log("Variable is not equal to 'rh'");
-                    iframe.src = `/~/${prefix}/${encodeURIComponent(url)}`;
-                }               
-                iframe.style.width = "100%";
-                iframe.style.height = "100%";
-                iframe.style.border = "none";
-                iframe.style.background = "var(--settings-1)";
-                iframe.style.overflow = "hidden";
-                iframe.style.position = "absolute";
-                iframe.style.zIndex = '999999';
-                iframe.style.display = 'none';
-                iframe.style.top = "0px";
-
-                const loader = document.createElement("div");
-                loader.style.width = "100%";
-                loader.style.height = "100%";
-                loader.style.border = "none";
-                loader.style.background = "var(--settings-1)";
-                loader.style.overflow = "hidden";
-                loader.style.position = "absolute";
-                loader.style.zIndex = '9999999';
-                loader.style.fontFamily = "MajorMonoDisplay, Arial, sans-serif";
-                loader.style.top = "0px";
-                loader.innerHTML = `<div><span>N</span></div>`
-                loader.style.display = "flex";
-                loader.querySelector("div").style.position = "relative";
-                loader.style.fontSize = "150px";
-                loader.style.paddingBottom = "10%";
-                loader.style.alignItems = "center";
-                loader.style.justifyContent = "center";
-                loader.style.color = "var(--font-color)";
-                loader.style.opacity = "1";
-                loader.style.transition = "opacity 0.5s ease-in-out";
-                loader.classList.add('proxy-loader');
-
-                document.querySelector(".home").style.paddingBottom = "0px";
-
-                iframe.onload = async function() {
-                    iframe.onload = async () => {};
-                    loader.style.opacity = "0";
-                    iframe.style.display = 'block';
-
-                    const cache = await caches.open("astro-scripts");
-
-                    iframe.contentWindow.dispatchEvent(new CustomEvent("inject:cache", {
-                        detail: {
-                            cache
+            
+                    return e.stopPropagation();
+                }
+            
+                // const recursive = (el) => {
+                //     var arr = [];
+                
+                //     function iterate(el) {
+                //         if (el.childNodes) el.childNodes.forEach(e=>(arr.push(e), iterate(e)));
+            
+                //         return;
+                //     }
+            
+                //     arr.push(el);
+            
+                //     iterate(el)
+            
+                //     return arr;
+                // }
+            
+                const submit = (e) => {
+                    e.preventDefault();
+            
+                    const input = document.querySelector('.home-input');
+                    const results = document.querySelector('.home-results');
+            
+                    if (!input.value) return;
+            
+                    results.innerHTML = '';
+            
+                    let url;
+            
+                    if (input.value.match(/^https?:\/\//g)) {
+                        url = input.value;
+                    } else {
+                        url = 'https://www.google.com/search?q=' + encodeURIComponent(input.value);
+                    }
+            
+                    var prefix = document.cookie.split('; ').map(e=>e.split('=')).find(e=>e[0]=='astro-proxy') ? prefixes[document.cookie.split('; ').map(e=>e.split('=')).find(e=>e[0]=='astro-proxy')[1]] : prefixes['Ultraviolet'];
+                    // this is the basic idea for what i'm trying to do
+                    // waiting for sylvie to finish the menu component and cat for the focus mode
+                    const iframe = document.createElement("iframe");
+                    iframe.classList.add('proxy-iframe');
+                    if (prefix === "rh") {
+                        console.log("Variable is equal to 'rh'");
+                        let session = localStorage.getItem('session-string')
+                        if (session == undefined) {
+                            if (session == undefined) {
+                                console.log("Session is undefined");
+                            }
                         }
-                    }));
-                    
+    
+                    } else {
+                        console.log("Variable is not equal to 'rh'");
+                        iframe.src = `/~/${prefix}/${encodeURIComponent(url)}`;
+                    }               
+                    iframe.style.width = "100%";
+                    iframe.style.height = "100%";
+                    iframe.style.border = "none";
+                    iframe.style.background = "var(--settings-1)";
+                    iframe.style.overflow = "hidden";
+                    iframe.style.position = "absolute";
+                    iframe.style.zIndex = '999999';
+                    iframe.style.display = 'none';
+                    iframe.style.top = "0px";
+    
+                    const loader = document.createElement("div");
+                    loader.style.width = "100%";
+                    loader.style.height = "100%";
+                    loader.style.border = "none";
+                    loader.style.background = "var(--settings-1)";
+                    loader.style.overflow = "hidden";
+                    loader.style.position = "absolute";
+                    loader.style.zIndex = '9999999';
+                    loader.style.fontFamily = "MajorMonoDisplay, Arial, sans-serif";
+                    loader.style.top = "0px";
+                    loader.innerHTML = `<div><span>N</span></div>`
+                    loader.style.display = "flex";
+                    loader.querySelector("div").style.position = "relative";
+                    loader.style.fontSize = "150px";
+                    loader.style.paddingBottom = "10%";
+                    loader.style.alignItems = "center";
+                    loader.style.justifyContent = "center";
+                    loader.style.color = "var(--font-color)";
+                    loader.style.opacity = "1";
+                    loader.style.transition = "opacity 0.5s ease-in-out";
+                    loader.classList.add('proxy-loader');
+    
+                    document.querySelector(".home").style.paddingBottom = "0px";
+    
+                    iframe.onload = async function() {
+                        iframe.onload = async () => {};
+                        loader.style.opacity = "0";
+                        iframe.style.display = 'block';
+    
+                        const cache = await caches.open("astro-scripts");
+    
+                        iframe.contentWindow.dispatchEvent(new CustomEvent("inject:cache", {
+                            detail: {
+                                cache
+                            }
+                        }));
+                        
+                        setTimeout(function() {
+                            loader.remove();
+                        }, 500);
+                    }
+    
+                    homeContainer.parentNode.appendChild(loader);
+                    homeContainer.parentNode.appendChild(iframe);
+                }
+            
+                const switchServer = (e) => {
+                    e.preventDefault();
+            
+                    const server = e.target.dataset.value;
+            
+                    e.target.parentNode.style.opacity = '0';
+            
+                    document.querySelector('.server-indicator-value').childNodes[1].textContent = 'Connecting ';
+                    document.querySelector('.server-indicator-value').classList.remove('connected');
+                    document.querySelectorAll('.server-name')[0].innerText = server.split('.')[0].toUpperCase();
+            
+                    if (window.connectBare) {
+                        window.connectBare(server).then(() => {
+                            document.querySelector('.server-indicator-value').childNodes[1].textContent = 'Connected ';
+                            document.querySelector('.server-indicator-value').classList.add('connected');
+                        
+                            localStorage.server = server;
+                        }).catch(() => {
+                            document.querySelector('.server-indicator-value').childNodes[1].textContent = 'Disconnected ';
+                        });
+                    }
+            
+                    document.cookie = 'astro-bare='+server+'; expires=Fri, 31 Dec 9999 23:59:59 GMT'
+            
                     setTimeout(function() {
-                        loader.remove();
-                    }, 500);
+                        e.target.parentNode.style.display = 'none';
+                    }, 100);
                 }
-
-                homeContainer.parentNode.appendChild(loader);
-                homeContainer.parentNode.appendChild(iframe);
-            }
-        
-            const switchServer = (e) => {
-                e.preventDefault();
-        
-                const server = e.target.dataset.value;
-        
-                e.target.parentNode.style.opacity = '0';
-        
-                document.querySelector('.server-indicator-value').childNodes[1].textContent = 'Connecting ';
-                document.querySelector('.server-indicator-value').classList.remove('connected');
-                document.querySelectorAll('.server-name')[0].innerText = server.split('.')[0].toUpperCase();
-        
-                if (window.connectBare) {
-                    window.connectBare(server).then(() => {
-                        document.querySelector('.server-indicator-value').childNodes[1].textContent = 'Connected ';
-                        document.querySelector('.server-indicator-value').classList.add('connected');
-                    
-                        localStorage.server = server;
-                    }).catch(() => {
-                        document.querySelector('.server-indicator-value').childNodes[1].textContent = 'Disconnected ';
-                    });
-                }
-        
-                document.cookie = 'astro-bare='+server+'; expires=Fri, 31 Dec 9999 23:59:59 GMT'
-        
-                setTimeout(function() {
-                    e.target.parentNode.style.display = 'none';
-                }, 100);
-            }
-        
-            homeContainer.onsubmit = submit;
-            switchBtnCurrentBare.onclick = toggleSwitchBtnBare;
-            modifySplitA.forEach(e => e.onclick = switchServer);
-        })();   
-    </script>
+            
+                homeContainer.onsubmit = submit;
+                switchBtnCurrentBare.onclick = toggleSwitchBtnBare;
+                modifySplitA.forEach(e => e.onclick = switchServer);
+            })();   
+        </script>
+    </div>
 </Layout>
