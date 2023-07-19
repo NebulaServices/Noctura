@@ -33,7 +33,7 @@
     width: 500px;
     float: left;
     position: relative;
-    transition: 0.1s ease;
+    transition: all 0.1s ease, margin-left 0.3s ease;
 }
 
 .nav-btn-title {
@@ -76,6 +76,7 @@
     display: inline-block;
     /*width: 49%;*/
     flex: 1;
+    transition: padding-left 0.3s ease;
 }
 
 .nav-icon {

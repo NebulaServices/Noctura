@@ -1,3 +1,42 @@
 ---
-
+import './tabs.css';
 ---
+
+<div class="tabs">
+    <div class="tabs-btn" id="tabs-btn">
+        <div class="arrow arrow-1"></div>
+        <br />
+        <div class="arrow arrow-2"></div>
+    </div>
+
+    <div class="tabs-list" id="tabs-list">
+        
+    </div>
+
+    <script type="module">
+        let list = document.getElementById('tabs-list');
+        let btn = document.getElementById('tabs-btn');
+        var tl = document.querySelector('.header .top-left');
+        var nb = document.querySelector('.header .nav-btns');
+
+        var open = false;
+
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.arrow').forEach(e=>e.classList.toggle('arrow-open'));
+
+            if (!open) {
+                list.style.left = "210px";
+                btn.style.left = "210px";
+                tl.style.paddingLeft = "210px";
+                nb.style.marginLeft = "210px";
+                open = true;
+            } else {
+                list.style.left = "";
+                btn.style.left = "";
+                tl.style.paddingLeft = "";
+                nb.style.marginLeft = "";
+                open = false;
+            }
+        });
+    </script>
+</div>
