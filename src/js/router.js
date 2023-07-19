@@ -50,7 +50,7 @@ class Router {
     }
 
     #runScripts() {
-        const scripts = document.querySelectorAll("body script, script[data-load]");
+        const scripts = document.querySelectorAll("body script:not(data-cold), script[data-load]");
 
         scripts.forEach((script) => {
             const newScript = document.createElement("script");
@@ -61,7 +61,7 @@ class Router {
 
             newScript.append(script.textContent);
             script.replaceWith(newScript)
-        })
+        });
     }
 
     #prefetch() {
