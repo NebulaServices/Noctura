@@ -8,6 +8,7 @@
     position: relative;
     height: calc(100vh - 102px);
     padding-bottom: 50px;
+    overflow-y: auto;
     transition: 0.1s ease;
 }
 

@@ -1,6 +1,7 @@
 .settings {
-    height: calc(100vh - 105px);
+    min-height: calc(100vh - 105px);
     width: 90%;
+    overflow-y: auto;
     margin: auto;
     padding-bottom: 2000px;
 }
