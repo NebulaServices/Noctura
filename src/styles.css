@@ -146,12 +146,12 @@
 	--primary-text-color: #ffffff;
 	--nav-btn-color: #fff;
 	--nav-btn-color-darker: #fff;
-	--font-color: #fff;
+	--font-color: #ffffff;
 	--banner-gradient: linear-gradient(to right, #0000 0%, #4d008c 20%, #6f00ff 50%, #4d008c 80%, #0000 100%);
 	--surface-2: #383838;
 	--settings-1: #101c2c;
-	--settings-2: #101c2c;
-	--settings-3: #fff;
+	--settings-2: #172941;
+	--settings-3: rgba(255, 255, 255, 0.7);
 	--borders-1: 1px solid rgb(72, 72, 72);
 	--borders-2: 1px solid rgb(36, 36, 36);
 	--tn-filter: brightness(2.5) hue-rotate(357deg);

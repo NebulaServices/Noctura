@@ -50,7 +50,8 @@
     justify-content: top;
     align-items: center;
     float: left;
-    background-color: var(--settings-3);
+    background-color: var(--settings-2);
+    border-right: 3px solid var(--settings-2);
 }
 
 .chat-history-entry{
@@ -75,7 +76,7 @@
 }
 
 .chat-history-entry:hover{
-    background-color: var(--settings-2);
+    background-color: var(--settings-3);
     cursor: pointer;
 }
 
