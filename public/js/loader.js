@@ -5,7 +5,7 @@ if (theme == "custom") {
 }
 
 const warn = (err, src, lin, col, type = "CLIENT") => {
-    return console.warn(`%c[%c${type} ERROR%c] %c${err}\n%c[%cAT%c] %c${src || 'UNKNOWN'}:${lin || 'UNKNOWN'}:${col || 'UNKNOWN'}`, "color: white; font-weight: bold;", "color: red; font-weight: bold;", "color: white; font-weight: bold;", "font-weight: 100; color: white", "color: white; font-weight: bold;", "color: red; font-weight: bold;", "color: white; font-weight: bold;", "font-weight: 100; color: white")
+    return console.warn(`%c[%c${type} ERROR%c] %c${err}\n%c[%cAT%c] %c${src || (lin ? location.href : 'UNKNOWN')}:${lin || 'UNKNOWN'}:${col || 'UNKNOWN'}`, "color: white; font-weight: bold;", "color: red; font-weight: bold;", "color: white; font-weight: bold;", "font-weight: 100; color: white", "color: white; font-weight: bold;", "color: red; font-weight: bold;", "color: white; font-weight: bold;", "font-weight: 100; color: white")
 }
 
 const oglist = window.onerror;
@@ -20,8 +20,6 @@ window.onerror = function(event, source, line, col, error) {
 const ogrej = window.onunhandledrejection;
 window.onunhandledrejection = function(event, source, line, col, error) {
     if (ogrej) ogrej(...arguments);
-
-    console.log(arguments);
 
     warn(event.reason.toString(), source, line, col);
 
