@@ -11,7 +11,7 @@
       "@layout": ["src/layouts/Layout.astro"],
       "@settings": ["src/layouts/Settings.astro"],
       "@plugins": ["src/layouts/Plugins.astro"],
-      "@sections/*": ["src/components/*"]
+      "@sections/*": ["src/sections/*"]
     }
   },
 }
