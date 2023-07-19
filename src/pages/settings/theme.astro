@@ -7,19 +7,28 @@ import Section from "@components/Section.astro";
     <Section class="settings-section">
         <form id="theme-switch-form">
             <h1 class="text-lg">Select Theme</h1>
-
+            <br>
+            <p>Stock Themes</p>
             <button type="submit" id="theme-amoled" class="settings-submit amoled_theme">AMOLED</button>
+            <button id="theme-light" class="settings-submit light_theme">Flashbang</button>
+            <br>
+            <br><p>Catppuccin</p>
             <button id="theme-mocha" class="settings-submit mocha_theme">Catppuccin - Mocha</button>
             <button id="theme-macchiato" class="settings-submit macchiato_theme">Catppuccin - Macchiato</button>
             <button id="theme-frappe" class="settings-submit frappe_theme">Catppuccin - Frappé</button>
             <button id="theme-latte" class="settings-submit latte_theme">Catppuccin - Latte</button>
-            <button id="theme-light" class="settings-submit light_theme">Bright</button>
+            <br>
+            <br><p>Special Themes</p>
             <button id="theme-discord" class="settings-submit discord_theme">Discord</button>
             <button id="theme-ludicrous" class="settings-submit ludicrous_theme">Ludicrous Dark</button>
+            <button id="theme-trans" class="settings-submit trans_theme">Mercury Workshop</button>
             <button id="theme-baja" class="settings-submit baja_theme">Baja Blast</button>
         </form>
 
+        
+        
         <p style="font-size:15px;" class="mt-1">Want to create your own theme? <a href="/plugins/themes/" data-cold style="text-decoration: underline;">Custom Themes</a></p>
+        <!-- <p style="font-size:15px;" class="mt-1">Want to have your custom theme featured on the themes list? DM @dvcu on discord and send in your custom theme file!</p> -->
     </Section>
 
     <script type="module">
@@ -96,6 +105,12 @@ import Section from "@components/Section.astro";
             localStorage.setItem("theme", "ludicrous");
             removeCustomTheme();
             document.documentElement.setAttribute("data-theme", "ludicrous");
+        });
+
+        document.getElementById("theme-trans").addEventListener("click", () => {
+            localStorage.setItem("theme", "trans");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "trans");
         });
 
         document

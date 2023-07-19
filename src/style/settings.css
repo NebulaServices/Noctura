@@ -86,38 +86,52 @@
 
 .mocha_theme {
     background-color: #1e1e2e !important;
+    color: #fff !important;
 }
 
 .amoled_theme {
     background-color: #000000 !important;
+    color: #fff !important;
 }
 
 .macchiato_theme {
     background-color: #24273a !important;
+    color: #fff !important;
 }
 
 .frappe_theme {
     background-color: #303446 !important;
+    color: #fff !important;
 }
 
 .latte_theme {
     background-color: #eff1f5 !important;
+    color: #555 !important;
 }
 
 .baja_theme {
     background-color: #008881 !important;
+    color: #fff !important;
 }
 
 .light_theme {
     background-color: #DDDDDD !important;
+    color: #555 !important;
 }
 
 .discord_theme {
     background-color: #36393e !important;
+    color: #fff !important;
 }
 
 .ludicrous_theme {
     background-color: #101c2c !important;
+    color: #fff !important;
+}
+
+.trans_theme {
+    background-image: linear-gradient(#5BCEFA,#F5A9B8,#fff,#F5A9B8,#5BCEFA) !important;
+    color: #555 !important;
 }
 
 .settings-img-button {
