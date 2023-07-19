@@ -29,7 +29,7 @@ class Router {
 
         if (doc.title) document.title = doc.title;
 
-        const selector = "main.layout:not(.header, .top-banner, .footer)";
+        const selector = "main.layout > div:not(.toast-container, .header, .top-banner, .footer)";
 
         document.body.querySelector(selector).replaceWith(doc.body.querySelector(selector));
         this.#mergeHead(doc);

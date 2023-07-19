@@ -28,6 +28,13 @@ window.onunhandledrejection = function(event, source, line, col, error) {
     return true;
 };
 
+window.addEventListener('router:end', (event) => {
+    var url = '/' + location.pathname.split('?')[0].replace(/(\/$|^\/)/g, '');
+
+    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`.nav-btn[href="${url}"]`).classList.add('active');
+});
+
 caches.open('astro-modules').then(async modules => {
     for await (let { url } of await modules.keys()) {
         const module = await modules.match(url);
