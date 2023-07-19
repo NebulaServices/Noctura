@@ -29,14 +29,14 @@
     z-index: 1;
     width: 40px;
     top: -11px;
-    border: 1px solid #363636;
+    border: var(--borders-2);
     height: 40px;
     padding: 3px;
-    background: #3636364f;
+    background: var(--primary-bg-color)/*#3636364f*/;
 }
 
 .switch-btn-current img:hover {
-    background: #36363675;
+    background: var(--settings-3);
 }
 
 .switch-btn {
