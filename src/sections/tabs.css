@@ -3,7 +3,7 @@
 }
 
 .tabs-btn {
-    position: absolute;
+    position: fixed;
     left: 0;
     bottom: 50px;
     width: 25px;
@@ -16,6 +16,8 @@
     transition: background 0.1s ease, left 0.3s ease;
     cursor: pointer;
     flex-direction: column;
+    border: 1px solid var(--font-color);
+    border-left: 0;
     z-index: 9999999999999;
 }
 
@@ -58,7 +60,7 @@
 }
 
 .tabs-list {
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     transform: translateX(-100%);

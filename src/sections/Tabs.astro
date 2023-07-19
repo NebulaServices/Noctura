@@ -14,21 +14,23 @@ import './tabs.css';
     </div>
 
     <script type="module">
-        let list = document.getElementById('tabs-list');
-        let btn = document.getElementById('tabs-btn');
-        var tl = document.querySelector('.header .top-left');
-        var nb = document.querySelector('.header .nav-btns');
+        let list = document.getElementById('tabs-list'),
+            btn = document.getElementById('tabs-btn'),
+            tl = document.querySelector('.header .top-left'),
+            nb = document.querySelector('.header .nav-btns'),
+            open = false,
+            offset = 220;
 
-        var open = false;
+        list.style.width = `${offset}px`;
 
         btn.addEventListener('click', function() {
             document.querySelectorAll('.arrow').forEach(e=>e.classList.toggle('arrow-open'));
 
             if (!open) {
-                list.style.left = "210px";
-                btn.style.left = "210px";
-                tl.style.paddingLeft = "210px";
-                nb.style.marginLeft = "210px";
+                list.style.left = `${offset}px`;
+                btn.style.left = `${offset}px`;
+                tl.style.paddingLeft = `${offset}px`;
+                nb.style.marginLeft = `${offset}px`;
                 open = true;
             } else {
                 list.style.left = "";
