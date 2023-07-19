@@ -27,18 +27,26 @@ import './tabs.css';
             document.querySelectorAll('.arrow').forEach(e=>e.classList.toggle('arrow-open'));
 
             if (!open) {
-                list.style.left = `${offset}px`;
-                btn.style.left = `${offset}px`;
-                tl.style.paddingLeft = `${offset}px`;
-                nb.style.marginLeft = `${offset}px`;
+                requestAnimationFrame(() => {
+                    list.style.left = `${offset}px`;
+                    btn.style.left = `${offset}px`;
+                    tl.style.paddingLeft = `${offset}px`;
+                    nb.style.marginLeft = `${offset}px`;
+                });
                 open = true;
             } else {
-                list.style.left = "";
-                btn.style.left = "";
-                tl.style.paddingLeft = "";
-                nb.style.marginLeft = "";
+                requestAnimationFrame(() => {
+                    list.style.left = "";
+                    btn.style.left = "";
+                    tl.style.paddingLeft = "";
+                    nb.style.marginLeft = "";
+                });
                 open = false;
             }
         });
+
+        var data = [{href: 'https://www.google.com/', title: 'Google', picture: '/tab-filler.png'}, {href: 'https://discord.com/', title: 'Discord', picture: '/tab-filler.png'}];
+
+        list.innerHTML = data.map(({ href, title, picture }) => `<div class="tabs-tab"><img class="tab-picture" src="${picture}" alt="Picture of ${title}" /><div class="tab-info"><span class="tab-close">x</span><h1 class="tab-title">${title}</h1><h2 class="tab-link">${href}</h2></div>`).join('</div>\n');
     </script>
 </div>

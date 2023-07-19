@@ -70,4 +70,44 @@
     background: var(--settings-3);
     z-index: 9999999999999;
     border-right: 1px solid var(--font-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15px;
+    gap: 15px;
+}
+
+.tabs-tab {
+    width: 90%;
+    border: var(--borders-2);
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.tab-info {
+    position: relative;
+}
+
+.tab-close {
+    position: absolute;
+    right: 2px;
+    top: 0px;
+    margin: 0;
+    vertical-align: center;
+}
+
+.tab-picture {
+    width: 100%;
+    height: auto;
+}
+
+.tab-title {
+    color: var(--font-color);
+    font-size: 17px;
+}
+
+.tab-link {
+    color: var(--nav-btn-color-darker);
+    font-size: 12px;
 }
