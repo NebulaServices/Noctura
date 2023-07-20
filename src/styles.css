@@ -201,8 +201,8 @@
 	--settings-1: #3a3c3e;
 	--settings-2: #81A1C1;
 	--settings-3: #535659;
-	--borders-1: 1px solid rgb(72, 72, 72);
-	--borders-2: 1px solid rgb(36, 36, 36);
+	--borders-1: 1px solid rgb(255, 255, 255);
+	--borders-2: 1px solid rgb(255, 255, 255);
 	--tn-filter: brightness(2.5) hue-rotate(357deg);
 }
 
@@ -302,6 +302,7 @@ body, html {
     margin: 0;
     padding: 0;
     background: var(--primary-bg-color);
+    overflow-x: hidden;
 }
 
 * {
