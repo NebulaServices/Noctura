@@ -218,9 +218,10 @@
             api.newsession(function (id) {
                 addSession(id); //Generate it
                 localStorage.setItem('session-string', id); // Set localstorage
-                console.log("New RH session made.")
+                console.log("New RH session made.");
             });
         };
+
         function isUrl(val = ''){
             if (/^http(s?):\/\//.test(val) || val.includes('.') && val.substr(0, 1) !== ' ') return true;
             return false;
@@ -254,10 +255,15 @@
                 });
             });
         }
+
+        document.getElementById('home-input').addEventListener("keydown", (event) => {
+            if (event.key === 'Enter' && Cookies.get("astro-proxy").toLowerCase() == "rammerhead") { 
+                console.log('RH in use');
+                go(); 
+            }
+        })
         if (Cookies.get("astro-proxy").toLowerCase() == "rammerhead") {
-            document.getElementById('home-input').addEventListener("keydown", (event) => {
-                    if (event.key === 'Enter') go();
-            })
+            console.log('Rammerhead is the proxy!')
         }
     });
 })();
