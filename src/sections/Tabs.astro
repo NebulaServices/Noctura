@@ -50,7 +50,7 @@ import './tabs.css';
         try {
             var res = await fetch('/gen-scrot?url=' + encodeURIComponent(href)).then(res => res.blob());
 
-            return URL.createObjectURL(res);
+            return "data:image/png;base64," + btoa(await res.text());
         } catch {
             return '/tab-filler.png';
         }
