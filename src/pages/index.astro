@@ -116,7 +116,6 @@ import servers from '../bare.json';
                     const iframe = document.createElement("iframe");
                     iframe.classList.add('proxy-iframe');
                     if (prefix === "rh") {
-                        console.log("Variable is equal to 'rh'");
                         let session = localStorage.getItem('session-string')
                         if (session == undefined) {
                             if (session == undefined) {
@@ -125,7 +124,6 @@ import servers from '../bare.json';
                         }
     
                     } else {
-                        console.log("Variable is not equal to 'rh'");
                         iframe.src = `/~/${prefix}/${encodeURIComponent(url)}`;
                     }               
     
