@@ -8,7 +8,7 @@
 }
 
 .switch-btn-current {
-    background: var(--primary-bg-color);
+    background: transparent;
     border-radius: 50%;
     
     font-size: 14px;
@@ -23,7 +23,7 @@
 
 .switch-btn-current img {
     border-radius: 0%;
-    background: var(--primary-bg-color);
+    background: transparent;
     transition: 0.2s ease;
     position: relative;
     z-index: 1;
