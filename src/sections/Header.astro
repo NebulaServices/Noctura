@@ -289,6 +289,12 @@ const currentDate = new Date().getTime();
 
     let focusMode = "off";
     let focusButton = document.querySelector(".focus-mode-container");
+    document.body.addEventListener("fullscreenchange", function(e) {
+      if (!document.fullscreenElement) {
+        if (focusMode == "on") focusButton.click();
+      }
+    });
+
     focusButton.onclick = () => {
       const top = document.querySelector(".top");
       const bottom = document.querySelector(".bottom");
@@ -318,7 +324,7 @@ const currentDate = new Date().getTime();
           let hamburger = document.getElementById("burger-container")
           topRight.appendChild(hamburger);
           siteFooter.style.display = "block";
-          document.exitFullscreen();
+          if (document.fullscreenElement) document.exitFullscreen();
           return;
       }
     };
