@@ -5,7 +5,7 @@
 .tabs-btn {
     position: fixed;
     left: 0;
-    bottom: 135px;
+    bottom: 30px;
     width: 25px;
     display: flex;
     justify-content: center;
