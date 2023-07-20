@@ -56,8 +56,8 @@ import './tabs.css';
         }
     }
 
-    window.saveTab = async function saveTab(id, title, href) {
-        var data = { id, title, href, picture: await getPicture(href) };
+    window.saveTab = async function saveTab(id, title, href, pHref) {
+        var data = { id, title, href, pHref, picture: await getPicture(href) };
 
         await cache.put('/' + id + '.json', new Response(JSON.stringify(data), { headers: { 'Content-Type': 'application/json' }}));
 
@@ -69,19 +69,53 @@ import './tabs.css';
     window.removeTab = async function(id) {
         await cache.delete('/' + id + '.json');
 
+        document.querySelector(`iframe[data-uuid="${id}"]`).remove();
+
         await loadTabs();
+
+        return true;
+    }
+
+    async function frames(data) {
+        async function load(id, title, href, pHref) {
+            var frame = document.createElement('iframe');
+            frame.classList.add('tab-frame', 'proxy-iframe');
+            frame.dataset.uuid = id;
+            frame.src = pHref;
+            frame.style.display = 'none';
+            
+            document.body.appendChild(frame);
+
+            console.log("Preloading " + href);
+
+            await new Promise(resolve => (console.log("Preloaded", href), frame.addEventListener('load', resolve)));
+        }
+
+        await Promise.allSettled(data.map(({ id, title, href, pHref }) => load(id, title, href, pHref)));
 
         return true;
     }
 
     async function loadTabs() {
         let data = await getData();
-        return list.innerHTML = data.length ? data.map(({ id, href, title, picture }) => `<div class="tabs-tab"><img class="tab-picture" src="${picture}" alt="Picture of ${title}" /><div class="tab-info"><span class="tab-close" id="${id}" onclick="window.removeTab(this.id);">x</span><h1 class="tab-title">${title}</h1><h2 class="tab-link">${href}</h2></div>`).join('</div>\n') : "No Tabs";
+        if (!document.querySelector("iframe[data-uuid]")) await frames(data);
+        list.innerHTML = data.length ? data.map(({ id, href, title, picture }) => `<div class="tabs-tab"><img class="tab-picture" src="${picture}" alt="Picture of ${title}" /><div class="tab-info"><span class="tab-close" id="${id}" onclick="window.removeTab(this.id);">x</span><h1 class="tab-title">${title}</h1><h2 class="tab-link">${href}</h2></div>`).join('</div>\n') : "No Tabs";
+
+        if (data.length) {
+            document.querySelectorAll('.tabs-tab').forEach(e => e.addEventListener('click', function() {
+                document.querySelectorAll('.tabs-tab').forEach(e => e.classList.remove('tab-active'));
+                this.classList.add('tab-active');
+                document.querySelectorAll('.tab-frame').forEach(e => e.style.display = 'none');
+                document.querySelector(`iframe[data-uuid="${this.querySelector('.tab-close').id}"]`).style.display = 'block';
+            }));
+        }
+
+        window._init = true;
+
+        return;
     }
     
-    if (!window._init) await loadTabs();
-
-    window._init = true;
+    if (!window._init) loadTabs();
 </script>
 
 <div class="tabs">

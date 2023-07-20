@@ -56,12 +56,13 @@ var uuid = function () {
     return uid() + uid() + "-" + uid() + "-" + uid() + "-" + uid() + "-" + uid() + uid() + uid();
 };
 
-window.UUID = uuid();
+window.UUID = (window.frameElement && window.frameElement.dataset.uuid) || uuid();
 
 if (window.frameElement) {
+    window.frameElement.dataset.uuid = window.UUID;
     if (win.saveTab) {
         setTimeout(function() {
-            Promise.resolve().then(async () => win.saveTab(window.UUID, document.title, location.pathname.includes('/~/aero/') ? new Function('return __aero$meta.href')() : new Function('return this.location.href')()));
+            Promise.resolve().then(async () => win.saveTab(window.UUID, document.title, location.pathname.includes('/~/aero/') ? new Function('return __aero$meta.href')() : new Function('return this.location.href')(), Object.getOwnPropertyDescriptor(window, 'location').get.call(window).href));
         }, 5000);
     }
 
@@ -81,7 +82,7 @@ if (!Reflect.get(win, 'location').pathname.startsWith('/games')) {
     container.innerHTML = `
     <button onclick="location.reload()">Reload</button>
     <button onclick="var d=document;d.fullscreenElement?d.exitFullscreen&&d.exitFullscreen():d.documentElement.requestFullscreen();">Fullscreen</button>
-    ${window.frameElement ? '<button onclick="window.frameElement.remove()">Close</button>' : ''}
+    ${window.frameElement ? '<button onclick="window.frameElement.style.display = `none`">Close</button>' : ''}
     <button id="noctura-close-menu">Close Menu</button>
 
     <input id="noctura-nav-input" value="${location.pathname.includes('/~/aero/') ? new Function('return __aero$meta.href')() : new Function('return this.location.href')()}">

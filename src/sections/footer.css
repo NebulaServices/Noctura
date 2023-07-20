@@ -71,7 +71,7 @@
 }
 
 .footer-section a {
-    color: #ababab;
+    color: var(--logo-color);
     text-decoration: none;
     transition: 0.1s ease;
 }
