@@ -276,11 +276,9 @@ import Section from "@components/Section.astro";
                 e.preventDefault();
                 if (savedQueue.length >= 2) return
                 savedQueue.push(e);
-                console.log(savedQueue)
                 notify.show("Saved", "success", 2000);
                 setTimeout(() => {
                     savedQueue.splice(savedQueue.indexOf(e), 1);
-                    console.log(savedQueue)
                 }, 2000);
             });
     </script>
