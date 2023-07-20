@@ -126,13 +126,13 @@ class Router {
                 return;
             }
 
+            if (anchor && anchor.host !== location.host) {
+                anchor.target = '_blank';
+                return;
+            }
+
             e.stopPropagation();
             e.preventDefault();
-            return;
-        }
-
-        if (anchor && anchor.host !== location.host) {
-            anchor.target = '_blank';
             return;
         }
 

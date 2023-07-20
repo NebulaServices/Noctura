@@ -46,11 +46,19 @@ import './tabs.css';
         return data;
     }
 
+    function convert(blob) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = _ => resolve(reader.result);
+            reader.readAsDataURL(blob);
+        });
+    }
+
     async function getPicture(href) {
         try {
             var res = await fetch('/gen-scrot?url=' + encodeURIComponent(href)).then(res => res.blob());
 
-            return URL.createObjectURL(res);
+            return `${await convert(res)}`;
         } catch {
             return '/tab-filler.png';
         }
@@ -125,5 +133,5 @@ import './tabs.css';
         <div class="arrow arrow-2" />
     </div>
 
-    <div class="tabs-list" id="tabs-list" />
+    <div class="tabs-list" id="tabs-list">Loading...</div>
 </div>

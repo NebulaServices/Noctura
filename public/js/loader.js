@@ -62,7 +62,6 @@ window.faviconLoad = function faviconLoad() {
         document.head.appendChild(faviconLink);
     }
     faviconLink.href = faviconPath || '/icon.png';
-    localStorage.setItem('savedFavicon', faviconPath);
 }
 
 window.titleLoad = function titleLoad() {
