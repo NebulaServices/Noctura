@@ -150,14 +150,6 @@ import Obfuscated from "@components/Obfuscated.astro";
                         iframe.onload = async () => {};
                         loader.style.opacity = "0";
                         iframe.style.display = 'block';
-    
-                        const cache = await caches.open("astro-scripts");
-    
-                        iframe.contentWindow.dispatchEvent(new CustomEvent("inject:cache", {
-                            detail: {
-                                cache
-                            }
-                        }));
                         
                         setTimeout(function() {
                             loader.remove();
@@ -166,6 +158,7 @@ import Obfuscated from "@components/Obfuscated.astro";
     
                     homeContainer.parentNode.appendChild(loader);
                     homeContainer.parentNode.appendChild(iframe);
+                    window.iframe = iframe;
                 }
             
                 const switchServer = (e) => {
@@ -201,6 +194,19 @@ import Obfuscated from "@components/Obfuscated.astro";
                 switchBtnCurrentBare.onclick = toggleSwitchBtnBare;
                 modifySplitA.forEach(e => e.onclick = switchServer);
             })();   
+        </script>
+        <script type="module">
+            const cache = await caches.open("astro-scripts");
+            const iframe = document.querySelector(".proxy-iframe");
+            const interval = setInterval(() => {
+                window.iframe.contentWindow.dispatchEvent(new CustomEvent("inject:cache", {
+                    detail: {
+                        cache
+                    }
+                }));
+            }, 150);
+
+            window.addEventListener("router:end", () => clearInterval(interval));
         </script>
     </div>
 </Layout>

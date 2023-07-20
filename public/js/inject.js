@@ -23,22 +23,24 @@ const dom = new DOMParser().parseFromString('', 'text/html');
 // });
 
 window.addEventListener("inject:cache", (event) => {
-    const { cache } = event.detail;
+    if (!window.cache) {
+        window.cache = event.detail.cache;
 
-    cache.keys().then(async (keys) => {
-        for (const { url } of keys) {
-            const body = await (await cache.match(url)).blob();
+        cache.keys().then(async (keys) => {
+            for (const { url } of keys) {
+                const body = await (await cache.match(url)).blob();
 
-            const blobURL = URL.createObjectURL(new Blob([`let moduleID = "${url.split('/').pop().split('.')[0]}";\n`, body], { type: 'application/javascript' }), { type: 'application/javascript' });
+                const blobURL = URL.createObjectURL(new Blob([`let moduleID = "${url.split('/').pop().split('.')[0]}";\n`, body], { type: 'application/javascript' }), { type: 'application/javascript' });
 
-            let script = document.createElement('script');
-            script.src = blobURL;
-            script.type = 'module';
-            script.defer = true
+                let script = document.createElement('script');
+                script.src = blobURL;
+                script.type = 'module';
+                script.defer = true
 
-            document.head.appendChild(script);
-        }
-    })
+                document.head.appendChild(script);
+            }
+        });
+    }
 });
 
 let color = '#fff';
