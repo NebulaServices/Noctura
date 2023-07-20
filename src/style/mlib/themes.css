@@ -1,6 +1,6 @@
 :root {
   --title-color: #14FFEC;
-  --h1-color: var(--font-color);
+  --h1-color: var(--logo-color);
   --card-color: var(--settings-3);
   --card-color-darker: var(--settings-2);
   --card-color-music: var(--settings-1);
@@ -14,7 +14,7 @@
   --media-skip-buttons: rgba(102, 40, 40, 0.7);
   --media-play-buttons: rgba(128, 105, 46, 0.7);
   --media-icon-color: black;
-  --alt-bg-color: #33c263;
+  --alt-bg-color: var(--settings-3);
   --mobile-bg: #343434;
   --nav-bar-bg: #0D7377;
   --music-bar: #0E0E0E;

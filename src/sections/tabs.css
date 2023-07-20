@@ -5,18 +5,18 @@
 .tabs-btn {
     position: fixed;
     left: 0;
-    bottom: 50px;
+    bottom: 135px;
     width: 25px;
     display: flex;
     justify-content: center;
     align-tracks: center;
     height: 60px;
     border-radius: 0 10px 10px 0;
-    background: var(--primary-bg-color);
+    background: var(--settings-1);
     transition: background 0.1s ease, left 0.3s ease;
     cursor: pointer;
     flex-direction: column;
-    border: 1px solid var(--nav-btn-color-darker);
+    border: 1px solid var(--settings-3);
     border-left: 0;
     z-index: 9999999999999;
 }
@@ -36,7 +36,7 @@
 .arrow-1 {
     width: 16px;
     transform: rotate(65deg);
-    background: var(--nav-btn-color-darker);
+    background: var(--settings-3);
     height: 2px;
     margin-bottom: -6px;
     margin-left: 4px;
@@ -45,7 +45,7 @@
 .arrow-2 {
     width: 16px;
     transform: rotate(-65deg);
-    background: var(--nav-btn-color-darker);
+    background: var(--settings-3);
     height: 2px;
     margin-top: -6px;
     margin-left: 4px;
@@ -53,12 +53,12 @@
 
 .arrow-1.arrow-open {
     transform: rotate(-65deg);
-    background: var(--nav-btn-color);
+    background: var(--settings-3);
 }
 
 .arrow-2.arrow-open {
     transform: rotate(65deg);
-    background: var(--nav-btn-color);
+    background: var(--settings-3);
 }
 
 .arrow {

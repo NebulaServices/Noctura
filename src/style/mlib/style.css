@@ -192,7 +192,7 @@ p {
 
 a {
   text-decoration: var(--link-decoration);
-  color: var(--card-text-color);
+  color: var(--font-color);
   cursor: pointer;
 }
 
@@ -216,8 +216,8 @@ a {
   bottom: 0;
   left: 0;
   overflow-x: hidden;
-  
-  backdrop-filter: blur(25px);
+  background-color: var(--settings-1);
+
   transition: 0.5s;
   overflow-y: hidden;
 }
@@ -243,7 +243,7 @@ a {
   height: 0.3vh;
   width: 40%;
   position: absolute;
-  left: 29.8%;
+  
   margin-top: 5vh;
   padding: 10px;
 }
@@ -251,24 +251,44 @@ a {
 .progress-container p {
   margin-top: -1vh;
   filter: brightness(50%);
+  color: var(--logo-color) !important;
+}
+
+
+.midd {
+  width: 50%;
+  margin-left: 110px;
 }
 
 
 .progress-bar {
-  background: #777;
+  background: #555;
   border-radius: 3vh;
   height: 0.3vh;
   width: 0%;
 }
 
+.controls {
+  position: relative !important;
+  width: 400px;
+  
+  
+}
+
 .forward-arrow {
-  height: 4vh;
-  width: 50%;
+  height: 35px;
+  width: 35px;
   position: absolute;
-  left: 50%;
-  transform: translate(43%, 0);
-  padding: 10px;
-  margin-top: 2.63vh;
+  
+  margin-left: 175px;
+  
+  margin-top: 65px;
+}
+
+.forward-arrow:hover {
+  transform: scale(1.05);
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 .forward-arrow:hover .back-arrow:hover {
@@ -277,10 +297,10 @@ a {
 
 
 .pause-play {
-  height: 10px;
-  width: 10px;
-  left: 49.7%;
-  margin-top: 7.2vh;
+  height: 30px;
+  width: 25px;
+  margin-left: 90px;
+  margin-top: 69px;
   position: absolute;
   transition: 0.3s;
   
@@ -293,20 +313,26 @@ a {
 }
 
 .back-arrow {
-  height: 4vh;
-  width: 50%;
+  height: 35px;
+  width: 35px;
   position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0);
-  padding: 10px;
-  margin-top: 2.63vh;
+  
+  
+  
+  margin-top: 65px;
+}
+
+.back-arrow:hover {
+  transform: scale(1.05);
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 
 .volume-container {
-  margin-top: 5vh;
+  margin-top: 4.7vh;
   right: 1%;
-  background: #000000;
+  background: none;
   border-radius: 0.5px;
   height: 1vh;
   width: 10%;
@@ -315,7 +341,7 @@ a {
 }
 
 .volume-bar {
-  background: var(--alt-bg-color);
+  background: var(--settings-2);
   border-radius: 0.5px;
   height: 1vh;
   width: 10%;
@@ -333,7 +359,7 @@ a {
 .volume-icon:hover {
   transform: scale(1.05);
   transition: 0.1s;
-  box-shadow: #000000 0px 0px 1vh 0px;
+  cursor: pointer;
 }
 
 .volume-icon-mute {
@@ -355,6 +381,7 @@ a {
 .song-title-container {
   width: 100%;
   position: absolute;
+  
 }
 
 
@@ -362,14 +389,14 @@ a {
   font-size: 1.5vh;
   text-overflow: ellipsis;
   
-
+  color: var(--font-color) !important;
   padding-top: 0.5vh;
   text-align: center;
   text-overflow: ellipsis;
   position: absolute;
-  left: 50.23%;
-  transform: translate(-50%, 0);
-  padding: 10px;
+ 
+  
+  
   overflow: hidden;
   white-space: nowrap;
  
@@ -383,13 +410,13 @@ a {
 .song-artist {
   font-size: 1vh;
   text-overflow: ellipsis;
-  
+  color: var(--font-color) !important;
   margin-top: 3.3vh;
   text-align: center;
   text-overflow: ellipsis;
   position: absolute;
-  left: 50.23%;
-  transform: translate(-50%, 0);
+  
+  
   overflow: hidden;
   white-space: nowrap;
   filter: brightness(70%);
