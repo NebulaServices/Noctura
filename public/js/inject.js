@@ -51,9 +51,9 @@ let win = window.frameElement ? window.frameElement.ownerDocument.defaultView : 
 
 var uuid = function () {
     var uid = () =>
-        Math.floor(Math.random() * 0x10000).toString(16)
+        Math.floor(Math.random() * 0x10000).toString(16);
 
-    return uid() + uid() + "-" + uid() + "-" + uid() + "-" + uid() + "-" + uid() + uid() + uid()
+    return uid() + uid() + "-" + uid() + "-" + uid() + "-" + uid() + "-" + uid() + uid() + uid();
 };
 
 window.UUID = uuid();

@@ -73,7 +73,7 @@ var modules = [
                 proxy.map((script) => (
                     <div id={script.id} class="element">
                         <style scoped>
-                            .play {
+                            .element .play {
                                 width: 250px;
                                 height: 85px;
                                 border-bottom-right-radius: 25px;
@@ -88,7 +88,7 @@ var modules = [
                                 
                             }
                 
-                            .installbutton {
+                            .element  .installbutton {
                                 width: 150px;
                                 height: 50px;
                                 border: 1px solid #333;
@@ -99,12 +99,12 @@ var modules = [
                                 transition: 0.3s;
                             }
                 
-                            .installbutton:hover {
+                            .element  .installbutton:hover {
                                 width: 175px;
                                 transition: 0.3s;
                             }
                 
-                            .installtext {
+                            .element  .installtext {
                                 text-align: center;
                                 font-weight: bold;
                                 color: var(--font-color);
@@ -124,7 +124,7 @@ var modules = [
                                 position: relative;
                             }
                 
-                            h2 {
+                            .element  h2 {
                                 font-weight: bold;
                                 font-size: 20px;
                                 padding-right: 10px;
@@ -134,24 +134,24 @@ var modules = [
                                 padding-top: px;
                             }
                 
-                            h2 span { 
+                            .element  h2 span { 
                                 background:var(--settings-1); 
                                 padding:0 10px;
                                 
                             }
 
-                            h3 {
+                            .element  h3 {
                                 margin-top: 10px;
                                 margin-left: 5px;
                                 padding-left: 15px;
                                 font-size: 14px;
                             }
 
-                            h3 span {
+                            .element h3 span {
                                 color: var(--nav-btn-color-darker);
                             }
                 
-                            p {
+                            .element p {
                                 padding-right: 10px;
                                 padding-left: 10px;
                                 font-size: 13px;
@@ -188,7 +188,7 @@ var modules = [
                 modules.map((script) => (
                     <div id={script.id} class="element">
                         <style scoped>
-                            .play {
+                            .element .play {
                                 width: 250px;
                                 height: 85px;
                                 border-bottom-right-radius: 25px;
@@ -201,7 +201,7 @@ var modules = [
                                 position: absolute;
                             }
                 
-                            .installbutton {
+                            .element .installbutton {
                                 width: 150px;
                                 height: 50px;
                                 border: 1px solid #333;
@@ -212,12 +212,12 @@ var modules = [
                                 transition: 0.3s;
                             }
                 
-                            .installbutton:hover {
+                            .element .installbutton:hover {
                                 width: 175px;
                                 transition: 0.3s;
                             }
                 
-                            .installtext {
+                            .element  .installtext {
                                 text-align: center;
                                 font-weight: bold;
                                 color: var(--font-color);
@@ -237,7 +237,7 @@ var modules = [
                                 position: relative;
                             }
                 
-                            h2 {
+                            .element h2 {
                                 font-weight: bold;
                                 font-size: 20px;
                                 padding-right: 10px;
@@ -246,22 +246,22 @@ var modules = [
                                 line-height: 0.1em;
                             }
                 
-                            h2 span { 
+                            .element h2 span { 
                                 background:var(--settings-1); 
                                 padding:0 10px;
                                 
                             }
 
-                            h3 {
+                            .element h3 {
                                 margin-top: 10px;
                                 margin-left: 5px;
                             }
 
-                            h3 span {
+                            .element h3 span {
                                 color: var(--nav-btn-color-darker);
                             }
                 
-                            p {
+                            .element p {
                                 padding-right: 10px;
                                 padding-left: 10px;
                                 font-size: 13px;

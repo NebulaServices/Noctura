@@ -35,8 +35,6 @@ import './tabs.css';
         }
     });
 
-    window._init = true;
-
     async function getData() {
         var keys = await cache.keys();
         var data = [];
@@ -81,7 +79,9 @@ import './tabs.css';
         return list.innerHTML = data.length ? data.map(({ id, href, title, picture }) => `<div class="tabs-tab"><img class="tab-picture" src="${picture}" alt="Picture of ${title}" /><div class="tab-info"><span class="tab-close" id="${id}" onclick="window.removeTab(this.id);">x</span><h1 class="tab-title">${title}</h1><h2 class="tab-link">${href}</h2></div>`).join('</div>\n') : "No Tabs";
     }
     
-    await loadTabs();
+    if (!window._init) await loadTabs();
+
+    window._init = true;
 </script>
 
 <div class="tabs">
