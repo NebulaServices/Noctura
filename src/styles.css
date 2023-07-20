@@ -314,11 +314,137 @@
 }
 
 
+[data-theme="copper"] {
+    --primary-bg-color: linear-gradient(to right, #b79891, #94716b);
+    --secondary-bg-color: #ddd;
+    --primary-text-color: #444;
+    --nav-btn-color: #fff;
+    --nav-btn-color-darker: #fff;
+    --font-color: #444;
+    --banner-gradient: #fff;
+    --surface-2: #444;
+    --settings-1: #fff;
+    --settings-2: #ccc;
+    --settings-3: #ddd;
+    --borders-1: 1px solid #fff;
+    --borders-2: 1px solid #fff;
+    --tn-filter: brightness(2.5) hue-rotate(357deg);
+    --logo-color: #fff;
+}
+
+[data-theme="sylv"] {
+    --primary-bg-color: linear-gradient(to right, #4acfff, #8ae0ff);
+    --secondary-bg-color: #ddd;
+    --primary-text-color: #444;
+    --nav-btn-color: #fff;
+    --nav-btn-color-darker: #fff;
+    --font-color: #444;
+    --banner-gradient: #fff;
+    --surface-2: #444;
+    --settings-1: #fff;
+    --settings-2: #ccc;
+    --settings-3: #ddd;
+    --borders-1: 1px solid #fff;
+    --borders-2: 1px solid #fff;
+    --tn-filter: brightness(2.5) hue-rotate(357deg);
+    --logo-color: #fff;
+}
+
+[data-theme="rift"] {
+    --primary-bg-color: linear-gradient(to right, #3e008f, #0a0017);
+    --secondary-bg-color: #000;
+    --primary-text-color: #fff;
+    --nav-btn-color: #fff;
+    --nav-btn-color-darker: #fff;
+    --font-color: #fff;
+    --banner-gradient: #fff;
+    --surface-2: #444;
+    --settings-1: #222;
+    --settings-2: #444;
+    --settings-3: #666;
+    --borders-1: 1px solid #fff;
+    --borders-2: 1px solid #fff;
+    --tn-filter: brightness(2.5) hue-rotate(357deg);
+    --logo-color: #fff;
+}
+
+[data-theme="ssd"] {
+    --primary-bg-color: linear-gradient(to right, #5b8257, #354a33);
+    --secondary-bg-color: #000;
+    --primary-text-color: #fff;
+    --nav-btn-color: #fff;
+    --nav-btn-color-darker: #fff;
+    --font-color: #fff;
+    --banner-gradient: #fff;
+    --surface-2: #444;
+    --settings-1: #222;
+    --settings-2: #444;
+    --settings-3: #666;
+    --borders-1: 1px solid #fff;
+    --borders-2: 1px solid #fff;
+    --tn-filter: brightness(2.5) hue-rotate(357deg);
+    --logo-color: #fff;
+}
+
+[data-theme="cat"] {
+    --primary-bg-color: linear-gradient(to right, #4d4d4d, #bfbfbf);
+    --secondary-bg-color: #000;
+    --primary-text-color: #fff;
+    --nav-btn-color: #fff;
+    --nav-btn-color-darker: #fff;
+    --font-color: #fff;
+    --banner-gradient: #fff;
+    --surface-2: #444;
+    --settings-1: #222;
+    --settings-2: #444;
+    --settings-3: #666;
+    --borders-1: 1px solid #fff;
+    --borders-2: 1px solid #fff;
+    --tn-filter: brightness(2.5) hue-rotate(357deg);
+    --logo-color: #fff;
+}
+
+[data-theme="koaku"] {
+    --primary-bg-color: linear-gradient(to right, #3d0c0c, #ff0000);
+    --secondary-bg-color: #000;
+    --primary-text-color: #fff;
+    --nav-btn-color: #fff;
+    --nav-btn-color-darker: #fff;
+    --font-color: #fff;
+    --banner-gradient: #fff;
+    --surface-2: #444;
+    --settings-1: #222;
+    --settings-2: #444;
+    --settings-3: #666;
+    --borders-1: 1px solid #fff;
+    --borders-2: 1px solid #fff;
+    --tn-filter: brightness(2.5) hue-rotate(357deg);
+    --logo-color: #fff;
+}
+
+[data-theme="demo"] {
+    --primary-bg-color: linear-gradient(to right, #4d4d4d, #bfbfbf);
+    --secondary-bg-color: #000;
+    --primary-text-color: #fff;
+    --nav-btn-color: #fff;
+    --nav-btn-color-darker: #fff;
+    --font-color: #fff;
+    --banner-gradient: #fff;
+    --surface-2: #444;
+    --settings-1: #222;
+    --settings-2: #444;
+    --settings-3: #666;
+    --borders-1: 1px solid #fff;
+    --borders-2: 1px solid #fff;
+    --tn-filter: brightness(2.5) hue-rotate(357deg);
+    --logo-color: #fff;
+}
 
 body, html {
     height: 100%;
     margin: 0;
     padding: 0;
+    background-image: var(--primary-bg-color);
     background: var(--primary-bg-color);
     overflow-x: hidden;
 }

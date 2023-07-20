@@ -24,7 +24,14 @@ import Section from "@components/Section.astro";
             <button id="theme-green" class="settings-submit green_theme">Stem</button>
             <button id="theme-blue" class="settings-submit blue_theme">Wave</button>
             <button id="theme-yellow" class="settings-submit yellow_theme">Sunflower</button>
-            
+            <button id="theme-copper" class="settings-submit copper_theme">Copper</button>
+            <br>
+            <br><p class="sec">The Team</p>
+            <button id="theme-sylv" class="settings-submit sylv_theme">Sylvie</button>
+            <button id="theme-rift" class="settings-submit rift_theme">RiftRiot</button>
+            <button id="theme-ssd" class="settings-submit ssd_theme">Avd3</button>
+            <button id="theme-cat" class="settings-submit cat_theme">Cat</button>
+            <button id="theme-koaku" class="settings-submit koaku_theme">Koaku</button>
             <br>
             <br><p class="sec">Special Themes</p>
             <button id="theme-discord" class="settings-submit discord_theme">Discord</button>
@@ -33,6 +40,15 @@ import Section from "@components/Section.astro";
             <button id="theme-akane" class="settings-submit akane_theme">Akane / Generic</button>
             <button id="theme-baja" class="settings-submit baja_theme">Baja Blast</button>
             <button id="theme-alu" class="settings-submit alu_theme">Alu</button>
+            
+            <!--- Koaku dont forget to comment this out!!! --->
+            
+<!-- 
+
+            <br>
+            <br><p class="sec">Developer</p>
+            <button id="theme-demo" class="settings-submit demo_theme">Test Theme</button>
+--> 
         </form>
 
         
@@ -157,6 +173,48 @@ import Section from "@components/Section.astro";
             localStorage.setItem("theme", "alu");
             removeCustomTheme();
             document.documentElement.setAttribute("data-theme", "alu");
+        });
+
+        document.getElementById("theme-copper").addEventListener("click", () => {
+            localStorage.setItem("theme", "copper");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "copper");
+        });
+
+        document.getElementById("theme-demo").addEventListener("click", () => {
+            localStorage.setItem("theme", "demo");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "demo");
+        });
+
+        document.getElementById("theme-sylv").addEventListener("click", () => {
+            localStorage.setItem("theme", "sylv");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "sylv");
+        });
+
+        document.getElementById("theme-rift").addEventListener("click", () => {
+            localStorage.setItem("theme", "rift");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "rift");
+        });
+
+        document.getElementById("theme-ssd").addEventListener("click", () => {
+            localStorage.setItem("theme", "ssd");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "ssd");
+        });
+
+        document.getElementById("theme-cat").addEventListener("click", () => {
+            localStorage.setItem("theme", "cat");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "cat");
+        });
+
+        document.getElementById("theme-koaku").addEventListener("click", () => {
+            localStorage.setItem("theme", "koaku");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "koaku");
         });
 
         document.getElementById("theme-akane").addEventListener("click", () => {

@@ -263,8 +263,46 @@
     color: #fff !important;
 }
 
+.copper_theme {
+    background-image: linear-gradient(to right, #b79891, #94716b) !important;
+    color: #fff !important;
+}
+
+.copper_theme:hover {
+    background-image: linear-gradient(to right, #b79891, #94716b) !important;
+    color: #fff !important;
+}
+
+.demo_theme {
+    background-image: #fff !important;
+    color: #000 !important;
+}
 
 
+.sylv_theme {
+    background: #5ed4ff !important;
+    color: #fff !important;
+}
+
+.rift_theme {
+    background: #6f00ff !important;
+    color: #fff !important;
+}
+
+.ssd_theme {
+    background: #354a33 !important;
+    color: #fff !important;
+}
+
+.cat_theme {
+    background: #bfbfbf !important;
+    color: #000 !important;
+}
+
+.koaku_theme {
+    background: #6b1414 !important;
+    color: #fff !important;
+}
 
 .settings-img-button {
     width: 100%;
