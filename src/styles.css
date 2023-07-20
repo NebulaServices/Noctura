@@ -422,6 +422,24 @@
     --logo-color: #fff;
 }
 
+[data-theme="spritz"] {
+    --primary-bg-color: #070c2c;
+    --secondary-bg-color: #000;
+    --primary-text-color: #aeaeae;
+    --nav-btn-color: #fff;
+    --nav-btn-color-darker: #fff;
+    --font-color: #fff;
+    --banner-gradient: #fff;
+    --surface-2: #444;
+    --settings-1: #0c1242;
+    --settings-2: #060a23;
+    --settings-3: #070c2c;
+    --borders-1: 1px solid #fff;
+    --borders-2: 1px solid #fff;
+    --tn-filter: brightness(2.5) hue-rotate(357deg);
+    --logo-color: #fff;
+}
+
 [data-theme="im"] {
     --primary-bg-color: #000;
     --secondary-bg-color: #000;
@@ -529,6 +547,9 @@
     --tn-filter: brightness(2.5) hue-rotate(357deg);
     --logo-color: #fff;
 }
+
+
+
 
 /*
 

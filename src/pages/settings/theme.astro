@@ -32,7 +32,7 @@ import Section from "@components/Section.astro";
             <button id="theme-ssd" class="settings-submit ssd_theme">Avd3</button>
             <button id="theme-cat" class="settings-submit cat_theme">Cat</button>
             <button id="theme-koaku" class="settings-submit koaku_theme">Koaku</button>
-            
+            <button id="theme-spritz" class="settings-submit spritz_theme">Spritz</button>
             <br>
             <br><p class="sec">TN Proxython 2023</p>
             <button id="theme-im" class="settings-submit im_theme">Immortal</button>
@@ -51,6 +51,7 @@ import Section from "@components/Section.astro";
             <button id="theme-akane" class="settings-submit akane_theme">Akane / Generic</button>
             <button id="theme-baja" class="settings-submit baja_theme">Baja Blast</button>
             <button id="theme-alu" class="settings-submit alu_theme">Alu</button>
+           
             
             
         </form>
@@ -215,6 +216,12 @@ import Section from "@components/Section.astro";
             localStorage.setItem("theme", "koaku");
             removeCustomTheme();
             document.documentElement.setAttribute("data-theme", "koaku");
+        });
+
+        document.getElementById("theme-spritz").addEventListener("click", () => {
+            localStorage.setItem("theme", "spritz");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "spritz");
         });
 
         document.getElementById("theme-akane").addEventListener("click", () => {
