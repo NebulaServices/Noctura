@@ -89,9 +89,21 @@
 .mocha_theme {
     background-color: #1e1e2e !important;
     color: #fff !important;
+    transition: 250ms ease-in-out;
+}
+
+.mocha_theme:hover {
+    background-color: #1b1b2a !important;
+    color: #fff !important;
 }
 
 .amoled_theme {
+    background-color: #000000 !important;
+    color: #fff !important;
+    transition: 250ms ease-in-out;
+}
+
+.amoled_theme:hover {
     background-color: #000000 !important;
     color: #fff !important;
 }
@@ -99,51 +111,120 @@
 .macchiato_theme {
     background-color: #24273a !important;
     color: #fff !important;
+    transition: 250ms ease-in-out;
+}
+
+.macchiato_theme:hover {
+    background-color: #1b1e2e !important;
+    color: #fff !important;
 }
 
 .frappe_theme {
     background-color: #303446 !important;
+    color: #fff !important;
+    transition: 250ms ease-in-out;
+}
+
+.frappe_theme:hover {
+    background-color: #2a2d3b !important;
     color: #fff !important;
 }
 
 .latte_theme {
     background-color: #eff1f5 !important;
     color: #555 !important;
+    transition: 250ms ease-in-out;
+}
+
+.latte_theme:hover {
+    background-color: #e1e3e6 !important;
+    color: #555 !important;
 }
 
 .baja_theme {
     background-color: #008881 !important;
+    color: #fff !important;
+    transition: 250ms ease-in-out;
+}
+
+.baja_theme:hover {
+    background-color: #00726d !important;
     color: #fff !important;
 }
 
 .light_theme {
     background-color: #DDDDDD !important;
     color: #555 !important;
+    transition: 250ms ease-in-out;
+}
+
+.light_theme:hover {
+    background-color: #CCCCCC !important;
+    color: #555 !important;
 }
 
 .discord_theme {
     background-color: #36393e !important;
+    color: #fff !important;
+    transition: 250ms ease-in-out;
+}
+
+.discord_theme:hover {
+    background-color: #2f3036 !important;
     color: #fff !important;
 }
 
 .ludicrous_theme {
     background-color: #101c2c !important;
     color: #fff !important;
+    transition: 250ms ease-in-out;
+}
+
+.ludicrous_theme:hover {
+    background-color: #070c16 !important;
+    color: #fff !important;
 }
 
 .mid_theme {
     background-color: #000 !important;
     color: #777 !important;
+    transition: 250ms ease-in-out;
+}
+
+.mid_theme:hover {
+    background-color: #000 !important;
+    color: #777 !important;
 }
 
 .trans_theme {
-    background-image: linear-gradient(#5BCEFA,#F5A9B8,#fff,#F5A9B8,#5BCEFA) !important;
+    background: linear-gradient(#5BCEFA,#F5A9B8,#fff,#F5A9B8,#5BCEFA) !important;
     color: #555 !important;
+    transition: 250ms ease-in-out;
+}
+
+.trans_theme:hover {
+    background: linear-gradient(#51b4dc,#d3929f,#e5e5e5,#d3929f,#51b4dc) !important;
+}
+
+.alu_theme {
+    background-color: #81A1C1 !important;
+    color: white !important;
+    transition: 250ms ease-in-out;
+}
+
+.alu_theme:hover {
+    background-color: #5E81AC !important;
+    color: white !important;
 }
 
 
 .red_theme {
-    background-image: linear-gradient(90deg, #FF9A8B, #FF6A88, #FF99AC) !important;
+    background: linear-gradient(90deg, #FF9A8B, #FF6A88, #FF99AC) !important;
+    color: #fff !important;
+}
+
+.red_theme:hover {
+    background: linear-gradient(90deg, #df8678, #d85b74, #e48a9b) !important;
     color: #fff !important;
 }
 
@@ -152,13 +233,28 @@
     color: #444 !important;
 }
 
+.green_theme:hover {
+    background-image: linear-gradient(90deg, #6bea9b, #f7f17d) !important;
+    color: #444 !important;
+}
+
 .blue_theme {
     background-image: linear-gradient(90deg,#0093E9, #80D0C7) !important;
     color: #fff !important;
 }
 
+.blue_theme:hover {
+    background-image: linear-gradient(90deg, #017dbb, #72c7c7) !important;
+    color: #fff !important;
+}
+
 .yellow_theme {
     background-image: linear-gradient(90deg, #FBAB7E, #F7CE68) !important;
+    color: #fff !important;
+}
+
+.yellow_theme:hover {
+    background-image: linear-gradient(90deg, #f7a17e, #f7c668) !important;
     color: #fff !important;
 }
 
