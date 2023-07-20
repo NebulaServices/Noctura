@@ -71,7 +71,7 @@
     left: 50%;
     transform: translateX(calc(-50% - 10px));
     border: 1px solid #363636;
-    z-index: 999;
+    z-index: 999999999999999999;
     border-radius: 7px;
     position: absolute;
     

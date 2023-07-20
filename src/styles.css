@@ -404,6 +404,24 @@
     --logo-color: #fff;
 }
 
+[data-theme="air"] {
+    --primary-bg-color: #285c30;
+    --secondary-bg-color: #000;
+    --primary-text-color: #fff;
+    --nav-btn-color: #fff;
+    --nav-btn-color-darker: #fff;
+    --font-color: #fff;
+    --banner-gradient: #fff;
+    --surface-2: #444;
+    --settings-1: #222;
+    --settings-2: #444;
+    --settings-3: #666;
+    --borders-1: 1px solid #fff;
+    --borders-2: 1px solid #fff;
+    --tn-filter: brightness(2.5) hue-rotate(357deg);
+    --logo-color: #fff;
+}
+
 [data-theme="koaku"] {
     --primary-bg-color: linear-gradient(to right, #3d0c0c, #ff0000);
     --secondary-bg-color: #000;

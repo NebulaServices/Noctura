@@ -51,9 +51,9 @@ import Section from "@components/Section.astro";
             <button id="theme-akane" class="settings-submit akane_theme">Akane / Generic</button>
             <button id="theme-baja" class="settings-submit baja_theme">Baja Blast</button>
             <button id="theme-alu" class="settings-submit alu_theme">Alu</button>
-           
-            
-            
+            <br>
+            <br><p class="sec">Loser that wanted his own theme</p>
+            <button id="theme-air" class="settings-submit air_theme">Airtag</button>
         </form>
 
         
@@ -272,6 +272,12 @@ import Section from "@components/Section.astro";
             document.documentElement.setAttribute("data-theme", "hub");
         });
 
+        document.getElementById("theme-air").addEventListener("click", () => {
+            localStorage.setItem("theme", "air");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "air");
+        });
+
         //document.getElementById("theme-demo").addEventListener("click", () => {
         //    localStorage.setItem("theme", "demo");
         //    removeCustomTheme();
@@ -283,11 +289,9 @@ import Section from "@components/Section.astro";
                 e.preventDefault();
                 if (savedQueue.length >= 2) return
                 savedQueue.push(e);
-                console.log(savedQueue)
                 notify.show("Saved", "success", 2000);
                 setTimeout(() => {
                     savedQueue.splice(savedQueue.indexOf(e), 1);
-                    console.log(savedQueue)
                 }, 2000);
             });
     </script>
