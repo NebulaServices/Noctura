@@ -10,7 +10,7 @@ import Obfuscated from "@components/Obfuscated.astro";
     <div class="home">
         <!-- <div class="top-banner" /> -->
         <form class="home-container">
-            <h1 class="logotext">Noctura</h1>
+            <h1 class="logotext"><Obfuscated word="Noctura" /></h1>
             <input id="home-input" class="home-input" placeholder="Search freely..."/>
             <div class="home-results"></div>
         </form>
@@ -121,15 +121,6 @@ import Obfuscated from "@components/Obfuscated.astro";
                         console.log("Variable is not equal to 'rh'");
                         iframe.src = `/~/${prefix}/${encodeURIComponent(url)}`;
                     }               
-                    iframe.style.width = "100%";
-                    iframe.style.height = "100%";
-                    iframe.style.border = "none";
-                    iframe.style.background = "var(--settings-1)";
-                    iframe.style.overflow = "hidden";
-                    iframe.style.position = "absolute";
-                    iframe.style.zIndex = '999999';
-                    iframe.style.display = 'none';
-                    iframe.style.top = "0px";
     
                     const loader = document.createElement("div");
                     loader.style.width = "100%";

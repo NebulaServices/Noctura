@@ -181,6 +181,18 @@ h1 {
     user-select: none;
 }
 
+.proxy-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: var(--settings-1);
+    overflow: hidden;
+    position: absolute;
+    z-index: 999999;
+    display: none;
+    top: 0px;
+}
+
 @keyframes loader {
     0% {
         left: -20%;
