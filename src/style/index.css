@@ -166,6 +166,29 @@ h1 {
     color: var(--logo-color);
 }
 
+.themes {
+    position: absolute;
+    right:    0;
+    bottom:   0;
+    fill: var(--logo-color);
+    width: 40px;
+    height: 40px;
+    margin-right: 30px;
+    margin-bottom: 20px;
+}
+
+.themes a {
+    text-decoration: none;
+    fill: var(--logo-color);
+}
+
+.themes:hover {
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    
+}
+
 .proxy-loader div::before {
     animation: loader ease 1.5s infinite;
     height: 100%;

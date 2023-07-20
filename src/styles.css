@@ -422,17 +422,53 @@
     --logo-color: #fff;
 }
 
-[data-theme="demo"] {
-    --primary-bg-color: linear-gradient(to right, #4d4d4d, #bfbfbf);
+[data-theme="im"] {
+    --primary-bg-color: #000;
     --secondary-bg-color: #000;
     --primary-text-color: #fff;
     --nav-btn-color: #fff;
     --nav-btn-color-darker: #fff;
     --font-color: #fff;
     --banner-gradient: #fff;
-    --surface-2: #444;
-    --settings-1: #222;
-    --settings-2: #444;
+    --surface-2: #fff;
+    --settings-1: #0c696e;
+    --settings-2: #004145;
+    --settings-3: #009ba3;
+    --borders-1: 1px solid #fff;
+    --borders-2: 1px solid #fff;
+    --tn-filter: brightness(2.5) hue-rotate(357deg);
+    --logo-color: #fff;
+}
+
+[data-theme="atom"] {
+    --primary-bg-color: #1d232a;
+    --secondary-bg-color: #1d232a;
+    --primary-text-color: #fff;
+    --nav-btn-color: #fff;
+    --nav-btn-color-darker: #fff;
+    --font-color: #fff;
+    --banner-gradient: #fff;
+    --surface-2: #fff;
+    --settings-1: #191e24;
+    --settings-2: #1d232a;
+    --settings-3: #1fb2a6;
+    --borders-1: 1px solid #fff;
+    --borders-2: 1px solid #fff;
+    --tn-filter: brightness(2.5) hue-rotate(357deg);
+    --logo-color: #fff;
+}
+
+[data-theme="sodium"] {
+    --primary-bg-color: #8c8e94;
+    --secondary-bg-color: #8c8e94;
+    --primary-text-color: #fff;
+    --nav-btn-color: #fff;
+    --nav-btn-color-darker: #fff;
+    --font-color: #fff;
+    --banner-gradient: #fff;
+    --surface-2: #fff;
+    --settings-1: #242424;
+    --settings-2: #000;
     --settings-3: #666;
     --borders-1: 1px solid #fff;
     --borders-2: 1px solid #fff;
@@ -440,6 +476,80 @@
     --logo-color: #fff;
 }
 
+[data-theme="shadow"] {
+    --primary-bg-color: #1a1f2b;
+    --secondary-bg-color: #1a1f2b;
+    --primary-text-color: #fff;
+    --nav-btn-color: #fff;
+    --nav-btn-color-darker: #fff;
+    --font-color: #fff;
+    --banner-gradient: #fff;
+    --surface-2: #fff;
+    --settings-1: #10151e;
+    --settings-2: #000;
+    --settings-3: #979faa;
+    --borders-1: 1px solid #fff;
+    --borders-2: 1px solid #fff;
+    --tn-filter: brightness(2.5) hue-rotate(357deg);
+    --logo-color: #fff;
+}
+
+[data-theme="cobalt"] {
+    --primary-bg-color: #030303;
+    --secondary-bg-color: #030303;
+    --primary-text-color: #fff;
+    --nav-btn-color: #fff;
+    --nav-btn-color-darker: #fff;
+    --font-color: #fff;
+    --banner-gradient: #fff;
+    --surface-2: #fff;
+    --settings-1: #0443ab;
+    --settings-2: #0443ab;
+    --settings-3: #0443ab;
+    --borders-1: 1px solid #fff;
+    --borders-2: 1px solid #fff;
+    --tn-filter: brightness(2.5) hue-rotate(357deg);
+    --logo-color: #fff;
+}
+
+[data-theme="hub"] {
+    --primary-bg-color: #000;
+    --secondary-bg-color: #000;
+    --primary-text-color: #fff;
+    --nav-btn-color: #fff;
+    --nav-btn-color-darker: #fff;
+    --font-color: #fff;
+    --banner-gradient: #fff;
+    --surface-2: #fff;
+    --settings-1: #ff9000;
+    --settings-2: #000;
+    --settings-3: #000;
+    --borders-1: 1px solid #fff;
+    --borders-2: 1px solid #fff;
+    --tn-filter: brightness(2.5) hue-rotate(357deg);
+    --logo-color: #fff;
+}
+
+/*
+
+[data-theme="demo"] {
+    --primary-bg-color: #000;
+    --secondary-bg-color: #000;
+    --primary-text-color: #fff;
+    --nav-btn-color: #fff;
+    --nav-btn-color-darker: #fff;
+    --font-color: #fff;
+    --banner-gradient: #fff;
+    --surface-2: #fff;
+    --settings-1: #ff9000;
+    --settings-2: #000;
+    --settings-3: #000;
+    --borders-1: 1px solid #fff;
+    --borders-2: 1px solid #fff;
+    --tn-filter: brightness(2.5) hue-rotate(357deg);
+    --logo-color: #fff;
+}
+*/
 body, html {
     height: 100%;
     margin: 0;

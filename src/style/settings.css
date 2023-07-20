@@ -304,6 +304,36 @@
     color: #fff !important;
 }
 
+.im_theme {
+    background: #0c696e !important;
+    color: #fff !important;
+}
+
+.atom_theme {
+    background: #191e24 !important;
+    color: #1fb2a6 !important;
+}
+
+.sodium_theme {
+    background: #8c8c94 !important;
+    color: #fff !important;
+}
+
+.shadow_theme {
+    background: #1c1c24 !important;
+    color: #979faa !important;
+}
+
+.cobalt_theme {
+    background: #0443ab !important;
+    color: #fff !important;
+}
+
+.hub_theme {
+    background: #ff9000 !important;
+    color: #000 !important;
+}
+
 .settings-img-button {
     width: 100%;
     height: 100%;

@@ -32,23 +32,27 @@ import Section from "@components/Section.astro";
             <button id="theme-ssd" class="settings-submit ssd_theme">Avd3</button>
             <button id="theme-cat" class="settings-submit cat_theme">Cat</button>
             <button id="theme-koaku" class="settings-submit koaku_theme">Koaku</button>
+            
+            <br>
+            <br><p class="sec">TN Proxython 2023</p>
+            <button id="theme-im" class="settings-submit im_theme">Immortal</button>
+            <button id="theme-atom" class="settings-submit atom_theme">Atom</button>
+            <button id="theme-sodium" class="settings-submit sodium_theme">Sodium</button>
+            <button id="theme-shadow" class="settings-submit shadow_theme">Shadow</button>
+            <button id="theme-flow" class="settings-submit macchiato_theme">FlowOS</button>
+            <button id="theme-cobalt" class="settings-submit cobalt_theme">Cobalt</button>
+            
             <br>
             <br><p class="sec">Special Themes</p>
             <button id="theme-discord" class="settings-submit discord_theme">Discord</button>
             <button id="theme-ludicrous" class="settings-submit ludicrous_theme">Ludicrous Dark</button>
             <button id="theme-trans" class="settings-submit trans_theme">Mercury Workshop</button>
+            <button id="theme-hub" class="settings-submit hub_theme">Hub</button>
             <button id="theme-akane" class="settings-submit akane_theme">Akane / Generic</button>
             <button id="theme-baja" class="settings-submit baja_theme">Baja Blast</button>
             <button id="theme-alu" class="settings-submit alu_theme">Alu</button>
             
-            <!--- Koaku dont forget to comment this out!!! --->
             
-<!-- 
-
-            <br>
-            <br><p class="sec">Developer</p>
-            <button id="theme-demo" class="settings-submit demo_theme">Test Theme</button>
---> 
         </form>
 
         
@@ -181,11 +185,7 @@ import Section from "@components/Section.astro";
             document.documentElement.setAttribute("data-theme", "copper");
         });
 
-        // document.getElementById("theme-demo").addEventListener("click", () => {
-        //    localStorage.setItem("theme", "demo");
-        //    removeCustomTheme();
-        //    document.documentElement.setAttribute("data-theme", "demo");
-        //}); 
+        
 
         document.getElementById("theme-sylv").addEventListener("click", () => {
             localStorage.setItem("theme", "sylv");
@@ -221,7 +221,56 @@ import Section from "@components/Section.astro";
             localStorage.setItem("theme", "akane");
             removeCustomTheme();
             document.documentElement.setAttribute("data-theme", "akane");
-        })
+        });
+
+        document.getElementById("theme-im").addEventListener("click", () => {
+            localStorage.setItem("theme", "im");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "im");
+        }); 
+
+        document.getElementById("theme-atom").addEventListener("click", () => {
+            localStorage.setItem("theme", "atom");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "atom");
+        });
+        
+        document.getElementById("theme-sodium").addEventListener("click", () => {
+            localStorage.setItem("theme", "sodium");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "sodium");
+        });
+
+        document.getElementById("theme-shadow").addEventListener("click", () => {
+            localStorage.setItem("theme", "shadow");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "shadow");
+        });
+
+        document.getElementById("theme-flow").addEventListener("click", () => {
+            localStorage.setItem("theme", "macchiato");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "macchiato");
+        });
+
+        document.getElementById("theme-cobalt").addEventListener("click", () => {
+            localStorage.setItem("theme", "cobalt");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "cobalt");
+        });
+
+        document.getElementById("theme-hub").addEventListener("click", () => {
+            localStorage.setItem("theme", "hub");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "hub");
+        });
+
+        //document.getElementById("theme-demo").addEventListener("click", () => {
+        //    localStorage.setItem("theme", "demo");
+        //    removeCustomTheme();
+        //    document.documentElement.setAttribute("data-theme", "demo");
+        //}); 
+        
         let savedQueue = [];
         document.getElementById("theme-switch-form").addEventListener("submit", (e) => {
                 e.preventDefault();
