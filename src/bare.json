@@ -1,0 +1,10 @@
+{
+    "prod": [
+        "bare-1.$HOST",
+        "bare-2.$HOST",
+        "bare-3.$HOST"
+    ],
+    "dev": [
+        "tomp.app"
+    ]
+}

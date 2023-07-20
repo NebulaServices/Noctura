@@ -66,13 +66,6 @@ const { url } = Astro;
 				],
 			}}
 		/>
-		{
-			[
-				'tomp.app',
-			].map(e=>{
-				return <link rel="preconnect" href={'https://' + e} />;
-			})
-		}
 		<script defer src="/js/ui.js" />
 		<script async src="/js/sw.js" />
 		<Analytics id="G-WE1NBQQ361" />

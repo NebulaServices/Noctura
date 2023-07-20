@@ -4,6 +4,7 @@ import "@css/style.css";
 import "@css/index.css";
 import "@sections/switch.css"; 
 import Obfuscated from "@components/Obfuscated.astro";
+import servers from '../bare.json';
 ---
 
 <Layout title="Home">
@@ -27,10 +28,8 @@ import Obfuscated from "@components/Obfuscated.astro";
                 </div>
                 <div class="switch-btn open-up" style={{background: 'var(--primary-bg-color)'}}>
                     {
-                        [
-                            'tomp.app',
-                        ].map(e=>{
-                            return <a href={ "http://" + e } id={"server-" + e.split('.')[0]} class="modify-split-a" data-value={e}>{e.split('.')[0].split('-').map(e=>e.split('').map((e,i)=>i==0?e.toUpperCase():e).join('')).join(' ')} <span class="server-ping">0ms</span></a>
+                        servers.prod.map(e=>{
+                            return <a href="#" id={"server-" + e.split('.')[0]} class="modify-split-a" data-value={e}>{e.split('.')[0].split('-').map(e=>e.split('').map((e,i)=>i==0?e.toUpperCase():e).join('')).join(' ')} <span class="server-ping">0ms</span></a>
                         })
                     }
                 </div>
@@ -206,7 +205,7 @@ import Obfuscated from "@components/Obfuscated.astro";
             
                 homeContainer.onsubmit = submit;
                 switchBtnCurrentBare.onclick = toggleSwitchBtnBare;
-                modifySplitA.forEach(e => e.onclick = switchServer);
+                modifySplitA.forEach(e => (e.dataset.value = e.dataset.value.replace("$HOST", location.host), e.onclick = switchServer));
             })();   
         </script>
     </div>

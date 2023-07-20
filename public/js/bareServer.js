@@ -28,7 +28,7 @@ if (!window.__init) {
         const bareServers = await req.json();
         const ping = {};
 
-        bareServers.forEach(server => ping[server] = 0);
+        bareServers.forEach((server, index) => (bareServers[index] = server.replace('$HOST', location.host), ping[bareServers[index]] = 0));
 
         for await (var endpoint of bareServers) {
             const start = new Date();
