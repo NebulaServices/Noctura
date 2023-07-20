@@ -89,6 +89,8 @@ h1 {
     /*transition: 0.2s ease;*/
 }
 
+
+
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #fff !important;
     opacity: 0.5; /* Firefox */
@@ -158,6 +160,10 @@ h1 {
     font-size: 75px;
     font-family: MajorMonoDisplay, Arial, sans-serif;
     color: var(--logo-color) !important;
+}
+
+.logotext span {
+    color: var(--logo-color);
 }
 
 .proxy-loader div::before {

@@ -30,6 +30,7 @@ import Section from "@components/Section.astro";
             <button id="theme-discord" class="settings-submit discord_theme">Discord</button>
             <button id="theme-ludicrous" class="settings-submit ludicrous_theme">Ludicrous Dark</button>
             <button id="theme-trans" class="settings-submit trans_theme">Mercury Workshop</button>
+            <button id="theme-akane" class="settings-submit akane_theme">Akane / Generic</button>
             <button id="theme-baja" class="settings-submit baja_theme">Baja Blast</button>
             <button id="theme-alu" class="settings-submit alu_theme">Alu</button>
         </form>
@@ -156,6 +157,12 @@ import Section from "@components/Section.astro";
             localStorage.setItem("theme", "alu");
             removeCustomTheme();
             document.documentElement.setAttribute("data-theme", "alu");
+        });
+
+        document.getElementById("theme-akane").addEventListener("click", () => {
+            localStorage.setItem("theme", "akane");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "akane");
         })
         let savedQueue = [];
         document.getElementById("theme-switch-form").addEventListener("submit", (e) => {

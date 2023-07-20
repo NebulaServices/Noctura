@@ -295,6 +295,24 @@
     --logo-color: #fff;
 }
 
+[data-theme="akane"] {
+	--primary-bg-color: #fff;
+	--secondary-bg-color: #fff;
+	--primary-text-color: #000;
+	--nav-btn-color: #000;
+	--nav-btn-color-darker: #000;
+	--font-color: #000;
+	--banner-gradient: #fff;
+	--surface-2: #000;
+	--settings-1: #fff;
+	--settings-2: #fff;
+	--settings-3: #000;
+	--borders-1: 1px solid rgb(72, 72, 72);
+	--borders-2: 1px solid rgb(36, 36, 36);
+	--tn-filter: brightness(0%) hue-rotate(357deg);
+    --logo-color: #000;
+}
+
 
 
 body, html {
