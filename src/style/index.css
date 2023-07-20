@@ -71,6 +71,10 @@
     align-items: center;
 }
 
+h1 {
+    color: var(--logo-color) !important;
+}
+
 .home-container input {
     width: 100%;
     max-width: 500px;
@@ -78,12 +82,17 @@
     border: var(--borders-1);
     border-radius: 7px;
     background-color: var(--primary-bg-color);
-    color: var(--font-color);
+    color: var(--logo-color) !important;
     font-size: 16px;
     font-weight: 500;
     outline: none;
     /*transition: 0.2s ease;*/
 }
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #fff !important;
+    opacity: 0.5; /* Firefox */
+  }
 
 .input-omnibox {
     border-bottom-right-radius: 0 !important;
@@ -137,15 +146,18 @@
 .logo-container {
     display: flex;
     flex-direction: row;
+    color: var(--logo-color) !important;
 }
 
 .logo-image {
     height: 100px;
+    color: var(--logo-color) !important;
 }
 
 .logotext {
     font-size: 75px;
     font-family: MajorMonoDisplay, Arial, sans-serif;
+    color: var(--logo-color) !important;
 }
 
 .proxy-loader div::before {

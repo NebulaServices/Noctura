@@ -3,6 +3,7 @@
     width: 90%;
     overflow-y: auto;
     margin: auto;
+    padding-bottom: 2000px;
 }
 
 .settings-left {
@@ -140,6 +141,28 @@
     color: #555 !important;
 }
 
+
+.red_theme {
+    background-image: linear-gradient(90deg, #FF9A8B, #FF6A88, #FF99AC) !important;
+    color: #fff !important;
+}
+
+.green_theme {
+    background-image: linear-gradient(90deg, #85FFBD , #FFFB7D) !important;
+    color: #444 !important;
+}
+
+.blue_theme {
+    background-image: linear-gradient(90deg,#0093E9, #80D0C7) !important;
+    color: #fff !important;
+}
+
+.yellow_theme {
+    background-image: linear-gradient(90deg, #FBAB7E, #F7CE68) !important;
+    color: #fff !important;
+}
+
+
 .settings-img-button {
     width: 100%;
     height: 100%;
@@ -159,4 +182,8 @@
     transition: 0.1s ease;
     margin-top: 5px;
     cursor: pointer;
+}
+
+.sec {
+    color: var(--font-color) !important;
 }

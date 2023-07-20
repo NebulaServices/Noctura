@@ -8,18 +8,25 @@ import Section from "@components/Section.astro";
         <form id="theme-switch-form">
             <h1 class="text-lg">Select Theme</h1>
             <br>
-            <p>Stock Themes</p>
+            <p class="sec">Stock Themes</p>
             <button type="submit" id="theme-amoled" class="settings-submit amoled_theme">AMOLED</button>
             <button id="theme-light" class="settings-submit light_theme">Flashbang</button>
             <button id="theme-mid" class="settings-submit mid_theme">Midnight</button>
             <br>
-            <br><p>Catppuccin</p>
+            <br><p class="sec">Catppuccin</p>
             <button id="theme-mocha" class="settings-submit mocha_theme">Catppuccin - Mocha</button>
             <button id="theme-macchiato" class="settings-submit macchiato_theme">Catppuccin - Macchiato</button>
             <button id="theme-frappe" class="settings-submit frappe_theme">Catppuccin - Frappé</button>
             <button id="theme-latte" class="settings-submit latte_theme">Catppuccin - Latte</button>
             <br>
-            <br><p>Special Themes</p>
+            <br><p class="sec">Colors</p>
+            <button id="theme-red" class="settings-submit red_theme">Bubblegum</button>
+            <button id="theme-green" class="settings-submit green_theme">Stem</button>
+            <button id="theme-blue" class="settings-submit blue_theme">Wave</button>
+            <button id="theme-yellow" class="settings-submit yellow_theme">Sunflower</button>
+            
+            <br>
+            <br><p class="sec">Special Themes</p>
             <button id="theme-discord" class="settings-submit discord_theme">Discord</button>
             <button id="theme-ludicrous" class="settings-submit ludicrous_theme">Ludicrous Dark</button>
             <button id="theme-trans" class="settings-submit trans_theme">Mercury Workshop</button>
@@ -31,7 +38,7 @@ import Section from "@components/Section.astro";
         <p style="font-size:15px;" class="mt-1">Want to create your own theme? <a href="/plugins/themes/" data-cold style="text-decoration: underline;">Custom Themes</a></p>
         <!-- <p style="font-size:15px;" class="mt-1">Want to have your custom theme featured on the themes list? DM @dvcu on discord and send in your custom theme file!</p> -->
     </Section>
-
+    
     <script type="module">
         function removeCustomTheme() {
             document.documentElement.style.removeProperty('--primary-bg-color');
@@ -118,6 +125,30 @@ import Section from "@components/Section.astro";
             localStorage.setItem("theme", "mid");
             removeCustomTheme();
             document.documentElement.setAttribute("data-theme", "mid");
+        });
+
+        document.getElementById("theme-red").addEventListener("click", () => {
+            localStorage.setItem("theme", "red");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "red");
+        });
+
+        document.getElementById("theme-green").addEventListener("click", () => {
+            localStorage.setItem("theme", "green");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "green");
+        });
+
+        document.getElementById("theme-blue").addEventListener("click", () => {
+            localStorage.setItem("theme", "blue");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "blue");
+        });
+
+        document.getElementById("theme-yellow").addEventListener("click", () => {
+            localStorage.setItem("theme", "yellow");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "yellow");
         });
 
         document
