@@ -46,6 +46,17 @@ const { url } = Astro;
 			twitter={{
 				creator: "@TitaniumNetDev"
 			}}
+			openGraph={{
+				basic: {
+					title: "Noctura",
+					type: "website",
+					image: "/logo.png"
+				},
+				optional: {
+					locale: "en-US",
+					description: "The blazing fast solution to internet censorship. Access blocked websites with ease while maintaining anonymity and security.",
+				}
+			}}
 			extend={{
 				link: [
 					{ rel: "sitemap", href: "/sitemap-index.xml" }
