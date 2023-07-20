@@ -189,6 +189,23 @@
     --logo-color: #fff;
 }
 
+[data-theme="alu"] {
+	--primary-bg-color: #46494C;
+	--secondary-bg-color: #363636;
+	--primary-text-color: #fff;
+	--nav-btn-color: #81A1C1;
+	--nav-btn-color-darker: #fff;
+	--font-color: #fff;
+	--banner-gradient: #1985A1;
+	--surface-2: #383838;
+	--settings-1: #3a3c3e;
+	--settings-2: #81A1C1;
+	--settings-3: #535659;
+	--borders-1: 1px solid rgb(72, 72, 72);
+	--borders-2: 1px solid rgb(36, 36, 36);
+	--tn-filter: brightness(2.5) hue-rotate(357deg);
+}
+
 [data-theme="mid"] {
 	--primary-bg-color: #000;
 	--secondary-bg-color: #000;

@@ -17,7 +17,7 @@ if (typeof window == 'object' && (!window.parent.location.href.includes('/~/aero
         const shadow = div.attachShadow({ mode: "open" });
         shadow.append(script);
 
-        if (self.frameElement) self.frameElement.style.display = 'block';
+        if (self.frameElement && !self.frameElement.classList.contains('tab-frame')) self.frameElement.style.display = 'block';
 
         document.body.appendChild(div);
     }
