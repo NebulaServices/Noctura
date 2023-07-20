@@ -92,7 +92,7 @@ h1 {
 
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #fff !important;
+    color: var(--logo-color) !important;
     opacity: 0.5; /* Firefox */
   }
 
