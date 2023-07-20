@@ -31,6 +31,7 @@ import Section from "@components/Section.astro";
             <button id="theme-ludicrous" class="settings-submit ludicrous_theme">Ludicrous Dark</button>
             <button id="theme-trans" class="settings-submit trans_theme">Mercury Workshop</button>
             <button id="theme-baja" class="settings-submit baja_theme">Baja Blast</button>
+            <button id="theme-alu" class="settings-submit alu_theme">Alu</button>
         </form>
 
         
@@ -151,12 +152,22 @@ import Section from "@components/Section.astro";
             document.documentElement.setAttribute("data-theme", "yellow");
         });
 
-        document
-            .getElementById("theme-switch-form")
-            .addEventListener("submit", (e) => {
+        document.getElementById("theme-alu").addEventListener("click", () => {
+            localStorage.setItem("theme", "alu");
+            removeCustomTheme();
+            document.documentElement.setAttribute("data-theme", "alu");
+        })
+        let savedQueue = [];
+        document.getElementById("theme-switch-form").addEventListener("submit", (e) => {
                 e.preventDefault();
-
+                if (savedQueue.length >= 2) return
+                savedQueue.push(e);
+                console.log(savedQueue)
                 notify.show("Saved", "success", 2000);
+                setTimeout(() => {
+                    savedQueue.splice(savedQueue.indexOf(e), 1);
+                    console.log(savedQueue)
+                }, 2000);
             });
     </script>
 </Settings>
