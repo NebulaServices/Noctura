@@ -1,10 +1,12 @@
 // FILE IS RUN BEFORE PAGE LOAD
 
 const theme = localStorage.getItem('theme') || 'amoled';
+document.querySelector('style#dynamic-style').innerHTML = '* {transition: all 0s !important;}';
 document.documentElement.dataset.theme = theme;
 if (theme == "custom") {
-    document.querySelector('style#dynamic-style').innerHTML = `[data-theme="custom"] {${['primary-bg-color', 'secondary-bg-color', 'settings-1', 'settings-2', 'settings-3', 'font-color', 'primary-text-color', 'nav-btn-color-darker', 'nav-btn-color'].map(e=>localStorage.getItem(e) ? `--${e}: ${localStorage.getItem(e) + ' !important'}` : '').join(';')}}`;
+    document.querySelector('style#dynamic-style').innerHTML += `[data-theme="custom"] {${['primary-bg-color', 'secondary-bg-color', 'settings-1', 'settings-2', 'settings-3', 'font-color', 'primary-text-color', 'nav-btn-color-darker', 'nav-btn-color'].map(e=>localStorage.getItem(e) ? `--${e}: ${localStorage.getItem(e) + ' !important'}` : '').join(';')}}`;
 }
+document.querySelector('style#dynamic-style').innerHTML = '* {}';
 
 const warn = (err, src, lin, col, type = "CLIENT") => {
     return console.warn(`%c[%c${type} ERROR%c] %c${err}\n%c[%cAT%c] %c${src || (lin ? location.href : 'UNKNOWN')}:${lin || 'UNKNOWN'}:${col || 'UNKNOWN'}`, "color: white; font-weight: bold;", "color: red; font-weight: bold;", "color: white; font-weight: bold;", "font-weight: 100; color: white", "color: white; font-weight: bold;", "color: red; font-weight: bold;", "color: white; font-weight: bold;", "font-weight: 100; color: white")

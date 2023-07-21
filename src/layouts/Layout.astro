@@ -27,9 +27,11 @@ const { url } = Astro;
 <html lang="en">
 	<head>
 		<script>
-			import "../js/router.js";
-			import '../js/cookie.js';
-			import "../js/notify.js";
+			addEventListener('DOMContentLoaded', async () => {
+				await import("../js/router.js");
+				await import("../js/cookie.js");
+				await import("../js/notify.js");
+			});
 		</script>
 		<style id="dynamic-style" data-cold is:inline>* {}</style>
 		<link rel="icon" data-cold crossorigin="anonymous" href="/icon.png" type="image/png" />
@@ -77,7 +79,7 @@ const { url } = Astro;
 				],
 			}}
 		/>
-		<script defer src="/js/ui.js" />
+		<script async src="/js/ui.js" />
 		<script async src="/js/sw.js" />
 		<Analytics id="G-WE1NBQQ361" />
 	</head>

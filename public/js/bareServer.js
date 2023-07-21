@@ -66,7 +66,7 @@ if (!window.__init) {
         }
     }
     
-    if (navigator.onLine) requestBare(); else if (document.querySelector('.server-indicator-value')) document.querySelector('.server-indicator-value').childNodes[1].textContent = 'Offline';
+    queueMicrotask(() => {if (navigator.onLine) requestBare(); else if (document.querySelector('.server-indicator-value')) document.querySelector('.server-indicator-value').childNodes[1].textContent = 'Offline';});
 
     addEventListener('router:end', () => {if (navigator.onLine) requestBare(); else if (document.querySelector('.server-indicator-value')) document.querySelector('.server-indicator-value').childNodes[1].textContent = 'Offline'});
     

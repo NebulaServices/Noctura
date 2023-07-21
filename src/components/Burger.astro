@@ -14,7 +14,7 @@ const { background } = Astro.props;
     </div>
 </div>
 
-<script is:inline>
+<script is:inline data-cold>
     if (typeof window !== 'undefined') {
         addEventListener('mousedown', (e) => {
             const burger = document.getElementsByClassName('burger-container')[0];
@@ -74,5 +74,5 @@ const { background } = Astro.props;
 
     burger = document.getElementById("burger-container");
 
-    burger.addEventListener("click", (e) => toggle(e));
+    burger.onclick = (e) => toggle(e);
 </script>

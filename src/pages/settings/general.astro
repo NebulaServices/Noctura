@@ -89,6 +89,12 @@ import Section from "@components/Section.astro";
                 if (url) {
                     localStorage.setItem("panic-url", url);
 
+                    document.getElementById('panic-button').href = localStorage.getItem('panic-url') || 'https://classroom.google.com/';
+                    document.getElementById('panic-button').onclick = (e) =>
+                        e.preventDefault() ||
+                        (typeof window !== "undefined" &&
+                        window.location.replace(localStorage.getItem('panic-url') || 'https://classroom.google.com/'));
+
                     notify.show(`Saved`, "success", 2000);
                 } else {
                     return;

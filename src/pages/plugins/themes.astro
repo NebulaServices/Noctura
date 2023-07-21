@@ -14,12 +14,6 @@ var themes = [
 ---
 
 <Plugins title="Themes Library">
-    <style scoped>
-        #monaco-editor {
-            height: 500px;
-            width: 100%;
-        }
-    </style>
     <Section>
         <h1 class="text-xl">Upload VScode theme</h1>
         <input type="file" id="file" accept=".json,.vstheme,application/json,application/xml"/>
@@ -37,8 +31,6 @@ var themes = [
     </Section>
 
     <script type="module">
-        (typeof define == 'function') && define();
-        
         function parse(theme) {
             var data = {
                 data: {}
@@ -104,9 +96,13 @@ var themes = [
         });
     </script>
 
-    <script is:inline src="/monaco-editor/min/vs/loader.js"></script>
+    <script>
+        import createEditor from "../../js/editor.js";
 
-    <script type="module">
+        const view = createEditor("css");
+
+        view.dispatch({ state: view.state, changes: { from: 0, to: view.viewport.to, insert: getCurrentTheme() } })
+
         function getCurrentTheme() {
             var str = "";
             var theme = 'custom';
@@ -156,15 +152,11 @@ var themes = [
 
         var imports = document.getElementById('theme-import');
 
-        const loadMonaco = function w() {return new Promise(e=>setTimeout(e, 10)).then(e=>window.monaco?true:w())}();
-
         document.getElementById('save-theme').addEventListener('click', async (event) => {
-            if (!window.editor) await loadMonaco;
-
-            var parsed = parseTheme(window.editor.getValue());
+            var parsed = parseTheme(view.state.doc.toString());
 
             Object.keys(parsed.data).forEach(key => {
-                localStorage.setItem(key.replace('--', ''), parsed.data[key]);
+                localStorage.setItem(key.replace('--', ''), parsed[key]);
             });
 
             if (localStorage.getItem('theme') !== 'custom') localStorage.setItem('saved-theme', localStorage.getItem('theme') || 'amoled');
@@ -177,14 +169,12 @@ var themes = [
         });
 
         imports.addEventListener('change', async event => {
-            if (!window.editor) await loadMonaco;
-
             const file = imports.files[0];
 
             try {
                 const data = JSON.parse(await file.text());
 
-                window.editor.setValue(genTheme(data));
+                view.dispatch({ state: view.state, changes: { to: 0, from: view.viewport.to, insert: genTheme(data) } })
 
             } catch {
                 notify.show("Invalid Theme Data", "error", 2000);
@@ -192,9 +182,7 @@ var themes = [
         });
 
         document.getElementById('reset-theme').addEventListener('click', async (event) => {
-            if (!window.editor) await loadMonaco;
-
-            var parsed = parseTheme(window.editor.getValue());
+            var parsed = parseTheme(view.state.doc.toString());
 
             Object.keys(parsed.data).forEach(key => {
                 localStorage.removeItem(key.replace('--', ''));
@@ -209,26 +197,13 @@ var themes = [
         });
 
         document.getElementById('export-theme').addEventListener('click', async (event) => {
-            if (!window.editor) await loadMonaco;
-
-            var parsed = parseTheme(window.editor.getValue());
+            var parsed = parseTheme(view.state.doc.toString());
 
             var a = document.createElement('a');
             a.download = "theme.json";
             a.href = 'data:application/json,' + encodeURIComponent(JSON.stringify(parsed));
 
             a.click();
-        });
-
-        require.config({ paths: { vs: '/monaco-editor/min/vs' } });
-        require(['/monaco-editor/min/vs/editor/editor.main'], async function () {
-            // wait for window.monaco to exist (i love require) (real)
-            await loadMonaco;
-            window.editor = monaco.editor.create(document.getElementById('monaco-editor'), {
-                value: getCurrentTheme(),
-                language: 'css',
-                theme: 'vs-dark'
-            });
         });
     </script>
 </Plugins>

@@ -15,6 +15,7 @@
   "dependencies": {
     "@astrojs/react": "^2.2.1",
     "@astrojs/sitemap": "^1.4.0",
+    "@codemirror/lang-css": "^6.2.0",
     "@codemirror/lang-javascript": "^6.1.9",
     "@dynamic-pkg/react-notify-toast": "^0.5.1",
     "@fastify/compress": "^6.4.0",
@@ -22,6 +23,7 @@
     "@fastify/static": "^6.10.2",
     "@titaniumnetwork-dev/ultraviolet": "github:titaniumnetwork-dev/ultraviolet",
     "@tomphttp/bare-server-node": "^2.0.1",
+    "@uiw/codemirror-theme-vscode": "^4.21.7",
     "astro-analytics": "^2.6.0",
     "astro-hover-prefetch": "^1.0.7",
     "astro-imagetools": "^0.8.1",
