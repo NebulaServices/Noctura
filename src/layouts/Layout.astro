@@ -27,10 +27,10 @@ const { url } = Astro;
 <html lang="en">
 	<head>
 		<script>
-			addEventListener('DOMContentLoaded', () => {
-				import("../js/router.js");
-				import("../js/cookie.js");
-				import("../js/notify.js");
+			addEventListener('DOMContentLoaded', async () => {
+				await import("../js/router.js");
+				await import("../js/cookie.js");
+				await import("../js/notify.js");
 			});
 		</script>
 		<style id="dynamic-style" data-cold is:inline>* {}</style>
