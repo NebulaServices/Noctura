@@ -15,6 +15,16 @@ const { title } = Astro.props;
 ---
 
 <Layout title="Plugins">
+    <!-- do not remove these, it will cause codemirror to go over the save button -->
+    <style>
+        .cm-editor {
+            max-height: 500px;
+        }
+
+        .cm-scroller {
+            overflow: auto;
+        }
+    </style>
     <div class="plugins">
         <div class="plugins-left">
             {

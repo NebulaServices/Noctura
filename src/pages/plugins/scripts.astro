@@ -46,13 +46,6 @@ var modules = [
 ---
 
 <Plugins title="User Scripts">
-    <style scoped>
-        #monaco-editor {
-            height: 500px;
-            width: 100%;
-        }
-    </style>
-
     <style>
         .selected-opt {
             background: var(--settings-3) !important;
@@ -418,57 +411,13 @@ var modules = [
         }
     </script>
 
-    <script defer is:inline src="/monaco-editor/min/vs/loader.js"></script>
+<script>
+    // @ts-nocheck
+    import createEditor from "../../js/editor";
 
-    <script type="module">
-        (typeof define == 'function') && define();
+    const view = createEditor("js")!;
 
-        require.config({ paths: { vs: '/monaco-editor/min/vs' } });
-
-        window.setInject = (that) => {that.classList.add('selected-opt'); that.nextElementSibling.classList.remove('selected-opt'); window.editing = 'inject'; window.editor ? window.editor.setValue(localStorage.getItem('saved-inject') || injectText) : window.defaultText = injectText};
-        window.setModule = (that) => {that.classList.add('selected-opt'); that.previousElementSibling.classList.remove('selected-opt'); window.editing = 'module'; window.editor ? window.editor.setValue(localStorage.getItem('saved-module') || moduleText) : window.defaultText = moduleText};
-
-        window.saveEdits = async function() {
-            switch(window.editing) {
-                case "inject": {
-                    let cache = await caches.open("astro-scripts");
-                    localStorage.setItem('saved-inject', window.editor.getValue());
-                    await cache.put('/custom.js', new Response(window.editor.getValue(), { headers: { 'Content-Type': 'application/javascript' } }));
-
-                    await window.registerSW();
-
-                    await notify.hide();
-                    notify.show("Saved Script", "success", 2000);
-
-                    setTimeout(() => {
-                        location.reload();
-                    }, 2000);
-                    break;
-                }
-                case "module": {
-                    let cache = await caches.open("astro-modules");
-                    localStorage.setItem('saved-module', window.editor.getValue());
-                    await cache.put('/custom.js', new Response(window.editor.getValue(), { headers: { 'Content-Type': 'application/javascript' } }));
-
-                    await window.registerSW();
-
-                    await notify.hide();
-                    notify.show("Saved Module", "success", 2000);
-
-                    setTimeout(() => {
-                        location.reload();
-                    }, 2000);
-                    break;
-                }
-                default:
-                    eval(window.editor.getValue());
-                    break;
-            }
-        }
-        
-        window.defaultText = `alert("select an option")`;
-        
-        window.moduleText = 
+    window.moduleText = 
 `// @ts-nocheck (best solution)
 // Runs after page load.
 `
@@ -501,15 +450,7 @@ if (typeof __aero$config == 'object') {
     // CODE HERE
 }`;
 
-        require(['/monaco-editor/min/vs/editor/editor.main.js'], async function () {
-            function w() {return new Promise(e=>setTimeout(e, 10)).then(e=>window.monaco?true:w())};
-            await w();
-
-            window.editor = monaco.editor.create(document.getElementById('monaco-editor'), {
-                value: defaultText,
-                language: 'typescript',
-                theme: 'vs-dark'
-            });
-        });
-    </script>
+    window.setInject = (that) => {that.classList.add('selected-opt'); that.nextElementSibling.classList.remove('selected-opt'); window.editing = 'inject'; view ? view.dispatch({ startState: view.state, changes: { from: 0, to: view.viewport.to, insert: localStorage.getItem("saved-inject") || injectText } }) : window.defaultText = injectText};
+    window.setModule = (that) => {that.classList.add('selected-opt'); that.previousElementSibling.classList.remove('selected-opt'); window.editing = 'module'; view ? view.dispatch({ startState: view.state, changes: { from: 0, to: view.viewport.to, insert: localStorage.getItem("saved-module") || moduleText } }) : window.defaultText = moduleText};
+</script>
 </Plugins>
