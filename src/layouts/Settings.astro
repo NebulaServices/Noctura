@@ -1,40 +1,50 @@
 ---
-import Layout from '@layout';
+import Layout from "@layout";
 import "@css/style.css";
 import "@css/settings.css";
-import Obfuscated from '@components/Obfuscated.astro';
+import Obfuscated from "@components/Obfuscated.astro";
 
-const page = Astro.url.pathname.replace(/\/$/g, '').split('/').pop();
+const page = Astro.url.pathname.replace(/\/$/g, "").split("/").pop();
 
 const tabs = [
-    ["General", "/settings/general"],
-    ["Privacy", "/settings/privacy"],
-    ["Cloaking", "/settings/cloaking"],
-    ["Unblock", "/settings/unblock"],
-    ["Theme", "/settings/theme"],
+  ["General", "/settings/general"],
+  ["Privacy", "/settings/privacy"],
+  ["Cloaking", "/settings/cloaking"],
+  ["Unblock", "/settings/unblock"],
+  ["Theme", "/settings/theme"]
 ];
 
 const { title } = Astro.props;
 ---
 
 <Layout title="Settings">
-    <div class="settings">
-        <div class="settings-left">
-            {
-                tabs.map(tab => (
-                    <a class={"settings-navlink" + (tab[1].split('/').pop() == page ? " settings-navlink-active" : "")} href={tab[1]}>{tab[0]}</a>
-                ))
+  <div class="settings">
+    <div class="settings-left">
+      {
+        tabs.map((tab) => (
+          <a
+            class={
+              "settings-navlink" +
+              (tab[1].split("/").pop() == page
+                ? " settings-navlink-active"
+                : "")
             }
-        </div>
-        
-        <div class="settings-right">
-            <div class="settings-page">
-                <h1 class="text-3xl">
-                    <Obfuscated word={title} />
-                </h1>
-                
-                <slot />
-            </div>
-        </div>
+            href={tab[1]}
+          >
+            {tab[0]}
+          </a>
+        ))
+      }
     </div>
+
+    <div class="settings-right">
+      <div class="settings-page">
+        <h1 class="text-3xl">
+          <Obfuscated word={title} />
+        </h1>
+
+        <slot />
+      </div>
+    </div>
+  </div>
 </Layout>

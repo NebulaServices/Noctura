@@ -4,206 +4,356 @@ import Plugins from "@plugins";
 import Section from "@components/Section.astro";
 
 var themes = [
-    {
-        name: "Monochrome",
-        data: {
-
-        }
-    }
-]
+  {
+    name: "Monochrome",
+    data: {}
+  }
+];
 ---
 
 <Plugins title="Themes Library">
-    <Section>
-        <h1 class="text-xl">Upload VScode theme</h1>
-        <input type="file" id="file" accept=".json,.vstheme,application/json,application/xml"/>
-        <p> You can run the command "Developer: Generate Color Theme From Current Settings" in VScode to generate a theme file from you current theme. </p> 
-    </Section>
+  <Section>
+    <h1 class="text-xl">Upload VScode theme</h1>
+    <input
+      type="file"
+      id="file"
+      accept=".json,.vstheme,application/json,application/xml"
+    />
+    <p>
+      You can run the command "Developer: Generate Color Theme From Current
+      Settings" in VScode to generate a theme file from you current theme.
+    </p>
+  </Section>
 
-    <Section>
-        <h1 class="text-xl">Create Custom Theme</h1>
-        <h2>Drag & Drop theme JSON below:</h2>
-        <input type="file" id="theme-import" class="mb-2" accept=".json,.vstheme,application/json,application/xml"/>
-        <div id="monaco-editor"></div>
-        <button class="plugins-submit" id="save-theme">Save</button>
-        <button class="plugins-submit" id="export-theme">Export</button>
-        <button class="plugins-submit" id="reset-theme">Reset</button>
-    </Section>
+  <Section>
+    <h1 class="text-xl">Create Custom Theme</h1>
+    <h2>Drag & Drop theme JSON below:</h2>
+    <input
+      type="file"
+      id="theme-import"
+      class="mb-2"
+      accept=".json,.vstheme,application/json,application/xml"
+    />
+    <div id="monaco-editor"></div>
+    <button class="plugins-submit" id="save-theme">Save</button>
+    <button class="plugins-submit" id="export-theme">Export</button>
+    <button class="plugins-submit" id="reset-theme">Reset</button>
+  </Section>
 
-    <script type="module">
-        function parse(theme) {
-            var data = {
-                data: {}
-            };
+  <script type="module">
+    function parse(theme) {
+      var data = {
+        data: {}
+      };
 
-            data.name = theme.match(/^\[data-theme=.?([a-zA-Z0-9]+).?\]/)[1];
+      data.name = theme.match(/^\[data-theme=.?([a-zA-Z0-9]+).?\]/)[1];
 
-            var parsed = theme.replace(/\/\*(.*?)\*\//gi, '').replace(/\s/g, '').split('').slice(theme.split('').findIndex(e=>e=='{')).slice(0, theme.split('').findIndex(e=>e=='}') -1).join('').replace(/;?\}$/, '');
+      var parsed = theme
+        .replace(/\/\*(.*?)\*\//gi, "")
+        .replace(/\s/g, "")
+        .split("")
+        .slice(theme.split("").findIndex((e) => e == "{"))
+        .slice(0, theme.split("").findIndex((e) => e == "}") - 1)
+        .join("")
+        .replace(/;?\}$/, "");
 
-            parsed.split(';').forEach(prop => {
-                const [ name, value ] = prop.split(':');
+      parsed.split(";").forEach((prop) => {
+        const [name, value] = prop.split(":");
 
-                data.data[name] = value;
-            }); 
+        data.data[name] = value;
+      });
 
-            return data;
-        }
+      return data;
+    }
 
-        function adjust(color, amount) {
-            return '#' + color.replace(/^#/, '').replace(/../g, color => ('0'+Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)).substr(-2));
-        }
-        const fileInput = document.getElementById("file")
-        fileInput.addEventListener("change", (e) => {
-            const file = e.target.files[0];
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                const fileContent = event.target.result;
-                const sanitizedContent = fileContent.replace(/\/\/+/g, '');
-                const theme = JSON.parse(sanitizedContent);
+    function adjust(color, amount) {
+      return (
+        "#" +
+        color
+          .replace(/^#/, "")
+          .replace(/../g, (color) =>
+            (
+              "0" +
+              Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(
+                16
+              )
+            ).substr(-2)
+          )
+      );
+    }
+    const fileInput = document.getElementById("file");
+    fileInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const fileContent = event.target.result;
+        const sanitizedContent = fileContent.replace(/\/\/+/g, "");
+        const theme = JSON.parse(sanitizedContent);
 
-                const colors = Object.entries(theme.colors).map(([name, value]) => ({ name, value }));
+        const colors = Object.entries(theme.colors).map(([name, value]) => ({
+          name,
+          value
+        }));
 
-                const activityBarBackground = colors.find(color => color.name === "activityBar.background")
-                const sideBarBackground = colors.find(color => color.name === "sideBar.background")
-                const foreground = colors.find(color => color.name === "foreground")
-                const buttonBackground = colors.find(color => color.name === "button.background")
+        const activityBarBackground = colors.find(
+          (color) => color.name === "activityBar.background"
+        );
+        const sideBarBackground = colors.find(
+          (color) => color.name === "sideBar.background"
+        );
+        const foreground = colors.find((color) => color.name === "foreground");
+        const buttonBackground = colors.find(
+          (color) => color.name === "button.background"
+        );
 
-                const settings2 = adjust(sideBarBackground.value, -10)
-                const settings3 = adjust(sideBarBackground.value, -20)
+        const settings2 = adjust(sideBarBackground.value, -10);
+        const settings3 = adjust(sideBarBackground.value, -20);
 
-                if (activityBarBackground) document.documentElement.style.setProperty('--primary-bg-color', activityBarBackground.value);
-                if (activityBarBackground) localStorage.setItem('primary-bg-color', activityBarBackground.value);
-                if (activityBarBackground) document.documentElement.style.setProperty('--secondary-bg-color', adjust(activityBarBackground.value, -50));
-                if (activityBarBackground) localStorage.setItem('secondary-bg-color', adjust(activityBarBackground.value, -50));
-                if (sideBarBackground) document.documentElement.style.setProperty('--settings-1', sideBarBackground.value);
-                if (sideBarBackground) localStorage.setItem('settings-1', sideBarBackground.value);
-                if (settings2) document.documentElement.style.setProperty('--settings-2', settings2);
-                if (settings2) localStorage.setItem('settings-2', settings2);
-                if (settings3) document.documentElement.style.setProperty('--settings-3', settings3);
-                if (settings3) localStorage.setItem('settings-3', settings3);
-                if (foreground) document.documentElement.style.setProperty('--font-color', foreground.value);
-                if (foreground) localStorage.setItem('font-color', foreground.value);
-                if (foreground) document.documentElement.style.setProperty('--primary-text-color', foreground.value);
-                if (foreground) localStorage.setItem('primary-text-color', foreground.value);
-                if (foreground) document.documentElement.style.setProperty('--nav-btn-color-darker', adjust(foreground.value, -30));
-                if (foreground) localStorage.setItem('nav-btn-color-darker', adjust(foreground.value, -30));
-                if (buttonBackground) document.documentElement.style.setProperty('--nav-btn-color', adjust(buttonBackground.value, 20));
-                if (buttonBackground) localStorage.setItem('nav-btn-color', adjust(buttonBackground.value, 20));
-                localStorage.setItem('theme', 'custom');
-                
-            }
-            reader.readAsText(file);
+        if (activityBarBackground)
+          document.documentElement.style.setProperty(
+            "--primary-bg-color",
+            activityBarBackground.value
+          );
+        if (activityBarBackground)
+          localStorage.setItem("primary-bg-color", activityBarBackground.value);
+        if (activityBarBackground)
+          document.documentElement.style.setProperty(
+            "--secondary-bg-color",
+            adjust(activityBarBackground.value, -50)
+          );
+        if (activityBarBackground)
+          localStorage.setItem(
+            "secondary-bg-color",
+            adjust(activityBarBackground.value, -50)
+          );
+        if (sideBarBackground)
+          document.documentElement.style.setProperty(
+            "--settings-1",
+            sideBarBackground.value
+          );
+        if (sideBarBackground)
+          localStorage.setItem("settings-1", sideBarBackground.value);
+        if (settings2)
+          document.documentElement.style.setProperty("--settings-2", settings2);
+        if (settings2) localStorage.setItem("settings-2", settings2);
+        if (settings3)
+          document.documentElement.style.setProperty("--settings-3", settings3);
+        if (settings3) localStorage.setItem("settings-3", settings3);
+        if (foreground)
+          document.documentElement.style.setProperty(
+            "--font-color",
+            foreground.value
+          );
+        if (foreground) localStorage.setItem("font-color", foreground.value);
+        if (foreground)
+          document.documentElement.style.setProperty(
+            "--primary-text-color",
+            foreground.value
+          );
+        if (foreground)
+          localStorage.setItem("primary-text-color", foreground.value);
+        if (foreground)
+          document.documentElement.style.setProperty(
+            "--nav-btn-color-darker",
+            adjust(foreground.value, -30)
+          );
+        if (foreground)
+          localStorage.setItem(
+            "nav-btn-color-darker",
+            adjust(foreground.value, -30)
+          );
+        if (buttonBackground)
+          document.documentElement.style.setProperty(
+            "--nav-btn-color",
+            adjust(buttonBackground.value, 20)
+          );
+        if (buttonBackground)
+          localStorage.setItem(
+            "nav-btn-color",
+            adjust(buttonBackground.value, 20)
+          );
+        localStorage.setItem("theme", "custom");
+      };
+      reader.readAsText(file);
+    });
+  </script>
+
+  <script>
+    import createEditor from "../../js/editor.js";
+
+    const view = createEditor("css");
+
+    view.dispatch({
+      state: view.state,
+      changes: { from: 0, to: view.viewport.to, insert: getCurrentTheme() }
+    });
+
+    function getCurrentTheme() {
+      var str = "";
+      var theme = "custom";
+
+      str += '[data-theme="' + theme + '"] {\n';
+
+      [
+        "--primary-bg-color",
+        "--secondary-bg-color",
+        "--primary-text-color",
+        "--nav-btn-color",
+        "--nav-btn-color-darker",
+        "--font-color",
+        "--banner-gradient",
+        "--surface-2",
+        "--settings-1",
+        "--settings-2",
+        "--settings-3",
+        "--borders-1",
+        "--borders-2",
+        "--tn-filter"
+      ].forEach((color) => {
+        str +=
+          "\t" +
+          color +
+          ": " +
+          getComputedStyle(document.documentElement).getPropertyValue(color) +
+          ";\n";
+      });
+
+      str += "}";
+
+      return str;
+    }
+
+    function genTheme(data) {
+      if (!data.data) throw "";
+      var str = "";
+      var theme = "custom";
+
+      str += '[data-theme="' + theme + '"] {\n';
+
+      Object.keys(data.data).forEach(
+        (key) => (str += `\t${key}: ${data.data[key]};\n`)
+      );
+
+      str += "}";
+
+      return str;
+    }
+
+    function parseTheme(theme) {
+      var data = {
+        data: {}
+      };
+
+      data.name = theme.match(/^\[data-theme=.?([a-zA-Z0-9]+).?\]/)[1];
+
+      var parsed = theme
+        .replace(/\/\*(.*?)\*\//gi, "")
+        .replace(/\s/g, "")
+        .split("")
+        .slice(theme.split("").findIndex((e) => e == "{"))
+        .slice(0, theme.split("").findIndex((e) => e == "}") - 1)
+        .join("")
+        .replace(/;?\}$/, "");
+
+      parsed.split(";").forEach((prop) => {
+        const [name, value] = prop.split(":");
+
+        data.data[name] = value;
+      });
+
+      return data;
+    }
+
+    var imports = document.getElementById("theme-import");
+
+    document
+      .getElementById("save-theme")
+      .addEventListener("click", async (event) => {
+        var parsed = parseTheme(view.state.doc.toString());
+
+        Object.keys(parsed.data).forEach((key) => {
+          localStorage.setItem(key.replace("--", ""), parsed[key]);
         });
-    </script>
 
-    <script>
-        import createEditor from "../../js/editor.js";
+        if (localStorage.getItem("theme") !== "custom")
+          localStorage.setItem(
+            "saved-theme",
+            localStorage.getItem("theme") || "amoled"
+          );
+        localStorage.setItem("theme", "custom");
 
-        const view = createEditor("css");
+        document.documentElement.dataset.theme = "custom";
+        document.querySelector(
+          "style#dynamic-style"
+        ).innerHTML = `[data-theme="custom"] {${[
+          "primary-bg-color",
+          "banner-gradient",
+          "tn-filter",
+          "secondary-bg-color",
+          "settings-1",
+          "settings-2",
+          "settings-3",
+          "font-color",
+          "primary-text-color",
+          "nav-btn-color-darker",
+          "nav-btn-color"
+        ]
+          .map((e) =>
+            localStorage.getItem(e)
+              ? `--${e}: ${localStorage.getItem(e) + " !important"}`
+              : ""
+          )
+          .join(";")}}`;
 
-        view.dispatch({ state: view.state, changes: { from: 0, to: view.viewport.to, insert: getCurrentTheme() } })
+        notify.show("Saved", "success", 2000);
+      });
 
-        function getCurrentTheme() {
-            var str = "";
-            var theme = 'custom';
+    imports.addEventListener("change", async (event) => {
+      const file = imports.files[0];
 
-            str += "[data-theme=\"" + theme + "\"] {\n";
+      try {
+        const data = JSON.parse(await file.text());
 
-            ['--primary-bg-color', '--secondary-bg-color', '--primary-text-color', '--nav-btn-color', '--nav-btn-color-darker', '--font-color', '--banner-gradient', '--surface-2', '--settings-1', '--settings-2', '--settings-3', '--borders-1', '--borders-2', '--tn-filter'].forEach(color => {
-                str += "\t" + color + ": " + getComputedStyle(document.documentElement).getPropertyValue(color) + ";\n";
-            });
+        view.dispatch({
+          state: view.state,
+          changes: { to: 0, from: view.viewport.to, insert: genTheme(data) }
+        });
+      } catch {
+        notify.show("Invalid Theme Data", "error", 2000);
+      }
+    });
 
-            str += "}";
+    document
+      .getElementById("reset-theme")
+      .addEventListener("click", async (event) => {
+        var parsed = parseTheme(view.state.doc.toString());
 
-            return str;
-        }
-
-        function genTheme(data) {
-            if (!data.data) throw "";
-            var str = "";
-            var theme = 'custom';
-
-            str += "[data-theme=\"" + theme + "\"] {\n";
-
-            Object.keys(data.data).forEach(key => str += `\t${key}: ${data.data[key]};\n`);
-
-            str += "}";
-
-            return str;
-        }
-
-        function parseTheme(theme) {
-            var data = {
-                data: {}
-            };
-
-            data.name = theme.match(/^\[data-theme=.?([a-zA-Z0-9]+).?\]/)[1];
-
-            var parsed = theme.replace(/\/\*(.*?)\*\//gi, '').replace(/\s/g, '').split('').slice(theme.split('').findIndex(e=>e=='{')).slice(0, theme.split('').findIndex(e=>e=='}') -1).join('').replace(/;?\}$/, '');
-
-            parsed.split(';').forEach(prop => {
-                const [ name, value ] = prop.split(':');
-
-                data.data[name] = value;
-            }); 
-
-            return data;
-        }
-
-        var imports = document.getElementById('theme-import');
-
-        document.getElementById('save-theme').addEventListener('click', async (event) => {
-            var parsed = parseTheme(view.state.doc.toString());
-
-            Object.keys(parsed.data).forEach(key => {
-                localStorage.setItem(key.replace('--', ''), parsed[key]);
-            });
-
-            if (localStorage.getItem('theme') !== 'custom') localStorage.setItem('saved-theme', localStorage.getItem('theme') || 'amoled');
-            localStorage.setItem('theme', 'custom');
-
-            document.documentElement.dataset.theme = "custom";
-            document.querySelector('style#dynamic-style').innerHTML = `[data-theme="custom"] {${['primary-bg-color', 'banner-gradient', 'tn-filter', 'secondary-bg-color', 'settings-1', 'settings-2', 'settings-3', 'font-color', 'primary-text-color', 'nav-btn-color-darker', 'nav-btn-color'].map(e=>localStorage.getItem(e) ? `--${e}: ${localStorage.getItem(e) + ' !important'}` : '').join(';')}}`;
-
-            notify.show("Saved", "success", 2000);
+        Object.keys(parsed.data).forEach((key) => {
+          localStorage.removeItem(key.replace("--", ""));
         });
 
-        imports.addEventListener('change', async event => {
-            const file = imports.files[0];
+        localStorage.setItem(
+          "theme",
+          localStorage.getItem("saved-theme") || "amoled"
+        );
 
-            try {
-                const data = JSON.parse(await file.text());
+        document.documentElement.dataset.theme = localStorage.getItem("theme");
+        document.querySelector("style#dynamic-style").innerHTML = ``;
 
-                view.dispatch({ state: view.state, changes: { to: 0, from: view.viewport.to, insert: genTheme(data) } })
+        notify.show("Reset", "success", 2000);
+      });
 
-            } catch {
-                notify.show("Invalid Theme Data", "error", 2000);
-            }
-        });
+    document
+      .getElementById("export-theme")
+      .addEventListener("click", async (event) => {
+        var parsed = parseTheme(view.state.doc.toString());
 
-        document.getElementById('reset-theme').addEventListener('click', async (event) => {
-            var parsed = parseTheme(view.state.doc.toString());
+        var a = document.createElement("a");
+        a.download = "theme.json";
+        a.href =
+          "data:application/json," + encodeURIComponent(JSON.stringify(parsed));
 
-            Object.keys(parsed.data).forEach(key => {
-                localStorage.removeItem(key.replace('--', ''));
-            });
-
-            localStorage.setItem('theme', localStorage.getItem('saved-theme') || 'amoled');
-
-            document.documentElement.dataset.theme = localStorage.getItem('theme');
-            document.querySelector('style#dynamic-style').innerHTML = ``;
-
-            notify.show("Reset", "success", 2000);
-        });
-
-        document.getElementById('export-theme').addEventListener('click', async (event) => {
-            var parsed = parseTheme(view.state.doc.toString());
-
-            var a = document.createElement('a');
-            a.download = "theme.json";
-            a.href = 'data:application/json,' + encodeURIComponent(JSON.stringify(parsed));
-
-            a.click();
-        });
-    </script>
+        a.click();
+      });
+  </script>
 </Plugins>

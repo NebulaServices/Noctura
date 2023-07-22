@@ -1,21 +1,21 @@
 ---
-import Layout from '@layout';
-import '../styles.css';
-import '../error.css';
+import Layout from "@layout";
+import "../styles.css";
+import "../error.css";
 
 const { url } = Astro;
 
 const meta = {
-    404: {
-        code: '404',
-        text: 'Not Found',
-    }
+  404: {
+    code: "404",
+    text: "Not Found"
+  }
 };
 ---
 
 <Layout title="Error 404">
-    <div class="error">
-        <h1 class="errorCode">{ meta[404].code }</h1>
-        <p class="errorText">{ meta[404].text }</p>
-    </div>
+  <div class="error">
+    <h1 class="errorCode">{meta[404].code}</h1>
+    <p class="errorText">{meta[404].text}</p>
+  </div>
 </Layout>

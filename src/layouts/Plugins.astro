@@ -1,47 +1,56 @@
 ---
-import Layout from '@layout';
+import Layout from "@layout";
 import "@css/style.css";
 import "@css/plugins.css";
-import Obfuscated from '@components/Obfuscated.astro';
+import Obfuscated from "@components/Obfuscated.astro";
 
-const page = Astro.url.pathname.replace(/\/$/g, '').split('/').pop();
+const page = Astro.url.pathname.replace(/\/$/g, "").split("/").pop();
 
 const tabs = [
-    ["Scripts", "/plugins/scripts"],
-    ["Themes", "/plugins/themes"],
+  ["Scripts", "/plugins/scripts"],
+  ["Themes", "/plugins/themes"]
 ];
 
 const { title } = Astro.props;
 ---
 
 <Layout title="Plugins">
-    <!-- do not remove these, it will cause codemirror to go over the save button -->
-    <style>
-        .cm-editor {
-            max-height: 500px;
-        }
+  <!-- do not remove these, it will cause codemirror to go over the save button -->
+  <style>
+    .cm-editor {
+      max-height: 500px;
+    }
 
-        .cm-scroller {
-            overflow: auto;
-        }
-    </style>
-    <div class="plugins">
-        <div class="plugins-left">
-            {
-                tabs.map(tab => (
-                    <a data-cold class={"plugins-navlink" + (tab[1].split('/').pop() == page ? " plugins-navlink-active" : "")} href={tab[1]}>{tab[0]}</a>
-                ))
+    .cm-scroller {
+      overflow: auto;
+    }
+  </style>
+  <div class="plugins">
+    <div class="plugins-left">
+      {
+        tabs.map((tab) => (
+          <a
+            data-cold
+            class={
+              "plugins-navlink" +
+              (tab[1].split("/").pop() == page ? " plugins-navlink-active" : "")
             }
-        </div>
-        
-        <div class="plugins-right">
-            <div class="plugins-page">
-                <h1 class="text-3xl">
-                    <Obfuscated word={title} />
-                </h1>
-                
-                <slot />
-            </div>
-        </div>
+            href={tab[1]}
+          >
+            {tab[0]}
+          </a>
+        ))
+      }
     </div>
+
+    <div class="plugins-right">
+      <div class="plugins-page">
+        <h1 class="text-3xl">
+          <Obfuscated word={title} />
+        </h1>
+
+        <slot />
+      </div>
+    </div>
+  </div>
 </Layout>

@@ -1,114 +1,115 @@
 .plugins {
-    min-height: calc(100vh - 105px);
-    width: 90%;
-    margin: auto;
-    overflow-y: auto;
+  min-height: calc(100vh - 105px);
+  width: 90%;
+  margin: auto;
+  overflow-y: auto;
 }
 
 .settings p {
-    padding-right: 10px;
-    padding-left: 10px;
-    font-size: 11px;
-    color: var(--font-color) !important;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-size: 11px;
+  color: var(--font-color) !important;
 }
 
 .plugins-left {
-    width: 300px;
-    float: left;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  width: 300px;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .plugins-left a {
-    width: 95%;
-    height: auto;
-    padding: 10px 20px;
-    background: transparent;
-    color: var(--font-color);
-    transition: 0.1s ease;
-    border-radius: 5px;
+  width: 95%;
+  height: auto;
+  padding: 10px 20px;
+  background: transparent;
+  color: var(--font-color);
+  transition: 0.1s ease;
+  border-radius: 5px;
 }
 
 .plugins-navlink-active {
-    color: var(--nav-btn-color) !important;
+  color: var(--nav-btn-color) !important;
 }
 
 .plugins-left a:hover {
-    background: rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.09);
 }
 
 .plugins-right {
-    width: calc(100% - 300px);
-    float: left;
+  width: calc(100% - 300px);
+  float: left;
 }
 
-.plugins-left, .plugins-right {
-    height: 100%;
-    padding: 20px;
+.plugins-left,
+.plugins-right {
+  height: 100%;
+  padding: 20px;
 }
 
 .settings-section {
-    width: 100%;
-    height: auto;
-    padding: 10px 20px;
-    background: transparent;
-    transition: 0.1s ease;
-    border-radius: 5px;
-    margin-top: 10px;
-    background: var(--settings-1);
+  width: 100%;
+  height: auto;
+  padding: 10px 20px;
+  background: transparent;
+  transition: 0.1s ease;
+  border-radius: 5px;
+  margin-top: 10px;
+  background: var(--settings-1);
 }
 
 .plugins-input {
-    border-radius: 5px;
-    border: 1px solid var(--settings-3);
-    background: var(--settings-2);
-    color: var(--font-color);
-    padding: 5px 10px;
-    width: 100%;
-    outline: none;
-    transition: 0.1s ease;
-    margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid var(--settings-3);
+  background: var(--settings-2);
+  color: var(--font-color);
+  padding: 5px 10px;
+  width: 100%;
+  outline: none;
+  transition: 0.1s ease;
+  margin-top: 5px;
 }
 
 .plugins-input:focus {
-    border: 1px solid #828282;
+  border: 1px solid #828282;
 }
 
 .plugins-submit {
-    border-radius: 5px;
-    border: 1px solid var(--settings-3);
-    background: var(--settings-2);
-    color: var(--font-color);
-    padding: 5px 10px;
-    width: 100%;
-    outline: none;
-    transition: 0.1s ease;
-    margin-top: 5px;
-    cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid var(--settings-3);
+  background: var(--settings-2);
+  color: var(--font-color);
+  padding: 5px 10px;
+  width: 100%;
+  outline: none;
+  transition: 0.1s ease;
+  margin-top: 5px;
+  cursor: pointer;
 }
 
 .plugins-submit:hover {
-    background: var(--settings-3) !important;
+  background: var(--settings-3) !important;
 }
 
 .plugins-img-button {
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 .plugins-img-container {
-    background: var(--settings-2);
-    color: var(--font-color);
-    padding: 5px 10px;
-    width: 200px;
-    height: 200px;
-    outline: none;
-    transition: 0.1s ease;
-    margin-top: 5px;
-    cursor: pointer;
+  background: var(--settings-2);
+  color: var(--font-color);
+  padding: 5px 10px;
+  width: 200px;
+  height: 200px;
+  outline: none;
+  transition: 0.1s ease;
+  margin-top: 5px;
+  cursor: pointer;
 }

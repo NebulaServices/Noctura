@@ -6,60 +6,66 @@ import Img from "@components/Img.astro";
 ---
 
 <Settings title="Proxy Settings">
-    <Section class="settings-section">
-        <form id="set-proxy-form">
-            <h1 class="text-lg"><Obfuscated word="Proxy" /></h1>
+  <Section class="settings-section">
+    <form id="set-proxy-form">
+      <h1 class="text-lg"><Obfuscated word="Proxy" /></h1>
 
-            <div class="flex justify-around">
-                <button id="Ultraviolet" type="submit" class="settings-img-container">
-                    <Img src="/Ultraviolet.png" class="settings-img-button" />
-                </button>
+      <div class="flex justify-around">
+        <button id="Ultraviolet" type="submit" class="settings-img-container">
+          <Img src="/Ultraviolet.png" class="settings-img-button" />
+        </button>
 
-                <button id="Dynamic" type="submit" class="settings-img-container">
-                    <Img src="/Dynamic.png" class="settings-img-button" />
-                </button>
+        <button id="Dynamic" type="submit" class="settings-img-container">
+          <Img src="/Dynamic.png" class="settings-img-button" />
+        </button>
 
-                <button id="Rammerhead" type="submit" class="settings-img-container">
-                    <Img src="/Rammerhead.png" class="settings-img-button" />
-                </button>
+        <button id="Rammerhead" type="submit" class="settings-img-container">
+          <Img src="/Rammerhead.png" class="settings-img-button" />
+        </button>
 
-                <button id="Aero" type="submit" class="settings-img-container">
-                    <Img src="/Aero.png" class="settings-img-button" />
-                </button>
-            </div>
-        </form>
-        <form id="search-engine-form">
-            <h1 class="text-lg">Search Engine</h1>
-            <p class="text-stone-600">%s: search query</p>
+        <button id="Aero" type="submit" class="settings-img-container">
+          <Img src="/Aero.png" class="settings-img-button" />
+        </button>
+      </div>
+    </form>
+    <form id="search-engine-form">
+      <h1 class="text-lg">Search Engine</h1>
+      <p class="text-stone-600">%s: search query</p>
 
-            <input class="settings-input" placeholder="Search Engine URL">
-            <button type="submit" class="settings-submit">Save</button>
-        </form>
-    </Section>
+      <input class="settings-input" placeholder="Search Engine URL" />
+      <button type="submit" class="settings-submit">Save</button>
+    </form>
+  </Section>
 
-    <script type="module">
-        document.getElementById("set-proxy-form").addEventListener("submit", (e) => {
-            e.preventDefault();
+  <script type="module">
+    document
+      .getElementById("set-proxy-form")
+      .addEventListener("submit", (e) => {
+        e.preventDefault();
 
-            const proxy = e.submitter.id;
+        const proxy = e.submitter.id;
 
-            document.querySelector(
-                ".header .switch-btn-current img"
-            ).src = `/${proxy}.png`;
-            document.cookie = "astro-proxy=" + proxy + ";path=/";
+        document.querySelector(
+          ".header .switch-btn-current img"
+        ).src = `/${proxy}.png`;
+        document.cookie = "astro-proxy=" + proxy + ";path=/";
 
-            notify.show("Proxy changed to " + proxy, "success", 2000);
-        });
+        notify.show("Proxy changed to " + proxy, "success", 2000);
+      });
 
-        document.getElementById('search-engine-form').addEventListener('submit', e => {
-            e.preventDefault();
+    document
+      .getElementById("search-engine-form")
+      .addEventListener("submit", (e) => {
+        e.preventDefault();
 
-            var engine = e.target.querySelector('input').value;
+        var engine = e.target.querySelector("input").value;
 
-            localStorage.setItem('search-engine', engine);
-            notify.show('Saved', 'success', 2000);
-        });
+        localStorage.setItem("search-engine", engine);
+        notify.show("Saved", "success", 2000);
+      });
 
-        document.querySelector('#search-engine-form input').value = localStorage.getItem('search-engine') || 'https://www.google.com/search?q=%s';
-    </script>
+    document.querySelector("#search-engine-form input").value =
+      localStorage.getItem("search-engine") ||
+      "https://www.google.com/search?q=%s";
+  </script>
 </Settings>

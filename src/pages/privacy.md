@@ -4,6 +4,7 @@ title: Privacy Policy
 author: Noctura
 description: The Privacy Policy for Noctura
 ---
+
 # Last Updated: July 15th 2023
 
 <style>
