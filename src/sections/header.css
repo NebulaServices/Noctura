@@ -30,7 +30,18 @@
 .nav-btns {
     display: flex;
     justify-content: flex-start;
+    padding-left: 10px;
+    padding-right: 10px;
     width: 500px;
+    @media screen and (max-width: 760px) {
+        width: 100%;
+        float: none;
+        gap: 10px;
+
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+    }
     float: left;
     position: relative;
     transition: all 0.1s ease, margin-left 0.3s ease;
@@ -74,11 +85,13 @@
 .top-left {
     text-align: left;
     display: inline-block;
-    
+
+    @media screen and (max-width: 760px) {
+        text-align: center;
+    }
+
     flex: 1;
     transition: padding-left 0.3s ease;
-    
-    
 }
 
 .nav-icon {
@@ -90,6 +103,13 @@
     /*animation: breathe 4s ease;*/
 }
 
+.tn-container {
+    @media screen and (max-width: 760px) {
+        display: none;
+    }
+}
+
+/* Hide if the screen is less than 760px */
 .tn-icon {
     width: 40px;
     height: 40px;
@@ -116,6 +136,9 @@
 .nav-slash {
     border-top: var(--borders-1);
     width: 24px;
+    @media screen and (max-width: 760px) {
+        display: none;
+    }
     display: inline-block;
     transform: rotate(120deg);
     position: relative;
@@ -136,11 +159,15 @@
 .top-right {
     text-align: right;
     display: inline-block;
+    @media screen and (max-width: 760px) {
+        display: none;
+    }
     flex: 1;
     /*width: 50%;*/
 }
 
-.header .top-right, .header .switch-btn-container {
+.header .top-right,
+.header .switch-btn-container {
     transition: 0.1s ease;
 }
 
@@ -155,8 +182,6 @@
     position: relative;
     transition: 0.1s ease;
 }
-
-
 
 .extra-btn {
     margin-left: 15px;
@@ -173,6 +198,10 @@
 }
 
 .nav-time {
+    @media screen and (max-width: 760px) {
+        display: none;
+    }
+
     margin: 0;
     padding: 6px 0 6px 0;
     flex: auto;
@@ -181,6 +210,7 @@
     position: relative;
     transition: 0.1s ease;
     z-index: -1;
+    pointer-events: none;
     text-align: right;
 }
 
@@ -201,5 +231,5 @@
     display: inline-block;
     position: relative;
     top: 6px;
-    cursor: pointer
+    cursor: pointer;
 }
