@@ -4,58 +4,64 @@ import Obfuscated from "../components/Obfuscated.astro";
 let currentYear = getCurrentYear();
 function getCurrentYear() {
   return new Date().getFullYear(); // We would do this client side but doing it at build time won't require importing another framework
-} 
+}
 ---
 
 <div class="site-footer">
-    <div class="top-banner" />
-    <div class="footer-container">
-        <div class="footer-section">
-            <a href="/"><h1><img src="/logo.png" alt="Noctura Logo" />Noctura</h1></a>
-            <p class="copyright">© {currentYear} Noctura. All rights reserved.</p>
-        </div>
-        <div class="footer-section">
-            <div class="flex-footer-container">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/plugins/scripts">Plugins</a></li>
-                    <li><a href="/games"><Obfuscated word="Games" /></a></li>
-                </ul>
-
-                <ul>
-                    <li><a href="/settings/general">Settings</a></li>
-                    <li><a href="https://docs.titaniumnetwork.org/">Docs</a></li>
-                    <li><a href="/ai">AI</a></li>
-                </ul>
-                
-                <ul>
-                    <li><a href="/music">Music</a></li>
-                    <li><a href="/changelog">Changes</a></li>
-                    <li><a href="https://discord.gg/unblock">Discord</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-section">
-            <ul>
-                <li><a href="https://titaniumnetwork.org"><Obfuscated word="TitaniumNetwork" /></a></li>
-                <li><a href="https://docs.titaniumnetwork.org">Oxide Docs</a></li>
-                <li><a href="https://github.com/titaniumnetwork-dev/">Source Code</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <ul>
-                <li><a href="/privacy">Privacy Policy</a></li>
-                <li><a href="/terms">Terms of Service</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <ul>
-                <li><a href="mailto:admin@noctura.tech">Email</a></li>
-                <li><a href="phone:">Phone</a></li>
-            </ul>
-        </div>
+  <div class="top-banner"></div>
+  <div class="footer-container">
+    <div class="footer-section">
+      <a href="/"><h1><img src="/logo.png" alt="Noctura Logo" />Noctura</h1></a>
+      <p class="copyright">© {currentYear} Noctura. All rights reserved.</p>
     </div>
+    <div class="footer-section">
+      <div class="flex-footer-container">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/plugins/scripts">Plugins</a></li>
+          <li><a href="/games"><Obfuscated word="Games" /></a></li>
+        </ul>
+
+        <ul>
+          <li><a href="/settings/general">Settings</a></li>
+          <li><a href="https://docs.titaniumnetwork.org/">Docs</a></li>
+          <li><a href="/ai">AI</a></li>
+        </ul>
+
+        <ul>
+          <li><a href="/music">Music</a></li>
+          <li><a href="/changelog">Changes</a></li>
+          <li><a href="https://discord.gg/unblock">Discord</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <ul>
+        <li>
+          <a href="https://titaniumnetwork.org"
+            ><Obfuscated word="TitaniumNetwork" /></a
+          >
+        </li>
+        <li><a href="https://docs.titaniumnetwork.org">Oxide Docs</a></li>
+        <li>
+          <a href="https://github.com/titaniumnetwork-dev/">Source Code</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <ul>
+        <li><a href="/privacy">Privacy Policy</a></li>
+        <li><a href="/terms">Terms of Service</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <ul>
+        <li><a href="mailto:admin@noctura.tech">Email</a></li>
+        <li><a href="phone:">Phone</a></li>
+      </ul>
+    </div>
+  </div>
 </div>

@@ -1,116 +1,114 @@
-
 .top-page-bar {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 4vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4vh;
 }
 
 .main-size {
   font-size: 4vh;
 }
 
-  .upload-button {
-    color: var(--h1-color);
-    margin-left: 1vw;
-    margin-right: 1vw;
-    cursor: pointer;
-    transition: 0.3s;
-  }
+.upload-button {
+  color: var(--h1-color);
+  margin-left: 1vw;
+  margin-right: 1vw;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-  .upload-button:active {
-    transform: scale(0.8);
-    transition: 0.3s;
-  }
+.upload-button:active {
+  transform: scale(0.8);
+  transition: 0.3s;
+}
 
-  .subheading {
-    text-align: left;
-    font-size: 3vw;
-    padding-top: 3vh;
-    
-    margin-left: 1vw;
-    margin-top: 1vh;
-    transition: 0.2s;
-    margin-bottom: 0;
-    /* border-bottom: 1px solid var(--logo-color); */
-    line-height: 0.1em;
-  }
+.subheading {
+  text-align: left;
+  font-size: 3vw;
+  padding-top: 3vh;
 
-  .subheading span {
-    background: none; 
-    padding: 0 10px;
-    color: var(--logo-color);
-  }
+  margin-left: 1vw;
+  margin-top: 1vh;
+  transition: 0.2s;
+  margin-bottom: 0;
+  /* border-bottom: 1px solid var(--logo-color); */
+  line-height: 0.1em;
+}
 
-  .subheading-2 {
-    text-align: left;
-    font-size: 2vw;
-    padding-top: 3vh;
-    
-    margin-left: 1vw;
-    margin-top: 1vh;
-    transition: 0.2s;
-    margin-bottom: 0;
-     /* border-bottom: 3px solid var(--logo-color); */
-    line-height: 0.1em;
-    
-  }
+.subheading span {
+  background: none;
+  padding: 0 10px;
+  color: var(--logo-color);
+}
 
-  .subheading-2 span {
-    background: none;
-    color: var(--logo-color); 
-    padding: 0 10px;
-  }
+.subheading-2 {
+  text-align: left;
+  font-size: 2vw;
+  padding-top: 3vh;
 
-  .grid-size:hover {
-    color: #22a6b3;
-    transform: scale(1.1);
-  }
+  margin-left: 1vw;
+  margin-top: 1vh;
+  transition: 0.2s;
+  margin-bottom: 0;
+  /* border-bottom: 3px solid var(--logo-color); */
+  line-height: 0.1em;
+}
 
-  .upload-button:hover {
-    color: #22a6b3;
-    transform: scale(1.2);
-    transition: 0.3s;
-  }
+.subheading-2 span {
+  background: none;
+  color: var(--logo-color);
+  padding: 0 10px;
+}
 
-  .theme-mode:hover {
-    color: #22a6b3;
-    transform: scale(1.1);
-  }
+.grid-size:hover {
+  color: #22a6b3;
+  transform: scale(1.1);
+}
 
-    .settings-mode:hover {
-        color: #22a6b3;
-        transform: scale(1.1);
-    }
+.upload-button:hover {
+  color: #22a6b3;
+  transform: scale(1.2);
+  transition: 0.3s;
+}
 
-    .search-question:hover {
-        color: #22a6b3;
-        transform: scale(1.1);
-    }
+.theme-mode:hover {
+  color: #22a6b3;
+  transform: scale(1.1);
+}
+
+.settings-mode:hover {
+  color: #22a6b3;
+  transform: scale(1.1);
+}
+
+.search-question:hover {
+  color: #22a6b3;
+  transform: scale(1.1);
+}
 
 .song-image {
-    width: 10vw;
-    height: 10vw;
-    
-    margin-top: 2vh;
-    margin-left: 1vw;
-    margin-right: 0;
-    margin-bottom: 0;
-    cursor: pointer;
-    transition: 0.2s;
+  width: 10vw;
+  height: 10vw;
+
+  margin-top: 2vh;
+  margin-left: 1vw;
+  margin-right: 0;
+  margin-bottom: 0;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 .album-art {
   width: 12vw;
-    height: 12vw;
-    border-radius: 0%;
-    
-    margin-left: 0vw;
-    margin-right: 0;
-    margin-bottom: 0;
-    cursor: pointer;
-    transition: 0.3s;
+  height: 12vw;
+  border-radius: 0%;
+
+  margin-left: 0vw;
+  margin-right: 0;
+  margin-bottom: 0;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 #recentlyPlayedv2 {
@@ -120,7 +118,6 @@
   margin-left: 1vw;
   overflow-x: auto; /* add this line to enable vertical scrollbar */
   overflow-y: hidden;
-
 }
 
 .show-moreSongs {
@@ -191,7 +188,6 @@
   overflow-x: auto;
 }
 
-
 #albumsDivs {
   display: flex;
   flex-direction: row;
@@ -208,7 +204,7 @@
   margin-top: 2vh;
   margin-left: 1vw;
   margin-bottom: 2vh;
-  
+
   overflow-y: auto; /* add this line to enable vertical scrollbar */
   background-color: var(--card-color-music);
   color: var(--card-text-color);
@@ -238,8 +234,6 @@
   height: 30px;
 }
 
-
-
 .album:hover {
   transform: scale(1.05);
   transition: 0.3s;
@@ -247,7 +241,7 @@
 }
 
 .album:active {
-  transform: scale(0.90);
+  transform: scale(0.9);
   transition: 0.3s;
 }
 
@@ -277,7 +271,7 @@
 }
 
 .songDiv:active {
-  transform: scale(0.90);
+  transform: scale(0.9);
   transition: 0.3s;
 }
 
@@ -356,7 +350,6 @@
 .songImage {
   aspect-ratio: 1 / 1;
 }
-
 
 .songImageExpanded {
   width: 10vw;

@@ -1,58 +1,58 @@
 [
-    {
-      "id": "gba",
-      "title": "Game Boy Advanced",
-      "image": "/games/gba.png",
-      "description": "A Game Boy Advanced emulator with 1000s of games!",
-      "file": "https://cattn.github.io/gba/gba.html"
-    },
-    {
-      "id": "gb",
-      "title": "Game Boy",
-      "image": "/games/gb.png",
-      "description": "A Game Boy emulator with 1000s of games!",
-      "file": "https://cattn.github.io/gba/gb.html"
-    },
-    {
-      "id": "gbc",
-      "title": "Game Boy Color",
-      "image": "/games/gbc.png",
-      "description": "A Game Boy Color emulator with 1000s of games!",
-      "file": "https://cattn.github.io/gba/gbc.html"
-    },
-    {
-      "id": "nes",
-      "title": "NES",
-      "image": "/games/nes.jpg",
-      "description": "A NES emulator with 1000s of games!",
-      "file": "https://cattn.github.io/gba/nes.html"
-    },
-    {
-      "id": "snes",
-      "title": "SNES",
-      "image": "/games/snes.jpg",
-      "description": "A SNES emulator with 1000s of games!",
-      "file": "https://cattn.github.io/gba/snes.html"
-    },
-    {
-      "id": "n64",
-      "title": "N64",
-      "image": "/games/n64.jpg",
-      "description": "A N64 emulator with 1000s of games!",
-      "file": "https://cattn.github.io/gba/n64.html"
-    },
-    {
-      "id": "nds",
-      "title": "NDS",
-      "image": "/games/nds.jpg",
-      "description": "A NDS emulator with 1000s of games!",
-      "file": "https://cattn.github.io/gba/nds.html"
-    },
-    {
-      "id": "segaMD",
-      "title": "Sega Genesis",
-      "image": "/games/segaMD.jpg",
-      "description": "A Sega Genesis emulator with 1000s of games!",
-      "file": "https://cattn.github.io/gba/segaMD.html"
-    }
+  {
+    "id": "gba",
+    "title": "Game Boy Advanced",
+    "image": "/games/gba.png",
+    "description": "A Game Boy Advanced emulator with 1000s of games!",
+    "file": "https://cattn.github.io/gba/gba.html"
+  },
+  {
+    "id": "gb",
+    "title": "Game Boy",
+    "image": "/games/gb.png",
+    "description": "A Game Boy emulator with 1000s of games!",
+    "file": "https://cattn.github.io/gba/gb.html"
+  },
+  {
+    "id": "gbc",
+    "title": "Game Boy Color",
+    "image": "/games/gbc.png",
+    "description": "A Game Boy Color emulator with 1000s of games!",
+    "file": "https://cattn.github.io/gba/gbc.html"
+  },
+  {
+    "id": "nes",
+    "title": "NES",
+    "image": "/games/nes.jpg",
+    "description": "A NES emulator with 1000s of games!",
+    "file": "https://cattn.github.io/gba/nes.html"
+  },
+  {
+    "id": "snes",
+    "title": "SNES",
+    "image": "/games/snes.jpg",
+    "description": "A SNES emulator with 1000s of games!",
+    "file": "https://cattn.github.io/gba/snes.html"
+  },
+  {
+    "id": "n64",
+    "title": "N64",
+    "image": "/games/n64.jpg",
+    "description": "A N64 emulator with 1000s of games!",
+    "file": "https://cattn.github.io/gba/n64.html"
+  },
+  {
+    "id": "nds",
+    "title": "NDS",
+    "image": "/games/nds.jpg",
+    "description": "A NDS emulator with 1000s of games!",
+    "file": "https://cattn.github.io/gba/nds.html"
+  },
+  {
+    "id": "segaMD",
+    "title": "Sega Genesis",
+    "image": "/games/segaMD.jpg",
+    "description": "A Sega Genesis emulator with 1000s of games!",
+    "file": "https://cattn.github.io/gba/segaMD.html"
+  }
 ]

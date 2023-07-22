@@ -1,6 +1,6 @@
 ---
 import Hamburger from "@components/Burger.astro";
-import Img from "@components/Img.astro"
+import Img from "@components/Img.astro";
 import "./header.css";
 import "./switch.css";
 
@@ -11,20 +11,37 @@ const routes = [
   { id: 2, title: "AI", path: ["/ai", "/ai/"] },
   { id: 3, title: "Games", path: ["/games", "/games/"] },
   { id: 4, title: "Music", path: ["/music", "/music/"] },
-  { id: 5, title: "Plugins", path: [
-    "/plugins/scripts", "/plugins/scripts/",
-    "/plugins/themes", "/plugins/themes/"
-  ] },
-  { id: 6, title: "Settings", path: [
-    "/settings/general", "/settings/general/",
-    "/settings/privacy", "/settings/privacy/",
-    "/settings/theme", "/settings/theme/",
-    "/settings/cloaking", "/settings/cloaking/",
-    "/settings/unblock", "/settings/unblock/",
-  ] },
+  {
+    id: 5,
+    title: "Plugins",
+    path: [
+      "/plugins/scripts",
+      "/plugins/scripts/",
+      "/plugins/themes",
+      "/plugins/themes/"
+    ]
+  },
+  {
+    id: 6,
+    title: "Settings",
+    path: [
+      "/settings/general",
+      "/settings/general/",
+      "/settings/privacy",
+      "/settings/privacy/",
+      "/settings/theme",
+      "/settings/theme/",
+      "/settings/cloaking",
+      "/settings/cloaking/",
+      "/settings/unblock",
+      "/settings/unblock/"
+    ]
+  }
 ];
 
-const currentLocation = routes.find((route) => route.path.includes(url.pathname));
+const currentLocation = routes.find((route) =>
+  route.path.includes(url.pathname)
+);
 
 const currentDate = new Date().getTime();
 ---
@@ -36,7 +53,11 @@ const currentDate = new Date().getTime();
         <Img src="/logo.png" class="nav-icon" alt="Website Logo" />
       </a>
       <hr class="nav-slash" />
-      <a target="_blank" href="https://titaniumnetwork.org">
+      <a
+        target="_blank"
+        href="https://titaniumnetwork.org"
+        class="tn-container"
+      >
         <Img src="/tn.png" class="tn-icon" alt="TN Icon" />
       </a>
 
@@ -44,22 +65,33 @@ const currentDate = new Date().getTime();
         <div class="switch-btn-current">
           <Img src="/Ultraviolet.png" alt="Current Proxy Logo" />
         </div>
-        <div class="switch-btn" style={{ background: background || "var(--primary-bg-color)" }}>
+        <div
+          class="switch-btn"
+          style={{ background: background || "var(--primary-bg-color)" }}
+        >
           <a data-value="Dynamic" href="#">
             <Img src="/Dynamic.png" class="nav-switch-img" alt="Dynamic Icon" />
-            Dynamic
+             Dynamic
           </a>
           <a data-value="Ultraviolet" href="#">
-            <Img src="/Ultraviolet.png" class="nav-switch-img" alt="Ultraviolet Icon" />
-            Ultraviolet
+            <Img
+              src="/Ultraviolet.png"
+              class="nav-switch-img"
+              alt="Ultraviolet Icon"
+            />
+             Ultraviolet
           </a>
           <a data-value="Rammerhead" href="#">
-            <Img src="/Rammerhead.png" class="nav-switch-img" alt="Rammerhead Icon" />
-            Rammerhead
+            <Img
+              src="/Rammerhead.png"
+              class="nav-switch-img"
+              alt="Rammerhead Icon"
+            />
+             Rammerhead
           </a>
           <a data-value="Aero" href="#">
             <Img src="/Aero.png" class="nav-switch-img" alt="Aero Icon" />
-            Aero 2.0
+             Aero 2.0
           </a>
         </div>
       </div>
@@ -106,7 +138,12 @@ const currentDate = new Date().getTime();
       </a>
 
       <Hamburger>
-        <a href="https://classroom.google.com" class="hamburger-link" id="panic-button" target="_self">Panic</a>
+        <a
+          href="https://classroom.google.com"
+          class="hamburger-link"
+          id="panic-button"
+          target="_self">Panic</a
+        >
         <a href="/credits" class="hamburger-link">Credits</a>
         <a href="/privacy" class="hamburger-link">Privacy Policy</a>
         <a href="/terms" class="hamburger-link">Terms of Service</a>
@@ -144,12 +181,12 @@ const currentDate = new Date().getTime();
     </div>
   </div>
 
-  <div class="top-banner" />
+  <div class="top-banner"></div>
 
   <script is:inline data-cold>
     (function () {
       let hovered = false;
-  
+
       onclick = function (e) {
         if (
           recursive(document.getElementsByClassName("switch-btn")[0]).includes(
@@ -157,9 +194,9 @@ const currentDate = new Date().getTime();
           )
         )
           return;
-  
+
         const switchBtn = document.getElementsByClassName("switch-btn")[0];
-  
+
         if (switchBtn.style.display == "block") {
           switchBtn.style.opacity = "0";
           setTimeout(function () {
@@ -167,41 +204,47 @@ const currentDate = new Date().getTime();
           }, 100);
         }
       };
-  
+
       let onHover = (e) => {
         if (e.target.tagName !== "A") {
           for (var n = e.target.tagName; n.parentElement; n = n.parentElement) {
             if (n.tagName == "A") e.target = n;
           }
         }
-  
+
         const rect = e.target.getBoundingClientRect();
-        const btnRect = document.querySelector('.nav-btns').getBoundingClientRect();
-  
-        document.getElementById("nav-move").style.width = rect.width - 10 + "px";
-        document.getElementById("nav-move").style.height = rect.height + 4 + "px";
-  
+        const btnRect = document
+          .querySelector(".nav-btns")
+          .getBoundingClientRect();
+
+        document.getElementById("nav-move").style.width =
+          rect.width - 10 + "px";
+        document.getElementById("nav-move").style.height =
+          rect.height + 4 + "px";
+
         requestAnimationFrame(() => {
           document.getElementById("nav-move").style.display = "block";
           document.getElementById("nav-move").style.opacity = "1";
         });
-  
+
         if (!hovered) {
           document.getElementById("nav-move").style.transition = `0`;
           document.getElementById("nav-move").style.opacity = "0";
           document.getElementById("nav-move").style.transition = `0.2s`;
         }
-  
-        document.getElementById("nav-move").style.left = `${rect.x - btnRect.x + 5}px`;
-  
+
+        document.getElementById("nav-move").style.left = `${
+          rect.x - btnRect.x + 5
+        }px`;
+
         hovered = true;
       };
-  
+
       let noHover = (e) => {
         if (e.target.tagName !== "A") return;
-  
+
         const rect = e.target.getBoundingClientRect();
-  
+
         if (e.clientY >= rect.bottom || e.clientY <= rect.top) {
           hovered = false;
           document.getElementById("nav-move").style.opacity = "0";
@@ -211,10 +254,10 @@ const currentDate = new Date().getTime();
           }, 200);
         }
       };
-  
+
       let toggleSwitchBtn = (e) => {
         const switchBtn = document.getElementsByClassName("switch-btn")[0];
-  
+
         if (switchBtn.style.display == "block") {
           switchBtn.style.opacity = "0";
           setTimeout(function () {
@@ -226,74 +269,76 @@ const currentDate = new Date().getTime();
             switchBtn.style.opacity = "1";
           });
         }
-  
+
         return e.stopPropagation();
       };
-  
+
       let switchProxy = (e) => {
         e.stopPropagation();
         e.preventDefault();
-  
+
         const proxy = e.target.dataset.value;
-  
+
         document.cookie = `astro-proxy=${proxy}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;
-  
+
         e.target.parentNode.style.opacity = "0";
-  
+
         document.querySelector(".switch-btn-current img").src =
           document.querySelector("a[data-value='" + proxy + "'] img").src;
-  
-        document.querySelector(".switch-btn-current img").srcset = 
+
+        document.querySelector(".switch-btn-current img").srcset =
           document.querySelector("a[data-value='" + proxy + "'] img").srcset;
-  
+
         setTimeout(function () {
           e.target.parentNode.style.display = "none";
         }, 100);
-  
+
         return;
       };
-  
+
       let recursive = (el) => {
         var arr = [];
-  
+
         function iterate(el) {
           if (el.childNodes)
             el.childNodes.forEach((e) => (arr.push(e), iterate(e)));
-  
+
           return;
         }
-  
+
         arr.push(el);
-  
+
         iterate(el);
-  
+
         return arr;
       };
-  
+
       let switchBtnCurrent = document.querySelector(".switch-btn-current"),
         switchBtns = document.querySelectorAll("a[data-value]"),
         hamburgerLink = document.querySelector(".hamburger-link"),
         navBtns = document.querySelectorAll(".nav-btn");
-  
+
       switchBtnCurrent.onclick = toggleSwitchBtn;
       switchBtns.forEach((btn) => (btn.onclick = switchProxy));
       hamburgerLink.onclick = (e) =>
         e.preventDefault() ||
         (typeof window !== "undefined" &&
-          window.location.replace(localStorage.getItem('panic-url') || 'https://classroom.google.com/'));
+          window.location.replace(
+            localStorage.getItem("panic-url") || "https://classroom.google.com/"
+          ));
       navBtns.forEach((btn) => {
         btn.onmouseover = onHover;
         btn.onmouseleave = noHover;
       });
-  
+
       let focusMode = "off";
       let focusButton = document.querySelector(".focus-mode-container");
-      document.body.addEventListener("fullscreenchange", function(e) {
+      document.body.addEventListener("fullscreenchange", function (e) {
         if (!document.fullscreenElement) {
           if (focusMode == "on") focusButton.click();
         }
       });
-  
+
       focusButton.onclick = () => {
         const top = document.querySelector(".top");
         const bottom = document.querySelector(".bottom");
@@ -302,35 +347,37 @@ const currentDate = new Date().getTime();
         const navTime = document.querySelector(".nav-time");
         const siteFooter = document.querySelector(".site-footer");
         const navBtnsElement = document.querySelector(".nav-btns");
-        
+
         if (focusMode == "off") {
-            focusMode = "on";
-            top.style.display = "none";
-            bottom.style.marginTop = "10px";
-            let hamburger = document.getElementById("burger-container")
-            navBtnsElement.insertBefore(focusButton, navBtnsElement.firstChild)
-            navTime.appendChild(hamburger);
-            siteFooter.style.display = "none";
-            document.body.requestFullscreen();
-            return;
+          focusMode = "on";
+          top.style.display = "none";
+          bottom.style.marginTop = "10px";
+          let hamburger = document.getElementById("burger-container");
+          navBtnsElement.insertBefore(focusButton, navBtnsElement.firstChild);
+          navTime.appendChild(hamburger);
+          siteFooter.style.display = "none";
+          document.body.requestFullscreen();
+          return;
         }
-  
+
         if (focusMode == "on") {
-            focusMode = "off";
-            top.style.display = "flex";
-            bottom.style.marginTop = "";
-            topLeft.appendChild(focusButton);
-            let hamburger = document.getElementById("burger-container")
-            topRight.appendChild(hamburger);
-            siteFooter.style.display = "block";
-            if (document.fullscreenElement) document.exitFullscreen();
-            return;
+          focusMode = "off";
+          top.style.display = "flex";
+          bottom.style.marginTop = "";
+          topLeft.appendChild(focusButton);
+          let hamburger = document.getElementById("burger-container");
+          topRight.appendChild(hamburger);
+          siteFooter.style.display = "block";
+          if (document.fullscreenElement) document.exitFullscreen();
+          return;
         }
       };
-  
-  
-      document.querySelector('a[href="/plugins/scripts"]').setAttribute('data-cold', '');
-      document.getElementById('panic-button').href = localStorage.getItem('panic-url') || 'https://classroom.google.com/';
+
+      document
+        .querySelector('a[href="/plugins/scripts"]')
+        .setAttribute("data-cold", "");
+      document.getElementById("panic-button").href =
+        localStorage.getItem("panic-url") || "https://classroom.google.com/";
     })();
   </script>
 </div>
