@@ -1,100 +1,109 @@
-input = document.querySelector('.home-input');
+input = document.querySelector(".home-input");
 
 if (input) {
-    let autofill = false;
+  let autofill = false;
 
-    const request = async function() {
-        const req = await fetch('/search=' + encodeURIComponent(input.value));
+  const request = async function () {
+    const req = await fetch("/search=" + encodeURIComponent(input.value));
 
-        return await req.json();
+    return await req.json();
+  };
+
+  input.addEventListener("focus", async function (e) {
+    if (!autofill) {
+      setTimeout(function () {
+        const results = document.querySelector(".home-results");
+
+        if (results.innerHTML)
+          input.classList.add("input-omnibox"),
+            (autofill = true),
+            (results.style.display = "block");
+      });
+
+      return;
     }
+  });
 
-    input.addEventListener('focus', async function(e) {
-        if (!autofill) {
+  input.addEventListener("blur", async function (e) {
+    if (input.omnibox) return;
 
-            setTimeout(function() {
-                const results = document.querySelector('.home-results');
+    if (autofill) {
+      autofill = false;
 
-                if (results.innerHTML) (input.classList.add('input-omnibox'), autofill = true, results.style.display = 'block');
-            });
+      setTimeout(function () {
+        const results = document.querySelector(".home-results");
+        input.classList.remove("input-omnibox");
 
-            return;
-        }
-    });
+        results.style.display = "none";
+      });
 
-    input.addEventListener('blur', async function(e) {
-        if (input.omnibox) return;
+      return;
+    }
+  });
 
-        if (autofill) {
-            autofill = false;
+  input.addEventListener("keydown", async function (e) {
+    setTimeout(async function () {
+      if (!e.target.value)
+        return (
+          input.classList.remove("input-omnibox"),
+          (autofill = false),
+          (document.querySelector(".home-results").style.display = "none"),
+          setTimeout(
+            (e) => (document.querySelector(".home-results").innerHTML = ""),
+            100
+          )
+        );
 
+      const _value = e.target.value + "";
 
-            setTimeout(function() {
-                const results = document.querySelector('.home-results');
-                input.classList.remove('input-omnibox');
+      const data = await request(e.target.value);
 
-                results.style.display = 'none';
-            });
+      if (e.target.value !== _value) return;
 
-            return;
-        }
-    });
+      const results = document.querySelector(".home-results");
 
-    input.addEventListener('keydown', async function(e) {
+      autofill = true;
 
-        setTimeout(async function() {
-            if (!e.target.value) return (input.classList.remove('input-omnibox'), autofill = false, document.querySelector('.home-results').style.display = 'none', setTimeout(e=>document.querySelector('.home-results').innerHTML = '', 100));
+      input.classList.add("input-omnibox");
 
-            const _value = e.target.value + '';
+      results.innerHTML = "";
 
-            const data = await request(e.target.value);
+      data.forEach(function (result) {
+        const li = document.createElement("li");
+        const span = document.createElement("span");
 
-            if (e.target.value !== _value) return;
+        span.innerText = result.phrase;
 
-            const results = document.querySelector('.home-results');
+        li.appendChild(span);
 
-            autofill = true;
+        li.addEventListener("mousedown", function (e) {
+          input.value = result.phrase;
+          input.omnibox = true;
+          input.focus();
+          input.omnibox = false;
+          input.classList.remove("input-omnibox");
+          autofill = false;
+          results.style.display = "none";
+          document.querySelector(".home-results").innerHTML = "";
 
-            input.classList.add('input-omnibox');
-
-            results.innerHTML = '';
-
-            data.forEach(function(result) {
-                const li = document.createElement('li');
-                const span = document.createElement('span');
-
-                span.innerText = result.phrase;
-
-                li.appendChild(span);
-            
-                li.addEventListener('mousedown', function(e) {
-                    input.value = result.phrase;
-                    input.omnibox = true;
-                    input.focus();
-                    input.omnibox = false;
-                    input.classList.remove('input-omnibox');
-                    autofill = false;
-                    results.style.display = 'none';
-                    document.querySelector('.home-results').innerHTML = '';
-
-                    input.parentNode.requestSubmit();
-                });
-
-                results.appendChild(li);
-            });
-
-            if (data.length === 0) {
-                const li = document.createElement('li');
-                const span = document.createElement('span');
-
-                span.innerText = 'No results found';
-
-                li.appendChild(span);
-
-                results.appendChild(li);
-            }
-
-            results.style.display = 'block';
+          input.parentNode.requestSubmit();
         });
+
+        results.appendChild(li);
+      });
+
+      if (data.length === 0) {
+        const li = document.createElement("li");
+        const span = document.createElement("span");
+
+        span.innerText = "No results found";
+
+        li.appendChild(span);
+
+        results.appendChild(li);
+      }
+
+      results.style.display = "block";
     });
+  });
 }

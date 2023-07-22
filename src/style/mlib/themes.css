@@ -1,5 +1,5 @@
 :root {
-  --title-color: #14FFEC;
+  --title-color: #14ffec;
   --h1-color: var(--logo-color);
   --card-color: var(--settings-3);
   --card-color-darker: var(--settings-2);
@@ -16,6 +16,6 @@
   --media-icon-color: black;
   --alt-bg-color: var(--settings-3);
   --mobile-bg: #343434;
-  --nav-bar-bg: #0D7377;
-  --music-bar: #0E0E0E;
+  --nav-bar-bg: #0d7377;
+  --music-bar: #0e0e0e;
 }

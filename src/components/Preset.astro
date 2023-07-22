@@ -1,31 +1,31 @@
 ---
-import Img from '@components/Img.astro';
+import Img from "@components/Img.astro";
 const { src, name, imgStyle } = Astro.props;
 ---
 
 <style scoped>
-    .preset {
-        width: 55px;
-        height: 55px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        border-radius: 50%;
-        background: var(--settings-2);
-        border: 1px solid var(--settings-3);
-    }
+  .preset {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 50%;
+    background: var(--settings-2);
+    border: 1px solid var(--settings-3);
+  }
 
-    .preset img {
-        width: 75%;
-        height: 75%;
-    }
+  .preset img {
+    width: 75%;
+    height: 75%;
+  }
 
-    .preset:hover {
-        background: var(--settings-3);
-    }
+  .preset:hover {
+    background: var(--settings-3);
+  }
 </style>
 
-<button type="submit" data-name={ name } class="preset">
-    <Img src={ src } style={imgStyle || ""} alt={ name + ' Icon' } />
+<button type="submit" data-name={name} class="preset">
+  <Img src={src} style={imgStyle || ""} alt={name + " Icon"} />
 </button>

@@ -1,17 +1,17 @@
 .errorCode {
-    color: white;
-    font-size: 100px;
+  color: white;
+  font-size: 100px;
 }
 
 .errorText {
-    color: #eee;
-    font-size: 20px;
+  color: #eee;
+  font-size: 20px;
 }
 
 .error {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 102px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 102px);
 }

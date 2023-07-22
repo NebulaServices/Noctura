@@ -8,90 +8,151 @@ import "@css/mlib/themes.css";
 ---
 
 <Layout title="Noctura">
-    <script is:inline src="/js/mlib/quick.js"></script>
+  <script is:inline src="/js/mlib/quick.js"></script>
 
-    <body>
-        <div id="menuContent" class="menuContent">
-        </div>
-            <div class="top-page-bar">
-                <h1 class="main-size"> Upload Music </h1>
-              <div class="upload-button">
-                <label for="f">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                    <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 011.06 0l4.5 4.5a.75.75 0 01-1.06 1.06l-3.22-3.22V16.5a.75.75 0 01-1.5 0V4.81L8.03 8.03a.75.75 0 01-1.06-1.06l4.5-4.5zM3 15.75a.75.75 0 01.75.75v2.25a1.5 1.5 0 001.5 1.5h13.5a1.5 1.5 0 001.5-1.5V16.5a.75.75 0 011.5 0v2.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V16.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
-                  </svg>
-                </label>    
-             </div>
-            </div>
-            <h1 class="hide" id="nameTitle"> Hello, User! </h1>
-            <div class="styleish" id="siteContent">
-              <h1 class="subheading-2" id="pageTitle"> Unknown Song Name </h1>
-              <div id="albumsDivs"></div>
-
-          <div class="bottom-wrap desktop" id="sidebarWrap">
-          
-            <div class="song-photo">
-              <img src="/mlib/default.jpg" class="photo-style" alt="Song Photo" id="songPhoto">
-            </div>
-        
-            <div class="song-title-container">
-              <p class="song-artist" id="songArtist">Unknown Artist</p>
-              <h1 class="song-title" id="songTitle"> Unknown Song</h1>
-          </div>
-          
-            <div class="back-arrow" id="backArrow" onclick="playPreviousSong();">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="color:white;" class="w-6 h-6">
-                <path d="M9.195 18.44c1.25.713 2.805-.19 2.805-1.629v-2.34l6.945 3.968c1.25.714 2.805-.188 2.805-1.628V8.688c0-1.44-1.555-2.342-2.805-1.628L12 11.03v-2.34c0-1.44-1.555-2.343-2.805-1.629l-7.108 4.062c-1.26.72-1.26 2.536 0 3.256l7.108 4.061z" />
-              </svg> 
-             </div>
-          
-             <div class="pause-play" id="pause" onclick="pausePlay();">
-             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="color:white;" fill="currentColor" class="w-6 h-6">
-              <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zM9 8.25a.75.75 0 00-.75.75v6c0 .414.336.75.75.75h.75a.75.75 0 00.75-.75V9a.75.75 0 00-.75-.75H9zm5.25 0a.75.75 0 00-.75.75v6c0 .414.336.75.75.75H15a.75.75 0 00.75-.75V9a.75.75 0 00-.75-.75h-.75z" clip-rule="evenodd" />
-            </svg>
-            </div>
-          
-          
-            <div class="forward-arrow" id="forwardArrow" onclick="playNextSong();">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="color:white;" class="w-6 h-6">
-              <path d="M5.055 7.06c-1.25-.714-2.805.189-2.805 1.628v8.123c0 1.44 1.555 2.342 2.805 1.628L12 14.471v2.34c0 1.44 1.555 2.342 2.805 1.628l7.108-4.061c1.26-.72 1.26-2.536 0-3.256L14.805 7.06C13.555 6.346 12 7.25 12 8.688v2.34L5.055 7.06z" />
-            </svg>
-          </div>
-          
-          <div class="progress-container">
-            <p style="position: absolute; margin-left: 18vw; font-size: 1.5vh;" id="currentTime">00:00/00:00</p>
-            <div class="progress-bar" id="progressBar"></div>
-          </div>
-          <div class="volume-icon" id="mute" onclick="mutePlay();">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-            <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM18.584 5.106a.75.75 0 011.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 11-1.06-1.06 8.25 8.25 0 000-11.668.75.75 0 010-1.06z" />
-            <path d="M15.932 7.757a.75.75 0 011.061 0 6 6 0 010 8.486.75.75 0 01-1.06-1.061 4.5 4.5 0 000-6.364.75.75 0 010-1.06z" />
+  <body>
+    <div id="menuContent" class="menuContent"></div>
+    <div class="top-page-bar">
+      <h1 class="main-size">Upload Music</h1>
+      <div class="upload-button">
+        <label for="f">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M11.47 2.47a.75.75 0 011.06 0l4.5 4.5a.75.75 0 01-1.06 1.06l-3.22-3.22V16.5a.75.75 0 01-1.5 0V4.81L8.03 8.03a.75.75 0 01-1.06-1.06l4.5-4.5zM3 15.75a.75.75 0 01.75.75v2.25a1.5 1.5 0 001.5 1.5h13.5a1.5 1.5 0 001.5-1.5V16.5a.75.75 0 011.5 0v2.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V16.5a.75.75 0 01.75-.75z"
+              clip-rule="evenodd"></path>
           </svg>
-          </div>
-          
-          <div class="volume-icon-mute" id="muted">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-            <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM17.78 9.22a.75.75 0 10-1.06 1.06L18.44 12l-1.72 1.72a.75.75 0 001.06 1.06l1.72-1.72 1.72 1.72a.75.75 0 101.06-1.06L20.56 12l1.72-1.72a.75.75 0 00-1.06-1.06l-1.72 1.72-1.72-1.72z" />
-          </svg>
-          </div>
-          
-          <div id="musicSettings" class="hide"></div>
-          <div id="musicSettingsContainer" class="hide"></div>
-          <div class="volume-container">
-            <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="1" class="volumeSlide">
-          </div>
-          </div>
-          
-          </div>
-        </body>
-        <div class="hide">
-        <h1> Your Library </h1>
-        
-        <input id="f" type="file" multiple/>
-        <div id="songData">
-        </div>
-        </div>
-        <script is:inline src="/js/mlib/jsmediatags.min.js"></script>
-        <script is:inline src="/js/mlib/albuminfo.js"></script>
+        </label>
+      </div>
+    </div>
+    <h1 class="hide" id="nameTitle">Hello, User!</h1>
+    <div class="styleish" id="siteContent">
+      <h1 class="subheading-2" id="pageTitle">Unknown Song Name</h1>
+      <div id="albumsDivs"></div>
 
+      <div class="bottom-wrap desktop" id="sidebarWrap">
+        <div class="song-photo">
+          <img
+            src="/mlib/default.jpg"
+            class="photo-style"
+            alt="Song Photo"
+            id="songPhoto"
+          />
+        </div>
+
+        <div class="song-title-container">
+          <p class="song-artist" id="songArtist">Unknown Artist</p>
+          <h1 class="song-title" id="songTitle">Unknown Song</h1>
+        </div>
+
+        <div class="back-arrow" id="backArrow" onclick="playPreviousSong(); ">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            style="color:white;"
+            class="w-6 h-6"
+          >
+            <path
+              d="M9.195 18.44c1.25.713 2.805-.19 2.805-1.629v-2.34l6.945 3.968c1.25.714 2.805-.188 2.805-1.628V8.688c0-1.44-1.555-2.342-2.805-1.628L12 11.03v-2.34c0-1.44-1.555-2.343-2.805-1.629l-7.108 4.062c-1.26.72-1.26 2.536 0 3.256l7.108 4.061z"
+            ></path>
+          </svg>
+        </div>
+
+        <div class="pause-play" id="pause" onclick="pausePlay(); ">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            style="color:white;"
+            fill="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zM9 8.25a.75.75 0 00-.75.75v6c0 .414.336.75.75.75h.75a.75.75 0 00.75-.75V9a.75.75 0 00-.75-.75H9zm5.25 0a.75.75 0 00-.75.75v6c0 .414.336.75.75.75H15a.75.75 0 00.75-.75V9a.75.75 0 00-.75-.75h-.75z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </div>
+
+        <div class="forward-arrow" id="forwardArrow" onclick="playNextSong(); ">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            style="color:white;"
+            class="w-6 h-6"
+          >
+            <path
+              d="M5.055 7.06c-1.25-.714-2.805.189-2.805 1.628v8.123c0 1.44 1.555 2.342 2.805 1.628L12 14.471v2.34c0 1.44 1.555 2.342 2.805 1.628l7.108-4.061c1.26-.72 1.26-2.536 0-3.256L14.805 7.06C13.555 6.346 12 7.25 12 8.688v2.34L5.055 7.06z"
+            ></path>
+          </svg>
+        </div>
+
+        <div class="progress-container">
+          <p
+            style="position: absolute; margin-left: 18vw; font-size: 1.5vh;"
+            id="currentTime"
+          >
+            00:00/00:00
+          </p>
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="volume-icon" id="mute" onclick="mutePlay();">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM18.584 5.106a.75.75 0 011.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 11-1.06-1.06 8.25 8.25 0 000-11.668.75.75 0 010-1.06z"
+            ></path>
+            <path
+              d="M15.932 7.757a.75.75 0 011.061 0 6 6 0 010 8.486.75.75 0 01-1.06-1.061 4.5 4.5 0 000-6.364.75.75 0 010-1.06z"
+            ></path>
+          </svg>
+        </div>
+
+        <div class="volume-icon-mute" id="muted">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM17.78 9.22a.75.75 0 10-1.06 1.06L18.44 12l-1.72 1.72a.75.75 0 001.06 1.06l1.72-1.72 1.72 1.72a.75.75 0 101.06-1.06L20.56 12l1.72-1.72a.75.75 0 00-1.06-1.06l-1.72 1.72-1.72-1.72z"
+            ></path>
+          </svg>
+        </div>
+
+        <div id="musicSettings" class="hide"></div>
+        <div id="musicSettingsContainer" class="hide"></div>
+        <div class="volume-container">
+          <input
+            type="range"
+            id="volumeControl"
+            min="0"
+            max="1"
+            step="0.01"
+            value="1"
+            class="volumeSlide"
+          />
+        </div>
+      </div>
+    </div>
+  </body>
+  <div class="hide">
+    <h1>Your Library</h1>
+
+    <input id="f" type="file" multiple />
+    <div id="songData"></div>
+  </div>
+  <script is:inline src="/js/mlib/jsmediatags.min.js"></script>
+  <script is:inline src="/js/mlib/albuminfo.js"></script>
 </Layout>

@@ -5,9 +5,17 @@ import { Img } from "astro-imagetools/components";
 const { quality, alt, src } = Astro.props;
 ---
 
-<Img attributes={{ 
+<Img
+  attributes={{
     img: {
-        class: Astro.props.class,
-        style: Astro.props.style || ""
-    } 
-}} quality={quality || 60} format="webp" placeholder="tracedSVG" loading="lazy" alt={alt || ""} src={src} />
+      class: Astro.props.class,
+      style: Astro.props.style || ""
+    }
+  }}
+  quality={quality || 60}
+  format="webp"
+  placeholder="tracedSVG"
+  loading="lazy"
+  alt={alt || ""}
+  src={src}
+/>

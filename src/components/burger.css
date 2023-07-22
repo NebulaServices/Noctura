@@ -1,129 +1,128 @@
 .burger-container {
-    position: relative;
-    height: 16px;
-    width: 20px;
-    display: inline-block;
-    top: 2px;
-    margin-left: 15px;
-    cursor: pointer;
+  position: relative;
+  height: 16px;
+  width: 20px;
+  display: inline-block;
+  top: 2px;
+  margin-left: 15px;
+  cursor: pointer;
 }
 
 .burger-line-1 {
-    background: var(--logo-color);
-    height: 1px;
-    width: 100%;
-    position: absolute;
-    transition: 0.2s ease;
-    left: 0;
-    top: 0;
+  background: var(--logo-color);
+  height: 1px;
+  width: 100%;
+  position: absolute;
+  transition: 0.2s ease;
+  left: 0;
+  top: 0;
 }
 
 .burger-line-2 {
-    background: var(--logo-color);
-    height: 1px;
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    transition: 0.2s ease;
-    left: 0;
-    transform: translateY(-50%);
+  background: var(--logo-color);
+  height: 1px;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transition: 0.2s ease;
+  left: 0;
+  transform: translateY(-50%);
 }
 
 .burger-line-3 {
-    background: var(--logo-color);
-    height: 1px;
-    width: 100%;
-    left: 0;
-    transition: 0.2s ease;
-    position: absolute;
-    bottom: 0;
+  background: var(--logo-color);
+  height: 1px;
+  width: 100%;
+  left: 0;
+  transition: 0.2s ease;
+  position: absolute;
+  bottom: 0;
 }
 
 .burger-line-1-active {
-    background: var(--logo-color);
-    height: 1px;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%) rotate(45deg);
+  background: var(--logo-color);
+  height: 1px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
 }
 
 .burger-line-2-active {
-    background: var(--logo-color);
-    height: 1px;
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%) rotate(-45deg);
+  background: var(--logo-color);
+  height: 1px;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%) rotate(-45deg);
 }
 
 .burger-line-3-active {
-    opacity: 0;
+  opacity: 0;
 }
 
 .burger-child-container {
-    opacity: 0;
-    display: none;
-    transition: 0.15s ease;
-    top: calc(100% + 10px);
-    left: 50%;
-    transform: translateX(calc(-50% - 10px));
-    border: 1px solid #363636;
-    z-index: 999999999999999999;
-    border-radius: 7px;
-    position: absolute;
-    
+  opacity: 0;
+  display: none;
+  transition: 0.15s ease;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(calc(-50% - 10px));
+  border: 1px solid #363636;
+  z-index: 999999999999999999;
+  border-radius: 7px;
+  position: absolute;
 }
 
 .burger-child-container *:first-child {
-    border-top-right-radius: 7px;
-    border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  border-top-left-radius: 7px;
 }
 
 .burger-child-container *:last-child {
-    border-bottom-right-radius: 7px;
-    border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  border-bottom-left-radius: 7px;
 }
 
 .burger-child-container a {
-    display: block;
-    padding: 10px 20px;
-    color: var(--font-color);
-    text-decoration: none;
-    text-align: left;
-    width: 100%;
-    min-width: max-content;
-    font-size: 14px;
-    font-weight: 500;
-    transition: 0.2s ease;
+  display: block;
+  padding: 10px 20px;
+  color: var(--font-color);
+  text-decoration: none;
+  text-align: left;
+  width: 100%;
+  min-width: max-content;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.2s ease;
 }
 
 .burger-child-container a:hover {
-    background: #36363681;
+  background: #36363681;
 }
 
 .burger-child-container-active {
-    opacity: 1;
-    display: block;
+  opacity: 1;
+  display: block;
 }
 
 .burger-child-container a:active {
-    background: #363636;
+  background: #363636;
 }
 
 .burger-child-container input {
-    display: block;
-    padding: 10px 20px;
-    color: var(--font-color);
-    background: #36363681;
-    text-decoration: none;
-    text-align: left;
-    font-size: 14px;
-    font-weight: 500;
-    transition: 0.2s ease;
-    border: none;
-    width: 100%;
-    outline: none;
+  display: block;
+  padding: 10px 20px;
+  color: var(--font-color);
+  background: #36363681;
+  text-decoration: none;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.2s ease;
+  border: none;
+  width: 100%;
+  outline: none;
 }

@@ -5,7 +5,7 @@
   "editor.formatOnPaste": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.linkedEditing": true,
-  "prettier.prettierPath": "./packages/compiler/node_modules/prettier/index.cjs", 
+  "prettier.prettierPath": "./packages/compiler/node_modules/prettier/index.cjs",
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"
   }

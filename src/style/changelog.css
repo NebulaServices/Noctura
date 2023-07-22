@@ -17,7 +17,7 @@
   text-align: left;
 }
 
-.changelog-content{
+.changelog-content {
   font-size: 1em;
   margin: 0px;
   padding-top: 15px;
@@ -51,5 +51,5 @@ ul {
 }
 
 * {
-  color: var(--font-color)
+  color: var(--font-color);
 }
