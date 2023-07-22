@@ -14,9 +14,7 @@ import servers from '../bare.json';
             <h1 class="logotext"><Obfuscated word="Noctura" /></h1>
             <input id="home-input" class="home-input" autocomplete="off" placeholder="Search freely..."/>
             <div class="home-results"></div>
-        </form>
-
-        
+        </form>        
 
         <div class="home-footer">
             <div class="switch-btn-container">
@@ -28,7 +26,7 @@ import servers from '../bare.json';
                 </div>
                 <div class="switch-btn open-up" style={{background: 'var(--primary-bg-color)'}}>
                     {
-                        servers.prod.map(e=>{
+                        servers.dev.map(e=>{
                             return <a href="#" id={"server-" + e.split('.')[0]} class="modify-split-a" data-value={e}>{e.split('.')[0].split('-').map(e=>e.split('').map((e,i)=>i==0?e.toUpperCase():e).join('')).join(' ')} <span class="server-ping">0ms</span></a>
                         })
                     }
