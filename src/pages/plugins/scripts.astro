@@ -445,5 +445,45 @@ if (typeof __aero$config == 'object') {
 
     window.setInject = (that) => {that.classList.add('selected-opt'); that.nextElementSibling.classList.remove('selected-opt'); window.editing = 'inject'; view ? view.dispatch({ startState: view.state, changes: { from: 0, to: view.viewport.to, insert: localStorage.getItem("saved-inject") || injectText } }) : window.defaultText = injectText};
     window.setModule = (that) => {that.classList.add('selected-opt'); that.previousElementSibling.classList.remove('selected-opt'); window.editing = 'module'; view ? view.dispatch({ startState: view.state, changes: { from: 0, to: view.viewport.to, insert: localStorage.getItem("saved-module") || moduleText } }) : window.defaultText = moduleText};
+
+    window.saveEdits = async function() {
+        const script = view.state.doc.toString()
+            switch(window.editing) {
+                case "inject": {
+                    let cache = await caches.open("astro-scripts");
+                    localStorage.setItem('saved-inject', script);
+                    await cache.put('/custom.js', new Response(script, { headers: { 'Content-Type': 'application/javascript' } }));
+
+                    await window.registerSW();
+
+                    await notify.hide();
+                    notify.show("Saved Script", "success", 2000);
+
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
+                    break;
+                }
+                case "module": {
+                    let cache = await caches.open("astro-modules");
+                    localStorage.setItem('saved-module', script);
+                    await cache.put('/custom.js', new Response(script, { headers: { 'Content-Type': 'application/javascript' } }));
+
+                    await window.registerSW();
+
+                    await notify.hide();
+                    notify.show("Saved Module", "success", 2000);
+
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
+                    break;
+                }
+                default: {
+                    eval(script);
+                    break;
+                }
+            }
+        }
 </script>
 </Plugins>
