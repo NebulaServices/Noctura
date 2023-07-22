@@ -16,30 +16,26 @@ export default function compression() {
                     const input = await readFile(file);
                     let output;
 
-                    switch (true) {
-                        case file.endsWith("css"): {
-                            try {
-                                output = (await transform(input, {
-                                    minify: true,
-                                    minifyWhitespace: true,
-                                    loader: "css"
-                                })).code
-                            } catch (err) {
-                                console.log(err);
-                            }
+                    if (file.endsWith("css")) {
+                        try {
+                            output = (await transform(input, {
+                                minify: true,
+                                minifyWhitespace: true,
+                                loader: "css"
+                            })).code
+                        } catch (err) {
+                            console.log("failed to build: " + file);
                         }
-
-                        case file.endsWith("js"): {
-                            try {
-                                output = (await transform(input, {
-                                    minify: true,
-                                    minifyWhitespace: true,
-                                    keepNames: true,
-                                    loader: "js"
-                                })).code
-                            } catch (err) {
-                                console.log(err);
-                            }
+                    } else if (file.endsWith("js")) {
+                        try {
+                            output = (await transform(input, {
+                                minify: true,
+                                minifyWhitespace: true,
+                                keepNames: true,
+                                loader: "js"
+                            })).code
+                        } catch (err) {
+                            console.log("failed to build: " + file);
                         }
                     }
 
