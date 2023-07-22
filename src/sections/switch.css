@@ -1,8 +1,8 @@
 .switch-btn-container {
     position: relative;
     display: inline-block;
-    margin-left: 25px;
-    margin-right: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
     cursor: pointer;
     vertical-align: middle;
 }
