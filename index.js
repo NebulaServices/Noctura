@@ -7,10 +7,6 @@ import { join } from "path";
 import { chromium } from "playwright";
 import createRammerhead from "rammerhead/src/server/index.js";
 import { fileURLToPath } from "url";
-import build from "astro/dist/core/build/index.js";
-import { existsSync } from "fs";
-
-if (!existsSync("./dist")) build();
 
 const bare = createBareServer("/bare/");
 
