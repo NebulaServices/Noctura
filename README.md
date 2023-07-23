@@ -43,11 +43,10 @@ Deployment is very easy! Just follow the steps below:
    `git clone https://github.com/NocturaServices/Frontend.git`
 2. Install the dependencies
    `npm install`
-3. Build Noctura
-   `npm run build`
-4. Run Noctura
-   `node .` OR `node index.js`  
-   You can also do `npm run bstart` if you wish to build and start the server all in one command.
+3. Run Noctura
+   `node .` OR `node index.js`
+
+index.js will automatically build the website if the ./dist directory doesn't exist. If you make any changes to the website, either delete ./dist and run index.js or run "npm run bstart", which will rebuild the site then run index.js
 
 ## How to Contribute?
 

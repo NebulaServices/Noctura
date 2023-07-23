@@ -7,9 +7,11 @@ import { join } from "path";
 import { chromium } from "playwright";
 import createRammerhead from "rammerhead/src/server/index.js";
 import { fileURLToPath } from "url";
+import build from "astro/dist/core/build/index.js";
+import { existsSync } from "fs";
 
-// airplane
-// if anyone can figure out how to unfuck fastify not working on some things that would be great, ideally we want to use it over express whenever we can.
+if (!existsSync("./dist")) build();
+
 const bare = createBareServer("/bare/");
 
 const rh = createRammerhead();
