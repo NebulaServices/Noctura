@@ -1,4 +1,4 @@
-import compression from "./compress";
+import minify from "./minify";
 import sitemap from "@astrojs/sitemap";
 // import cloudflare from "@astrojs/cloudflare";
 // import node from "@astrojs/node";
@@ -12,7 +12,7 @@ export default defineConfig({
   integrations: [
     tailwind(),
     sitemap(),
-    compression(),
+    minify(),
     compress({
       exclude: [
         (file) => file.includes("$server_build") || file.includes("/sw")
