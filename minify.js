@@ -7,7 +7,7 @@ export default function minify() {
     name: "noctura-minify",
     hooks: {
       "astro:build:done": async () => {
-        const files = await globby([`./dist/**/*.{html,css,js}`, "!./dist/sw"], {
+        const files = await globby([`./dist/**/*.{css,js}`, "!./dist/sw"], {
           expandDirectories: true
         });
         files.map(async (file) => {
