@@ -9,8 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "bstart": "npm run build && node .",
-    "depends": "npm i react cloudflare"
+    "bstart": "npm run build && node ."
   },
   "dependencies": {
     "@astrojs/sitemap": "^1.4.0",
