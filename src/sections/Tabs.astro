@@ -2,6 +2,14 @@
 import "./tabs.css";
 ---
 
+<script>
+  import { toPng } from "html-to-image";
+
+  window.toPng = toPng;
+
+  await (toPng())
+</script>
+
 <script type="module" data-cold>
   let list = document.getElementById("tabs-list"),
     btn = document.getElementById("tabs-btn"),
@@ -49,21 +57,23 @@ import "./tabs.css";
     return data;
   }
 
-  function convert(blob) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = (_) => resolve(reader.result);
-      reader.readAsDataURL(blob);
-    });
-  }
+  // function convert(blob) {
+  //   return new Promise((resolve, reject) => {
+  //     const reader = new FileReader();
+  //     reader.onload = (_) => resolve(reader.result);
+  //     reader.readAsDataURL(blob);
+  //   });
+  // }
 
   async function getPicture(href) {
     try {
-      var res = await fetch("/gen-scrot?url=" + encodeURIComponent(href)).then(
-        (res) => res.blob()
-      );
+      // var res = await fetch("/gen-scrot?url=" + encodeURIComponent(href)).then(
+      //   (res) => res.blob()
+      // );
 
-      return `${await convert(res)}`;
+      // return `${await convert(res)}`;
+      // @ts-ignore
+      return await window.toPng(document.querySelector("iframe.proxy-frame").contentDocument.querySelector("body:not(div.noctura-menu)"))
     } catch {
       return "/tab-filler.png";
     }
