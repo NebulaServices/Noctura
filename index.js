@@ -4,7 +4,7 @@ import { createBareServer } from "@tomphttp/bare-server-node";
 import Fastify from "fastify";
 import { createServer } from "http";
 import { join } from "path";
-import { chromium } from "playwright";
+// import { chromium } from "playwright";
 import createRammerhead from "rammerhead/src/server/index.js";
 import { fileURLToPath } from "url";
 
@@ -98,31 +98,31 @@ fastify.get("/search=:query", async (req, res) => {
   }
 });
 
-let promise = chromium
-  .launch()
-  .then((browser) => {
-    return browser.newPage();
-  })
-  .then((page) => (page.setViewportSize({ width: 1440, height: 796 }), page));
+// let promise = chromium
+//   .launch()
+//   .then((browser) => {
+//     return browser.newPage();
+//   })
+//   .then((page) => (page.setViewportSize({ width: 1440, height: 796 }), page));
 
-fastify.get("/gen-scrot", async (req, res) => {
-  const { url } = req.query;
+// fastify.get("/gen-scrot", async (req, res) => {
+//   const { url } = req.query;
 
-  let page = await promise;
+//   let page = await promise;
 
-  try {
-    await page.goto(decodeURIComponent(url));
-    let buffer = await page.screenshot();
+//   try {
+//     await page.goto(decodeURIComponent(url));
+//     let buffer = await page.screenshot();
 
-    return res
-      .status(200)
-      .headers({ "content-type": "image/png" })
-      .send(buffer);
-  } catch (e) {
-    console.log(e);
-    res.status(500).send({ error: "Internal Server Error" });
-  }
-});
+//     return res
+//       .status(200)
+//       .headers({ "content-type": "image/png" })
+//       .send(buffer);
+//   } catch (e) {
+//     console.log(e);
+//     res.status(500).send({ error: "Internal Server Error" });
+//   }
+// });
 
 fastify.listen({
   port: 8080

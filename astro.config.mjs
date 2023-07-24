@@ -15,11 +15,11 @@ export default defineConfig({
     minify(),
     compress({
       exclude: [
-        (file) => file.includes("$server_build") || file.includes("/sw")
+        (file) => file.includes("$server_build")
       ],
-      logger: 0,
+      logger: 1,
       js: false,
-      css: false
+      html: false
     }),
     astroImageTools
   ],

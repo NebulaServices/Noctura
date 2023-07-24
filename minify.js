@@ -1,44 +1,37 @@
-import { transform } from "esbuild";
+import { minify as js } from "@swc/core";
 import { globby } from "globby";
 import { writeFile, readFile } from "node:fs/promises";
+import { minify as html } from "html-minifier-terser";
 
 export default function minify() {
   return {
     name: "noctura-minify",
     hooks: {
       "astro:build:done": async () => {
-        const files = await globby([`./dist/**/*.{css,js}`, "!./dist/sw"], {
+        const files = await globby([`./dist/**/*.{js,html}`, "!./dist/sw"], {
           expandDirectories: true
         });
         files.map(async (file) => {
           console.log(file);
-          const input = await readFile(file);
+          const input = await readFile(file, { encoding: "utf-8" });
           let output;
-
-          if (file.endsWith("css")) {
+          if (file.endsWith("js")) {
             try {
               output = (
-                await transform(input, {
-                  minify: true,
-                  minifyWhitespace: true,
-                  loader: "css"
+                await js(input, {
+                  compress: true
                 })
               ).code;
             } catch (err) {
               console.log("failed to build: " + file);
             }
-          } else if (file.endsWith("js")) {
+          } else if (file.endsWith("html")) {
             try {
               output = (
-                await transform(input, {
-                  minify: true,
-                  minifyWhitespace: true,
-                  keepNames: true,
-                  loader: "js"
-                })
-              ).code;
+                await html(input)
+              )
             } catch (err) {
-              console.log("failed to build: " + file);
+              console.log("failed to build: " + file)
             }
           }
 
