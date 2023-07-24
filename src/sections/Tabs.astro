@@ -2,14 +2,6 @@
 import "./tabs.css";
 ---
 
-<script>
-  import { toPng } from "html-to-image";
-
-  window.toPng = toPng;
-
-  await (toPng())
-</script>
-
 <script type="module" data-cold>
   let list = document.getElementById("tabs-list"),
     btn = document.getElementById("tabs-btn"),
@@ -57,30 +49,8 @@ import "./tabs.css";
     return data;
   }
 
-  // function convert(blob) {
-  //   return new Promise((resolve, reject) => {
-  //     const reader = new FileReader();
-  //     reader.onload = (_) => resolve(reader.result);
-  //     reader.readAsDataURL(blob);
-  //   });
-  // }
-
-  async function getPicture(href) {
-    try {
-      // var res = await fetch("/gen-scrot?url=" + encodeURIComponent(href)).then(
-      //   (res) => res.blob()
-      // );
-
-      // return `${await convert(res)}`;
-      // @ts-ignore
-      return await window.toPng(document.querySelector("iframe.proxy-frame").contentDocument.querySelector("body:not(div.noctura-menu)"))
-    } catch {
-      return "/tab-filler.png";
-    }
-  }
-
   window.saveTab = async function saveTab(id, title, href, pHref) {
-    var data = { id, title, href, pHref, picture: await getPicture(href) };
+    var data = { id, title, href, /* pHref, picture: await getPicture(href) */ };
 
     await cache.put(
       "/" + id + ".json",
@@ -104,41 +74,13 @@ import "./tabs.css";
     return true;
   };
 
-  async function frames(data) {
-    async function load(id, title, href, pHref) {
-      var frame = document.createElement("iframe");
-      frame.classList.add("tab-frame", "proxy-iframe");
-      frame.dataset.uuid = id;
-      frame.src = pHref;
-      frame.style.display = "none";
-
-      document.body.appendChild(frame);
-
-      console.log("Preloading " + href);
-
-      await new Promise(
-        (resolve) => (
-          console.log("Preloaded", href),
-          frame.addEventListener("load", resolve)
-        )
-      );
-    }
-
-    await Promise.allSettled(
-      data.map(({ id, title, href, pHref }) => load(id, title, href, pHref))
-    );
-
-    return true;
-  }
-
   async function loadTabs() {
     let data = await getData();
-    if (!document.querySelector("iframe[data-uuid]")) await frames(data);
     list.innerHTML = data.length
       ? data
           .map(
             ({ id, href, title, picture }) =>
-              `<div class="tabs-tab"><img class="tab-picture" src="${picture}" alt="Picture of ${title}" /><div class="tab-info"><span class="tab-close" id="${id}" onclick="window.removeTab(this.id);">x</span><h1 class="tab-title">${title}</h1><h2 class="tab-link">${href}</h2></div>`
+              `<div class="tabs-tab"><div class="tab-info"><span class="tab-close" id="${id}" onclick="window.removeTab(this.id);">x</span><h1 class="tab-title">${title}</h1><h2 class="tab-link">${href}</h2></div>`
           )
           .join("</div>\n")
       : "No Tabs";
