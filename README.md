@@ -4,7 +4,7 @@ The web proxy you always wanted!
 
 ## What is Noctura?
 
-## Noctura is a submission to the 2023 Titanium Network Proxathon.
+Noctura is a submission to the 2023 Titanium Network Proxathon.
 
 ## Features
 
