@@ -18,6 +18,10 @@ body {
   overflow-y: scroll;
 }
 
+.music-container {
+  min-height: calc(100vh - 109px);
+}
+
 ::-webkit-scrollbar {
   width: 0vh;
 }
