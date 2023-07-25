@@ -60,7 +60,7 @@ class Router {
 
   #runScripts() {
     const scripts = document.querySelectorAll(
-      "body script:not(data-cold), script[data-load]"
+      "script"
     );
 
     scripts.forEach((script) => {

@@ -404,86 +404,85 @@ var modules = [
         }
     </script>
 
-<script>
-    // @ts-nocheck
-    import createEditor from "../../js/editor";
+    <script>
+        import createEditor from "../../js/editor";
 
-    const view = createEditor("js")!;
+        const view = createEditor("js");
 
-    window.moduleText = 
-`// @ts-nocheck (best solution)
-// Runs after page load.
-`
+        window.moduleText = 
+    `// @ts-nocheck (best solution)
+    // Runs after page load.
+    `
 
         window.injectText = 
-`// @ts-nocheck (best solution)
-// Runs after page load.
+    `// @ts-nocheck (best solution)
+    // Runs after page load.
 
-if (typeof __dynamic$config == 'object') {
-    /* Runs in Dynamic, SW and Client
-    Constants: __dynamic, __dynamic$config, __dynamic$location, __dynamic$meta
-    */
+    if (typeof __dynamic$config == 'object') {
+        /* Runs in Dynamic, SW and Client
+        Constants: __dynamic, __dynamic$config, __dynamic$location, __dynamic$meta
+        */
 
-    // CODE HERE
-}
+        // CODE HERE
+    }
 
-if (typeof __uv$config == 'object') {
-    /* Runs in UV, SW and Client
-    Constants: __uv, __uv$config, __uv.location, __uv.meta
-    */
+    if (typeof __uv$config == 'object') {
+        /* Runs in UV, SW and Client
+        Constants: __uv, __uv$config, __uv.location, __uv.meta
+        */
 
-    // CODE HERE
-}
+        // CODE HERE
+    }
 
-if (typeof __aero$config == 'object') {
-    /* Runs in Aero 2, Client only
-    Constants: __aero$config, __aero$meta
-    */
+    if (typeof __aero$config == 'object') {
+        /* Runs in Aero 2, Client only
+        Constants: __aero$config, __aero$meta
+        */
 
-    // CODE HERE
-}`;
+        // CODE HERE
+    }`;
 
-    window.setInject = (that) => {that.classList.add('selected-opt'); that.nextElementSibling.classList.remove('selected-opt'); window.editing = 'inject'; view ? view.dispatch({ startState: view.state, changes: { from: 0, to: view.viewport.to, insert: localStorage.getItem("saved-inject") || injectText } }) : window.defaultText = injectText};
-    window.setModule = (that) => {that.classList.add('selected-opt'); that.previousElementSibling.classList.remove('selected-opt'); window.editing = 'module'; view ? view.dispatch({ startState: view.state, changes: { from: 0, to: view.viewport.to, insert: localStorage.getItem("saved-module") || moduleText } }) : window.defaultText = moduleText};
+        window.setInject = (that) => {that.classList.add('selected-opt'); that.nextElementSibling.classList.remove('selected-opt'); window.editing = 'inject'; view ? view.dispatch({ startState: view.state, changes: { from: 0, to: view.viewport.to, insert: localStorage.getItem("saved-inject") || injectText } }) : window.defaultText = injectText};
+        window.setModule = (that) => {that.classList.add('selected-opt'); that.previousElementSibling.classList.remove('selected-opt'); window.editing = 'module'; view ? view.dispatch({ startState: view.state, changes: { from: 0, to: view.viewport.to, insert: localStorage.getItem("saved-module") || moduleText } }) : window.defaultText = moduleText};
 
-    window.saveEdits = async function() {
-        const script = view.state.doc.toString()
-            switch(window.editing) {
-                case "inject": {
-                    let cache = await caches.open("astro-scripts");
-                    localStorage.setItem('saved-inject', script);
-                    await cache.put('/custom.js', new Response(script, { headers: { 'Content-Type': 'application/javascript' } }));
+        window.saveEdits = async function() {
+            const script = view.state.doc.toString()
+                switch(window.editing) {
+                    case "inject": {
+                        let cache = await caches.open("astro-scripts");
+                        localStorage.setItem('saved-inject', script);
+                        await cache.put('/custom.js', new Response(script, { headers: { 'Content-Type': 'application/javascript' } }));
 
-                    await window.registerSW();
+                        await window.registerSW();
 
-                    await notify.hide();
-                    notify.show("Saved Script", "success", 2000);
+                        await notify.hide();
+                        notify.show("Saved Script", "success", 2000);
 
-                    setTimeout(() => {
-                        location.reload();
-                    }, 2000);
-                    break;
-                }
-                case "module": {
-                    let cache = await caches.open("astro-modules");
-                    localStorage.setItem('saved-module', script);
-                    await cache.put('/custom.js', new Response(script, { headers: { 'Content-Type': 'application/javascript' } }));
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2000);
+                        break;
+                    }
+                    case "module": {
+                        let cache = await caches.open("astro-modules");
+                        localStorage.setItem('saved-module', script);
+                        await cache.put('/custom.js', new Response(script, { headers: { 'Content-Type': 'application/javascript' } }));
 
-                    await window.registerSW();
+                        await window.registerSW();
 
-                    await notify.hide();
-                    notify.show("Saved Module", "success", 2000);
+                        await notify.hide();
+                        notify.show("Saved Module", "success", 2000);
 
-                    setTimeout(() => {
-                        location.reload();
-                    }, 2000);
-                    break;
-                }
-                default: {
-                    eval(script);
-                    break;
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2000);
+                        break;
+                    }
+                    default: {
+                        eval(script);
+                        break;
+                    }
                 }
             }
-        }
-</script>
+    </script>
 </Plugins>
