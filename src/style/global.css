@@ -1,1 +1,3 @@
-/* themes go here */
+#monaco-editor * {
+  font-size: 14px;
+}

@@ -1,370 +1,381 @@
 .settings {
-    min-height: calc(100vh - 105px);
-    width: 90%;
-    overflow-y: auto;
-    margin: auto;
-    margin-bottom: auto;
+  min-height: calc(100vh - 105px);
+  width: 90%;
+  overflow-y: auto;
+  margin: auto;
+  margin-bottom: auto;
 }
 
 .settings-left {
-    width: 300px;
-    float: left;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  width: 300px;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .settings-left a {
-    width: 95%;
-    height: auto;
-    padding: 10px 20px;
-    background: transparent;
-    color: var(--font-color);
-    transition: 0.1s ease;
-    border-radius: 5px;
+  width: 95%;
+  height: auto;
+  padding: 10px 20px;
+  background: transparent;
+  color: var(--font-color);
+  transition: 0.1s ease;
+  border-radius: 5px;
 }
 
 .settings-navlink-active {
-    color: var(--nav-btn-color) !important;
+  color: var(--nav-btn-color) !important;
 }
 
 .settings-left a:hover {
-    background: rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.09);
 }
 
 .settings-right {
-    width: calc(100% - 300px);
-    float: left;
+  width: calc(100% - 300px);
+  float: left;
 }
 
-.settings-left, .settings-right {
-    height: 100%;
-    padding: 20px;
+.settings-left,
+.settings-right {
+  height: 100%;
+  padding: 20px;
 }
 
 .settings-section {
-    width: 100%;
-    height: auto;
-    padding: 10px 20px;
-    background: transparent;
-    transition: 0.1s ease;
-    border-radius: 5px;
-    margin-top: 10px;
-    background: var(--settings-1);
+  width: 100%;
+  height: auto;
+  padding: 10px 20px;
+  background: transparent;
+  transition: 0.1s ease;
+  border-radius: 5px;
+  margin-top: 10px;
+  background: var(--settings-1);
 }
 
 .settings-input {
-    border-radius: 5px;
-    border: 1px solid var(--settings-3);
-    background: var(--settings-2);
-    color: var(--font-color);
-    padding: 5px 10px;
-    width: 100%;
-    outline: none;
-    transition: 0.1s ease;
-    margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid var(--settings-3);
+  background: var(--settings-2);
+  color: var(--font-color);
+  padding: 5px 10px;
+  width: 100%;
+  outline: none;
+  transition: 0.1s ease;
+  margin-top: 5px;
 }
 
 .settings-input:focus {
-    border: 1px solid #828282;
+  border: 1px solid #828282;
 }
 
 .settings-submit {
-    border-radius: 5px;
-    border: 1px solid var(--settings-3);
-    background: var(--settings-2);
-    color: var(--font-color);
-    padding: 5px 10px;
-    width: 100%;
-    outline: none;
-    transition: 0.1s ease;
-    margin-top: 5px;
-    cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid var(--settings-3);
+  background: var(--settings-2);
+  color: var(--font-color);
+  padding: 5px 10px;
+  width: 100%;
+  outline: none;
+  transition: 0.1s ease;
+  margin-top: 5px;
+  cursor: pointer;
 }
 
 .settings-submit:hover {
-    background: var(--settings-3) !important;
+  background: var(--settings-3) !important;
 }
 
 .mocha_theme {
-    background-color: #1e1e2e !important;
-    color: #fff !important;
-    transition: 250ms ease-in-out;
+  background-color: #1e1e2e !important;
+  color: #fff !important;
+  transition: 250ms ease-in-out;
 }
 
 .mocha_theme:hover {
-    background-color: #1b1b2a !important;
-    color: #fff !important;
+  background-color: #1b1b2a !important;
+  color: #fff !important;
 }
 
 .amoled_theme {
-    background-color: #000000 !important;
-    color: #fff !important;
-    transition: 250ms ease-in-out;
+  background-color: #000000 !important;
+  color: #fff !important;
+  transition: 250ms ease-in-out;
 }
 
 .amoled_theme:hover {
-    background-color: #000000 !important;
-    color: #fff !important;
+  background-color: #000000 !important;
+  color: #fff !important;
 }
 
 .macchiato_theme {
-    background-color: #24273a !important;
-    color: #fff !important;
-    transition: 250ms ease-in-out;
+  background-color: #24273a !important;
+  color: #fff !important;
+  transition: 250ms ease-in-out;
 }
 
 .macchiato_theme:hover {
-    background-color: #1b1e2e !important;
-    color: #fff !important;
+  background-color: #1b1e2e !important;
+  color: #fff !important;
 }
 
 .frappe_theme {
-    background-color: #303446 !important;
-    color: #fff !important;
-    transition: 250ms ease-in-out;
+  background-color: #303446 !important;
+  color: #fff !important;
+  transition: 250ms ease-in-out;
 }
 
 .frappe_theme:hover {
-    background-color: #2a2d3b !important;
-    color: #fff !important;
+  background-color: #2a2d3b !important;
+  color: #fff !important;
 }
 
 .latte_theme {
-    background-color: #eff1f5 !important;
-    color: #555 !important;
-    transition: 250ms ease-in-out;
+  background-color: #eff1f5 !important;
+  color: #555 !important;
+  transition: 250ms ease-in-out;
 }
 
 .latte_theme:hover {
-    background-color: #e1e3e6 !important;
-    color: #555 !important;
+  background-color: #e1e3e6 !important;
+  color: #555 !important;
 }
 
 .baja_theme {
-    background-color: #008881 !important;
-    color: #fff !important;
-    transition: 250ms ease-in-out;
+  background-color: #008881 !important;
+  color: #fff !important;
+  transition: 250ms ease-in-out;
 }
 
 .baja_theme:hover {
-    background-color: #00726d !important;
-    color: #fff !important;
+  background-color: #00726d !important;
+  color: #fff !important;
 }
 
 .light_theme {
-    background-color: #DDDDDD !important;
-    color: #555 !important;
-    transition: 250ms ease-in-out;
+  background-color: #dddddd !important;
+  color: #555 !important;
+  transition: 250ms ease-in-out;
 }
 
 .light_theme:hover {
-    background-color: #CCCCCC !important;
-    color: #555 !important;
+  background-color: #cccccc !important;
+  color: #555 !important;
 }
 
 .discord_theme {
-    background-color: #36393e !important;
-    color: #fff !important;
-    transition: 250ms ease-in-out;
+  background-color: #36393e !important;
+  color: #fff !important;
+  transition: 250ms ease-in-out;
 }
 
 .discord_theme:hover {
-    background-color: #2f3036 !important;
-    color: #fff !important;
+  background-color: #2f3036 !important;
+  color: #fff !important;
 }
 
 .ludicrous_theme {
-    background-color: #101c2c !important;
-    color: #fff !important;
-    transition: 250ms ease-in-out;
+  background-color: #101c2c !important;
+  color: #fff !important;
+  transition: 250ms ease-in-out;
 }
 
 .ludicrous_theme:hover {
-    background-color: #070c16 !important;
-    color: #fff !important;
+  background-color: #070c16 !important;
+  color: #fff !important;
 }
 
 .mid_theme {
-    background-color: #000 !important;
-    color: #777 !important;
-    transition: 250ms ease-in-out;
+  background-color: #000 !important;
+  color: #777 !important;
+  transition: 250ms ease-in-out;
 }
 
 .mid_theme:hover {
-    background-color: #000 !important;
-    color: #777 !important;
+  background-color: #000 !important;
+  color: #777 !important;
 }
 
 .trans_theme {
-    background: linear-gradient(#5BCEFA,#F5A9B8,#fff,#F5A9B8,#5BCEFA) !important;
-    color: #555 !important;
-    transition: 250ms ease-in-out;
+  background: linear-gradient(
+    #5bcefa,
+    #f5a9b8,
+    #fff,
+    #f5a9b8,
+    #5bcefa
+  ) !important;
+  color: #555 !important;
+  transition: 250ms ease-in-out;
 }
 
 .trans_theme:hover {
-    background: linear-gradient(#51b4dc,#d3929f,#e5e5e5,#d3929f,#51b4dc) !important;
+  background: linear-gradient(
+    #51b4dc,
+    #d3929f,
+    #e5e5e5,
+    #d3929f,
+    #51b4dc
+  ) !important;
 }
 
 .akane_theme {
-    background-color: #fff !important;
-    color: #000 !important;
+  background-color: #fff !important;
+  color: #000 !important;
 }
 
 .alu_theme {
-    background-color: #81A1C1 !important;
-    color: white !important;
-    transition: 250ms ease-in-out;
+  background-color: #81a1c1 !important;
+  color: white !important;
+  transition: 250ms ease-in-out;
 }
 
 .alu_theme:hover {
-    background-color: #5E81AC !important;
-    color: white !important;
+  background-color: #5e81ac !important;
+  color: white !important;
 }
 
-
 .red_theme {
-    background: linear-gradient(90deg, #FF9A8B, #FF6A88, #FF99AC) !important;
-    color: #fff !important;
+  background: linear-gradient(90deg, #ff9a8b, #ff6a88, #ff99ac) !important;
+  color: #fff !important;
 }
 
 .red_theme:hover {
-    background: linear-gradient(90deg, #df8678, #d85b74, #e48a9b) !important;
-    color: #fff !important;
+  background: linear-gradient(90deg, #df8678, #d85b74, #e48a9b) !important;
+  color: #fff !important;
 }
 
 .green_theme {
-    background-image: linear-gradient(90deg, #85FFBD , #FFFB7D) !important;
-    color: #444 !important;
+  background-image: linear-gradient(90deg, #85ffbd, #fffb7d) !important;
+  color: #444 !important;
 }
 
 .green_theme:hover {
-    background-image: linear-gradient(90deg, #6bea9b, #f7f17d) !important;
-    color: #444 !important;
+  background-image: linear-gradient(90deg, #6bea9b, #f7f17d) !important;
+  color: #444 !important;
 }
 
 .blue_theme {
-    background-image: linear-gradient(90deg,#0093E9, #80D0C7) !important;
-    color: #fff !important;
+  background-image: linear-gradient(90deg, #0093e9, #80d0c7) !important;
+  color: #fff !important;
 }
 
 .blue_theme:hover {
-    background-image: linear-gradient(90deg, #017dbb, #72c7c7) !important;
-    color: #fff !important;
+  background-image: linear-gradient(90deg, #017dbb, #72c7c7) !important;
+  color: #fff !important;
 }
 
 .yellow_theme {
-    background-image: linear-gradient(90deg, #FBAB7E, #F7CE68) !important;
-    color: #fff !important;
+  background-image: linear-gradient(90deg, #fbab7e, #f7ce68) !important;
+  color: #fff !important;
 }
 
 .yellow_theme:hover {
-    background-image: linear-gradient(90deg, #f7a17e, #f7c668) !important;
-    color: #fff !important;
+  background-image: linear-gradient(90deg, #f7a17e, #f7c668) !important;
+  color: #fff !important;
 }
 
 .copper_theme {
-    background-image: linear-gradient(to right, #b79891, #94716b) !important;
-    color: #fff !important;
+  background-image: linear-gradient(to right, #b79891, #94716b) !important;
+  color: #fff !important;
 }
 
 .copper_theme:hover {
-    background-image: linear-gradient(to right, #b79891, #94716b) !important;
-    color: #fff !important;
+  background-image: linear-gradient(to right, #b79891, #94716b) !important;
+  color: #fff !important;
 }
 
 .demo_theme {
-    background-image: #fff !important;
-    color: #000 !important;
+  background-image: #fff !important;
+  color: #000 !important;
 }
 
-
 .sylv_theme {
-    background: #5ed4ff !important;
-    color: #fff !important;
+  background: #5ed4ff !important;
+  color: #fff !important;
 }
 
 .rift_theme {
-    background: #6f00ff !important;
-    color: #fff !important;
+  background: #6f00ff !important;
+  color: #fff !important;
 }
 
 .ssd_theme {
-    background: #354a33 !important;
-    color: #fff !important;
+  background: #354a33 !important;
+  color: #fff !important;
 }
 
 .cat_theme {
-    background: #bfbfbf !important;
-    color: #000 !important;
+  background: #bfbfbf !important;
+  color: #000 !important;
 }
 
 .spritz_theme {
-    background: #021f4e !important;
-    color: #003ba8 !important;
+  background: #021f4e !important;
+  color: #003ba8 !important;
 }
 
 .koaku_theme {
-    background: #6b1414 !important;
-    color: #fff !important;
+  background: #6b1414 !important;
+  color: #fff !important;
 }
 
 .im_theme {
-    background: #0c696e !important;
-    color: #fff !important;
+  background: #0c696e !important;
+  color: #fff !important;
 }
 
 .atom_theme {
-    background: #191e24 !important;
-    color: #1fb2a6 !important;
+  background: #191e24 !important;
+  color: #1fb2a6 !important;
 }
 
 .sodium_theme {
-    background: #8c8c94 !important;
-    color: #fff !important;
+  background: #8c8c94 !important;
+  color: #fff !important;
 }
 
 .shadow_theme {
-    background: #1c1c24 !important;
-    color: #979faa !important;
+  background: #1c1c24 !important;
+  color: #979faa !important;
 }
 
 .cobalt_theme {
-    background: #0443ab !important;
-    color: #fff !important;
+  background: #0443ab !important;
+  color: #fff !important;
 }
 
 .hub_theme {
-    background: #ff9000 !important;
-    color: #000 !important;
+  background: #ff9000 !important;
+  color: #000 !important;
 }
 
 .air_theme {
-    background: #285c30 !important;
-    color: #000 !important;
+  background: #285c30 !important;
+  color: #000 !important;
 }
 
 .settings-img-button {
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 .settings-img-container {
-    background: var(--settings-2);
-    color: var(--font-color);
-    padding: 5px 10px;
-    width: 200px;
-    height: 200px;
-    outline: none;
-    transition: 0.1s ease;
-    margin-top: 5px;
-    cursor: pointer;
+  background: var(--settings-2);
+  color: var(--font-color);
+  padding: 5px 10px;
+  width: 200px;
+  height: 200px;
+  outline: none;
+  transition: 0.1s ease;
+  margin-top: 5px;
+  cursor: pointer;
 }
 
 .sec {
-    color: var(--font-color) !important;
+  color: var(--font-color) !important;
 }

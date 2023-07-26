@@ -13,5 +13,5 @@
       "@plugins": ["src/layouts/Plugins.astro"],
       "@sections/*": ["src/sections/*"]
     }
-  },
+  }
 }

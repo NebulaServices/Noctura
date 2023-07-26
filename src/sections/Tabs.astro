@@ -1,137 +1,151 @@
 ---
-import './tabs.css';
+import "./tabs.css";
 ---
 
 <script type="module" data-cold>
-    let list = document.getElementById('tabs-list'),
-        btn = document.getElementById('tabs-btn'),
-        tl = document.querySelector('.header .top-left'),
-        nb = document.querySelector('.header .nav-btns'),
-        open = false,
-        offset = 250,
-        cache = await caches.open('astro-tabs');
+let list = document.getElementById("tabs-list"),
+  btn = document.getElementById("tabs-btn"),
+  tl = document.querySelector(".header .top-left"),
+  nb = document.querySelector(".header .nav-btns"),
+  open = false,
+  offset = 250,
+  cache = await caches.open("astro-tabs");
 
-    list.style.width = `${offset}px`;
+list.style.width = `${offset}px`;
 
-    if (!window._init) btn.addEventListener('click', function() {
-        document.querySelectorAll('.arrow').forEach(e=>e.classList.toggle('arrow-open'));
+if (!window._init)
+  btn.addEventListener("click", function () {
+    document
+      .querySelectorAll(".arrow")
+      .forEach((e) => e.classList.toggle("arrow-open"));
 
-        if (!open) {
-            requestAnimationFrame(() => {
-                list.style.left = `${offset}px`;
-                btn.style.left = `${offset}px`;
-                tl.style.paddingLeft = `${offset}px`;
-                nb.style.marginLeft = `${offset}px`;
-            });
-            open = true;
-        } else {
-            requestAnimationFrame(() => {
-                list.style.left = "";
-                btn.style.left = "";
-                tl.style.paddingLeft = "";
-                nb.style.marginLeft = "";
-            });
-            open = false;
-        }
-    });
-
-    async function getData() {
-        var keys = await cache.keys();
-        var data = [];
-
-        for await (var key of keys) {
-            data.push(await cache.match(key).then(res => res.json()));
-        }
-
-        return data;
+    if (!open) {
+      requestAnimationFrame(() => {
+        list.style.left = `${offset}px`;
+        btn.style.left = `${offset}px`;
+        tl.style.paddingLeft = `${offset}px`;
+        nb.style.marginLeft = `${offset}px`;
+      });
+      open = true;
+    } else {
+      requestAnimationFrame(() => {
+        list.style.left = "";
+        btn.style.left = "";
+        tl.style.paddingLeft = "";
+        nb.style.marginLeft = "";
+      });
+      open = false;
     }
+  });
 
-    function convert(blob) {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = _ => resolve(reader.result);
-            reader.readAsDataURL(blob);
-        });
-    }
+async function getData() {
+  var keys = await cache.keys();
+  var data = [];
 
-    async function getPicture(href) {
-        try {
-            var res = await fetch('/gen-scrot?url=' + encodeURIComponent(href)).then(res => res.blob());
+  for await (var key of keys) {
+    data.push(await cache.match(key).then((res) => res.json()));
+  }
 
-            return `${await convert(res)}`;
-        } catch {
-            return '/tab-filler.png';
-        }
-    }
+  return data;
+}
 
-    window.saveTab = async function saveTab(id, title, href, pHref) {
-        var data = { id, title, href, pHref, picture: await getPicture(href) };
+window.saveTab = async function saveTab(id, title, href, pHref) {
+  var data = { id, title, href, pHref /*, picture: await getPicture(href) */ };
 
-        await cache.put('/' + id + '.json', new Response(JSON.stringify(data), { headers: { 'Content-Type': 'application/json' }}));
+  await cache.put(
+    "/" + id + ".json",
+    new Response(JSON.stringify(data), {
+      headers: { "Content-Type": "application/json" }
+    })
+  );
 
-        await loadTabs();
+  await loadTabs();
 
-        return true;
-    }
+  return true;
+};
 
-    window.removeTab = async function(id) {
-        await cache.delete('/' + id + '.json');
+window.removeTab = async function (id) {
+  await cache.delete("/" + id + ".json");
 
-        document.querySelector(`iframe[data-uuid="${id}"]`).remove();
+  document.querySelector(`iframe[data-uuid="${id}"]`).remove();
 
-        await loadTabs();
+  await loadTabs();
 
-        return true;
-    }
+  return true;
+};
 
-    async function frames(data) {
-        async function load(id, title, href, pHref) {
-            var frame = document.createElement('iframe');
-            frame.classList.add('tab-frame', 'proxy-iframe');
-            frame.dataset.uuid = id;
-            frame.src = pHref;
-            frame.style.display = 'none';
-            
-            document.body.appendChild(frame);
+async function frames(data) {
+  async function load(id, title, href, pHref) {
+    var frame = document.createElement("iframe");
+    frame.classList.add("tab-frame", "proxy-iframe");
+    frame.dataset.uuid = id;
+    frame.src = pHref;
+    frame.style.display = "none";
 
-            console.log("Preloading " + href);
+    document.body.appendChild(frame);
 
-            await new Promise(resolve => (console.log("Preloaded", href), frame.addEventListener('load', resolve)));
-        }
+    console.log("Preloading " + href);
 
-        await Promise.allSettled(data.map(({ id, title, href, pHref }) => load(id, title, href, pHref)));
+    frame.loading = new Promise(
+      (resolve) => (
+        frame.addEventListener("load", () =>
+          console.log("Preloaded", href),
+          resolve
+        )
+      )
+    );
+  }
 
-        return true;
-    }
+  await Promise.allSettled(
+    data.map(({ id, title, href, pHref }) => load(id, title, href, pHref))
+  );
 
-    async function loadTabs() {
-        let data = await getData();
-        if (!document.querySelector("iframe[data-uuid]")) await frames(data);
-        list.innerHTML = data.length ? data.map(({ id, href, title, picture }) => `<div class="tabs-tab"><img class="tab-picture" src="${picture}" alt="Picture of ${title}" /><div class="tab-info"><span class="tab-close" id="${id}" onclick="window.removeTab(this.id);">x</span><h1 class="tab-title">${title}</h1><h2 class="tab-link">${href}</h2></div>`).join('</div>\n') : "No Tabs";
+  return true;
+}
 
-        if (data.length) {
-            document.querySelectorAll('.tabs-tab').forEach(e => e.addEventListener('click', function() {
-                document.querySelectorAll('.tabs-tab').forEach(e => e.classList.remove('tab-active'));
-                this.classList.add('tab-active');
-                document.querySelectorAll('.tab-frame').forEach(e => e.style.display = 'none');
-                document.querySelector(`iframe[data-uuid="${this.querySelector('.tab-close').id}"]`).style.display = 'block';
-            }));
-        }
+async function loadTabs() {
+  let data = await getData();
+  if (!document.querySelector("iframe[data-uuid]")) frames(data);
+  list.innerHTML = data.length
+    ? data
+      .map(
+        ({ id, href, title, picture }) =>
+          `<div class="tabs-tab"><div class="tab-info"><span class="tab-close" id="${id}" onclick="window.removeTab(this.id);">x</span><h1 class="tab-title">${title}</h1><h2 class="tab-link">${href}</h2></div>`
+      )
+      .join("</div>\n")
+    : "No Tabs";
 
-        window._init = true;
+  if (data.length) {
+    document.querySelectorAll(".tabs-tab").forEach((e) =>
+      e.addEventListener("click", function () {
+        document
+          .querySelectorAll(".tabs-tab")
+          .forEach((e) => e.classList.remove("tab-active"));
+        this.classList.add("tab-active");
+        document
+          .querySelectorAll(".tab-frame")
+          .forEach((e) => (e.style.display = "none"));
+        document.querySelector(
+          `iframe[data-uuid="${this.querySelector(".tab-close").id}"]`
+        ).style.display = "block";
+      })
+    );
+  }
 
-        return;
-    }
-    
-    if (!window._init) loadTabs();
+  window._init = true;
+
+  return;
+}
+
+if (!window._init) loadTabs();
 </script>
 
 <div class="tabs">
-    <div class="tabs-btn" id="tabs-btn">
-        <div class="arrow arrow-1" />
-        <br />
-        <div class="arrow arrow-2" />
-    </div>
+  <div class="tabs-btn" id="tabs-btn">
+    <div class="arrow arrow-1"></div>
+    <br />
+    <div class="arrow arrow-2"></div>
+  </div>
 
-    <div class="tabs-list" id="tabs-list">Loading...</div>
+  <div class="tabs-list" id="tabs-list">Loading...</div>
 </div>

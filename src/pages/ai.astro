@@ -1,38 +1,57 @@
 ---
-import Layout from "@layout"
+import Layout from "@layout";
 import "@css/style.css";
 import "@css/ai.css";
 ---
 
 <Layout title="AI">
-    <div class=ai-container>
-        <div class="chat-history">
-            <h1 class="history-title">Chat History</h1>
-            <div class="chat-history-entry">
-                <p>Help, I need somebody! Help, not just anybody! Help, you know I need someone, HELP!</p>
-            </div>
-            <div class="chat-history-entry">
-                <p>When I was younger, so much younger than today, I never needed anybody's help in any way. But now these days are gone, I'm not so self assured, Now I find I've changed my mind and opened up the doors</p>
-            </div>
-        </div>
-        <div class="chatbox">
-            <div class="chatbox-message-container">
-                <img src="/whiskers.png" alt="Whiskers The Cat" class="chatbox-message-logo"> 
-                <div class="chatbox-message">
-                    <p>Wait... AI isn't implemented yet?</p>
-                </div>
-            </div>
-            <div class="chatbox-message-container">
-                <img src="/chatgpt.png" alt="ChatGPT Logo" class="chatbox-message-logo">
-                <div class="chatbox-message">
-                    <p>No, Whiskers, it isn't. But I heard it's planned for a future update!</p>
-                </div> 
-            </div>
-            
-            <div class="message-box-container">
-                <textarea placeholder="Type your message here..." class="message-box"></textarea>
-                <button class="send-button"></button>
-            </div>
-        </div>
+  <div class="ai-container">
+    <div class="chat-history">
+      <h1 class="history-title">Chat History</h1>
+      <div class="chat-history-entry">
+        <p>
+          Help, I need somebody! Help, not just anybody! Help, you know I need
+          someone, HELP!
+        </p>
+      </div>
+      <div class="chat-history-entry">
+        <p>
+          When I was younger, so much younger than today, I never needed
+          anybody's help in any way. But now these days are gone, I'm not so
+          self assured, Now I find I've changed my mind and opened up the doors
+        </p>
+      </div>
     </div>
+    <div class="chatbox">
+      <div class="chatbox-message-container">
+        <img
+          src="/whiskers.png"
+          alt="Whiskers The Cat"
+          class="chatbox-message-logo"
+        />
+        <div class="chatbox-message">
+          <p>Wait... AI isn't implemented yet?</p>
+        </div>
+      </div>
+      <div class="chatbox-message-container">
+        <img
+          src="/chatgpt.png"
+          alt="ChatGPT Logo"
+          class="chatbox-message-logo"
+        />
+        <div class="chatbox-message">
+          <p>
+            No, Whiskers, it isn't. But I heard it's planned for a future
+            update!
+          </p>
+        </div>
+      </div>
+
+      <div class="message-box-container">
+        <textarea placeholder="Type your message here..." class="message-box"
+        ></textarea>
+        <button class="send-button"></button>
+      </div>
+    </div>
+  </div>
 </Layout>

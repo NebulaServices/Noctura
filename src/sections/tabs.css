@@ -1,127 +1,130 @@
 .tabs {
-    display: inline;
+  display: inline;
 }
 
 .tabs-btn {
-    position: fixed;
-    left: 0;
-    bottom: 30px;
-    width: 25px;
-    display: flex;
-    justify-content: center;
-    align-tracks: center;
-    height: 60px;
-    border-radius: 0 10px 10px 0;
-    background: var(--settings-1);
-    transition: background 0.1s ease, left 0.3s ease;
-    cursor: pointer;
-    flex-direction: column;
-    border: 1px solid var(--settings-3);
-    border-left: 0;
-    z-index: 9999999999999;
+  position: fixed;
+  left: 0;
+  bottom: 30px;
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  align-tracks: center;
+  height: 60px;
+  border-radius: 0 10px 10px 0;
+  background: var(--settings-1);
+  transition:
+    background 0.1s ease,
+    left 0.3s ease;
+  cursor: pointer;
+  flex-direction: column;
+  border: 1px solid var(--settings-3);
+  border-left: 0;
+  z-index: 9999999999999;
 }
 
 .tabs-btn:hover {
-    background: var(--settings-1);
+  background: var(--settings-1);
 }
 
 .tabs-btn:active {
-    background: var(--settings-2);
+  background: var(--settings-2);
 }
 
-.tabs-btn:hover .arrow-1, .tabs-btn:hover .arrow-2 {
-    background: var(--nav-btn-color);
+.tabs-btn:hover .arrow-1,
+.tabs-btn:hover .arrow-2 {
+  background: var(--nav-btn-color);
 }
 
 .arrow-1 {
-    width: 16px;
-    transform: rotate(65deg);
-    background: var(--settings-3);
-    height: 2px;
-    margin-bottom: -6px;
-    margin-left: 4px;
+  width: 16px;
+  transform: rotate(65deg);
+  background: var(--settings-3);
+  height: 2px;
+  margin-bottom: -6px;
+  margin-left: 4px;
 }
 
 .arrow-2 {
-    width: 16px;
-    transform: rotate(-65deg);
-    background: var(--settings-3);
-    height: 2px;
-    margin-top: -6px;
-    margin-left: 4px;
+  width: 16px;
+  transform: rotate(-65deg);
+  background: var(--settings-3);
+  height: 2px;
+  margin-top: -6px;
+  margin-left: 4px;
 }
 
 .arrow-1.arrow-open {
-    transform: rotate(-65deg);
-    background: var(--settings-3);
+  transform: rotate(-65deg);
+  background: var(--settings-3);
 }
 
 .arrow-2.arrow-open {
-    transform: rotate(65deg);
-    background: var(--settings-3);
+  transform: rotate(65deg);
+  background: var(--settings-3);
 }
 
 .arrow {
-    transition: transform 0s;
+  transition: transform 0s;
 }
 
 .tabs-list {
-    position: fixed;
-    left: 0;
-    top: 0;
-    transform: translateX(-100%);
-    height: 100%;
-    transition: 0.3s ease;
-    width: 210px;
-    background: var(--settings-1);
-    z-index: 9999999999999;
-    border-right: 1px solid var(--font-color);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 15px;
-    gap: 15px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transform: translateX(-100%);
+  height: 100%;
+  transition: 0.3s ease;
+  width: 210px;
+  background: var(--settings-1);
+  z-index: 9999999999999;
+  border-right: 1px solid var(--font-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15px;
+  gap: 15px;
 }
 
 .tabs-tab {
-    width: 90%;
-    border: var(--borders-2);
-    padding: 5px;
-    cursor: pointer;
-    border-radius: 4px;
+  width: 90%;
+  border: var(--borders-2);
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
 .tab-info {
-    position: relative;
+  position: relative;
 }
 
 .tab-close {
-    position: absolute;
-    right: 2px;
-    top: 0px;
-    margin: 0;
-    vertical-align: center;
+  position: absolute;
+  right: 2px;
+  top: 0px;
+  margin: 0;
+  vertical-align: center;
 }
 
 .tab-picture {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .tab-title {
-    color: var(--font-color);
-    font-size: 17px;
-    max-width: calc(100% - 20px);
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  color: var(--font-color);
+  font-size: 17px;
+  max-width: calc(100% - 20px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .tab-link {
-    color: var(--nav-btn-color-darker);
-    font-size: 12px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    width: 100%;
+  color: var(--nav-btn-color-darker);
+  font-size: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
 }

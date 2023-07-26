@@ -2,207 +2,281 @@
 import Layout from "@layout";
 import "@css/style.css";
 import "@css/index.css";
-import "@sections/switch.css"; 
+import "@sections/switch.css";
 import Obfuscated from "@components/Obfuscated.astro";
-import servers from '../bare.json';
+import servers from "../bare.json";
 ---
 
 <Layout title="Home">
-    <div class="home">
-        <!-- <div class="top-banner" /> -->
-        <form class="home-container">
-            <h1 class="logotext"><Obfuscated word="Noctura" /></h1>
-            <input id="home-input" class="home-input" autocomplete="off" placeholder="Search freely..."/>
-            <div class="home-results"></div>
-        </form>        
+  <div class="home">
+    <!-- <div class="top-banner" /> -->
+    <form class="home-container">
+      <h1 class="logotext"><Obfuscated word="Noctura" /></h1>
+      <input
+        id="home-input"
+        class="home-input"
+        autocomplete="off"
+        placeholder="Search freely..."
+      />
+      <div class="home-results"></div>
+    </form>
 
-        <div class="home-footer">
-            <div class="switch-btn-container">
-                <div class="switch-btn-current">
-                    <span class="server-indicator">
-                        Server:
-                        <span class="server-indicator-value"><span class="indicator-dot"></span>Connecting...<span class="server-name"></span></span>
-                    </span>
-                </div>
-                <div class="switch-btn open-up" style={{background: 'var(--primary-bg-color)'}}>
-                    {
-                        servers.dev.map(e=>{
-                            return <a href="#" id={"server-" + e.split('.')[0]} class="modify-split-a" data-value={e}>{e.split('.')[0].split('-').map(e=>e.split('').map((e,i)=>i==0?e.toUpperCase():e).join('')).join(' ')} <span class="server-ping">0ms</span></a>
-                        })
-                    }
-                </div>
-            </div>
-
-            <div class="themes">
-                <a href="/settings/theme/" aria-label="Go to themes page">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-85 32-158t87.5-127q55.5-54 130-84.5T489-880q79 0 150 26.5T763.5-780q53.5 47 85 111.5T880-527q0 108-63 170.5T650-294h-75q-18 0-31 14t-13 31q0 27 14.5 46t14.5 44q0 38-21 58.5T480-80Zm0-400Zm-233 26q20 0 35-15t15-35q0-20-15-35t-35-15q-20 0-35 15t-15 35q0 20 15 35t35 15Zm126-170q20 0 35-15t15-35q0-20-15-35t-35-15q-20 0-35 15t-15 35q0 20 15 35t35 15Zm214 0q20 0 35-15t15-35q0-20-15-35t-35-15q-20 0-35 15t-15 35q0 20 15 35t35 15Zm131 170q20 0 35-15t15-35q0-20-15-35t-35-15q-20 0-35 15t-15 35q0 20 15 35t35 15ZM480-140q11 0 15.5-4.5T500-159q0-14-14.5-26T471-238q0-46 30-81t76-35h73q76 0 123-44.5T820-527q0-132-100-212.5T489-820q-146 0-247.5 98.5T140-480q0 141 99.5 240.5T480-140Z"/></svg>
-                </a>
-            </div>
+    <div class="home-footer">
+      <div class="switch-btn-container">
+        <div class="switch-btn-current">
+          <span class="server-indicator">
+            Server:
+            <span class="server-indicator-value"
+              ><span class="indicator-dot"></span>Connecting...<span
+                class="server-name"></span></span
+            >
+          </span>
         </div>
+        <div
+          class="switch-btn open-up"
+          style={{ background: "var(--primary-bg-color)" }}
+        >
+          {
+            servers.dev.map((e) => {
+              return (
+                <a
+                  href="#"
+                  id={"server-" + e.split(".")[0]}
+                  class="modify-split-a"
+                  data-value={e}
+                >
+                  {e
+                    .split(".")[0]
+                    .split("-")
+                    .map((e) =>
+                      e
+                        .split("")
+                        .map((e, i) => (i == 0 ? e.toUpperCase() : e))
+                        .join("")
+                    )
+                    .join(" ")}{" "}
+                  <span class="server-ping">0ms</span>
+                </a>
+              );
+            })
+          }
+        </div>
+      </div>
 
-        <script is:inline src="/js/omnibox.js" />
-        <script is:inline async src="/js/bareServer.js"></script>
-        <script is:inline src="/js/encoder.js"></script>
-        <script is:inline>
-            (function() {
-                const prefixes = {
-                    'Ultraviolet': 'uv',
-                    'Dynamic': 'dynamic',
-                    'Rammerhead': 'rh',
-                    'Aero': 'aero',
-                }
-    
-                const homeContainer = document.querySelector(".home-container");
-                const switchBtnCurrentBare = document.querySelector(".switch-btn-current .server-indicator");
-                const modifySplitA = document.querySelectorAll(".modify-split-a");
-            
-                const toggleSwitchBtnBare = (e) => {
-                    const switchBtn = document.getElementsByClassName('switch-btn')[1];
-            
-                    if (switchBtn.style.display == 'block') {
-                        switchBtn.style.opacity = '0';
-                        setTimeout(function() {
-                            switchBtn.style.display = 'none';
-                        }, 100);
-                    } else {
-                        switchBtn.style.display = 'block';
-                        requestAnimationFrame(() => {
-                        switchBtn.style.opacity = '1';
-                        });
-                    }
-            
-                    return e.stopPropagation();
-                }
-            
-                // const recursive = (el) => {
-                //     var arr = [];
-                
-                //     function iterate(el) {
-                //         if (el.childNodes) el.childNodes.forEach(e=>(arr.push(e), iterate(e)));
-            
-                //         return;
-                //     }
-            
-                //     arr.push(el);
-            
-                //     iterate(el)
-            
-                //     return arr;
-                // }
-            
-                const submit = (e) => {
-                    e.preventDefault();
-            
-                    const input = document.querySelector('.home-input');
-                    const results = document.querySelector('.home-results');
-            
-                    if (!input.value) return;
-            
-                    results.innerHTML = '';
-            
-                    let url;
-            
-                    if (input.value.match(/^https?:\/\//g)) {
-                        url = input.value;
-                    } else {
-                        url = 'https://www.google.com/search?q=' + encodeURIComponent(input.value);
-                    }
-            
-                    var prefix = document.cookie.split('; ').map(e=>e.split('=')).find(e=>e[0]=='astro-proxy') ? prefixes[document.cookie.split('; ').map(e=>e.split('=')).find(e=>e[0]=='astro-proxy')[1]] : prefixes['Ultraviolet'];
-                    // this is the basic idea for what i'm trying to do
-                    // waiting for sylvie to finish the menu component and cat for the focus mode
-                    const iframe = document.createElement("iframe");
-                    iframe.classList.add('proxy-iframe');
-                    if (prefix === "rh") {
-                        let session = localStorage.getItem('session-string')
-                        if (session == undefined) {
-                            if (session == undefined) {
-                                console.log("Session is undefined");
-                            }
-                        }
-    
-                    } else {
-                        iframe.src = `/~/${prefix}/${encodeURIComponent(url)}`;
-                    }               
-    
-                    const loader = document.createElement("div");
-                    loader.style.width = "100%";
-                    loader.style.height = "100%";
-                    loader.style.border = "none";
-                    loader.style.background = "var(--settings-1)";
-                    loader.style.overflow = "hidden";
-                    loader.style.position = "absolute";
-                    loader.style.zIndex = '9999999';
-                    loader.style.fontFamily = "MajorMonoDisplay, Arial, sans-serif";
-                    loader.style.top = "0px";
-                    loader.innerHTML = `<div><span>N</span></div>`
-                    loader.style.display = "flex";
-                    loader.querySelector("div").style.position = "relative";
-                    loader.style.fontSize = "150px";
-                    loader.style.paddingBottom = "10%";
-                    loader.style.alignItems = "center";
-                    loader.style.justifyContent = "center";
-                    loader.style.color = "var(--font-color)";
-                    loader.style.opacity = "1";
-                    loader.style.transition = "opacity 0.5s ease-in-out";
-                    loader.classList.add('proxy-loader');
-    
-                    document.querySelector(".home").style.paddingBottom = "0px";
-    
-                    iframe.onload = async function() {
-                        iframe.onload = async () => {};
-                        iframe.contentWindow.dispatchEvent(new CustomEvent("inject:cache", {
-                            detail: {
-                                cache: await caches.open('astro-scripts')
-                            }
-                        }));
-
-                        loader.style.opacity = "0";
-                        iframe.style.display = 'block';
-                        
-                        setTimeout(function() {
-                            loader.remove();
-                        }, 500);
-                    }
-    
-                    homeContainer.parentNode.appendChild(loader);
-                    homeContainer.parentNode.appendChild(iframe);
-                    window.iframe = iframe;
-                }
-            
-                const switchServer = (e) => {
-                    e.preventDefault();
-            
-                    const server = e.target.dataset.value;
-            
-                    e.target.parentNode.style.opacity = '0';
-            
-                    document.querySelector('.server-indicator-value').childNodes[1].textContent = 'Connecting ';
-                    document.querySelector('.server-indicator-value').classList.remove('connected');
-                    document.querySelectorAll('.server-name')[0].innerText = server.split('.')[0].toUpperCase();
-            
-                    if (window.connectBare) {
-                        window.connectBare(server).then(() => {
-                            document.querySelector('.server-indicator-value').childNodes[1].textContent = 'Connected ';
-                            document.querySelector('.server-indicator-value').classList.add('connected');
-                        
-                            localStorage.server = server;
-                        }).catch(() => {
-                            document.querySelector('.server-indicator-value').childNodes[1].textContent = 'Disconnected ';
-                        });
-                    }
-            
-                    document.cookie = 'astro-bare='+server+'; expires=Fri, 31 Dec 9999 23:59:59 GMT'
-            
-                    setTimeout(function() {
-                        e.target.parentNode.style.display = 'none';
-                    }, 100);
-                }
-            
-                homeContainer.onsubmit = submit;
-                switchBtnCurrentBare.onclick = toggleSwitchBtnBare;
-                modifySplitA.forEach(e => (e.dataset.value = e.dataset.value.replace("$HOST", location.host), e.onclick = switchServer));
-            })();   
-        </script>
+      <div class="themes">
+        <a href="/settings/theme/" aria-label="Go to themes page">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="48"
+            viewBox="0 -960 960 960"
+            width="48"
+            ><path
+              d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-85 32-158t87.5-127q55.5-54 130-84.5T489-880q79 0 150 26.5T763.5-780q53.5 47 85 111.5T880-527q0 108-63 170.5T650-294h-75q-18 0-31 14t-13 31q0 27 14.5 46t14.5 44q0 38-21 58.5T480-80Zm0-400Zm-233 26q20 0 35-15t15-35q0-20-15-35t-35-15q-20 0-35 15t-15 35q0 20 15 35t35 15Zm126-170q20 0 35-15t15-35q0-20-15-35t-35-15q-20 0-35 15t-15 35q0 20 15 35t35 15Zm214 0q20 0 35-15t15-35q0-20-15-35t-35-15q-20 0-35 15t-15 35q0 20 15 35t35 15Zm131 170q20 0 35-15t15-35q0-20-15-35t-35-15q-20 0-35 15t-15 35q0 20 15 35t35 15ZM480-140q11 0 15.5-4.5T500-159q0-14-14.5-26T471-238q0-46 30-81t76-35h73q76 0 123-44.5T820-527q0-132-100-212.5T489-820q-146 0-247.5 98.5T140-480q0 141 99.5 240.5T480-140Z"
+            ></path></svg
+          >
+        </a>
+      </div>
     </div>
+
+    <script is:inline src="/js/omnibox.js"></script>
+    <script is:inline async src="/js/bareServer.js"></script>
+    <script is:inline src="/js/encoder.js"></script>
+    <script is:inline>
+      (function () {
+        const prefixes = {
+          Ultraviolet: "uv",
+          Dynamic: "dynamic",
+          Rammerhead: "rh",
+          Aero: "aero"
+        };
+
+        const homeContainer = document.querySelector(".home-container");
+        const switchBtnCurrentBare = document.querySelector(
+          ".switch-btn-current .server-indicator"
+        );
+        const modifySplitA = document.querySelectorAll(".modify-split-a");
+
+        const toggleSwitchBtnBare = (e) => {
+          const switchBtn = document.getElementsByClassName("switch-btn")[1];
+
+          if (switchBtn.style.display == "block") {
+            switchBtn.style.opacity = "0";
+            setTimeout(function () {
+              switchBtn.style.display = "none";
+            }, 100);
+          } else {
+            switchBtn.style.display = "block";
+            requestAnimationFrame(() => {
+              switchBtn.style.opacity = "1";
+            });
+          }
+
+          return e.stopPropagation();
+        };
+
+        // const recursive = (el) => {
+        //     var arr = [];
+
+        //     function iterate(el) {
+        //         if (el.childNodes) el.childNodes.forEach(e=>(arr.push(e), iterate(e)));
+
+        //         return;
+        //     }
+
+        //     arr.push(el);
+
+        //     iterate(el)
+
+        //     return arr;
+        // }
+
+        const submit = (e) => {
+          e.preventDefault();
+
+          const input = document.querySelector(".home-input");
+          const results = document.querySelector(".home-results");
+
+          if (!input.value) return;
+
+          results.innerHTML = "";
+
+          let url;
+
+          if (input.value.match(/^https?:\/\//g)) {
+            url = input.value;
+          } else {
+            url =
+              "https://www.google.com/search?q=" +
+              encodeURIComponent(input.value);
+          }
+
+          var prefix = document.cookie
+            .split("; ")
+            .map((e) => e.split("="))
+            .find((e) => e[0] == "astro-proxy")
+            ? prefixes[
+                document.cookie
+                  .split("; ")
+                  .map((e) => e.split("="))
+                  .find((e) => e[0] == "astro-proxy")[1]
+              ]
+            : prefixes["Ultraviolet"];
+          // this is the basic idea for what i'm trying to do
+          // waiting for sylvie to finish the menu component and cat for the focus mode
+          const iframe = document.createElement("iframe");
+          iframe.classList.add("proxy-iframe");
+          if (prefix === "rh") {
+            let session = localStorage.getItem("session-string");
+            if (session == undefined) {
+              if (session == undefined) {
+                console.log("Session is undefined");
+              }
+            }
+          } else {
+            iframe.src = `/~/${prefix}/${encodeURIComponent(url)}`;
+          }
+
+          const loader = document.createElement("div");
+          loader.style.width = "100%";
+          loader.style.height = "100%";
+          loader.style.border = "none";
+          loader.style.background = "var(--settings-1)";
+          loader.style.overflow = "hidden";
+          loader.style.position = "absolute";
+          loader.style.zIndex = "9999999";
+          loader.style.fontFamily = "MajorMonoDisplay, Arial, sans-serif";
+          loader.style.top = "0px";
+          loader.innerHTML = `<div><span>N</span></div>`;
+          loader.style.display = "flex";
+          loader.querySelector("div").style.position = "relative";
+          loader.style.fontSize = "150px";
+          loader.style.paddingBottom = "10%";
+          loader.style.alignItems = "center";
+          loader.style.justifyContent = "center";
+          loader.style.color = "var(--font-color)";
+          loader.style.opacity = "1";
+          loader.style.transition = "opacity 0.5s ease-in-out";
+          loader.classList.add("proxy-loader");
+
+          document.querySelector(".home").style.paddingBottom = "0px";
+
+          iframe.onload = async function () {
+            iframe.onload = async () => {};
+            iframe.contentWindow.dispatchEvent(
+              new CustomEvent("inject:cache", {
+                detail: {
+                  cache: await caches.open("astro-scripts")
+                }
+              })
+            );
+
+            loader.style.opacity = "0";
+            iframe.style.display = "block";
+
+            setTimeout(function () {
+              loader.remove();
+            }, 500);
+          };
+
+          homeContainer.parentNode.appendChild(loader);
+          homeContainer.parentNode.appendChild(iframe);
+          window.iframe = iframe;
+        };
+
+        const switchServer = (e) => {
+          e.preventDefault();
+
+          const server = e.target.dataset.value;
+
+          e.target.parentNode.style.opacity = "0";
+
+          document.querySelector(
+            ".server-indicator-value"
+          ).childNodes[1].textContent = "Connecting ";
+          document
+            .querySelector(".server-indicator-value")
+            .classList.remove("connected");
+          document.querySelectorAll(".server-name")[0].innerText = server
+            .split(".")[0]
+            .toUpperCase();
+
+          if (window.connectBare) {
+            window
+              .connectBare(server)
+              .then(() => {
+                document.querySelector(
+                  ".server-indicator-value"
+                ).childNodes[1].textContent = "Connected ";
+                document
+                  .querySelector(".server-indicator-value")
+                  .classList.add("connected");
+
+                localStorage.server = server;
+              })
+              .catch(() => {
+                document.querySelector(
+                  ".server-indicator-value"
+                ).childNodes[1].textContent = "Disconnected ";
+              });
+          }
+
+          document.cookie =
+            "astro-bare=" + server + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+
+          setTimeout(function () {
+            e.target.parentNode.style.display = "none";
+          }, 100);
+        };
+
+        homeContainer.onsubmit = submit;
+        switchBtnCurrentBare.onclick = toggleSwitchBtnBare;
+        modifySplitA.forEach(
+          (e) => (
+            (e.dataset.value = e.dataset.value.replace("$HOST", location.host)),
+            (e.onclick = switchServer)
+          )
+        );
+      })();
+    </script>
+  </div>
 </Layout>
