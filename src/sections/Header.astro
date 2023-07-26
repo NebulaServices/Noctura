@@ -3,7 +3,7 @@ import Hamburger from "@components/Burger.astro";
 import Img from "@components/Img.astro";
 import "./header.css";
 import "./switch.css";
-
+import NebulaLogo from "@components/NebulaLogo.astro";
 const { background, data: url } = Astro.props;
 
 const routes = [
@@ -53,8 +53,8 @@ const currentDate = new Date().getTime();
         <Img src="/logo.png" class="nav-icon" alt="Website Logo" />
       </a>
       <hr class="nav-slash" />
-      <a target="_blank" href="https://titaniumnetwork.org">
-        <Img src="/tn.png" class="tn-icon" alt="TN Icon" />
+      <a target="_blank" href="https://github.com/NebulaServices/Nebula">
+        <NebulaLogo />
       </a>
 
       <div class="switch-btn-container">
@@ -114,8 +114,6 @@ const currentDate = new Date().getTime();
           ></path>
         </svg>
       </div>
-
-      
     </div>
 
     <div class="top-right">
@@ -336,7 +334,7 @@ const currentDate = new Date().getTime();
           if (focusMode == "on") focusButton.click();
         }
       });
-  
+
       focusButton.onclick = () => {
         const top = document.querySelector(".top");
         const bottom = document.querySelector(".bottom");
