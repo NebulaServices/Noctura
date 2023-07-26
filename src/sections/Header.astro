@@ -4,6 +4,7 @@ import Img from "@components/Img.astro";
 import "./header.css";
 import "./switch.css";
 import NebulaLogo from "@components/NebulaLogo.astro";
+import { discord, github, docs } from "@components/Consts.ts";
 const { background, data: url } = Astro.props;
 
 const routes = [
@@ -53,7 +54,7 @@ const currentDate = new Date().getTime();
         <Img src="/logo.png" class="nav-icon" alt="Website Logo" />
       </a>
       <hr class="nav-slash" />
-      <a target="_blank" href="https://github.com/NebulaServices/Nebula">
+      <a target="_blank" href={github}>
         <NebulaLogo />
       </a>
 
@@ -121,7 +122,7 @@ const currentDate = new Date().getTime();
         <span class="nav-btn-title">Feedback</span>
       </a>
 
-      <a class="extra-btn" href="https://discord.gg/unblock">
+      <a class="extra-btn" href={discord}>
         <span class="nav-btn-title">Discord</span>
       </a>
 
@@ -129,7 +130,7 @@ const currentDate = new Date().getTime();
         <span class="nav-btn-title">Changelog</span>
       </a>
 
-      <a class="extra-btn" href="https://docs.titaniumnetwork.org">
+      <a class="extra-btn" href={docs}>
         <span class="nav-btn-title">Docs</span>
       </a>
 

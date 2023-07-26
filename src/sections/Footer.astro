@@ -1,6 +1,7 @@
 ---
 import "./footer.css";
 import Obfuscated from "../components/Obfuscated.astro";
+import { discord, github, docs } from "@components/Consts.ts";
 let currentYear = getCurrentYear();
 function getCurrentYear() {
   return new Date().getFullYear(); // We would do this client side but doing it at build time won't require importing another framework
@@ -24,14 +25,14 @@ function getCurrentYear() {
 
         <ul>
           <li><a href="/settings/general">Settings</a></li>
-          <li><a href="https://docs.titaniumnetwork.org/">Docs</a></li>
+          <li><a href={docs}>Docs</a></li>
           <li><a href="/ai">AI</a></li>
         </ul>
 
         <ul>
           <li><a href="/music">Music</a></li>
           <li><a href="/changelog">Changes</a></li>
-          <li><a href="https://discord.gg/unblock">Discord</a></li>
+          <li><a href={discord}>Discord</a></li>
         </ul>
       </div>
     </div>
@@ -39,13 +40,11 @@ function getCurrentYear() {
     <div class="footer-section">
       <ul>
         <li>
-          <a href="https://titaniumnetwork.org"
-            ><Obfuscated word="TitaniumNetwork" /></a
-          >
+          <a href={github}><Obfuscated word="Nebula Services" /></a>
         </li>
-        <li><a href="https://docs.titaniumnetwork.org">Oxide Docs</a></li>
+        <li><a href={docs}>Docs</a></li>
         <li>
-          <a href="https://github.com/titaniumnetwork-dev/">Source Code</a>
+          <a href={github}>Source Code</a>
         </li>
       </ul>
     </div>
