@@ -1,7 +1,7 @@
 import { minify as js } from "@swc/core";
 import { globby } from "globby";
 import { writeFile, readFile } from "node:fs/promises";
-import { minify as html } from "html-minifier-terser";
+import { minify as html } from "html-minifier-swc";
 
 export default function minify() {
   return {

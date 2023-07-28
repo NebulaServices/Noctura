@@ -31,7 +31,7 @@
     "fastify": "^4.18.0",
     "fastify-static": "^4.7.0",
     "globby": "^13.2.2",
-    "html-minifier-terser": "^7.2.0",
+    "html-minifier-swc": "https://github.com/Avad3/html-minifier-swc",
     "html-to-image": "^1.11.11",
     "html2canvas": "^1.4.1",
     "rammerhead": "https://github.com/holy-unblocker/rammerhead/releases/download/v1.2.41-holy.5/rammerhead-1.2.41-holy.5.tgz",
@@ -52,10 +52,5 @@
     "sass": "^1.63.6",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.1.6"
-  },
-  "overrides": {
-    "html-minifier-terser": {
-      "terser": "npm:@swc/core"
-    }
   }
 }
