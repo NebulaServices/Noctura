@@ -3,6 +3,10 @@ import Settings from "@settings";
 import Obfuscated from "@components/Obfuscated.astro";
 import Section from "@components/Section.astro";
 import Img from "@components/Img.astro";
+import Ultraviolet from "@image/Ultraviolet.png";
+import Dynamic from "@image/Dynamic.png";
+import Rammerhead from "@image/Rammerhead.png";
+import Aero from "@image/Aero.png";
 ---
 
 <Settings title="Proxy Settings">
@@ -12,19 +16,19 @@ import Img from "@components/Img.astro";
 
       <div class="flex justify-around">
         <button id="Ultraviolet" type="submit" class="settings-img-container">
-          <Img src="/Ultraviolet.png" class="settings-img-button" />
+          <Img src={Ultraviolet} class="settings-img-button" />
         </button>
 
         <button id="Dynamic" type="submit" class="settings-img-container">
-          <Img src="/Dynamic.png" class="settings-img-button" />
+          <Img src={Dynamic} class="settings-img-button" />
         </button>
 
         <button id="Rammerhead" type="submit" class="settings-img-container">
-          <Img src="/Rammerhead.png" class="settings-img-button" />
+          <Img src={Rammerhead} class="settings-img-button" />
         </button>
 
         <button id="Aero" type="submit" class="settings-img-container">
-          <Img src="/Aero.png" class="settings-img-button" />
+          <Img src={Aero} class="settings-img-button" />
         </button>
       </div>
     </form>

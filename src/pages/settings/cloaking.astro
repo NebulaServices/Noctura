@@ -2,6 +2,11 @@
 import Settings from "@settings";
 import Section from "@components/Section.astro";
 import Preset from "@components/Preset.astro";
+import Edpuzzle from "@image/icons/edpuzzle.png";
+import Google from "@image/icons/google.png";
+import GoogleClassroom from "@image/icons/googleclassroom.png";
+import GoogleDrive from "@image/icons/googledrive.png";
+import Powerschool from "@image/icons/powerschool.png";
 ---
 
 <Settings title="Cloaking">
@@ -36,12 +41,12 @@ import Preset from "@components/Preset.astro";
           flexDirection: "row"
         }}
       >
-        <Preset src="/icons/edpuzzle.png" name="Edpuzzle" />
-        <Preset src="/icons/google.png" name="Google" />
-        <Preset src="/icons/googleclassroom.png" name="Google Classroom" />
-        <Preset src="/icons/googledrive.png" name="Drive | Google" />
+        <Preset src={Edpuzzle} name="Edpuzzle" />
+        <Preset src={Google} name="Google" />
+        <Preset src={GoogleClassroom} name="Google Classroom" />
+        <Preset src={GoogleDrive} name="Drive | Google" />
         <Preset
-          src="/icons/powerschool.png"
+          src={Powerschool}
           imgStyle="border-radius: 50%;"
           name="Powerschool"
         />

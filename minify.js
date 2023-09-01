@@ -1,7 +1,12 @@
+/*
+  This is currently disabled because of v3 migration, for some reason it just doesn't work
+  Using jampack instead
+*/
+
 import { minify as js } from "@swc/core";
 import { globby } from "globby";
 import { writeFile, readFile } from "node:fs/promises";
-import { minify as html } from "html-minifier-swc";
+import { minify as html } from "html-minifier-terser";
 
 export default function minify() {
   return {

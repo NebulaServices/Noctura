@@ -5,6 +5,12 @@ import "./header.css";
 import "./switch.css";
 import NebulaLogo from "@components/NebulaLogo.astro";
 import { discord, github, docs } from "@components/Consts.ts";
+import logo from "@image/logo.png";
+import Ultraviolet from "@image/Ultraviolet.png";
+import Dynamic from "@image/Dynamic.png";
+import Rammerhead from "@image/Rammerhead.png";
+import Aero from "@image/Aero.png";
+
 const { background, data: url } = Astro.props;
 
 const routes = [
@@ -51,7 +57,7 @@ const currentDate = new Date().getTime();
   <div class="top">
     <div class="top-left">
       <a href="/" data-cold>
-        <Img src="/logo.png" class="nav-icon" alt="Website Logo" />
+        <Img src={logo} class="nav-icon" alt="Website Logo" />
       </a>
       <hr class="nav-slash" />
       <a target="_blank" href={github}>
@@ -60,19 +66,19 @@ const currentDate = new Date().getTime();
 
       <div class="switch-btn-container">
         <div class="switch-btn-current">
-          <Img src="/Ultraviolet.png" alt="Current Proxy Logo" />
+          <Img src={Ultraviolet} alt="Current Proxy Logo" />
         </div>
         <div
           class="switch-btn"
           style={{ background: background || "var(--primary-bg-color)" }}
         >
           <a data-value="Dynamic" href="#">
-            <Img src="/Dynamic.png" class="nav-switch-img" alt="Dynamic Icon" />
+            <Img src={Dynamic} class="nav-switch-img" alt="Dynamic Icon" />
              Dynamic
           </a>
           <a data-value="Ultraviolet" href="#">
             <Img
-              src="/Ultraviolet.png"
+              src={Ultraviolet}
               class="nav-switch-img"
               alt="Ultraviolet Icon"
             />
@@ -80,14 +86,14 @@ const currentDate = new Date().getTime();
           </a>
           <a data-value="Rammerhead" href="#">
             <Img
-              src="/Rammerhead.png"
+              src={Rammerhead}
               class="nav-switch-img"
               alt="Rammerhead Icon"
             />
              Rammerhead
           </a>
           <a data-value="Aero" href="#">
-            <Img src="/Aero.png" class="nav-switch-img" alt="Aero Icon" />
+            <Img src={Aero} class="nav-switch-img" alt="Aero Icon" />
              Aero 2.0
           </a>
         </div>
