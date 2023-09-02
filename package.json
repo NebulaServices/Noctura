@@ -6,11 +6,16 @@
     "start": "node .",
     "run": "astro dev --port 80 --host",
     "prod": "node index.js",
-    "build": "astro build",
+    "build": "astro build && jampack ./dist",
     "preview": "astro preview",
     "astro": "astro",
     "bstart": "npm run build && node .",
     "preinstall": "npx only-allow pnpm"
+  },
+  "pnpm": {
+    "overrides": {
+      "html-minifier-terser>terser": "npm:@swc/core"
+    }
   },
   "dependencies": {
     "@astrojs/sitemap": "^1.4.0",
@@ -27,13 +32,15 @@
     "codemirror": "^6.0.1",
     "fastify": "^4.18.0",
     "globby": "^13.2.2",
-    "html-minifier-terser": "github:Avad3/html-minifier-swc",
+    "html-minifier-terser": "^7.2.0",
+    "lightningcss": "^1.21.7",
     "rammerhead": "https://github.com/holy-unblocker/rammerhead/releases/download/v1.2.41-holy.5/rammerhead-1.2.41-holy.5.tgz",
     "sharp": "^0.32.5"
   },
   "type": "module",
   "devDependencies": {
     "@astrojs/tailwind": "^5.0.0",
+    "@divriots/jampack": "^0.15.0",
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "astro": "^3.0.5",
     "astro-compress": "^2.0.14",
