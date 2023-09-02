@@ -2,6 +2,9 @@
 import Layout from "@layout";
 import "@css/style.css";
 import "@css/ai.css";
+import Whiskers from "@image/whiskers.png";
+import ChatGPT from "@image/chatgpt.png";
+import Img from "@components/Img.astro";
 ---
 
 <Layout title="AI">
@@ -24,8 +27,8 @@ import "@css/ai.css";
     </div>
     <div class="chatbox">
       <div class="chatbox-message-container">
-        <img
-          src="/whiskers.png"
+        <Img
+          src={Whiskers}
           alt="Whiskers The Cat"
           class="chatbox-message-logo"
         />
@@ -34,8 +37,8 @@ import "@css/ai.css";
         </div>
       </div>
       <div class="chatbox-message-container">
-        <img
-          src="/chatgpt.png"
+        <Img
+          src={ChatGPT}
           alt="ChatGPT Logo"
           class="chatbox-message-logo"
         />

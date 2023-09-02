@@ -6,13 +6,15 @@ import { createServer } from "http";
 import { join } from "path";
 import createRammerhead from "rammerhead/src/server/index.js";
 import { fileURLToPath } from "url";
+import { build } from "astro";
+import { existsSync } from "fs";
+
+if (!existsSync("./dist")) build();
 
 const bare = createBareServer("/bare/");
 
 const rh = createRammerhead();
 
-// used when forwarding the script
-// rammerhead hell
 const rammerheadScopes = [
   "/rammerhead.js",
   "/hammerhead.js",
@@ -71,7 +73,9 @@ const serverFactory = (handler, opts) => {
 
 const fastify = Fastify({ logger: true, serverFactory });
 
-fastify.register(import("@fastify/compress"));
+fastify.register(import("@fastify/compress"), {
+  encodings: ['br']
+});
 
 fastify.register(fastifyStatic, {
   root: join(fileURLToPath(import.meta.url), "../dist"),

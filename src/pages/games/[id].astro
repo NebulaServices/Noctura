@@ -1,5 +1,4 @@
 ---
-import Blob from "/Blob.svg";
 import GameList from "../../games.json";
 import Layout from "@layout";
 export async function getStaticPaths() {
@@ -71,7 +70,7 @@ const { title, description, file } = Astro.props;
         </button>
         <button class="theaterButton" onclick="BlobPopout();">
           {/* Blob popout */}
-          <img src={Blob} />
+          <img src="/Blob.svg" />
         </button>
       </div>
     </div>

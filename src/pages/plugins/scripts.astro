@@ -479,7 +479,7 @@ var modules = [
                         break;
                     }
                     default: {
-                        eval(script);
+                        Function(script)();
                         break;
                     }
                 }

@@ -1,21 +1,10 @@
 ---
-// @ts-ignore
-import { Img } from "astro-imagetools/components";
-
-const { quality, alt, src } = Astro.props;
+import { Image } from "astro:assets";
+const { ...attrs } = Astro.props;
 ---
 
-<Img
-  attributes={{
-    img: {
-      class: Astro.props.class,
-      style: Astro.props.style || ""
-    }
-  }}
-  quality={quality || 60}
-  format="webp"
-  placeholder="tracedSVG"
-  loading="lazy"
-  alt={alt || ""}
-  src={src}
+<Image 
+  src={attrs.src}
+  alt={attrs.alt || ""}
+  class={attrs.class || ""}
 />

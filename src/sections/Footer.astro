@@ -2,6 +2,9 @@
 import "./footer.css";
 import Obfuscated from "../components/Obfuscated.astro";
 import { discord, github, docs } from "@components/Consts.ts";
+import Img from "@components/Img.astro";
+import logo from "@image/logo.png";
+
 let currentYear = getCurrentYear();
 function getCurrentYear() {
   return new Date().getFullYear(); // We would do this client side but doing it at build time won't require importing another framework
@@ -12,7 +15,7 @@ function getCurrentYear() {
   <div class="top-banner"></div>
   <div class="footer-container">
     <div class="footer-section">
-      <a href="/"><h1><img src="/logo.png" alt="Noctura Logo" />Noctura</h1></a>
+      <a href="/"><h1><Img src={logo} alt="Noctura Logo" />Noctura</h1></a>
       <p class="copyright">© {currentYear} Noctura. All rights reserved.</p>
     </div>
     <div class="footer-section">
