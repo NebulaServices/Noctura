@@ -6,6 +6,10 @@ import { createServer } from "http";
 import { join } from "path";
 import createRammerhead from "rammerhead/src/server/index.js";
 import { fileURLToPath } from "url";
+import { build } from "astro";
+import { existsSync } from "fs";
+
+if (!existsSync("./dist")) build();
 
 const bare = createBareServer("/bare/");
 
