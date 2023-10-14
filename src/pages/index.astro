@@ -11,7 +11,7 @@ import servers from "../bare.json";
   <div class="home">
     <!-- <div class="top-banner" /> -->
     <form class="home-container">
-      <h1 class="logotext"><Obfuscated word="Noctura" /></h1>
+      <img class="logotext" src="Noctura.svg" />
       <input
         id="home-input"
         class="home-input"
@@ -82,201 +82,201 @@ import servers from "../bare.json";
     <script is:inline async src="/js/bareServer.js"></script>
     <script is:inline src="/js/encoder.js"></script>
     <script is:inline>
-      (function () {
-        const prefixes = {
-          Ultraviolet: "uv",
-          Dynamic: "dynamic",
-          Rammerhead: "rh",
-          Aero: "aero"
-        };
+    (function () {
+      const prefixes = {
+        Ultraviolet: "uv",
+        Dynamic: "dynamic",
+        Rammerhead: "rh",
+        Aero: "aero"
+      };
 
-        const homeContainer = document.querySelector(".home-container");
-        const switchBtnCurrentBare = document.querySelector(
-          ".switch-btn-current .server-indicator"
-        );
-        const modifySplitA = document.querySelectorAll(".modify-split-a");
+      const homeContainer = document.querySelector(".home-container");
+      const switchBtnCurrentBare = document.querySelector(
+        ".switch-btn-current .server-indicator"
+      );
+      const modifySplitA = document.querySelectorAll(".modify-split-a");
 
-        const toggleSwitchBtnBare = (e) => {
-          const switchBtn = document.getElementsByClassName("switch-btn")[1];
+      const toggleSwitchBtnBare = (e) => {
+        const switchBtn = document.getElementsByClassName("switch-btn")[1];
 
-          if (switchBtn.style.display == "block") {
-            switchBtn.style.opacity = "0";
-            setTimeout(function () {
-              switchBtn.style.display = "none";
-            }, 100);
-          } else {
-            switchBtn.style.display = "block";
-            requestAnimationFrame(() => {
-              switchBtn.style.opacity = "1";
-            });
-          }
+        if (switchBtn.style.display == "block") {
+          switchBtn.style.opacity = "0";
+          setTimeout(function () {
+            switchBtn.style.display = "none";
+          }, 100);
+        } else {
+          switchBtn.style.display = "block";
+          requestAnimationFrame(() => {
+            switchBtn.style.opacity = "1";
+          });
+        }
 
-          return e.stopPropagation();
-        };
+        return e.stopPropagation();
+      };
 
-        // const recursive = (el) => {
-        //     var arr = [];
+      // const recursive = (el) => {
+      //     var arr = [];
 
-        //     function iterate(el) {
-        //         if (el.childNodes) el.childNodes.forEach(e=>(arr.push(e), iterate(e)));
+      //     function iterate(el) {
+      //         if (el.childNodes) el.childNodes.forEach(e=>(arr.push(e), iterate(e)));
 
-        //         return;
-        //     }
+      //         return;
+      //     }
 
-        //     arr.push(el);
+      //     arr.push(el);
 
-        //     iterate(el)
+      //     iterate(el)
 
-        //     return arr;
-        // }
+      //     return arr;
+      // }
 
-        const submit = (e) => {
-          e.preventDefault();
+      const submit = (e) => {
+        e.preventDefault();
 
-          const input = document.querySelector(".home-input");
-          const results = document.querySelector(".home-results");
+        const input = document.querySelector(".home-input");
+        const results = document.querySelector(".home-results");
 
-          if (!input.value) return;
+        if (!input.value) return;
 
-          results.innerHTML = "";
+        results.innerHTML = "";
 
-          let url;
+        let url;
 
-          if (input.value.match(/^https?:\/\//g)) {
-            url = input.value;
-          } else {
-            url =
-              "https://www.google.com/search?q=" +
-              encodeURIComponent(input.value);
-          }
+        if (input.value.match(/^https?:\/\//g)) {
+          url = input.value;
+        } else {
+          url =
+            "https://www.google.com/search?q=" +
+            encodeURIComponent(input.value);
+        }
 
-          var prefix = document.cookie
+        var prefix = document.cookie
+          .split("; ")
+          .map((e) => e.split("="))
+          .find((e) => e[0] == "astro-proxy")
+          ? prefixes[
+          document.cookie
             .split("; ")
             .map((e) => e.split("="))
-            .find((e) => e[0] == "astro-proxy")
-            ? prefixes[
-                document.cookie
-                  .split("; ")
-                  .map((e) => e.split("="))
-                  .find((e) => e[0] == "astro-proxy")[1]
-              ]
-            : prefixes["Ultraviolet"];
-          // this is the basic idea for what i'm trying to do
-          // waiting for sylvie to finish the menu component and cat for the focus mode
-          const iframe = document.createElement("iframe");
-          iframe.classList.add("proxy-iframe");
-          if (prefix === "rh") {
-            let session = localStorage.getItem("session-string");
+            .find((e) => e[0] == "astro-proxy")[1]
+          ]
+          : prefixes["Ultraviolet"];
+        // this is the basic idea for what i'm trying to do
+        // waiting for sylvie to finish the menu component and cat for the focus mode
+        const iframe = document.createElement("iframe");
+        iframe.classList.add("proxy-iframe");
+        if (prefix === "rh") {
+          let session = localStorage.getItem("session-string");
+          if (session == undefined) {
             if (session == undefined) {
-              if (session == undefined) {
-                console.log("Session is undefined");
-              }
+              console.log("Session is undefined");
             }
-          } else {
-            iframe.src = `/~/${prefix}/${encodeURIComponent(url)}`;
           }
+        } else {
+          iframe.src = `/~/${prefix}/${encodeURIComponent(url)}`;
+        }
 
-          const loader = document.createElement("div");
-          loader.style.width = "100%";
-          loader.style.height = "100%";
-          loader.style.border = "none";
-          loader.style.background = "var(--settings-1)";
-          loader.style.overflow = "hidden";
-          loader.style.position = "absolute";
-          loader.style.zIndex = "9999999";
-          loader.style.fontFamily = "MajorMonoDisplay, Arial, sans-serif";
-          loader.style.top = "0px";
-          loader.innerHTML = `<div><span>N</span></div>`;
-          loader.style.display = "flex";
-          loader.querySelector("div").style.position = "relative";
-          loader.style.fontSize = "150px";
-          loader.style.paddingBottom = "10%";
-          loader.style.alignItems = "center";
-          loader.style.justifyContent = "center";
-          loader.style.color = "var(--font-color)";
-          loader.style.opacity = "1";
-          loader.style.transition = "opacity 0.5s ease-in-out";
-          loader.classList.add("proxy-loader");
+        const loader = document.createElement("div");
+        loader.style.width = "100%";
+        loader.style.height = "100%";
+        loader.style.border = "none";
+        loader.style.background = "var(--settings-1)";
+        loader.style.overflow = "hidden";
+        loader.style.position = "absolute";
+        loader.style.zIndex = "9999999";
+        loader.style.fontFamily = "MajorMonoDisplay, Arial, sans-serif";
+        loader.style.top = "0px";
+        loader.innerHTML = `<div><span>N</span></div>`;
+        loader.style.display = "flex";
+        loader.querySelector("div").style.position = "relative";
+        loader.style.fontSize = "150px";
+        loader.style.paddingBottom = "10%";
+        loader.style.alignItems = "center";
+        loader.style.justifyContent = "center";
+        loader.style.color = "var(--font-color)";
+        loader.style.opacity = "1";
+        loader.style.transition = "opacity 0.5s ease-in-out";
+        loader.classList.add("proxy-loader");
 
-          document.querySelector(".home").style.paddingBottom = "0px";
+        document.querySelector(".home").style.paddingBottom = "0px";
 
-          iframe.onload = async function () {
-            iframe.onload = async () => {};
-            iframe.contentWindow.dispatchEvent(
-              new CustomEvent("inject:cache", {
-                detail: {
-                  cache: await caches.open("astro-scripts")
-                }
-              })
-            );
+        iframe.onload = async function () {
+          iframe.onload = async () => { };
+          iframe.contentWindow.dispatchEvent(
+            new CustomEvent("inject:cache", {
+              detail: {
+                cache: await caches.open("astro-scripts")
+              }
+            })
+          );
 
-            loader.style.opacity = "0";
-            iframe.style.display = "block";
-
-            setTimeout(function () {
-              loader.remove();
-            }, 500);
-          };
-
-          homeContainer.parentNode.appendChild(loader);
-          homeContainer.parentNode.appendChild(iframe);
-          window.iframe = iframe;
-        };
-
-        const switchServer = (e) => {
-          e.preventDefault();
-
-          const server = e.target.dataset.value;
-
-          e.target.parentNode.style.opacity = "0";
-
-          document.querySelector(
-            ".server-indicator-value"
-          ).childNodes[1].textContent = "Connecting ";
-          document
-            .querySelector(".server-indicator-value")
-            .classList.remove("connected");
-          document.querySelectorAll(".server-name")[0].innerText = server
-            .split(".")[0]
-            .toUpperCase();
-
-          if (window.connectBare) {
-            window
-              .connectBare(server)
-              .then(() => {
-                document.querySelector(
-                  ".server-indicator-value"
-                ).childNodes[1].textContent = "Connected ";
-                document
-                  .querySelector(".server-indicator-value")
-                  .classList.add("connected");
-
-                localStorage.server = server;
-              })
-              .catch(() => {
-                document.querySelector(
-                  ".server-indicator-value"
-                ).childNodes[1].textContent = "Disconnected ";
-              });
-          }
-
-          document.cookie =
-            "astro-bare=" + server + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+          loader.style.opacity = "0";
+          iframe.style.display = "block";
 
           setTimeout(function () {
-            e.target.parentNode.style.display = "none";
-          }, 100);
+            loader.remove();
+          }, 500);
         };
 
-        homeContainer.onsubmit = submit;
-        switchBtnCurrentBare.onclick = toggleSwitchBtnBare;
-        modifySplitA.forEach(
-          (e) => (
-            (e.dataset.value = e.dataset.value.replace("$HOST", location.host)),
-            (e.onclick = switchServer)
-          )
-        );
-      })();
+        homeContainer.parentNode.appendChild(loader);
+        homeContainer.parentNode.appendChild(iframe);
+        window.iframe = iframe;
+      };
+
+      const switchServer = (e) => {
+        e.preventDefault();
+
+        const server = e.target.dataset.value;
+
+        e.target.parentNode.style.opacity = "0";
+
+        document.querySelector(
+          ".server-indicator-value"
+        ).childNodes[1].textContent = "Connecting ";
+        document
+          .querySelector(".server-indicator-value")
+          .classList.remove("connected");
+        document.querySelectorAll(".server-name")[0].innerText = server
+          .split(".")[0]
+          .toUpperCase();
+
+        if (window.connectBare) {
+          window
+            .connectBare(server)
+            .then(() => {
+              document.querySelector(
+                ".server-indicator-value"
+              ).childNodes[1].textContent = "Connected ";
+              document
+                .querySelector(".server-indicator-value")
+                .classList.add("connected");
+
+              localStorage.server = server;
+            })
+            .catch(() => {
+              document.querySelector(
+                ".server-indicator-value"
+              ).childNodes[1].textContent = "Disconnected ";
+            });
+        }
+
+        document.cookie =
+          "astro-bare=" + server + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+
+        setTimeout(function () {
+          e.target.parentNode.style.display = "none";
+        }, 100);
+      };
+
+      homeContainer.onsubmit = submit;
+      switchBtnCurrentBare.onclick = toggleSwitchBtnBare;
+      modifySplitA.forEach(
+        (e) => (
+          (e.dataset.value = e.dataset.value.replace("$HOST", location.host)),
+          (e.onclick = switchServer)
+        )
+      );
+    })();
     </script>
   </div>
 </Layout>

@@ -158,9 +158,8 @@ h1 {
 }
 
 .logotext {
-  font-size: 75px;
-  font-family: MajorMonoDisplay, Arial, sans-serif;
-  color: var(--logo-color) !important;
+  height: 150px;
+  fill: var(--logo-color) !important;
 }
 
 .logotext span {
