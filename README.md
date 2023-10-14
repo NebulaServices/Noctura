@@ -1,5 +1,5 @@
 <div align="center">
-   <img src="https://i.ibb.co/1M2qSLw/nocturalogo.png" alt="noctura" height="70"/>
+   <img src="https://raw.githubusercontent.com/NebulaServices/Noctura/c199a628c06af77d17c9ee660b88827255f4b7b1/public/Noctura.svg" alt="noctura" height="70"/>
    <br></br>
    
    `The web proxy you always wanted!`
