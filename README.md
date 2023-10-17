@@ -27,9 +27,10 @@
    
    1. Clone the repository
       `git clone https://github.com/NocturaServices/Frontend.git`
-   2. Install the dependencies with pnpm
-      `npm i -g pnpm`
-      `pnpm i`
+   2. Install the dependencies
+      `npm install`
    3. Run Noctura
-      `npm run bstart`
+      `node .` OR `node index.js`
+   
+   <sub>`index.js` will automatically build the website if the ./dist directory doesn't exist. If you make any changes to the website, either delete ./dist and run index.js or run "npm run bstart", which will rebuild the site then run index.js</sub>
 </div>
