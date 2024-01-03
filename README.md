@@ -13,7 +13,7 @@
    |  **Feature**  | **Explanation** |
    |:------------------:|:------------------------------:|
    | `🔡 Proxy Selection` | Noctura allows you to switch between a selection of proxies to suit whatever you need. We support _UV_, _Dynamic_, _Rammerhead_, and _Aero 2_. |
-   | `🧠 Ai` | Coming soon in a future update! |
+   | `🧠 AI` | Coming soon in a future update! |
    | `🕹️ Games` | Noctura provides a fairly sized library of games. Enough to keep you busy for a while. Noctura also has several emulators! |
    | `🎵 Music` | Noctura also has a Music Library. It's as simple as uploading your locally saved music and pressing play! If you upload several songs from the same album, it will automatically sort them for you. |
    | `💽 Plugins` | On the plugins page, you can browse a library of scripts that you can apply to Noctura. Proxy Injection scripts affect web browsing, whilst Modules affect Noctura itself. If you wan't to create your own modules or scripts, use the script editor to create and modify anything you want in Noctura.|
@@ -26,7 +26,7 @@
    Installation is very easy! Just follow the steps below:
    
    1. Clone the repository
-      `git clone https://github.com/NocturaServices/Frontend.git`
+      `git clone https://github.com/NebulaServices/Noctura.git`
    2. Install the dependencies
       `npm install`
    3. Run Noctura
