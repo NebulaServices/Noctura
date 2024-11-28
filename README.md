@@ -1,3 +1,5 @@
+> [!IMPORTANT]
+> Noctura is no longer actively maintained.
 <div align="center">
    <img src="https://i.ibb.co/1M2qSLw/nocturalogo.png" alt="noctura" height="70"/>
    <br></br>
