@@ -58,3 +58,5 @@ window.notify = {
     });
   }
 };
+
+export default (notify);

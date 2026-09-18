@@ -82,3 +82,5 @@
   );
   return t;
 });
+
+export default (Cookies);
