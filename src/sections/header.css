@@ -235,3 +235,46 @@
   top: 6px;
   cursor: pointer;
 }
+
+.server-indicator {
+  padding: 12px 10px;
+  border: none;
+  transition: 0.1s ease;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.server-indicator:hover {
+  background: #36363681;
+}
+
+.server-indicator:active {
+  background: #363636 !important;
+}
+
+.server-indicator-value:not(.connected),
+.server-indicator-value:not(.connected) * {
+  color: var(--font-color);
+}
+
+.server-indicator-value.connected,
+.server-indicator-value.connected * {
+  color: var(--font-color) !important;
+}
+
+.server-indicator-value:not(.connected) .indicator-dot {
+  background-color: #ff0000;
+}
+
+.server-indicator-value.connected .indicator-dot {
+  background-color: #00ff22;
+}
+
+.indicator-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+  margin-left: 10px;
+}

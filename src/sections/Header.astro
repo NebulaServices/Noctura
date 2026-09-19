@@ -64,7 +64,7 @@ const currentDate = new Date().getTime();
         <NebulaLogo />
       </a>
 
-      <div class="switch-btn-container">
+      <div class="switch-btn-container" id="proxy-switch">
         <div class="switch-btn-current">
           <Img src={Ultraviolet} alt="Current Proxy Logo" />
         </div>
@@ -171,6 +171,46 @@ const currentDate = new Date().getTime();
       }
     </div>
     <div class="nav-time">
+      <div class="switch-btn-container" id="server-switch">
+        <div class="switch-btn-current">
+          <span class="server-indicator">
+            <span class="server-indicator-value"
+              ><span class="indicator-dot"></span>
+               Connecting...
+              <span class="server-name"></span>
+            </span>
+          </span>
+        </div>
+        <div
+          class="switch-btn open-up"
+          style={{ background: "var(--primary-bg-color)" }}
+        >
+          {
+            { dev: ["https://tomp.app/"] }.dev.map((e) => {
+              return (
+                <a
+                  href="#"
+                  id={"server-" + e.split(".")[0]}
+                  class="modify-split-a"
+                  data-value={e}
+                >
+                  {e
+                    .split(".")[0]
+                    .split("-")
+                    .map((e) =>
+                      e
+                        .split("")
+                        .map((e, i) => (i == 0 ? e.toUpperCase() : e))
+                        .join("")
+                    )
+                    .join(" ")}{" "}
+                  <span class="server-ping">0ms</span>
+                </a>
+              );
+            })
+          }
+        </div>
+      </div>
       <span class="nav-time-text clock-text"
         >{
           currentDate ? new Date(currentDate).toLocaleTimeString() : `0:0:0 AM`
@@ -192,13 +232,13 @@ const currentDate = new Date().getTime();
 
       onclick = function (e) {
         if (
-          recursive(document.getElementsByClassName("switch-btn")[0]).includes(
-            e.target
-          )
+          recursive(
+            document.querySelector("#proxy-switch > .switch-btn")
+          ).includes(e.target)
         )
           return;
 
-        const switchBtn = document.getElementsByClassName("switch-btn")[0];
+        const switchBtn = document.querySelector("#proxy-switch > .switch-btn");
 
         if (switchBtn.style.display == "block") {
           switchBtn.style.opacity = "0";
@@ -259,7 +299,7 @@ const currentDate = new Date().getTime();
       };
 
       let toggleSwitchBtn = (e) => {
-        const switchBtn = document.getElementsByClassName("switch-btn")[0];
+        const switchBtn = document.querySelector("#proxy-switch > .switch-btn");
 
         if (switchBtn.style.display == "block") {
           switchBtn.style.opacity = "0";
@@ -316,8 +356,10 @@ const currentDate = new Date().getTime();
         return arr;
       };
 
-      let switchBtnCurrent = document.querySelector(".switch-btn-current"),
-        switchBtns = document.querySelectorAll("a[data-value]"),
+      let switchBtnCurrent = document.querySelector(
+          "#proxy-switch > .switch-btn-current"
+        ),
+        switchBtns = document.querySelectorAll("#proxy-switch > a[data-value]"),
         hamburgerLink = document.querySelector(".hamburger-link"),
         navBtns = document.querySelectorAll(".nav-btn");
 
@@ -381,6 +423,105 @@ const currentDate = new Date().getTime();
         .setAttribute("data-cold", "");
       document.getElementById("panic-button").href =
         localStorage.getItem("panic-url") || "https://classroom.google.com/";
+    })();
+  </script>
+  <script is:inline data-cold>
+    (function () {
+      const switchBtnCurrentBare = document.querySelector(
+        "#server-switch > .switch-btn-current .server-indicator"
+      );
+      const modifySplitA = document.querySelectorAll(
+        "#server-switch > .modify-split-a"
+      );
+
+      const toggleSwitchBtnBare = (e) => {
+        const switchBtn = document.querySelectorAll(
+          "#server-switch > .switch-btn"
+        )[1];
+
+        if (switchBtn.style.display == "block") {
+          switchBtn.style.opacity = "0";
+          setTimeout(function () {
+            switchBtn.style.display = "none";
+          }, 100);
+        } else {
+          switchBtn.style.display = "block";
+          requestAnimationFrame(() => {
+            switchBtn.style.opacity = "1";
+          });
+        }
+
+        return e.stopPropagation();
+      };
+
+      // const recursive = (el) => {
+      //     var arr = [];
+
+      //     function iterate(el) {
+      //         if (el.childNodes) el.childNodes.forEach(e=>(arr.push(e), iterate(e)));
+
+      //         return;
+      //     }
+
+      //     arr.push(el);
+
+      //     iterate(el)
+
+      //     return arr;
+      // }
+
+      const switchServer = (e) => {
+        e.preventDefault();
+
+        const server = e.target.dataset.value;
+
+        e.target.parentNode.style.opacity = "0";
+
+        document.querySelector(
+          "#server-switch > .server-indicator-value"
+        ).childNodes[1].textContent = "Connecting ";
+        document
+          .querySelector("#server-switch > .server-indicator-value")
+          .classList.remove("connected");
+        document.querySelectorAll(
+          "#server-switch > .server-name"
+        )[0].innerText = server.split(".")[0].toUpperCase();
+
+        if (window.connectBare) {
+          window
+            .connectBare(server)
+            .then(() => {
+              document.querySelector(
+                "#server-switch > .server-indicator-value"
+              ).childNodes[1].textContent = "Connected ";
+              document
+                .querySelector("#server-switch > .server-indicator-value")
+                .classList.add("connected");
+
+              localStorage.server = server;
+            })
+            .catch(() => {
+              document.querySelector(
+                "#server-switch > .server-indicator-value"
+              ).childNodes[1].textContent = "Disconnected ";
+            });
+        }
+
+        document.cookie =
+          "astro-bare=" + server + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+
+        setTimeout(function () {
+          e.target.parentNode.style.display = "none";
+        }, 100);
+      };
+
+      switchBtnCurrentBare.onclick = toggleSwitchBtnBare;
+      modifySplitA.forEach(
+        (e) => (
+          (e.dataset.value = e.dataset.value.replace("$HOST", location.host)),
+          (e.onclick = switchServer)
+        )
+      );
     })();
   </script>
 </div>

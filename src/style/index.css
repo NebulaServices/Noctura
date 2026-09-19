@@ -19,50 +19,6 @@
   text-align: center;
 }
 
-.server-indicator {
-  padding: 12px 10px;
-  border: 1px solid rgb(72, 72, 72);
-  border-radius: 15px;
-  transition: 0.1s ease;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.server-indicator:hover {
-  background: #36363681;
-}
-
-.server-indicator:active {
-  background: #363636 !important;
-}
-
-.server-indicator-value:not(.connected),
-.server-indicator-value:not(.connected) * {
-  color: var(--font-color);
-}
-
-.server-indicator-value.connected,
-.server-indicator-value.connected * {
-  color: var(--font-color) !important;
-}
-
-.server-indicator-value:not(.connected) .indicator-dot {
-  background-color: #ff0000;
-}
-
-.server-indicator-value.connected .indicator-dot {
-  background-color: #00ff22;
-}
-
-.indicator-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  display: inline-block;
-  margin-right: 5px;
-  margin-left: 10px;
-}
-
 .home-container {
   position: relative;
   height: 90%;
@@ -79,9 +35,10 @@ h1 {
 
 .home-container input {
   width: 100%;
-  max-width: 500px;
+  max-width: 50%;
   padding: 10px 20px;
-  border: var(--borders-1);
+  border: rgb(var(--accent), 0.5) 1px solid;
+  box-shadow: rgb(var(--accent), 0.5) 0 0 10px;
   border-radius: 7px;
   background-color: var(--primary-bg-color);
   color: var(--logo-color) !important;

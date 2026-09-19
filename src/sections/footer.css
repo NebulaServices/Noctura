@@ -20,7 +20,7 @@
   margin-top: 16px;
 }
 
-.site-footer .top-banner {
+/* .site-footer .top-banner {
   height: auto;
   width: 100%;
   font-size: 20px;
@@ -30,21 +30,7 @@
   text-align: center;
   z-index: 2;
   padding: 2px 0 0 0;
-}
-
-.top-banner::before {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: -1;
-  left: 0;
-  top: 0;
-  content: "";
-  background: var(--banner-gradient);
-  background-size: 100% 100%;
-  filter: blur(1px);
-  animation: blur-breathe 6s ease infinite;
-}
+} */
 
 .footer-section h3 {
   font-size: 20px;
