@@ -1,7 +1,7 @@
 @font-face {
   font-family: MajorMonoDisplay;
   font-display: swap;
-  src: url(/font/MajorMonoDisplay-Webfont.woff2) format(woff2);
+  src: url(/font/MajorMonoDisplay-Webfont.woff2) format('woff2');
 }
 
 .home {
@@ -49,7 +49,11 @@ h1 {
   /*transition: 0.2s ease;*/
 }
 
-::placeholder {
+.home-container input::placeholder {
+  opacity: 0.4;
+}
+
+*::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: var(--logo-color) !important;
   opacity: 0.5; /* Firefox */
