@@ -219,14 +219,17 @@
 .nav-time-text {
   color: var(--logo-color);
   margin-right: 10px;
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
 }
 
 .clock-text {
-  width: 90px;
+  min-width: 11ch;
 }
 
 .date-text {
-  width: 80px;
+  min-width: 10ch;
 }
 
 .focus-mode-container {
