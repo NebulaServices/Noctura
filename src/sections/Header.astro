@@ -180,7 +180,7 @@ const currentDate = new Date().getTime();
         </div>
         <div class="switch-btn">
           {
-            { dev: ["https://tomp.app/"] }.dev.map((e) => {
+            { dev: ["tomp.app"] }.dev.map((e) => {
               const host = e.replace(/^https?:\/\//, "").split("/")[0];
               const label = host.split(".")[0];
               return (

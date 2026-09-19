@@ -4,7 +4,36 @@ import "@css/style.css";
 import "@css/index.css";
 import "@sections/switch.css";
 import Obfuscated from "@components/Obfuscated.astro";
+import Img from "@components/Img.astro";
 import servers from "../bare.json";
+import Edpuzzle from "@image/icons/edpuzzle.png";
+import Google from "@image/icons/google.png";
+import GoogleClassroom from "@image/icons/googleclassroom.png";
+import GoogleDrive from "@image/icons/googledrive.png";
+import Powerschool from "@image/icons/powerschool.png";
+
+const cloaks = [
+  { src: Edpuzzle, name: "Edpuzzle" },
+  { src: Google, name: "Google" },
+  { src: GoogleClassroom, name: "Google Classroom" },
+  { src: GoogleDrive, name: "Drive | Google" },
+  { src: Powerschool, name: "Powerschool" }
+];
+
+const themes = [
+  { id: "amoled", name: "Amoled", bg: "#000000", accent: "#7c3aed" },
+  { id: "mocha", name: "Mocha", bg: "#1e1e2e", accent: "#74c7ec" },
+  { id: "macchiato", name: "Macchiato", bg: "#24273a", accent: "#7dc4e4" },
+  { id: "frappe", name: "Frappe", bg: "#303446", accent: "#85c1dc" },
+  { id: "latte", name: "Latte", bg: "#eff1f5", accent: "#209fb5" },
+  { id: "light", name: "Light", bg: "#f6f6f6", accent: "#303030" },
+  { id: "discord", name: "Discord", bg: "#313338", accent: "#7289da" },
+  { id: "baja", name: "Baja", bg: "#008881", accent: "#f9f4cf" },
+  { id: "rift", name: "Rift", bg: "#3e008f", accent: "#7c3aed" },
+  { id: "spritz", name: "Spritz", bg: "#070c2c", accent: "#6074e4" },
+  { id: "hub", name: "Hub", bg: "#000000", accent: "#ff9000" },
+  { id: "trans", name: "Trans", bg: "#5bcefa", accent: "#f5a9b8" }
+];
 ---
 
 <Layout title="Home">
@@ -20,6 +49,90 @@ import servers from "../bare.json";
       />
       <div class="home-results"></div>
     </form>
+
+    <div class="corner-tools">
+      <div class="corner-widget" id="cloak-picker">
+        <div class="corner-panel">
+          <div class="cloak-presets">
+            {
+              cloaks.map((c) => (
+                <button
+                  type="button"
+                  class="cloak-preset"
+                  data-name={c.name}
+                  title={c.name}
+                  aria-label={"Cloak tab as " + c.name}
+                >
+                  <Img src={c.src} alt={c.name + " icon"} />
+                </button>
+              ))
+            }
+          </div>
+          <div class="corner-panel-footer">
+            <button type="button" class="corner-panel-link" id="cloak-reset">
+              Reset
+            </button>
+            <a class="corner-panel-link" href="/settings/cloaking">More</a>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="corner-toggle"
+          aria-label="Quick tab cloaking"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"></path>
+            <circle cx="12" cy="12" r="2.5"></circle>
+            <line x1="4" y1="4" x2="20" y2="20"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="corner-widget" id="theme-picker">
+        <div class="corner-panel">
+          <div class="theme-picker-grid">
+            {
+              themes.map((t) => (
+                <button
+                  type="button"
+                  class="theme-swatch"
+                  data-theme-id={t.id}
+                  title={t.name}
+                  aria-label={"Switch to " + t.name + " theme"}
+                  style={`--sw-bg:${t.bg};--sw-accent:${t.accent}`}
+                />
+              ))
+            }
+          </div>
+          <div class="corner-panel-footer">
+            <a class="corner-panel-link" href="/settings/theme">All themes</a>
+          </div>
+        </div>
+        <button type="button" class="corner-toggle" aria-label="Change theme">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
 
     <!-- <div class="home-footer">
       <div class="switch-btn-container">
@@ -77,6 +190,113 @@ import servers from "../bare.json";
         </a>
       </div> -->
   </div>
+
+  <script is:inline>
+    (function () {
+      const widgets = document.querySelectorAll(".corner-widget");
+      const swatches = document.querySelectorAll(".theme-swatch");
+      const presets = document.querySelectorAll(".cloak-preset");
+
+      const customProps = [
+        "--primary-bg-color",
+        "--secondary-bg-color",
+        "--surface-2",
+        "--settings-1",
+        "--settings-2",
+        "--settings-3",
+        "--font-color",
+        "--primary-text-color",
+        "--nav-btn-color-darker",
+        "--nav-btn-color",
+        "--logo-color",
+        "--banner-gradient",
+        "--borders-1",
+        "--borders-2"
+      ];
+
+      function sync() {
+        const current = localStorage.getItem("theme") || "amoled";
+        swatches.forEach((s) =>
+          s.classList.toggle("active", s.dataset.themeId == current)
+        );
+        const title = localStorage.getItem("savedTitle");
+        presets.forEach((p) =>
+          p.classList.toggle("active", p.dataset.name == title)
+        );
+      }
+
+      function pushCloak() {
+        if (navigator.serviceWorker && navigator.serviceWorker.controller)
+          navigator.serviceWorker.controller.postMessage("updateCloak");
+        if (window.titleLoad) window.titleLoad();
+        if (window.faviconLoad) window.faviconLoad();
+      }
+
+      widgets.forEach((w) => {
+        const toggle = w.querySelector(".corner-toggle");
+        const panel = w.querySelector(".corner-panel");
+
+        toggle.onclick = function (e) {
+          e.stopPropagation();
+          document.querySelectorAll(".corner-panel.open").forEach((p) => {
+            if (p !== panel) p.classList.remove("open");
+          });
+          panel.classList.toggle("open");
+          sync();
+        };
+      });
+
+      swatches.forEach(
+        (s) =>
+          (s.onclick = function (e) {
+            e.stopPropagation();
+            const id = s.dataset.themeId;
+            localStorage.setItem("theme", id);
+            customProps.forEach((p) =>
+              document.documentElement.style.removeProperty(p)
+            );
+            document.documentElement.setAttribute("data-theme", id);
+            sync();
+          })
+      );
+
+      presets.forEach(
+        (p) =>
+          (p.onclick = function (e) {
+            e.stopPropagation();
+            localStorage.setItem("savedTitle", p.dataset.name);
+            localStorage.setItem(
+              "savedFavicon",
+              p.querySelector("img").currentSrc || p.querySelector("img").src
+            );
+            localStorage.removeItem("autoURL");
+            pushCloak();
+            sync();
+          })
+      );
+
+      document.getElementById("cloak-reset").onclick = function () {
+        localStorage.setItem("savedTitle", "Noctura");
+        localStorage.setItem("savedFavicon", "/icon.png");
+        localStorage.removeItem("autoURL");
+        pushCloak();
+        sync();
+      };
+
+      document.addEventListener(
+        "pointerdown",
+        function (e) {
+          widgets.forEach((w) => {
+            if (!w.contains(e.target))
+              w.querySelector(".corner-panel").classList.remove("open");
+          });
+        },
+        true
+      );
+
+      sync();
+    })();
+  </script>
 
   <script is:inline src="/js/omnibox.js"></script>
   <script is:inline async src="/js/bareServer.js"></script>

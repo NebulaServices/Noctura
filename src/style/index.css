@@ -145,29 +145,147 @@ h1 {
   color: var(--logo-color);
 }
 
-.themes {
+.corner-tools {
   position: absolute;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.corner-widget {
+  position: relative;
+}
+
+.corner-toggle {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(var(--accent), 0.3);
+  border-radius: var(--radius-md);
+  background: rgb(var(--accent), 0.06);
+  color: var(--logo-color);
+  cursor: pointer;
+  transition:
+    background var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+
+.corner-toggle:hover {
+  background: rgb(var(--accent), 0.15);
+  border-color: rgb(var(--accent), 0.55);
+}
+
+.corner-panel {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 8px);
   right: 0;
-  bottom: 0;
-  fill: var(--logo-color);
-  width: 40px;
-  height: 40px;
-  margin-right: 30px;
-  margin-bottom: 20px;
+  padding: 10px;
+  background: var(--settings-1);
+  border: 1px solid rgb(var(--accent), 0.25);
+  border-radius: var(--radius-md);
+  box-shadow:
+    var(--shadow-3),
+    0 0 30px -12px rgb(var(--accent), 0.5);
 }
 
-.themes a {
-  text-decoration: none;
-  fill: var(--logo-color);
+.corner-panel.open {
+  display: block;
 }
 
-.themes {
+.cloak-presets {
+  display: flex;
+  gap: 8px;
+}
+
+.cloak-preset {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: var(--settings-2);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.35);
+  cursor: pointer;
+  overflow: hidden;
   transition: transform var(--dur-fast) var(--ease);
 }
 
-.themes:hover {
-  transform: scale(1.1);
+.cloak-preset img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.cloak-preset:hover {
+  transform: scale(1.12);
+}
+
+.cloak-preset.active {
+  box-shadow:
+    0 0 0 2px var(--settings-1),
+    0 0 0 4px rgb(var(--accent));
+}
+
+.theme-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+
+.theme-swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, var(--sw-bg) 55%, var(--sw-accent) 55%);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.35);
   cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.theme-swatch:hover {
+  transform: scale(1.15);
+}
+
+.theme-swatch.active {
+  box-shadow:
+    0 0 0 2px var(--settings-1),
+    0 0 0 4px rgb(var(--accent));
+}
+
+.corner-panel-footer {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.corner-panel-link {
+  display: block;
+  flex: 1;
+  padding: 6px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--nav-btn-color-darker);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition:
+    background var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease);
+}
+
+.corner-panel-link:hover {
+  background: rgb(var(--accent), 0.15);
+  color: var(--nav-btn-color);
 }
 
 .proxy-loader div::before {
