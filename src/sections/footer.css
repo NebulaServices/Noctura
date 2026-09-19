@@ -1,8 +1,8 @@
 .site-footer {
   position: relative;
   width: 100%;
-  bottom: -6px;
   padding: 20px 10px;
+  padding-top: 0;
   text-align: center;
   height: min-content;
   background: var(--primary-bg-color);
