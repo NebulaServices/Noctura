@@ -9,7 +9,7 @@ export const onRequest = defineMiddleware(async (_, next) => {
         "/",
         "/ai",
         "/console",
-        "/games",
+        "/emulators",
         "/music",
         "/settings",
         "/docs",

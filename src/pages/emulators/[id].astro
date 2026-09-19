@@ -1,15 +1,15 @@
 ---
 import Blob from "/Blob.svg";
-import GameList from "../../../emulators.json";
+import EmulatorList from "../../emulators.json";
 import Layout from "@layout";
 export async function getStaticPaths() {
-  return GameList.map((Game) => {
+  return EmulatorList.map((Emulator) => {
     return {
-      params: { id: Game.id },
+      params: { id: Emulator.id },
       props: {
-        title: Game.title,
-        description: Game.description,
-        file: Game.file
+        title: Emulator.title,
+        description: Emulator.description,
+        file: Emulator.file
       }
     };
   });
@@ -71,7 +71,7 @@ const { title, description, file } = Astro.props;
         </button>
         <button class="theaterButton" onclick="BlobPopout();">
           {/* Blob popout */}
-          <img src={Blob} />
+          <img src={Blob?.src} />
         </button>
       </div>
     </div>

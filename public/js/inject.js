@@ -118,7 +118,7 @@ if (window.frameElement) {
   );
 }
 
-if (!Reflect.get(win, "location").pathname.startsWith("/games")) {
+if (!Reflect.get(win, "location").pathname.startsWith("/emulators")) {
   var container = document.createElement("div");
   container.id = "noctura-menu";
 

@@ -1,12 +1,12 @@
 ---
 //import Search from "./Search.astro";
-import GameList from "../../emulators.json";
+import EmulatorList from "../emulators.json";
 import "@css/style.css";
 //import General from "src/pages/settings/general.astro";
 import Layout from "@layout";
 ---
 
-<Layout title="Games">
+<Layout title="Emulators">
   <!-- You're welcome for the clusterfuck :) -->
   <div
     id="container"
@@ -118,22 +118,22 @@ import Layout from "@layout";
       }
     </style>
     {
-      GameList.map((game) => (
-        <div id={game.id} class="element">
-          <img loading="lazy" src={"/icons" + game.image} alt={game.title} />
+      EmulatorList.map((em) => (
+        <div id={em.id} class="element">
+          <img loading="lazy" src={"/icons" + em.image} alt={em.title} />
           <div class="content" />
           <br />
           <h2>
-            <span>{game.title}</span>
+            <span>{em.title}</span>
           </h2>
           <br />
           <p>
-            {game.description.length > 135
-              ? game.description.split("").slice(0, 135).join("") + "..."
-              : game.description}
+            {em.description.length > 135
+              ? em.description.split("").slice(0, 135).join("") + "..."
+              : em.description}
           </p>
           <div class="play">
-            <a href={"/games/emulators/" + game.id}>
+            <a href={"/emulators/" + em.id}>
               <div class="playbutton">
                 <p class="playtext">Play</p>
               </div>
