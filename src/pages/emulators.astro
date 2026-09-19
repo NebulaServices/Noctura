@@ -1,141 +1,106 @@
 ---
-//import Search from "./Search.astro";
 import EmulatorList from "../emulators.json";
 import "@css/style.css";
-//import General from "src/pages/settings/general.astro";
 import Layout from "@layout";
 ---
 
 <Layout title="Emulators">
-  <!-- You're welcome for the clusterfuck :) -->
   <div id="container">
-    <style scoped>
+    <style>
       #container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 28px 20px 48px;
+      }
+
+      #container .element {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        padding: 20px 0;
+        flex-direction: column;
+        border: 1px solid var(--settings-3);
+        border-radius: var(--radius-lg);
+        background: var(--settings-1);
+        color: var(--font-color);
+        overflow: hidden;
+        transition:
+          transform var(--dur-med) var(--ease),
+          border-color var(--dur-med) var(--ease),
+          box-shadow var(--dur-med) var(--ease);
+      }
+
+      #container .element:hover {
+        transform: translateY(-3px);
+        border-color: rgb(var(--accent), 0.5);
+        box-shadow: var(--shadow-2);
       }
 
       #container img {
         width: 100%;
-        height: 135px;
+        aspect-ratio: 16 / 9;
+        height: auto;
         object-fit: cover;
-        border-top-right-radius: 25px;
-        border-top-left-radius: 25px;
-      }
-
-      #container .content {
-        background: rgba(17, 17, 17, 0)
-          linear-gradient(
-            to bottom,
-            rgba(17, 17, 17, 0) 10%,
-            rgba(17, 17, 17, 0.1) 30%,
-            rgba(17, 17, 17, 0.5) 60%,
-            rgba(17, 17, 17, 1) 100%
-          )
-          repeat scroll 0 0;
-        position: relative;
-        margin-top: -50px;
-        height: 50px;
-      }
-
-      #container a {
-        width: min-content;
         display: block;
-        margin: auto;
       }
 
-      #container .play {
-        width: 100%;
-        height: 85px;
+      #container .card-body {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        border-bottom-right-radius: 25px;
-        border-bottom-left-radius: 25px;
-        bottom: 0;
-        margin: 0 auto;
-        position: absolute;
-      }
-
-      #container .playbutton {
-        width: 150px;
-        height: 50px;
-        border: 1px solid #333;
-        margin-left: auto;
-        margin-right: auto;
-        border-radius: 15px;
-        background-color: var(--settings-1);
-        transition: 0.3s;
-      }
-
-      #container .playbutton:hover {
-        width: 175px;
-        transition: 0.3s;
-      }
-
-      #container .playtext {
-        text-align: center;
-        font-weight: bold;
-        color: var(--font-color);
-        font-size: 18px;
-        padding-top: 10px;
-      }
-
-      #container .element {
-        border: 1px solid var(--settings-3);
-        float: left;
-        height: 350px;
-        width: 250px;
-        color: var(--font-color);
-        border-radius: 25px;
-        margin: 10px;
-        position: relative;
+        flex-direction: column;
+        flex: 1;
+        gap: 6px;
+        padding: 14px 16px 16px;
       }
 
       #container h2 {
-        font-weight: bold;
-        font-size: 20px;
-        padding-right: 10px;
-        padding-left: 10px;
-        border-bottom: 1px solid var(--settings-3);
-        line-height: 0.1em;
-      }
-
-      #container h2 span {
-        background: var(--settings-1);
-        padding: 0 10px;
+        font-size: 17px;
+        font-weight: 600;
+        margin: 0;
       }
 
       #container p {
-        padding-right: 10px;
-        padding-left: 10px;
         font-size: 13px;
+        line-height: 1.5;
         color: var(--nav-btn-color-darker);
+        margin: 0;
+        flex: 1;
+      }
+
+      #container .playbutton {
+        display: block;
+        margin-top: 12px;
+        padding: 9px 0;
+        text-align: center;
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--font-color);
+        border: 1px solid var(--settings-3);
+        border-radius: var(--radius-md);
+        background: var(--settings-2);
+        text-decoration: none;
+        transition:
+          background var(--dur-fast) var(--ease),
+          border-color var(--dur-fast) var(--ease);
+      }
+
+      #container .playbutton:hover {
+        background: rgb(var(--accent), 0.2);
+        border-color: rgb(var(--accent), 0.5);
       }
     </style>
     {
       EmulatorList.map((em) => (
         <div id={em.id} class="element">
           <img loading="lazy" src={"/icons" + em.image} alt={em.title} />
-          <div class="content" />
-          <br />
-          <h2>
-            <span>{em.title}</span>
-          </h2>
-          <br />
-          <p>
-            {em.description.length > 135
-              ? em.description.split("").slice(0, 135).join("") + "..."
-              : em.description}
-          </p>
-          <div class="play">
-            <a href={"/emulators/" + em.id}>
-              <div class="playbutton">
-                <p class="playtext">Play</p>
-              </div>
+          <div class="card-body">
+            <h2>{em.title}</h2>
+            <p>
+              {em.description.length > 135
+                ? em.description.split("").slice(0, 135).join("") + "..."
+                : em.description}
+            </p>
+            <a class="playbutton" href={"/emulators/" + em.id}>
+              Play
             </a>
           </div>
         </div>

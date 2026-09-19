@@ -100,7 +100,7 @@
 }
 
 .burger-child-container a:hover {
-  background: #36363681;
+  background: rgb(var(--accent), 0.15);
 }
 
 .burger-child-container-active {
@@ -109,7 +109,7 @@
 }
 
 .burger-child-container a:active {
-  background: #363636;
+  background: rgb(var(--accent), 0.25);
 }
 
 .burger-child-container input {

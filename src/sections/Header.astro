@@ -68,10 +68,7 @@ const currentDate = new Date().getTime();
         <div class="switch-btn-current">
           <Img src={Ultraviolet} alt="Current Proxy Logo" />
         </div>
-        <div
-          class="switch-btn"
-          style={{ background: background || "var(--primary-bg-color)" }}
-        >
+        <div class="switch-btn">
           <a data-value="Dynamic" href="#">
             <Img src={Dynamic} class="nav-switch-img" alt="Dynamic Icon" />
              Dynamic
@@ -181,29 +178,19 @@ const currentDate = new Date().getTime();
             </span>
           </span>
         </div>
-        <div
-          class="switch-btn open-up"
-          style={{ background: "var(--primary-bg-color)" }}
-        >
+        <div class="switch-btn">
           {
             { dev: ["https://tomp.app/"] }.dev.map((e) => {
+              const host = e.replace(/^https?:\/\//, "").split("/")[0];
+              const label = host.split(".")[0];
               return (
                 <a
                   href="#"
-                  id={"server-" + e.split(".")[0]}
+                  id={"server-" + label}
                   class="modify-split-a"
                   data-value={e}
                 >
-                  {e
-                    .split(".")[0]
-                    .split("-")
-                    .map((e) =>
-                      e
-                        .split("")
-                        .map((e, i) => (i == 0 ? e.toUpperCase() : e))
-                        .join("")
-                    )
-                    .join(" ")}{" "}
+                  {label.charAt(0).toUpperCase() + label.slice(1)}
                   <span class="server-ping">0ms</span>
                 </a>
               );
@@ -431,13 +418,13 @@ const currentDate = new Date().getTime();
         "#server-switch > .switch-btn-current .server-indicator"
       );
       const modifySplitA = document.querySelectorAll(
-        "#server-switch > .modify-split-a"
+        "#server-switch .modify-split-a"
       );
 
       const toggleSwitchBtnBare = (e) => {
-        const switchBtn = document.querySelectorAll(
+        const switchBtn = document.querySelector(
           "#server-switch > .switch-btn"
-        )[1];
+        );
 
         if (switchBtn.style.display == "block") {
           switchBtn.style.opacity = "0";
@@ -478,31 +465,34 @@ const currentDate = new Date().getTime();
         e.target.parentNode.style.opacity = "0";
 
         document.querySelector(
-          "#server-switch > .server-indicator-value"
+          "#server-switch .server-indicator-value"
         ).childNodes[1].textContent = "Connecting ";
         document
-          .querySelector("#server-switch > .server-indicator-value")
+          .querySelector("#server-switch .server-indicator-value")
           .classList.remove("connected");
-        document.querySelectorAll(
-          "#server-switch > .server-name"
-        )[0].innerText = server.split(".")[0].toUpperCase();
+        document.querySelector("#server-switch .server-name").innerText =
+          server
+            .replace(/^https?:\/\//, "")
+            .split("/")[0]
+            .split(".")[0]
+            .toUpperCase();
 
         if (window.connectBare) {
           window
             .connectBare(server)
             .then(() => {
               document.querySelector(
-                "#server-switch > .server-indicator-value"
+                "#server-switch .server-indicator-value"
               ).childNodes[1].textContent = "Connected ";
               document
-                .querySelector("#server-switch > .server-indicator-value")
+                .querySelector("#server-switch .server-indicator-value")
                 .classList.add("connected");
 
               localStorage.server = server;
             })
             .catch(() => {
               document.querySelector(
-                "#server-switch > .server-indicator-value"
+                "#server-switch .server-indicator-value"
               ).childNodes[1].textContent = "Disconnected ";
             });
         }
@@ -522,6 +512,22 @@ const currentDate = new Date().getTime();
           (e.onclick = switchServer)
         )
       );
+
+      addEventListener("click", (e) => {
+        const container = document.getElementById("server-switch");
+        const switchBtn = document.querySelector(
+          "#server-switch > .switch-btn"
+        );
+
+        if (!switchBtn || container.contains(e.target)) return;
+
+        if (switchBtn.style.display == "block") {
+          switchBtn.style.opacity = "0";
+          setTimeout(function () {
+            switchBtn.style.display = "none";
+          }, 100);
+        }
+      });
     })();
   </script>
 </div>

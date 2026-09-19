@@ -9,8 +9,6 @@
 
 .switch-btn-current {
   background: transparent;
-  border-radius: 50%;
-  overflow: hidden;
   font-size: 14px;
   font-weight: 500;
   transition: 0.2s ease;
@@ -19,6 +17,11 @@
   width: auto;
   vertical-align: middle;
   height: auto;
+}
+
+#proxy-switch .switch-btn-current {
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .switch-btn-current img {
@@ -34,42 +37,45 @@
 }
 
 .switch-btn-current img:hover {
-  background: var(--settings-3);
+  background: rgb(var(--accent), 0.15);
 }
 
 .switch-btn {
   opacity: 0;
   display: none;
-  transition: 0.1s ease;
-  top: calc(100% + 5px);
+  transition: opacity var(--dur-fast) var(--ease);
+  top: calc(100% + 8px);
   left: 50%;
   transform: translateX(calc(-50%));
-  border: 1px solid rgb(var(--accent), 0.5);
-  box-shadow: rgb(var(--accent), 0.5) 0 0 10px;
-  z-index: 9999999999999999;
-  border-radius: 7px;
+  min-width: 190px;
+  padding: 6px;
+  background: var(--settings-1) !important;
+  border: 1px solid rgb(var(--accent), 0.25);
+  box-shadow: var(--shadow-3);
+  z-index: 1000;
+  border-radius: var(--radius-md);
   position: absolute;
 }
 
-.switch-btn *:first-child {
-  border-top-right-radius: 7px;
-  border-top-left-radius: 7px;
-}
-
-.switch-btn *:last-child {
-  border-bottom-right-radius: 7px;
-  border-bottom-left-radius: 7px;
-}
-
 .switch-btn a {
-  display: block;
-  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
   color: var(--font-color);
   text-decoration: none;
-  text-align: center;
+  text-align: left;
   font-size: 14px;
   font-weight: 500;
-  transition: 0.2s ease;
+  border-radius: var(--radius-sm);
+  transition: background var(--dur-fast) var(--ease);
+}
+
+.switch-btn a img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  flex: none;
 }
 
 .switch-btn a * {
@@ -77,7 +83,7 @@
 }
 
 .switch-btn a:hover {
-  background: rgb(var(--accent), 0.3);
+  background: rgb(var(--accent), 0.15);
 }
 
 .switch-btn-active {
@@ -86,22 +92,31 @@
 }
 
 .switch-btn a:active {
-  background: rgb(var(--accent), 0.4);
+  background: rgb(var(--accent), 0.25);
 }
 
 .switch-btn input {
   display: block;
-  padding: 10px 20px;
-  color: white;
-  background: #36363681;
+  padding: 8px 10px;
+  color: var(--font-color);
+  background: var(--settings-2);
+  border-radius: var(--radius-sm);
   text-decoration: none;
   text-align: left;
   font-size: 14px;
   font-weight: 500;
-  transition: 0.2s ease;
+  transition: background var(--dur-fast) var(--ease);
   border: none;
   width: 100%;
   outline: none;
+}
+
+.server-ping {
+  margin-left: auto;
+  padding-left: 12px;
+  font-size: 12px;
+  color: var(--nav-btn-color-darker);
+  font-variant-numeric: tabular-nums;
 }
 
 .open-up {

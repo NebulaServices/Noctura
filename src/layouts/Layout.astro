@@ -44,8 +44,11 @@ const { url } = Astro;
       textarea,
       select,
       button {
-        font-family: "Work Sans", sans-serif;
-        font-weight: lighter;
+        font-family:
+          "Inter",
+          -apple-system,
+          "Segoe UI",
+          sans-serif;
       }
     </style>
     <link
@@ -68,6 +71,13 @@ const { url } = Astro;
       href="/js/loader.js"
       type="application/javascript"
       as="script"
+    />
+    <link
+      rel="preload"
+      crossorigin="anonymous"
+      href="/font/Inter/Inter-Latin.woff2"
+      type="font/woff2"
+      as="font"
     />
     <link href="/font/font.css" rel="stylesheet" />
     <link
@@ -129,16 +139,6 @@ const { url } = Astro;
       <!-- <Tabs /> -->
     </main>
     <style is:global>
-      :root {
-        --accent: 124, 58, 237;
-        --accent-gradient: linear-gradient(
-          45deg,
-          rgb(var(--accent)),
-          #da62c4 30%,
-          white 60%
-        );
-      }
-
       code {
         font-family:
           Menlo,

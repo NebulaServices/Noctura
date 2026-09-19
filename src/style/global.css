@@ -1,3 +1,89 @@
+:root {
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 999px;
+
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --dur-fast: 120ms;
+  --dur-med: 200ms;
+  --dur-slow: 350ms;
+
+  --shadow-1: 0 1px 2px rgb(0 0 0 / 0.25);
+  --shadow-2: 0 6px 18px -4px rgb(0 0 0 / 0.35);
+  --shadow-3: 0 12px 32px -8px rgb(0 0 0 / 0.45);
+
+  --accent-glow: 0 0 20px -4px rgb(var(--accent), 0.55);
+  --focus-ring: 0 0 0 2px rgb(var(--accent), 0.9);
+}
+
+body {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+strong,
+b {
+  font-weight: 600;
+}
+
+::selection {
+  background: rgb(var(--accent), 0.35);
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--surface-2) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--surface-2);
+  border-radius: var(--radius-full);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 #monaco-editor * {
   font-size: 14px;
 }

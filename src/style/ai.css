@@ -75,7 +75,7 @@
 }
 
 .chat-history-entry:hover {
-  background-color: var(--settings-3);
+  background-color: rgb(var(--accent), 0.15);
   cursor: pointer;
 }
 

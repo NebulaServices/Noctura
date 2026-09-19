@@ -35,18 +35,24 @@ h1 {
 }
 
 .home-container input {
-  width: 100%;
-  max-width: 50%;
-  padding: 10px 20px;
-  border: rgb(var(--accent), 0.5) 1px solid;
-  box-shadow: rgb(var(--accent), 0.5) 0 0 10px;
-  border-radius: 7px;
+  width: min(640px, 92%);
+  padding: 12px 20px;
+  border: rgb(var(--accent), 0.4) 1px solid;
+  box-shadow: var(--accent-glow);
+  border-radius: var(--radius-md);
   background-color: var(--primary-bg-color);
   color: var(--logo-color) !important;
   font-size: 16px;
   font-weight: 500;
   outline: none;
-  /*transition: 0.2s ease;*/
+  transition:
+    border-color var(--dur-fast) var(--ease),
+    box-shadow var(--dur-med) var(--ease);
+}
+
+.home-container input:focus {
+  border-color: rgb(var(--accent), 0.9);
+  box-shadow: 0 0 28px -4px rgb(var(--accent), 0.6);
 }
 
 .home-container input::placeholder {
@@ -65,30 +71,39 @@ h1 {
 }
 
 .home-results {
-  width: 100%;
-  max-width: 500px;
-  border-bottom-right-radius: 7px;
-  border-bottom-left-radius: 7px;
-  margin-top: 0;
+  width: min(640px, 92%);
+  border-bottom-right-radius: var(--radius-md);
+  border-bottom-left-radius: var(--radius-md);
+  margin-top: -15px;
   background-color: var(--primary-bg-color);
-  border: 1px solid #363636;
+  border: 1px solid rgb(var(--accent), 0.4);
   border-top: 0 !important;
+  box-shadow: var(--shadow-2);
   display: none;
   flex-direction: column;
   align-items: center;
   list-style-type: none;
+  overflow: hidden;
 }
 
 .home-results li {
   width: 100%;
-  padding: 7px 10px;
-  border-bottom: 1px solid #363636;
+  padding: 9px 20px;
+  border-bottom: var(--borders-2);
   text-align: left;
-  font-size: 16px;
-  font-weight: 500;
-  color: white;
-  transition: 0.2s ease;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--font-color);
+  transition: background var(--dur-fast) var(--ease);
   cursor: pointer;
+}
+
+.home-results li:last-child {
+  border-bottom: 0;
+}
+
+.home-results li:hover {
+  background: rgb(var(--accent), 0.15);
 }
 
 .home-results[style="display: none;"] {
@@ -120,9 +135,10 @@ h1 {
 }
 
 .logotext {
-  font-size: 75px;
+  font-size: clamp(40px, 9vw, 75px);
   font-family: MajorMonoDisplay, Arial, sans-serif;
   color: var(--logo-color) !important;
+  margin: 0;
 }
 
 .logotext span {
@@ -145,9 +161,12 @@ h1 {
   fill: var(--logo-color);
 }
 
+.themes {
+  transition: transform var(--dur-fast) var(--ease);
+}
+
 .themes:hover {
-  width: 45px;
-  height: 45px;
+  transform: scale(1.1);
   cursor: pointer;
 }
 

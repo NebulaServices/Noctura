@@ -24,11 +24,11 @@
 }
 
 .tabs-btn:hover {
-  background: var(--settings-1);
+  background: rgb(var(--accent), 0.15);
 }
 
 .tabs-btn:active {
-  background: var(--settings-2);
+  background: rgb(var(--accent), 0.25);
 }
 
 .tabs-btn:hover .arrow-1,

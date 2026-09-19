@@ -35,7 +35,7 @@
 }
 
 .plugins-left a:hover {
-  background: rgba(255, 255, 255, 0.09);
+  background: rgb(var(--accent), 0.15);
 }
 
 .plugins-right {
@@ -90,7 +90,7 @@
 }
 
 .plugins-submit:hover {
-  background: var(--settings-3) !important;
+  background: rgb(var(--accent), 0.25) !important;
 }
 
 .plugins-img-button {

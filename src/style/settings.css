@@ -29,7 +29,7 @@
 }
 
 .settings-left a:hover {
-  background: rgba(255, 255, 255, 0.09);
+  background: rgb(var(--accent), 0.15);
 }
 
 .settings-right {
@@ -84,7 +84,7 @@
 }
 
 .settings-submit:hover {
-  background: var(--settings-3) !important;
+  background: rgb(var(--accent), 0.25) !important;
 }
 
 .mocha_theme {

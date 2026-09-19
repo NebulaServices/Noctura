@@ -36,7 +36,7 @@
   font-size: 20px;
   margin: 0;
   padding: 0;
-  color: white;
+  color: var(--font-color);
   position: relative;
   text-align: center;
   margin-bottom: 10px;
@@ -51,7 +51,7 @@
   display: block;
   width: 40px;
   height: 1px;
-  background-color: white;
+  background-color: var(--font-color);
   position: absolute;
   left: 50%;
   bottom: -5px;
@@ -59,13 +59,20 @@
 }
 
 .footer-section a {
-  color: var(--logo-color);
+  color: var(--nav-btn-color-darker);
+  font-size: 14px;
+  line-height: 1.9;
   text-decoration: none;
-  transition: 0.1s ease;
+  transition: color var(--dur-fast) var(--ease);
 }
 
 .footer-section a:hover {
-  color: #d8d8d8;
+  color: var(--nav-btn-color);
+}
+
+.footer-section a h1,
+.footer-section a:hover h1 {
+  color: var(--font-color);
 }
 
 .footer-section h1 {
