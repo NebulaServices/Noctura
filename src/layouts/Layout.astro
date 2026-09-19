@@ -37,6 +37,17 @@ const { url } = Astro;
       * {
       }
     </style>
+    <style data-cold is:inline is:global>
+      *:not(.logotext > *),
+      *::placeholder,
+      input,
+      textarea,
+      select,
+      button {
+        font-family: "Work Sans", sans-serif;
+        font-weight: lighter;
+      }
+    </style>
     <link
       rel="icon"
       data-cold
