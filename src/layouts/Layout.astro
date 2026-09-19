@@ -115,41 +115,42 @@ const { url } = Astro;
       <Notifications />
       <slot />
       <Footer />
-      <Tabs />
+      <!-- <Tabs /> -->
     </main>
-  </body><style is:global>
-    :root {
-      --accent: 124, 58, 237;
-      --accent-gradient: linear-gradient(
-        45deg,
-        rgb(var(--accent)),
-        #da62c4 30%,
-        white 60%
-      );
-    }
+    <style is:global>
+      :root {
+        --accent: 124, 58, 237;
+        --accent-gradient: linear-gradient(
+          45deg,
+          rgb(var(--accent)),
+          #da62c4 30%,
+          white 60%
+        );
+      }
 
-    code {
-      font-family:
-        Menlo,
-        Monaco,
-        Lucida Console,
-        Liberation Mono,
-        DejaVu Sans Mono,
-        Bitstream Vera Sans Mono,
-        Courier New,
-        monospace;
-    }
+      code {
+        font-family:
+          Menlo,
+          Monaco,
+          Lucida Console,
+          Liberation Mono,
+          DejaVu Sans Mono,
+          Bitstream Vera Sans Mono,
+          Courier New,
+          monospace;
+      }
 
-    .page-load-progress {
-      border: none;
-      background: #ddd;
-      height: 2px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      transition: 0.1s ease;
-      display: none;
-    }
-  </style>
+      .page-load-progress {
+        border: none;
+        background: #ddd;
+        height: 2px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        transition: 0.1s ease;
+        display: none;
+      }
+    </style>
+  </body>
 </html>
