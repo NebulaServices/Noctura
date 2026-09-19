@@ -8,16 +8,16 @@ import Layout from "@layout";
 
 <Layout title="Emulators">
   <!-- You're welcome for the clusterfuck :) -->
-  <div
-    id="container"
-    style={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      flexWrap: "wrap"
-    }}
-  >
+  <div id="container">
     <style scoped>
+      #container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 20px 0;
+      }
+
       #container img {
         width: 100%;
         height: 135px;
@@ -67,7 +67,7 @@ import Layout from "@layout";
         margin-left: auto;
         margin-right: auto;
         border-radius: 15px;
-        background-color: var(--settings-2);
+        background-color: var(--settings-1);
         transition: 0.3s;
       }
 
@@ -90,7 +90,6 @@ import Layout from "@layout";
         height: 350px;
         width: 250px;
         color: var(--font-color);
-        background-color: var(--settings-1);
         border-radius: 25px;
         margin: 10px;
         position: relative;
