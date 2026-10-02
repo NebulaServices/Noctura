@@ -1,0 +1,14 @@
+packages:
+  - "."
+
+overrides:
+  "html-minifier-terser>terser": "npm:@swc/core"
+  "@astrojs/sitemap>sitemap": "7.1.1"
+
+blockExoticSubdeps: false
+
+allowBuilds:
+  "@swc/core": true
+  esbuild: true
+  sharp: true
+  sqlite3: true

@@ -28,8 +28,8 @@
    
    1. Clone the repository
       `git clone https://github.com/NebulaServices/Noctura.git`
-   2. Install the dependencies
-      `npm install`
+   2. Install the dependencies (requires Node 22+ and pnpm 12)
+      `pnpm install`
    3. Run Noctura
       `node .` OR `node index.js`
    
