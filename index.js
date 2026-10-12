@@ -1,15 +1,21 @@
 import fastifyStatic from "@fastify/static";
-import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
 import { createBareServer } from "@tomphttp/bare-server-node";
 import Fastify from "fastify";
 import { createServer } from "http";
-import { join } from "path";
+import { join, dirname } from "path";
 import createRammerhead from "rammerhead/src/server/index.js";
 import { fileURLToPath } from "url";
-import { build } from "astro";
 import { existsSync } from "fs";
 
-if (!existsSync("./dist")) build();
+const dist = join(dirname(fileURLToPath(import.meta.url)), "dist");
+
+if (!existsSync(dist)) {
+  console.error("No dist/ directory found. Run `pnpm build` first.");
+  process.exit(1);
+}
+
+const port = Number(process.env.PORT) || 8080;
+const host = process.env.HOST || "0.0.0.0";
 
 const bare = createBareServer("/bare/");
 
@@ -51,7 +57,7 @@ function routeRhUpgrade(req, socket, head) {
   rh.emit("upgrade", req, socket, head);
 }
 
-const serverFactory = (handler, opts) => {
+const serverFactory = (handler) => {
   return createServer()
     .on("request", (req, res) => {
       if (bare.shouldRoute(req)) {
@@ -74,33 +80,27 @@ const serverFactory = (handler, opts) => {
 const fastify = Fastify({ logger: true, serverFactory });
 
 fastify.register(import("@fastify/compress"), {
-  encodings: ['br']
+  encodings: ["br"]
 });
 
 fastify.register(fastifyStatic, {
-  root: join(fileURLToPath(import.meta.url), "../dist"),
+  root: dist,
   decorateReply: false
 });
 
-fastify.register(fastifyStatic, {
-  root: uvPath,
-  prefix: "/uv/",
-  decorateReply: false
-});
+fastify.get("/api/search", async (req, reply) => {
+  const query = String(req.query.q ?? "");
 
-fastify.get("/search=:query", async (req, res) => {
-  const { query } = req.params;
+  if (!query) return reply.code(400).send({ error: "Missing query" });
 
   try {
     const response = await fetch(
-      `http://api.duckduckgo.com/ac?q=${query}&format=json`
+      "https://duckduckgo.com/ac/?q=" + encodeURIComponent(query)
     ).then((res) => res.json());
-    res.send(response);
+    return response;
   } catch {
-    reply.code(500).send({ error: "Internal Server Error" });
+    return reply.code(500).send({ error: "Internal Server Error" });
   }
 });
 
-fastify.listen({
-  port: 8080
-});
+fastify.listen({ port, host });
