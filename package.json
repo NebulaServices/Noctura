@@ -14,7 +14,7 @@
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^1.4.0",
+    "@astrojs/sitemap": "^3.7.4",
     "@babel/runtime": "^7.22.11",
     "@codemirror/lang-css": "^6.2.0",
     "@codemirror/lang-javascript": "^6.1.9",
@@ -24,7 +24,6 @@
     "@titaniumnetwork-dev/ultraviolet": "github:titaniumnetwork-dev/ultraviolet",
     "@tomphttp/bare-server-node": "^2.0.1",
     "@uiw/codemirror-theme-vscode": "^4.21.12",
-    "astro-seo": "^0.8.0",
     "codemirror": "^6.0.1",
     "fastify": "^4.18.0",
     "globby": "^13.2.2",
@@ -35,11 +34,12 @@
   },
   "type": "module",
   "devDependencies": {
-    "@astrojs/tailwind": "^5.0.0",
+    "@astrojs/tailwind": "^6.0.2",
     "@divriots/jampack": "^0.15.0",
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
-    "astro": "^3.0.5",
+    "astro": "^5.18.2",
     "astro-compress": "^2.0.14",
+    "astro-seo": "^0.8.4",
     "postcss-class-name-shortener": "^2.0.0",
     "prettier": "^3.0.0",
     "prettier-plugin-astro": "^0.11.0",

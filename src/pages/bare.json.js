@@ -1,7 +1,7 @@
 import servers from "../bare.json";
 
-export async function get({ params, request }) {
-  return {
-    body: JSON.stringify(servers.dev)
-  };
+export async function GET() {
+  return new Response(JSON.stringify(servers.dev), {
+    headers: { "Content-Type": "application/json" }
+  });
 }
