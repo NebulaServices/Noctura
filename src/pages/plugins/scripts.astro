@@ -281,6 +281,7 @@ var modules = [
     </Section>
 
     <script type="module">
+// @ts-nocheck
         const scripts = await caches.open('astro-scripts');
         const modules = await caches.open('astro-modules');
 
@@ -405,6 +406,7 @@ var modules = [
     </script>
 
     <script>
+// @ts-nocheck
         import createEditor from "../../js/editor";
 
         const view = createEditor("js");

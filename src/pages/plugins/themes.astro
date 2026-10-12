@@ -41,6 +41,7 @@ var themes = [
   </Section>
 
   <script type="module">
+// @ts-nocheck
     function parse(theme) {
       var data = {
         data: {}
@@ -179,7 +180,8 @@ var themes = [
   </script>
 
   <script>
-    import createEditor from "../../js/editor.js";
+// @ts-nocheck
+    import createEditor from "../../js/editor";
 
     const view = createEditor("css");
 
