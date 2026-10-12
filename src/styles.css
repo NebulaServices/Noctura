@@ -1,8 +1,6 @@
 /* THEMES CSS */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
   --accent: 124, 58, 237;
