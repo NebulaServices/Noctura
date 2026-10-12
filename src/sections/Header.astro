@@ -2,14 +2,9 @@
 import Hamburger from "@components/Burger.astro";
 import Img from "@components/Img.astro";
 import "./header.css";
-import "./switch.css";
 import NebulaLogo from "@components/NebulaLogo.astro";
 import { discord, github, docs } from "@components/Consts.ts";
 import logo from "@image/logo.png";
-import Ultraviolet from "@image/Ultraviolet.png";
-import Dynamic from "@image/Dynamic.png";
-import Rammerhead from "@image/Rammerhead.png";
-import Aero from "@image/Aero.png";
 
 const { background, data: url } = Astro.props;
 
@@ -38,9 +33,7 @@ const routes = [
       "/settings/theme",
       "/settings/theme/",
       "/settings/cloaking",
-      "/settings/cloaking/",
-      "/settings/unblock",
-      "/settings/unblock/"
+      "/settings/cloaking/"
     ]
   }
 ];
@@ -63,37 +56,6 @@ const currentDate = new Date().getTime();
         <NebulaLogo />
       </a>
 
-      <div class="switch-btn-container" id="proxy-switch">
-        <div class="switch-btn-current">
-          <Img src={Ultraviolet} alt="Current Proxy Logo" />
-        </div>
-        <div class="switch-btn">
-          <a data-value="Dynamic" href="#">
-            <Img src={Dynamic} class="nav-switch-img" alt="Dynamic Icon" />
-             Dynamic
-          </a>
-          <a data-value="Ultraviolet" href="#">
-            <Img
-              src={Ultraviolet}
-              class="nav-switch-img"
-              alt="Ultraviolet Icon"
-            />
-             Ultraviolet
-          </a>
-          <a data-value="Rammerhead" href="#">
-            <Img
-              src={Rammerhead}
-              class="nav-switch-img"
-              alt="Rammerhead Icon"
-            />
-             Rammerhead
-          </a>
-          <a data-value="Aero" href="#">
-            <Img src={Aero} class="nav-switch-img" alt="Aero Icon" />
-             Aero 2.0
-          </a>
-        </div>
-      </div>
       <div class="focus-mode-container">
         <!-- should we have a non-fullscreen mode, and if so how will we show to user different option? -->
         <svg
@@ -167,36 +129,13 @@ const currentDate = new Date().getTime();
       }
     </div>
     <div class="nav-time">
-      <div class="switch-btn-container" id="server-switch">
-        <div class="switch-btn-current">
-          <span class="server-indicator">
-            <span class="server-indicator-value"
-              ><span class="indicator-dot"></span>
-               Connecting...
-              <span class="server-name"></span>
-            </span>
-          </span>
-        </div>
-        <div class="switch-btn">
-          {
-            { dev: ["tomp.app"] }.dev.map((e) => {
-              const host = e.replace(/^https?:\/\//, "").split("/")[0];
-              const label = host.split(".")[0];
-              return (
-                <a
-                  href="#"
-                  id={"server-" + label}
-                  class="modify-split-a"
-                  data-value={e}
-                >
-                  {label.charAt(0).toUpperCase() + label.slice(1)}
-                  <span class="server-ping">0ms</span>
-                </a>
-              );
-            })
-          }
-        </div>
-      </div>
+      <span class="server-indicator" id="proxy-status">
+        <span class="server-indicator-value"
+          ><span class="indicator-dot"></span>
+          <span class="server-status-text">Connecting...</span>
+          <span class="server-name"></span>
+        </span>
+      </span>
       <span class="nav-time-text clock-text"
         >{
           currentDate ? new Date(currentDate).toLocaleTimeString() : `0:0:0 AM`
@@ -215,24 +154,6 @@ const currentDate = new Date().getTime();
   <script is:inline data-cold>
     (function () {
       let hovered = false;
-
-      onclick = function (e) {
-        if (
-          recursive(
-            document.querySelector("#proxy-switch > .switch-btn")
-          ).includes(e.target)
-        )
-          return;
-
-        const switchBtn = document.querySelector("#proxy-switch > .switch-btn");
-
-        if (switchBtn.style.display == "block") {
-          switchBtn.style.opacity = "0";
-          setTimeout(function () {
-            switchBtn.style.display = "none";
-          }, 100);
-        }
-      };
 
       let onHover = (e) => {
         if (e.target.tagName !== "A") {
@@ -284,73 +205,9 @@ const currentDate = new Date().getTime();
         }
       };
 
-      let toggleSwitchBtn = (e) => {
-        const switchBtn = document.querySelector("#proxy-switch > .switch-btn");
-
-        if (switchBtn.style.display == "block") {
-          switchBtn.style.opacity = "0";
-          setTimeout(function () {
-            switchBtn.style.display = "none";
-          }, 100);
-        } else {
-          switchBtn.style.display = "block";
-          requestAnimationFrame(() => {
-            switchBtn.style.opacity = "1";
-          });
-        }
-
-        return e.stopPropagation();
-      };
-
-      let switchProxy = (e) => {
-        e.stopPropagation();
-        e.preventDefault();
-
-        const proxy = e.target.dataset.value;
-
-        document.cookie = `astro-proxy=${proxy}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;
-
-        e.target.parentNode.style.opacity = "0";
-
-        document.querySelector(".switch-btn-current img").src =
-          document.querySelector("a[data-value='" + proxy + "'] img").src;
-
-        document.querySelector(".switch-btn-current img").srcset =
-          document.querySelector("a[data-value='" + proxy + "'] img").srcset;
-
-        setTimeout(function () {
-          e.target.parentNode.style.display = "none";
-        }, 100);
-
-        return;
-      };
-
-      let recursive = (el) => {
-        var arr = [];
-
-        function iterate(el) {
-          if (el.childNodes)
-            el.childNodes.forEach((e) => (arr.push(e), iterate(e)));
-
-          return;
-        }
-
-        arr.push(el);
-
-        iterate(el);
-
-        return arr;
-      };
-
-      let switchBtnCurrent = document.querySelector(
-          "#proxy-switch > .switch-btn-current"
-        ),
-        switchBtns = document.querySelectorAll("#proxy-switch > a[data-value]"),
-        hamburgerLink = document.querySelector(".hamburger-link"),
+      let hamburgerLink = document.querySelector(".hamburger-link"),
         navBtns = document.querySelectorAll(".nav-btn");
 
-      switchBtnCurrent.onclick = toggleSwitchBtn;
-      switchBtns.forEach((btn) => (btn.onclick = switchProxy));
       hamburgerLink.onclick = (e) =>
         e.preventDefault() ||
         (typeof window !== "undefined" &&
@@ -413,120 +270,33 @@ const currentDate = new Date().getTime();
   </script>
   <script is:inline data-cold>
     (function () {
-      const switchBtnCurrentBare = document.querySelector(
-        "#server-switch > .switch-btn-current .server-indicator"
-      );
-      const modifySplitA = document.querySelectorAll(
-        "#server-switch .modify-split-a"
+      const value = document.querySelector(
+        "#proxy-status .server-indicator-value"
       );
 
-      const toggleSwitchBtnBare = (e) => {
-        const switchBtn = document.querySelector(
-          "#server-switch > .switch-btn"
-        );
+      if (!value) return;
 
-        if (switchBtn.style.display == "block") {
-          switchBtn.style.opacity = "0";
-          setTimeout(function () {
-            switchBtn.style.display = "none";
-          }, 100);
+      const text = value.querySelector(".server-status-text");
+      const name = value.querySelector(".server-name");
+
+      const apply = (state) => {
+        if (state === "connected") {
+          text.textContent = "Connected";
+          name.innerText = "SCRAMJET";
+          value.classList.add("connected");
+        } else if (state === "error") {
+          text.textContent = "Disconnected";
+          name.innerText = "";
+          value.classList.remove("connected");
         } else {
-          switchBtn.style.display = "block";
-          requestAnimationFrame(() => {
-            switchBtn.style.opacity = "1";
-          });
+          text.textContent = "Connecting...";
+          name.innerText = "";
+          value.classList.remove("connected");
         }
-
-        return e.stopPropagation();
       };
 
-      // const recursive = (el) => {
-      //     var arr = [];
-
-      //     function iterate(el) {
-      //         if (el.childNodes) el.childNodes.forEach(e=>(arr.push(e), iterate(e)));
-
-      //         return;
-      //     }
-
-      //     arr.push(el);
-
-      //     iterate(el)
-
-      //     return arr;
-      // }
-
-      const switchServer = (e) => {
-        e.preventDefault();
-
-        const server = e.target.dataset.value;
-
-        e.target.parentNode.style.opacity = "0";
-
-        document.querySelector(
-          "#server-switch .server-indicator-value"
-        ).childNodes[1].textContent = "Connecting ";
-        document
-          .querySelector("#server-switch .server-indicator-value")
-          .classList.remove("connected");
-        document.querySelector("#server-switch .server-name").innerText =
-          server
-            .replace(/^https?:\/\//, "")
-            .split("/")[0]
-            .split(".")[0]
-            .toUpperCase();
-
-        if (window.connectBare) {
-          window
-            .connectBare(server)
-            .then(() => {
-              document.querySelector(
-                "#server-switch .server-indicator-value"
-              ).childNodes[1].textContent = "Connected ";
-              document
-                .querySelector("#server-switch .server-indicator-value")
-                .classList.add("connected");
-
-              localStorage.server = server;
-            })
-            .catch(() => {
-              document.querySelector(
-                "#server-switch .server-indicator-value"
-              ).childNodes[1].textContent = "Disconnected ";
-            });
-        }
-
-        document.cookie =
-          "astro-bare=" + server + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
-
-        setTimeout(function () {
-          e.target.parentNode.style.display = "none";
-        }, 100);
-      };
-
-      switchBtnCurrentBare.onclick = toggleSwitchBtnBare;
-      modifySplitA.forEach(
-        (e) => (
-          (e.dataset.value = e.dataset.value.replace("$HOST", location.host)),
-          (e.onclick = switchServer)
-        )
-      );
-
-      addEventListener("click", (e) => {
-        const container = document.getElementById("server-switch");
-        const switchBtn = document.querySelector(
-          "#server-switch > .switch-btn"
-        );
-
-        if (!switchBtn || container.contains(e.target)) return;
-
-        if (switchBtn.style.display == "block") {
-          switchBtn.style.opacity = "0";
-          setTimeout(function () {
-            switchBtn.style.display = "none";
-          }, 100);
-        }
-      });
+      if (window.proxyStatus) apply(window.proxyStatus);
+      addEventListener("proxy:status", (e) => apply(e.detail.state));
     })();
   </script>
 </div>

@@ -7,7 +7,9 @@ overrides:
 blockExoticSubdeps: false
 
 allowBuilds:
+  "@mercuryworkshop/scramjet": true
   "@swc/core": true
+  bufferutil: true
   esbuild: true
   sharp: true
-  sqlite3: true
+  utf-8-validate: true

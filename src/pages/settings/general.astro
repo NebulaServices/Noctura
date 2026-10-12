@@ -5,15 +5,15 @@ import Section from "@components/Section.astro";
 
 <Settings title="General">
   <Section class="settings-section">
-    <form id="custom-bare-form">
-      <h1 class="text-lg">Custom Bare Server</h1>
+    <form id="custom-wisp-form">
+      <h1 class="text-lg">Custom Wisp Server</h1>
 
-      <input class="settings-input" />
+      <input class="settings-input" placeholder="wss://example.com/wisp/" />
       <button
         type="submit"
         class="settings-submit"
         style="visibility: hidden; position: absolute; z-index: -1;"></button>
-      <button type="submit" class="settings-submit" id="reset-bare"
+      <button type="submit" class="settings-submit" id="reset-wisp"
         >Reset</button
       >
     </form>
@@ -110,64 +110,42 @@ import Section from "@components/Section.astro";
         }
       });
 
-    document.querySelector("#custom-bare-form input").value =
-      localStorage.getItem("server") || "";
+    document.querySelector("#custom-wisp-form input").value =
+      localStorage.getItem("wisp-url") || "";
 
     document
-      .getElementById("custom-bare-form")
+      .getElementById("custom-wisp-form")
       .addEventListener("submit", function (e) {
         e.preventDefault();
 
-        if (e.submitter.id == "reset-bare") {
-          localStorage.removeItem("server");
-          document.querySelector("#custom-bare-form input").value =
-            localStorage.getItem("server") || "";
+        if (e.submitter.id == "reset-wisp") {
+          localStorage.removeItem("wisp-url");
+          document.querySelector("#custom-wisp-form input").value = "";
 
-          return caches.open("astro-data").then((cache) => {
-            cache.put("/bare.txt", new Response("tomp.app")).then(async () => {
-              await window.registerSW();
+          notify.show(`Reset Server`, "success", 2000);
 
-              notify.show(`Reset Server`, "success", 2000);
+          setTimeout(function () {
+            location.reload();
+          }, 1500);
 
-              setTimeout(function () {
-                location.reload();
-              }, 2000);
-            });
-          });
-        }
-
-        let bare = document.querySelector("#custom-bare-form input").value;
-
-        if (bare) {
-          bare = bare.replace(/^https?:\/\//g, "");
-
-          caches.open("astro-data").then(async (cache) => {
-            try {
-              await fetch(`http://${bare}/`, { redirect: "follow" })
-                .catch((e) =>
-                  fetch("https://tomp.app/", { redirect: "follow" })
-                )
-                .then((e) => e.json());
-            } catch (e) {
-              notify.show(`Invalid Server: Failed to Fetch`, "error", 2000);
-              return;
-            }
-
-            localStorage.setItem("server", bare);
-
-            cache.put("/bare.txt", new Response(bare)).then(async () => {
-              await window.registerSW();
-
-              notify.show(`Saved`, "success", 2000);
-
-              setTimeout(function () {
-                location.reload();
-              }, 2000);
-            });
-          });
-        } else {
           return;
         }
+
+        let wisp = document.querySelector("#custom-wisp-form input").value;
+
+        if (!wisp) return;
+
+        if (!/^wss?:\/\//.test(wisp))
+          wisp = "wss://" + wisp.replace(/^https?:\/\//, "");
+        if (!wisp.endsWith("/")) wisp += "/";
+
+        localStorage.setItem("wisp-url", wisp);
+
+        notify.show(`Saved`, "success", 2000);
+
+        setTimeout(function () {
+          location.reload();
+        }, 1500);
       });
   </script>
 </Settings>

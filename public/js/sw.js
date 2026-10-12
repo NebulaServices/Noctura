@@ -12,27 +12,6 @@ if ("serviceWorker" in navigator) {
             await navigator.serviceWorker
               .register("/sw.js", {
                 scope: "/",
-                module: true,
-                updateViaCache: "none"
-              })
-              .then(function (registration) {
-                console.log(
-                  "Registration successful, scope is:",
-                  registration.scope
-                );
-              })
-              .catch(function (error) {
-                console.log(
-                  "Service worker registration failed, error:",
-                  error
-                );
-              });
-
-          if (!navigator.serviceWorker.controller)
-            await navigator.serviceWorker
-              .register("/aero.js", {
-                scope: "/~/aero",
-                module: true,
                 updateViaCache: "none"
               })
               .then(function (registration) {

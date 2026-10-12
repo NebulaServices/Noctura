@@ -1,11 +1,7 @@
-let bareServer = "tomp.app";
+importScripts("/scram/scramjet.all.js");
 
-importScripts("/sw/uv/uv.bundle.js");
-importScripts("/sw/uv/uv.config.js");
-importScripts("/sw/uv/uv.sw.js");
-
-importScripts("/sw/dynamic/dynamic.config.js");
-importScripts("/sw/dynamic/dynamic.worker.js");
+const { ScramjetServiceWorker } = $scramjetLoadWorker();
+const scramjet = new ScramjetServiceWorker();
 
 addEventListener("install", async function (event) {
   event.waitUntil(self.skipWaiting());
@@ -54,7 +50,7 @@ self.onerror = function (event, source, line, col, error) {
 };
 
 const ogrej = self.onunhandledrejection;
-self.onunhandledrejection = function (event, source, line, col, error) {
+self.onunhandledrejection = function (event) {
   if (ogrej) ogrej(...arguments);
 
   warn(event.reason.toString(), event.stack, "", "");
@@ -62,29 +58,7 @@ self.onunhandledrejection = function (event, source, line, col, error) {
   return true;
 };
 
-const p = new Promise(async (res) => {
-  const cache = await caches.open("astro-data");
-
-  if (await cache.match("/bare.txt")) {
-    bareServer = await (await cache.match("/bare.txt")).text();
-  }
-
-  try {
-    const req = await fetch("http://" + bareServer.replace(/\/$/, "") + "/", {
-      redirect: "follow"
-    });
-
-    self.__uv$config.bare = req.url;
-    self.__dynamic$config.bare.path = req.url;
-  } catch {}
-
-  if (navigator.onLine) {
-    self.dynamic = new Dynamic(self.__dynamic$config);
-    self.uv = new UVServiceWorker(self.__uv$config);
-  }
-
-  res(await caches.open("astro-cache"));
-});
+const p = caches.open("astro-cache");
 
 addEventListener("message", async (e) => {
   if (e.data == "updateCloak") {
@@ -110,18 +84,12 @@ addEventListener("fetch", function (event) {
         if (event.request.url.endsWith("?sw=ignore"))
           return await fetch(event.request);
 
-        if (navigator.onLine) {
-          if (event.request.url.startsWith(location.origin + "/~/uv/")) {
-            return await self.uv.fetch(event);
-          }
-
-          if (await self.dynamic.route(event)) {
-            return await self.dynamic.fetch(event);
-          }
-        } else {
-          if (event.request.url.startsWith(location.origin + "/~/")) {
+        await scramjet.loadConfig();
+        if (scramjet.route(event)) {
+          if (!navigator.onLine)
             return new Response("Offline", { status: 500 });
-          }
+
+          return await scramjet.fetch(event);
         }
 
         if (
@@ -142,7 +110,7 @@ addEventListener("fetch", function (event) {
 
         return await fetch(event.request);
       } catch (e) {
-        onerror("", event.request.url, "", "", e);
+        warn(e.toString(), event.request.url, "", "");
 
         return new Response(e.toString(), { status: 500 });
       }

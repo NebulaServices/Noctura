@@ -14,9 +14,9 @@
 
    |  **Feature**  | **Explanation** |
    |:------------------:|:------------------------------:|
-   | `🔡 Proxy Selection` | Noctura allows you to switch between a selection of proxies to suit whatever you need. We support _UV_, _Dynamic_, _Rammerhead_, and _Aero 2_. |
+   | `🚀 Scramjet` | Noctura browses the web through _Scramjet_, a modern interception proxy, over the _Wisp_ protocol. A custom Wisp server can be set in Settings > General. |
    | `🧠 AI` | Coming soon in a future update! |
-   | `🕹️ Games` | Noctura provides a fairly sized library of games. Enough to keep you busy for a while. Noctura also has several emulators! |
+   | `🕹️ Emulators` | Noctura ships emulators for several classic consoles, each with access to thousands of games. |
    | `💽 Plugins` | On the plugins page, you can browse a library of scripts that you can apply to Noctura. Proxy Injection scripts affect web browsing, whilst Modules affect Noctura itself. If you wan't to create your own modules or scripts, use the script editor to create and modify anything you want in Noctura.|
    | `🎨 Themes` | If you go to Settings > Theme, you may notice a library of premade themes you can choose. If you want to make your own custom Noctura theme, go to Plugins > Themes where you can import VSCode themes or edit the themes directly. |
    

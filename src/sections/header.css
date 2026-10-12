@@ -172,8 +172,7 @@
   flex: 1;
 }
 
-.header .top-right,
-.header .switch-btn-container {
+.header .top-right {
   transition: 0.1s ease;
 }
 
@@ -229,10 +228,6 @@
   text-align: right;
 }
 
-.nav-time .switch-btn-container {
-  pointer-events: auto;
-}
-
 .nav-time-text {
   color: var(--logo-color);
   margin-right: 10px;
@@ -263,19 +258,10 @@
   border: 1px solid rgb(var(--accent), 0.3);
   border-radius: var(--radius-md);
   background: rgb(var(--accent), 0.06);
-  transition:
-    background var(--dur-fast) var(--ease),
-    border-color var(--dur-fast) var(--ease);
-  cursor: pointer;
 }
 
-.server-indicator:hover {
-  background: rgb(var(--accent), 0.14);
-  border-color: rgb(var(--accent), 0.55);
-}
-
-.server-indicator:active {
-  background: rgb(var(--accent), 0.22);
+.server-status-text {
+  margin-right: 4px;
 }
 
 .server-indicator-value:not(.connected),

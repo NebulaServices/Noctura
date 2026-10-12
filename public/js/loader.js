@@ -68,7 +68,7 @@
       location.pathname
         .split("?")[0]
         .replace(/(\/$|^\/)/g, "")
-        .replace(/settings\/(privacy|cloaking|unblock|theme)/, "settings/general")
+        .replace(/settings\/(privacy|cloaking|theme)/, "settings/general")
         .replace(/console\/(scripts|themes)/, "console/scripts");
 
     document
