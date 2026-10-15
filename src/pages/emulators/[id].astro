@@ -24,7 +24,7 @@ const { title, description, file } = Astro.props;
       <iframe
         class="theaterViewport"
         id="theaterViewport"
-        src={"/~/uv/" + encodeURIComponent(file)}
+        data-file={file}
         >Your browser doesn't support iframes.</iframe
       >
       <div class="theaterBar">
@@ -108,6 +108,26 @@ const { title, description, file } = Astro.props;
     </div>
   </div>
   <script is:inline>
+    (function () {
+      const frame = document.getElementById("theaterViewport");
+      const file = frame.dataset.file;
+
+      function load() {
+        frame.src = window.scramjet.encodeUrl(file);
+      }
+
+      if (window.proxyStatus === "connected") {
+        load();
+      } else {
+        addEventListener("proxy:status", function handler(e) {
+          if (e.detail.state === "connected") {
+            removeEventListener("proxy:status", handler);
+            load();
+          }
+        });
+      }
+    })();
+
     function handleFullscreenClick() {
       let iframe = document.getElementById("theaterViewport");
 
