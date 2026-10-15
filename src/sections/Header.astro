@@ -60,17 +60,17 @@ const currentDate = new Date().getTime();
         <!-- should we have a non-fullscreen mode, and if so how will we show to user different option? -->
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          height="1.3em"
+          height="18"
           viewBox="0 0 448 512"
         >
           <style>
             .toggle-button {
-              fill: #ddd;
+              fill: rgb(var(--accent), 0.55);
               transition: fill 0.3s ease;
             }
 
-            .toggle-button:hover {
-              fill: #fff;
+            .focus-mode-container:hover .toggle-button {
+              fill: rgb(var(--accent), 1);
             }
           </style>
           <path
