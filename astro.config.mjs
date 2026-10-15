@@ -12,5 +12,5 @@ export default defineConfig({
   },
   site: "https://noctura.tech",
   output: "static",
-  compressHTML: false
+  compressHTML: true
 });
