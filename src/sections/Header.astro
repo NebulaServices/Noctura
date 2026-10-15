@@ -190,19 +190,13 @@ const currentDate = new Date().getTime();
         hovered = true;
       };
 
-      let noHover = (e) => {
-        if (e.target.tagName !== "A") return;
-
-        const rect = e.target.getBoundingClientRect();
-
-        if (e.clientY >= rect.bottom || e.clientY <= rect.top) {
-          hovered = false;
-          document.getElementById("nav-move").style.opacity = "0";
-          setTimeout(function () {
-            if (hovered) return;
-            document.getElementById("nav-move").style.display = "none";
-          }, 200);
-        }
+      let noHover = () => {
+        hovered = false;
+        document.getElementById("nav-move").style.opacity = "0";
+        setTimeout(function () {
+          if (hovered) return;
+          document.getElementById("nav-move").style.display = "none";
+        }, 200);
       };
 
       let hamburgerLink = document.querySelector(".hamburger-link"),
@@ -216,8 +210,10 @@ const currentDate = new Date().getTime();
           ));
       navBtns.forEach((btn) => {
         btn.onmouseover = onHover;
-        btn.onmouseleave = noHover;
       });
+      document
+        .querySelector(".nav-btns")
+        .addEventListener("mouseleave", noHover);
 
       let focusMode = "off";
       let focusButton = document.querySelector(".focus-mode-container");

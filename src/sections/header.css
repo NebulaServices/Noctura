@@ -156,9 +156,12 @@
   position: absolute;
   border-radius: var(--radius-sm);
   top: -2px;
-  background-color: rgb(var(--accent), 0.3);
+  background-color: rgb(var(--accent), 0.12);
+  border: 1px solid rgb(var(--accent), 0.45);
+  box-sizing: border-box;
   left: 0;
   display: none;
+  pointer-events: none;
   transition: 0.2s;
 }
 
