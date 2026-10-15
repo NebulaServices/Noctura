@@ -1,14 +1,10 @@
 packages:
   - "."
 
-overrides:
-  "html-minifier-terser>terser": "npm:@swc/core"
-
 blockExoticSubdeps: false
 
 allowBuilds:
   "@mercuryworkshop/scramjet": true
-  "@swc/core": true
   bufferutil: true
   esbuild: true
   sharp: true
