@@ -31,6 +31,7 @@
 
 .nav-btns {
   display: flex;
+  align-items: center;
   justify-content: flex-start;
   padding-left: 10px;
   padding-right: 10px;
@@ -69,10 +70,6 @@
   color: var(--nav-btn-color);
 }
 
-.nav-btn:hover:not(.active) {
-  color: var(--nav-btn-color);
-}
-
 .nav-btn.active::before {
   content: "";
   display: block;
@@ -81,9 +78,14 @@
   background-color: var(--nav-btn-color);
   position: absolute;
   left: 50%;
-  bottom: -10px;
+  bottom: -8px;
   transform: translateX(-50%);
 }
+
+.nav-btn:hover:not(.active) {
+  color: var(--nav-btn-color);
+}
+
 
 .top-left {
   display: flex;

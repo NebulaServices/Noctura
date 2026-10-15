@@ -186,6 +186,9 @@ const currentDate = new Date().getTime();
         document.getElementById("nav-move").style.left = `${
           rect.x - btnRect.x + 5
         }px`;
+        document.getElementById("nav-move").style.top = `${
+          rect.y - btnRect.y - 2
+        }px`;
 
         hovered = true;
       };
