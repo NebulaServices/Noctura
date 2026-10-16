@@ -342,7 +342,7 @@ var modules = [
                 }
             }));
 
-            await window.registerSW();
+            await window.registerSW(true);
 
             await notify.hide();
             notify.show("Script Installed", "success", 2000);
@@ -455,7 +455,7 @@ var modules = [
                         localStorage.setItem('saved-inject', script);
                         await cache.put('/custom.js', new Response(script, { headers: { 'Content-Type': 'application/javascript' } }));
 
-                        await window.registerSW();
+                        await window.registerSW(true);
 
                         await notify.hide();
                         notify.show("Saved Script", "success", 2000);
@@ -470,7 +470,7 @@ var modules = [
                         localStorage.setItem('saved-module', script);
                         await cache.put('/custom.js', new Response(script, { headers: { 'Content-Type': 'application/javascript' } }));
 
-                        await window.registerSW();
+                        await window.registerSW(true);
 
                         await notify.hide();
                         notify.show("Saved Module", "success", 2000);

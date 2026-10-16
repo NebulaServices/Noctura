@@ -26,6 +26,7 @@
       await window.registerSW();
     } else if ("serviceWorker" in navigator) {
       await navigator.serviceWorker.register("/sw.js", { scope: "/" });
+      await navigator.serviceWorker.ready;
     }
 
     const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
