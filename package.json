@@ -18,7 +18,7 @@
     "@fastify/compress": "^9.2.1",
     "@fastify/static": "^10.1.6",
     "@mercuryworkshop/bare-mux": "2.1.9",
-    "@mercuryworkshop/epoxy-transport": "3.0.1",
+    "@mercuryworkshop/epoxy-transport": "2.1.28",
     "@mercuryworkshop/scramjet": "1.1.0",
     "@mercuryworkshop/wisp-js": "^0.5.0",
     "@uiw/codemirror-theme-vscode": "^4.21.12",

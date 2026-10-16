@@ -9,8 +9,13 @@ import { fileURLToPath } from "url";
 import { existsSync } from "fs";
 
 const dist = join(dirname(fileURLToPath(import.meta.url)), "dist");
-const epoxyPath = dirname(
-  fileURLToPath(import.meta.resolve("@mercuryworkshop/epoxy-transport"))
+const epoxyPath = join(
+  dirname(
+    dirname(
+      fileURLToPath(import.meta.resolve("@mercuryworkshop/epoxy-transport"))
+    )
+  ),
+  "dist"
 );
 
 if (!existsSync(dist)) {
