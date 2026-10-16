@@ -30,15 +30,19 @@
     }
 
     const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
-    const wispUrl =
-      localStorage.getItem("wisp-url") ||
-      (location.protocol === "https:" ? "wss" : "ws") +
-        "://" +
-        location.host +
-        "/wisp/";
-    await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
 
-    status("connected");
+    window.reconnectProxy = async function () {
+      const wispUrl =
+        localStorage.getItem("wisp-url") ||
+        (location.protocol === "https:" ? "wss" : "ws") +
+          "://" +
+          location.host +
+          "/wisp/";
+      await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
+      status("connected");
+    };
+
+    await window.reconnectProxy();
   } catch (err) {
     console.error("[proxy] init failed:", err);
     status("error");

@@ -277,38 +277,34 @@ const themes = [
         iframe.src = window.scramjet.encodeUrl(url);
 
         const loader = document.createElement("div");
-        loader.style.width = "100%";
-        loader.style.height = "100%";
-        loader.style.border = "none";
-        loader.style.background = "var(--settings-1)";
-        loader.style.overflow = "hidden";
-        loader.style.position = "absolute";
-        loader.style.zIndex = "9999999";
-        loader.style.fontFamily = "MajorMonoDisplay, Arial, sans-serif";
-        loader.style.top = "0px";
-        loader.innerHTML = `<div><span>N</span></div>`;
-        loader.style.display = "flex";
-        loader.querySelector("div").style.position = "relative";
-        loader.style.fontSize = "150px";
-        loader.style.paddingBottom = "10%";
-        loader.style.alignItems = "center";
-        loader.style.justifyContent = "center";
-        loader.style.color = "var(--font-color)";
-        loader.style.opacity = "1";
-        loader.style.transition = "opacity 0.5s ease-in-out";
         loader.classList.add("proxy-loader");
+        loader.innerHTML = `<div><i class="loader-ring loader-ring-1"></i><i class="loader-ring loader-ring-2"></i><span>N</span></div><p>Loading...</p>`;
 
         document.querySelector(".home").style.paddingBottom = "0px";
 
-        iframe.onload = function () {
-          iframe.onload = function () {};
-
+        const hide = function () {
           loader.style.opacity = "0";
           iframe.style.display = "block";
 
           setTimeout(function () {
             loader.remove();
           }, 500);
+        };
+
+        const bail = setTimeout(function () {
+          hide();
+          if (window.reconnectProxy) window.reconnectProxy();
+          if (window.notify)
+            window.notify.show(
+              "The page is taking a while... reconnecting the proxy.",
+              "warning"
+            );
+        }, 20000);
+
+        iframe.onload = function () {
+          iframe.onload = function () {};
+          clearTimeout(bail);
+          hide();
         };
 
         homeContainer.parentNode.appendChild(loader);
