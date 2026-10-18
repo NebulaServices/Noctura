@@ -58,6 +58,44 @@ button:not(:disabled),
   border-radius: 2px;
 }
 
+main.layout
+  > div:not(
+    .toast-container,
+    .header,
+    .top-banner,
+    .footer,
+    .site-footer,
+    .page-load-progress
+  ) {
+  view-transition-name: page-content;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+::view-transition-old(page-content) {
+  animation: vt-out var(--dur-fast) var(--ease) both;
+}
+
+::view-transition-new(page-content) {
+  animation: vt-in var(--dur-med) var(--ease) both;
+}
+
+@keyframes vt-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes vt-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -65,6 +103,12 @@ button:not(:disabled),
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
   }
 }
 

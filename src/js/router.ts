@@ -32,17 +32,29 @@ class Router {
       .then((res) => res.text())
       .then((text) => parser.parseFromString(text, "text/html"));
 
-    if (doc.title) document.title = doc.title;
+    const swap = () => {
+      if (doc.title) document.title = doc.title;
 
-    const selector =
-      "main.layout > div:not(.toast-container, .header, .top-banner, .footer)";
+      const selector =
+        "main.layout > div:not(.toast-container, .header, .top-banner, .footer)";
 
-    const current = document.body.querySelector(selector);
-    const incoming = doc.body.querySelector(selector);
-    if (current && incoming) current.replaceWith(incoming);
-    this.#mergeHead(doc);
-    this.#runScripts();
-    window.dispatchEvent(new CustomEvent("router:end"));
+      const current = document.body.querySelector(selector);
+      const incoming = doc.body.querySelector(selector);
+      if (current && incoming) current.replaceWith(incoming);
+      this.#mergeHead(doc);
+      this.#runScripts();
+      window.dispatchEvent(new CustomEvent("router:end"));
+    };
+
+    const withTransition = document as Document & {
+      startViewTransition?: (cb: () => void) => unknown;
+    };
+
+    if (withTransition.startViewTransition) {
+      withTransition.startViewTransition(swap);
+    } else {
+      swap();
+    }
   }
 
   #mergeHead(doc: Document) {
