@@ -144,10 +144,14 @@
   align-items: center;
   justify-content: flex-end;
   gap: 18px;
-  @media screen and (max-width: 760px) {
+  flex: 1;
+}
+
+@media screen and (max-width: 760px) {
+  .feedback-btn,
+  .extra-btn {
     display: none;
   }
-  flex: 1;
 }
 
 .header .top-right {

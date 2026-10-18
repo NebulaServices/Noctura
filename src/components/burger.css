@@ -68,8 +68,8 @@
   top: calc(100% + 10px);
   left: 50%;
   transform: translateX(calc(-50% - 10px));
-  border: 1px solid #363636;
-  z-index: 999999999999999999;
+  border: 1px solid var(--settings-3);
+  z-index: 1000;
   border-radius: 7px;
   position: absolute;
 }
@@ -123,4 +123,12 @@
   border: none;
   width: 100%;
   outline: none;
+}
+
+@media screen and (max-width: 760px) {
+  .burger-child-container {
+    left: auto !important;
+    right: 0;
+    transform: none;
+  }
 }
