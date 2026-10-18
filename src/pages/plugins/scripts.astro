@@ -43,118 +43,91 @@ var modules = [
         .selected-opt {
             background: var(--settings-3) !important;
         }
+
+        .plugin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 16px;
+            margin-top: 12px;
+            text-align: left;
+        }
+
+        .plugin-card {
+            display: flex;
+            flex-direction: column;
+            padding: 14px 16px 16px;
+            border: 1px solid var(--settings-3);
+            border-radius: var(--radius-lg);
+            background: var(--settings-1);
+            color: var(--font-color);
+            transition:
+                transform var(--dur-med) var(--ease),
+                border-color var(--dur-med) var(--ease),
+                box-shadow var(--dur-med) var(--ease);
+        }
+
+        .plugin-card:hover {
+            transform: translateY(-3px);
+            border-color: rgb(var(--accent), 0.5);
+            box-shadow: var(--shadow-2);
+        }
+
+        .plugin-card h2 {
+            font-size: 17px;
+            margin: 0;
+        }
+
+        .plugin-card h3 {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--nav-btn-color-darker);
+            margin: 2px 0 0;
+        }
+
+        .plugin-card p {
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--nav-btn-color-darker);
+            margin: 8px 0 0;
+            flex: 1;
+        }
+
+        .script-button {
+            margin-top: 14px;
+            padding: 9px 0;
+            width: 100%;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--font-color);
+            border: 1px solid var(--settings-3);
+            border-radius: var(--radius-md);
+            background: var(--settings-2);
+            transition:
+                background var(--dur-fast) var(--ease),
+                border-color var(--dur-fast) var(--ease);
+        }
+
+        .script-button:hover {
+            background: rgb(var(--accent), 0.2);
+            border-color: rgb(var(--accent), 0.5);
+        }
     </style>
 
     <Section>
         <h1 class="text-xl">Proxy Injection Scripts</h1>
         <p>Scripts run inside every page you browse through the proxy, after Scramjet rewrites it.</p>
         <p>Usermade scripts are not supported because it's very easy to make a script to steal your information.</p>
-        <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-        }}>
+        <div class="plugin-grid">
             {
                 proxy.map((script) => (
-                    <div id={script.id} class="element">
-                        <style scoped>
-                            .element .play {
-                                width: 250px;
-                                height: 85px;
-                                border-bottom-right-radius: 25px;
-                                border-bottom-left-radius: 25px;
-                                bottom: 0;
-                                padding-top: 18px;
-                                margin: 0 auto;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                position: absolute;
-                                
-                            }
-                
-                            .element  .installbutton {
-                                width: 150px;
-                                height: 50px;
-                                border: 1px solid var(--settings-3);
-                                margin-left: auto;
-                                margin-right: auto;
-                                border-radius: 15px;
-                                background-color: var(--settings-2);
-                                transition: 0.3s;
-                            }
-                
-                            .element  .installbutton:hover {
-                                width: 175px;
-                                transition: 0.3s;
-                            }
-                
-                            .element  .installtext {
-                                text-align: center;
-                                font-weight: bold;
-                                color: var(--font-color);
-                                font-size: 18px;
-                                padding-top: 10px;
-                            }
-                
-                            .element {
-                                border: 1px solid var(--settings-3);
-                                float: left;
-                                height: 205px;
-                                width: 250px;
-                                color: var(--font-color);
-                                background-color: var(--settings-1);
-                                border-radius: 25px;
-                                margin: 10px;
-                                position: relative;
-                            }
-                
-                            .element  h2 {
-                                font-weight: bold;
-                                font-size: 20px;
-                                padding-right: 10px;
-                                padding-left: 10px;
-                                border-bottom: 1px solid var(--settings-3); 
-                                line-height: 0.1em;
-                                padding-top: px;
-                            }
-                
-                            .element  h2 span { 
-                                background:var(--settings-1); 
-                                padding:0 10px;
-                                
-                            }
-
-                            .element  h3 {
-                                margin-top: 10px;
-                                margin-left: 5px;
-                                padding-left: 15px;
-                                font-size: 14px;
-                            }
-
-                            .element h3 span {
-                                color: var(--primary-text-color);
-                            }
-                
-                            .element p {
-                                padding-right: 10px;
-                                padding-left: 10px;
-                                font-size: 13px;
-                                color: var(--primary-text-color);
-                            }
-                        </style>
-                        <br />
-                        <h2><span>{script.name}</span></h2>
-                        <h3><span>by {script.author}</span></h3>
-                        <p style="margin-top: 20px;">{script.description.length > 100 ? script.description.split('').slice(0, 100).join('') + '...' : script.description}</p>
-                        <div class="play">
-                            <button class="script-button" data-url={script.url} data-script={btoa(JSON.stringify(script))}>
-                                <div class="installbutton">
-                                    <p class="installtext" data-id={script.id}>Install</p>
-                                </div>
-                            </button>
-                        </div>
+                    <div id={script.id} class="plugin-card">
+                        <h2>{script.name}</h2>
+                        <h3>by {script.author}</h3>
+                        <p>{script.description.length > 100 ? script.description.split('').slice(0, 100).join('') + '...' : script.description}</p>
+                        <button class="script-button" data-url={script.url} data-script={btoa(JSON.stringify(script))}>
+                            <span class="installtext" data-id={script.id}>Install</span>
+                        </button>
                     </div>
                 ))
             }
@@ -164,107 +137,16 @@ var modules = [
     <Section>
         <h1 class="text-xl">Noctura Module Scripts</h1>
         <p>Scripts are run on Noctura page loads (excluding router loads)</p>
-        <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-        }}>
+        <div class="plugin-grid">
             {
                 modules.map((script) => (
-                    <div id={script.id} class="element">
-                        <style scoped>
-                            .element .play {
-                                width: 250px;
-                                height: 85px;
-                                border-bottom-right-radius: 25px;
-                                border-bottom-left-radius: 25px;
-                                bottom: 0;
-                                margin: 0 auto;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                position: absolute;
-                            }
-                
-                            .element .installbutton {
-                                width: 150px;
-                                height: 50px;
-                                border: 1px solid var(--settings-3);
-                                margin-left: auto;
-                                margin-right: auto;
-                                border-radius: 15px;
-                                background-color: var(--settings-2);
-                                transition: 0.3s;
-                            }
-                
-                            .element .installbutton:hover {
-                                width: 175px;
-                                transition: 0.3s;
-                            }
-                
-                            .element  .installtext {
-                                text-align: center;
-                                font-weight: bold;
-                                color: var(--font-color);
-                                font-size: 18px;
-                                padding-top: 10px;
-                            }
-                
-                            .element {
-                                border: 1px solid var(--settings-3);
-                                float: left;
-                                height: 205px;
-                                width: 250px;
-                                color: var(--font-color);
-                                background-color: var(--settings-1);
-                                border-radius: 25px;
-                                margin: 10px;
-                                position: relative;
-                            }
-                
-                            .element h2 {
-                                font-weight: bold;
-                                font-size: 20px;
-                                padding-right: 10px;
-                                padding-left: 10px;
-                                border-bottom: 1px solid var(--settings-3); 
-                                line-height: 0.1em;
-                            }
-                
-                            .element h2 span { 
-                                background:var(--settings-1); 
-                                padding:0 10px;
-                                
-                            }
-
-                            .element h3 {
-                                margin-top: 10px;
-                                margin-left: 5px;
-                            }
-
-                            .element h3 span {
-                                color: var(--font-color);
-                            }
-                
-                            .element p {
-                                padding-right: 10px;
-                                padding-left: 10px;
-                                font-size: 13px;
-                                color: var(--font-color);
-                            }
-                        </style>
-                        <br />
-                        <h2><span>{script.name}</span></h2>
-                        <h3><span>by {script.author}</span></h3>
-                        <p style="margin-top: 5px;">{script.description.length > 100 ? script.description.split('').slice(0, 100).join('') + '...' : script.description}</p>
-                        <div class="play">
-                            <button class="script-button" data-url={script.url} data-script={btoa(JSON.stringify(script))}>
-                                <div class="installbutton">
-                                    <p class="installtext" data-id={script.id}>Install</p>
-                                </div>
-                            </button>
-                        </div>
+                    <div id={script.id} class="plugin-card">
+                        <h2>{script.name}</h2>
+                        <h3>by {script.author}</h3>
+                        <p>{script.description.length > 100 ? script.description.split('').slice(0, 100).join('') + '...' : script.description}</p>
+                        <button class="script-button" data-url={script.url} data-script={btoa(JSON.stringify(script))}>
+                            <span class="installtext" data-id={script.id}>Install</span>
+                        </button>
                     </div>
                 ))
             }
@@ -285,7 +167,7 @@ var modules = [
         const scripts = await caches.open('astro-scripts');
         const modules = await caches.open('astro-modules');
 
-        document.querySelectorAll("p.installtext").forEach((text) => {
+        document.querySelectorAll(".installtext").forEach((text) => {
             const scriptInfo = (JSON.parse(localStorage.getItem("scripts")) || {})[text.dataset.id];
 
             (!scriptInfo || scriptInfo === "uninstalled") ? text.innerText = "Install" : text.innerText = "Uninstall";
@@ -345,7 +227,7 @@ var modules = [
             await notify.hide();
             notify.show("Script Installed", "success", 2000);
 
-            document.querySelector(`p.installtext[data-id=${script.id}]`).innerText = "Uninstall";
+            document.querySelector(`.installtext[data-id=${script.id}]`).innerText = "Uninstall";
             setScript(script.id, "installed");
         }
 
@@ -357,7 +239,7 @@ var modules = [
             await notify.hide();
             notify.show("Script Uninstalled", "success", 2000);
 
-            document.querySelector(`p.installtext[data-id=${script.id}]`).innerText = "Install";
+            document.querySelector(`.installtext[data-id=${script.id}]`).innerText = "Install";
             setScript(script.id, "uninstalled");
         }
 
@@ -378,7 +260,7 @@ var modules = [
             await notify.hide();
             notify.show("Module Installed", "success", 2000);
 
-            document.querySelector(`p.installtext[data-id=${script.id}]`).innerText = "Uninstall";
+            document.querySelector(`.installtext[data-id=${script.id}]`).innerText = "Uninstall";
             setScript(script.id, "installed");
         }
 
@@ -390,7 +272,7 @@ var modules = [
             await notify.hide();
             notify.show("Script Uninstalled", "success", 2000);
 
-            document.querySelector(`p.installtext[data-id=${script.id}]`).innerText = "Install";
+            document.querySelector(`.installtext[data-id=${script.id}]`).innerText = "Install";
             setScript(script.id, "uninstalled");
         }
     </script>
@@ -401,11 +283,11 @@ var modules = [
 
         const view = createEditor("js");
 
-        window.moduleText = 
+        window.moduleText =
     `// Runs on every Noctura page load (excluding router navigations).
     `
 
-        window.injectText = 
+        window.injectText =
     `// Runs inside every page browsed through the proxy,
     // injected after Scramjet rewrites the document.
     // document and window belong to the proxied page itself.
