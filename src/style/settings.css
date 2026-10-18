@@ -1,85 +1,107 @@
 .settings {
   min-height: calc(100vh - 105px);
-  width: 90%;
-  overflow-y: auto;
-  margin: auto;
-  margin-bottom: auto;
+  width: min(1200px, 92%);
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 20px 0;
 }
 
 .settings-left {
-  width: 300px;
-  float: left;
+  width: 240px;
+  flex: none;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
+  position: sticky;
+  top: 16px;
+  padding: 20px 0;
 }
 
 .settings-left a {
-  width: 95%;
-  height: auto;
-  padding: 10px 20px;
+  padding: 9px 16px;
   background: transparent;
-  color: var(--font-color);
-  transition: 0.1s ease;
-  border-radius: 5px;
+  color: var(--nav-btn-color-darker);
+  transition:
+    background var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease);
+  border-radius: var(--radius-sm);
 }
 
 .settings-navlink-active {
   color: var(--nav-btn-color) !important;
+  background: rgb(var(--accent), 0.12);
 }
 
 .settings-left a:hover {
   background: rgb(var(--accent), 0.15);
+  color: var(--font-color);
 }
 
 .settings-right {
-  width: calc(100% - 300px);
-  float: left;
+  flex: 1;
+  min-width: 0;
+  padding: 20px 0;
 }
 
-.settings-left,
-.settings-right {
-  height: 100%;
-  padding: 20px;
+@media screen and (max-width: 760px) {
+  .settings {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .settings-left {
+    width: 100%;
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-bottom: 0;
+  }
+
+  .settings-right {
+    width: 100%;
+  }
 }
 
 .settings-section {
   width: 100%;
   height: auto;
-  padding: 10px 20px;
-  background: transparent;
-  transition: 0.1s ease;
-  border-radius: 5px;
-  margin-top: 10px;
+  padding: 16px 20px;
+  border: var(--borders-2);
+  border-radius: var(--radius-md);
+  margin-top: 12px;
   background: var(--settings-1);
 }
 
 .settings-input {
-  border-radius: 5px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--settings-3);
   background: var(--settings-2);
   color: var(--font-color);
-  padding: 5px 10px;
+  padding: 8px 12px;
   width: 100%;
   outline: none;
-  transition: 0.1s ease;
-  margin-top: 5px;
+  transition: border-color var(--dur-fast) var(--ease);
+  margin-top: 6px;
 }
 
 .settings-input:focus {
-  border: 1px solid #828282;
+  border: 1px solid rgb(var(--accent), 0.7);
 }
 
 .settings-submit {
-  border-radius: 5px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--settings-3);
   background: var(--settings-2);
   color: var(--font-color);
-  padding: 5px 10px;
+  padding: 8px 12px;
   width: 100%;
   outline: none;
-  transition: 0.1s ease;
-  margin-top: 5px;
+  transition:
+    background var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+  margin-top: 6px;
   cursor: pointer;
 }
 
