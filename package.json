@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "preinstall": "npx only-allow pnpm",
-    "check": "astro check"
+    "check": "astro check",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
@@ -30,16 +31,21 @@
   "type": "module",
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@eslint/js": "^10.0.1",
     "@tailwindcss/vite": "4.3.3",
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@types/js-cookie": "^3.0.6",
     "astro": "^7.3.8",
     "astro-seo": "^0.8.4",
+    "eslint": "^10.13.0",
+    "eslint-plugin-astro": "^3.2.1",
+    "globals": "^17.13.0",
     "prettier": "^3.0.0",
     "prettier-plugin-astro": "^0.11.0",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "4.3.3",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "typescript-eslint": "^8.71.2"
   },
   "engines": {
     "node": ">=22"
