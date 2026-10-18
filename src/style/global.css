@@ -58,42 +58,20 @@ button:not(:disabled),
   border-radius: 2px;
 }
 
-main.layout
-  > div:not(
-    .toast-container,
-    .header,
-    .top-banner,
-    .footer,
-    .site-footer,
-    .page-load-progress
-  ) {
-  view-transition-name: page-content;
-}
-
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
 }
 
-::view-transition-old(page-content) {
-  animation: vt-out var(--dur-fast) var(--ease) both;
+::view-transition-group(page-content) {
+  animation-duration: 220ms;
+  animation-timing-function: var(--ease);
 }
 
+::view-transition-old(page-content),
 ::view-transition-new(page-content) {
-  animation: vt-in var(--dur-med) var(--ease) both;
-}
-
-@keyframes vt-out {
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes vt-in {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
+  animation-duration: 220ms;
+  animation-timing-function: var(--ease);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -32,29 +32,84 @@ class Router {
       .then((res) => res.text())
       .then((text) => parser.parseFromString(text, "text/html"));
 
+    await this.#preloadStyles(doc);
+
+    const selector =
+      "main.layout > div:not(.toast-container, .header, .top-banner, .footer, .site-footer)";
+
+    const current = document.body.querySelector<HTMLElement>(selector);
+    const incoming = doc.body.querySelector<HTMLElement>(selector);
+
     const swap = () => {
       if (doc.title) document.title = doc.title;
 
-      const selector =
-        "main.layout > div:not(.toast-container, .header, .top-banner, .footer)";
-
-      const current = document.body.querySelector(selector);
-      const incoming = doc.body.querySelector(selector);
       if (current && incoming) current.replaceWith(incoming);
+      window.scrollTo({ top: 0, behavior: "instant" });
       this.#mergeHead(doc);
       this.#runScripts();
+    };
+
+    const done = () => {
       window.dispatchEvent(new CustomEvent("router:end"));
     };
 
     const withTransition = document as Document & {
-      startViewTransition?: (cb: () => void) => unknown;
+      startViewTransition?: (cb: () => void) => {
+        ready: Promise<void>;
+        finished: Promise<void>;
+      };
     };
 
-    if (withTransition.startViewTransition) {
-      withTransition.startViewTransition(swap);
+    if (withTransition.startViewTransition && current && incoming) {
+      current.style.viewTransitionName = "page-content";
+      incoming.style.viewTransitionName = "page-content";
+
+      const transition = withTransition.startViewTransition(swap);
+
+      transition.ready.catch((err) =>
+        console.warn("[router] view transition skipped:", err)
+      );
+
+      transition.finished.finally(() => {
+        incoming.style.viewTransitionName = "";
+        done();
+      });
     } else {
       swap();
+      done();
     }
+  }
+
+  async #preloadStyles(doc: Document) {
+    const fresh = Array.from(
+      doc.querySelectorAll<HTMLLinkElement>('head link[rel="stylesheet"]')
+    ).filter((link) => {
+      const href = link.getAttribute("href");
+      return (
+        href &&
+        !document.head.querySelector(`link[rel="stylesheet"][href="${href}"]`)
+      );
+    });
+
+    if (!fresh.length) return;
+
+    await Promise.race([
+      Promise.all(
+        fresh.map(
+          (link) =>
+            new Promise<void>((resolve) => {
+              const preload = document.createElement("link");
+              preload.rel = "preload";
+              preload.as = "style";
+              preload.href = link.href;
+              preload.onload = () => resolve();
+              preload.onerror = () => resolve();
+              document.head.appendChild(preload);
+            })
+        )
+      ),
+      new Promise<void>((resolve) => setTimeout(resolve, 2000))
+    ]);
   }
 
   #mergeHead(doc: Document) {
