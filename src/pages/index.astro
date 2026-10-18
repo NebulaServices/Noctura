@@ -282,9 +282,17 @@ const themes = [
 
         document.querySelector(".home").style.paddingBottom = "0px";
 
+        iframe.style.display = "block";
+
+        let hidden = false;
         const hide = function () {
+          if (hidden) return;
+          hidden = true;
+
+          clearTimeout(bail);
+          clearInterval(poll);
+
           loader.style.opacity = "0";
-          iframe.style.display = "block";
 
           setTimeout(function () {
             loader.remove();
@@ -301,9 +309,23 @@ const themes = [
             );
         }, 20000);
 
+        const poll = setInterval(function () {
+          try {
+            const doc = iframe.contentDocument;
+            if (!doc || doc.location.href === "about:blank") return;
+            if (
+              doc.readyState === "interactive" ||
+              doc.readyState === "complete" ||
+              (doc.body && doc.body.childElementCount > 0)
+            )
+              hide();
+          } catch (e) {
+            hide();
+          }
+        }, 250);
+
         iframe.onload = function () {
           iframe.onload = function () {};
-          clearTimeout(bail);
           hide();
         };
 
