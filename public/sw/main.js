@@ -3,21 +3,8 @@ importScripts("/scram/scramjet.all.js");
 const { ScramjetServiceWorker } = $scramjetLoadWorker();
 const scramjet = new ScramjetServiceWorker();
 
-addEventListener("install", async function (event) {
+addEventListener("install", function (event) {
   event.waitUntil(self.skipWaiting());
-
-  const cache = await caches.open("astro-scripts");
-
-  cache.keys().then(async (keys) => {
-    for (var { url } of keys) {
-      const res = await cache.match(url);
-      const body = await res.text();
-
-      (0, eval)(
-        `let moduleID = "${url.split("/").pop().split(".")[0]}";\n` + body
-      );
-    }
-  });
 });
 
 addEventListener("activate", function (event) {
@@ -60,6 +47,43 @@ self.onunhandledrejection = function (event) {
 
 const p = caches.open("astro-cache");
 
+async function injectScripts(response, event) {
+  if (
+    event.request.destination !== "document" &&
+    event.request.destination !== "iframe"
+  )
+    return response;
+
+  const type = response.headers.get("content-type") || "";
+  if (!type.includes("text/html")) return response;
+
+  const cache = await caches.open("astro-scripts");
+  const keys = await cache.keys();
+  if (!keys.length) return response;
+
+  let code = "";
+  for (const req of keys) {
+    const res = await cache.match(req);
+    code +=
+      "\n;(function () { try {\n" +
+      (await res.text()) +
+      "\n} catch (e) { console.warn('[noctura inject]', e); } })();";
+  }
+
+  let html = await response.text();
+  const tag =
+    "<script>" + code.replace(/<\/script/gi, "<\\/script") + "</scr" + "ipt>";
+  html = html.includes("</body>")
+    ? html.replace("</body>", tag + "</body>")
+    : html + tag;
+
+  return new Response(html, {
+    status: response.status,
+    statusText: response.statusText,
+    headers: response.headers
+  });
+}
+
 addEventListener("message", async (e) => {
   if (e.data == "updateCloak") {
     self.clients.matchAll().then((list) => {
@@ -89,7 +113,7 @@ addEventListener("fetch", function (event) {
           if (!navigator.onLine)
             return new Response("Offline", { status: 500 });
 
-          return await scramjet.fetch(event);
+          return await injectScripts(await scramjet.fetch(event), event);
         }
 
         if (
