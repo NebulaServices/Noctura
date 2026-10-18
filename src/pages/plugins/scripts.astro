@@ -342,17 +342,11 @@ var modules = [
                 }
             }));
 
-            await window.registerSW(true);
-
             await notify.hide();
             notify.show("Script Installed", "success", 2000);
 
             document.querySelector(`p.installtext[data-id=${script.id}]`).innerText = "Uninstall";
             setScript(script.id, "installed");
-
-            setTimeout(() => {
-                window.location.reload();
-            }, 2000);
         }
 
         window.uninstallScript = async (script) => {
@@ -365,10 +359,6 @@ var modules = [
 
             document.querySelector(`p.installtext[data-id=${script.id}]`).innerText = "Install";
             setScript(script.id, "uninstalled");
-
-            setTimeout(() => {
-                window.location.reload();
-            }, 2000);
         }
 
         window.installModule = async (script) => {
@@ -455,14 +445,8 @@ var modules = [
                         localStorage.setItem('saved-inject', script);
                         await cache.put('/custom.js', new Response(script, { headers: { 'Content-Type': 'application/javascript' } }));
 
-                        await window.registerSW(true);
-
                         await notify.hide();
                         notify.show("Saved Script", "success", 2000);
-
-                        setTimeout(() => {
-                            location.reload();
-                        }, 2000);
                         break;
                     }
                     case "module": {
@@ -470,14 +454,8 @@ var modules = [
                         localStorage.setItem('saved-module', script);
                         await cache.put('/custom.js', new Response(script, { headers: { 'Content-Type': 'application/javascript' } }));
 
-                        await window.registerSW(true);
-
                         await notify.hide();
                         notify.show("Saved Module", "success", 2000);
-
-                        setTimeout(() => {
-                            location.reload();
-                        }, 2000);
                         break;
                     }
                     default: {
