@@ -164,6 +164,13 @@ var modules = [
 
     <script type="module">
 // @ts-nocheck
+        async function initPluginButtons() {
+            if (!location.pathname.startsWith("/plugins/scripts")) return;
+
+            const grid = document.querySelector(".plugin-grid");
+            if (!grid || grid.dataset.ready) return;
+            grid.dataset.ready = "1";
+
         const scripts = await caches.open('astro-scripts');
         const modules = await caches.open('astro-modules');
 
@@ -275,13 +282,15 @@ var modules = [
             document.querySelector(`.installtext[data-id=${script.id}]`).innerText = "Install";
             setScript(script.id, "uninstalled");
         }
+        }
+
+        initPluginButtons();
+        addEventListener("router:end", initPluginButtons);
     </script>
 
     <script>
 // @ts-nocheck
         import createEditor from "../../js/editor";
-
-        const view = createEditor("js");
 
         window.moduleText =
     `// Runs on every Noctura page load (excluding router navigations).
@@ -293,6 +302,15 @@ var modules = [
     // document and window belong to the proxied page itself.
 
     // CODE HERE`;
+
+        function initEditor() {
+            if (!location.pathname.startsWith("/plugins/scripts")) return;
+
+            const mount = document.getElementById("monaco-editor");
+            if (!mount || mount.dataset.ready) return;
+            mount.dataset.ready = "1";
+
+            const view = createEditor("js");
 
         window.setInject = (that) => {that.classList.add('selected-opt'); that.nextElementSibling.classList.remove('selected-opt'); window.editing = 'inject'; view ? view.dispatch({ startState: view.state, changes: { from: 0, to: view.viewport.to, insert: localStorage.getItem("saved-inject") || injectText } }) : window.defaultText = injectText};
         window.setModule = (that) => {that.classList.add('selected-opt'); that.previousElementSibling.classList.remove('selected-opt'); window.editing = 'module'; view ? view.dispatch({ startState: view.state, changes: { from: 0, to: view.viewport.to, insert: localStorage.getItem("saved-module") || moduleText } }) : window.defaultText = moduleText};
@@ -324,5 +342,9 @@ var modules = [
                     }
                 }
             }
+        }
+
+        initEditor();
+        addEventListener("router:end", initEditor);
     </script>
 </Plugins>

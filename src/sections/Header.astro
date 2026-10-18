@@ -260,9 +260,6 @@ const currentDate = new Date().getTime();
         }
       };
 
-      document
-        .querySelector('a[href="/plugins/scripts"]')
-        .setAttribute("data-cold", "");
       document.getElementById("panic-button").href =
         localStorage.getItem("panic-url") || "https://classroom.google.com/";
     })();

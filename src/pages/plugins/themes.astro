@@ -82,7 +82,13 @@ var themes = [
           )
       );
     }
-    const fileInput = document.getElementById("file");
+    function initThemeImport() {
+      if (!location.pathname.startsWith("/plugins/themes")) return;
+
+      const fileInput = document.getElementById("file");
+      if (!fileInput || fileInput.dataset.ready) return;
+      fileInput.dataset.ready = "1";
+
     fileInput.addEventListener("change", (e) => {
       const file = e.target.files[0];
       const reader = new FileReader();
@@ -177,18 +183,15 @@ var themes = [
       };
       reader.readAsText(file);
     });
+    }
+
+    initThemeImport();
+    addEventListener("router:end", initThemeImport);
   </script>
 
   <script>
 // @ts-nocheck
     import createEditor from "../../js/editor";
-
-    const view = createEditor("css");
-
-    view.dispatch({
-      state: view.state,
-      changes: { from: 0, to: view.viewport.to, insert: getCurrentTheme() }
-    });
 
     function getCurrentTheme() {
       var str = "";
@@ -265,6 +268,20 @@ var themes = [
 
       return data;
     }
+
+    function initThemeEditor() {
+      if (!location.pathname.startsWith("/plugins/themes")) return;
+
+      const mount = document.getElementById("monaco-editor");
+      if (!mount || mount.dataset.ready) return;
+      mount.dataset.ready = "1";
+
+      const view = createEditor("css");
+
+      view.dispatch({
+        state: view.state,
+        changes: { from: 0, to: view.viewport.to, insert: getCurrentTheme() }
+      });
 
     var imports = document.getElementById("theme-import");
 
@@ -357,5 +374,9 @@ var themes = [
 
         a.click();
       });
+    }
+
+    initThemeEditor();
+    addEventListener("router:end", initThemeEditor);
   </script>
 </Plugins>

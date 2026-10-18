@@ -30,7 +30,6 @@ const { title } = Astro.props;
       {
         tabs.map((tab) => (
           <a
-            data-cold
             class={
               "plugins-navlink" +
               (tab[1].split("/").pop() == page ? " plugins-navlink-active" : "")
