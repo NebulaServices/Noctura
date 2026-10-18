@@ -47,7 +47,7 @@ var modules = [
 
     <Section>
         <h1 class="text-xl">Proxy Injection Scripts</h1>
-        <p>Scripts are run on both SW (excluding Aero) and proxy client (both excluding Rammerhead).</p>
+        <p>Scripts run inside every page you browse through the proxy, after Scramjet rewrites it.</p>
         <p>Usermade scripts are not supported because it's very easy to make a script to steal your information.</p>
         <div style={{
             display: 'flex',
@@ -402,37 +402,15 @@ var modules = [
         const view = createEditor("js");
 
         window.moduleText = 
-    `// @ts-nocheck (best solution)
-    // Runs after page load.
+    `// Runs on every Noctura page load (excluding router navigations).
     `
 
         window.injectText = 
-    `// @ts-nocheck (best solution)
-    // Runs after page load.
+    `// Runs inside every page browsed through the proxy,
+    // injected after Scramjet rewrites the document.
+    // document and window belong to the proxied page itself.
 
-    if (typeof __dynamic$config == 'object') {
-        /* Runs in Dynamic, SW and Client
-        Constants: __dynamic, __dynamic$config, __dynamic$location, __dynamic$meta
-        */
-
-        // CODE HERE
-    }
-
-    if (typeof __uv$config == 'object') {
-        /* Runs in UV, SW and Client
-        Constants: __uv, __uv$config, __uv.location, __uv.meta
-        */
-
-        // CODE HERE
-    }
-
-    if (typeof __aero$config == 'object') {
-        /* Runs in Aero 2, Client only
-        Constants: __aero$config, __aero$meta
-        */
-
-        // CODE HERE
-    }`;
+    // CODE HERE`;
 
         window.setInject = (that) => {that.classList.add('selected-opt'); that.nextElementSibling.classList.remove('selected-opt'); window.editing = 'inject'; view ? view.dispatch({ startState: view.state, changes: { from: 0, to: view.viewport.to, insert: localStorage.getItem("saved-inject") || injectText } }) : window.defaultText = injectText};
         window.setModule = (that) => {that.classList.add('selected-opt'); that.previousElementSibling.classList.remove('selected-opt'); window.editing = 'module'; view ? view.dispatch({ startState: view.state, changes: { from: 0, to: view.viewport.to, insert: localStorage.getItem("saved-module") || moduleText } }) : window.defaultText = moduleText};
