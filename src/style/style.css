@@ -1,7 +1,13 @@
-/* Set default color to white */
-
-* {
+body {
   color: var(--font-color);
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  color: inherit;
 }
 
 .top-banner {
