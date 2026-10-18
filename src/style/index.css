@@ -12,12 +12,6 @@
   transition: 0.1s ease;
 }
 
-.home-footer {
-  position: absolute;
-  bottom: 17px;
-  width: 100%;
-  text-align: center;
-}
 
 .home-container {
   position: relative;
@@ -110,16 +104,7 @@ h1 {
   border: 0 !important;
 }
 
-.logo-container {
-  display: flex;
-  flex-direction: row;
-  color: var(--logo-color) !important;
-}
 
-.logo-image {
-  height: 100px;
-  color: var(--logo-color) !important;
-}
 
 .logotext {
   font-size: clamp(40px, 9vw, 75px);

@@ -109,37 +109,10 @@
   width: 40px;
   height: 40px;
   display: inline-block;
-  /*animation: breathe 4s ease;*/
 }
 
-.tn-container {
-  @media screen and (max-width: 760px) {
-    display: none;
-  }
-}
 
-/* Hide if the screen is less than 760px */
-.tn-icon {
-  width: 40px;
-  height: 40px;
-  display: inline-block;
-  filter: var(--tn-filter);
-  transform: scale(1.02);
-}
 
-@keyframes breathe {
-  0% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
-  }
-
-  50% {
-    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
-  }
-
-  100% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-  }
-}
 
 .nav-slash {
   border-top: var(--borders-1);

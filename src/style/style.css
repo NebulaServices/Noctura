@@ -49,60 +49,12 @@
   width: 100%;
 }
 
-.button-container {
-  display: flex;
-  justify-content: flex-start;
-  margin-bottom: 10px;
-}
 
-.ab,
-.faviconc,
-.title {
-  font-size: 16px;
-  padding: 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  border-radius: 10px;
-  margin: 0 5px;
-  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(
-    to top right,
-    #4d008c 20%,
-    #6f00ff 50%,
-    #4d008c 80%
-  );
-}
 
-.cloak {
-  font-weight: 700;
-  font-size: 40px;
-  padding: 10px;
-}
 
-.settingscontainer {
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 102px);
-  width: 100%;
-}
 
 .preset {
   display: flex;
   gap: 10px;
 }
 
-.presetButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 1px solid #6f00ff;
-}
-
-.presetButton img {
-  max-width: 50%;
-  max-height: 50%;
-}
