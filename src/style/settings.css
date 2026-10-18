@@ -307,10 +307,6 @@
   color: #fff !important;
 }
 
-.demo_theme {
-  background-image: #fff !important;
-  color: #000 !important;
-}
 
 .sylv_theme {
   background: #5ed4ff !important;
@@ -377,26 +373,6 @@
   color: #000 !important;
 }
 
-.settings-img-button {
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
-
-.settings-img-container {
-  background: var(--settings-2);
-  color: var(--font-color);
-  padding: 5px 10px;
-  width: 200px;
-  height: 200px;
-  outline: none;
-  transition: 0.1s ease;
-  margin-top: 5px;
-  cursor: pointer;
-}
 
 .sec {
   color: var(--font-color) !important;

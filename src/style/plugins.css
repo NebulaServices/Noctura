@@ -8,12 +8,6 @@
   padding: 20px 0;
 }
 
-.settings p {
-  padding-right: 10px;
-  padding-left: 10px;
-  font-size: 11px;
-  color: var(--font-color) !important;
-}
 
 .plugins-left {
   width: 240px;
@@ -116,23 +110,3 @@
   background: rgb(var(--accent), 0.25) !important;
 }
 
-.plugins-img-button {
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
-
-.plugins-img-container {
-  background: var(--settings-2);
-  color: var(--font-color);
-  padding: 5px 10px;
-  width: 200px;
-  height: 200px;
-  outline: none;
-  transition: 0.1s ease;
-  margin-top: 5px;
-  cursor: pointer;
-}
