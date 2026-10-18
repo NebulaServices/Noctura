@@ -115,6 +115,7 @@
   flex: 1;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
@@ -123,4 +124,11 @@
 
 .footer-section span {
   color: inherit;
+}
+
+@media screen and (max-width: 760px) {
+  .footer-container {
+    flex-direction: column;
+    gap: 18px;
+  }
 }

@@ -39,6 +39,13 @@ import Layout from "@layout";
         padding: 24px 20px 48px;
       }
 
+      @media screen and (max-width: 420px) {
+        #container {
+          grid-template-columns: 1fr;
+          padding: 20px 14px 40px;
+        }
+      }
+
       #container .element {
         display: flex;
         flex-direction: column;
