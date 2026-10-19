@@ -1,5 +1,7 @@
 ---
-
+const { word } = Astro.props;
 ---
 
-{[...Astro.props.word].map((letter) => <span>{letter}</span>)}
+<span role="img" aria-label={word}
+  >{[...word].map((letter) => <span aria-hidden="true">{letter}</span>)}</span
+>
