@@ -8,7 +8,11 @@ import Section from "@components/Section.astro";
     <form id="custom-wisp-form">
       <h1 class="text-lg">Custom Wisp Server</h1>
 
-      <input class="settings-input" placeholder="wss://example.com/wisp/" />
+      <input
+        class="settings-input"
+        placeholder="wss://example.com/wisp/"
+        aria-label="Custom Wisp server URL"
+      />
       <button
         type="submit"
         class="settings-submit"
@@ -35,6 +39,7 @@ import Section from "@components/Section.astro";
       <input
         class="settings-input"
         placeholder="https://classroom.google.com/"
+        aria-label="Panic URL"
       />
     </form>
   </Section>

@@ -37,13 +37,14 @@ const themes = [
 <Layout title="Home">
   <div class="home">
     <!-- <div class="top-banner" /> -->
-    <form class="home-container">
+    <form class="home-container" role="search">
       <h1 class="logotext"><Obfuscated word="Noctura" /></h1>
       <input
         id="home-input"
         class="home-input"
         autocomplete="off"
         placeholder="Search freely..."
+        aria-label="Search the web or enter a URL"
       />
       <div class="home-results"></div>
     </form>
