@@ -36,6 +36,11 @@
   padding-left: 10px;
   padding-right: 10px;
   width: 500px;
+  position: relative;
+  transition:
+    all 0.1s ease,
+    margin-left 0.3s ease;
+
   @media screen and (max-width: 760px) {
     width: 100%;
     float: none;
@@ -45,10 +50,6 @@
     flex-wrap: wrap;
     align-items: center;
   }
-  position: relative;
-  transition:
-    all 0.1s ease,
-    margin-left 0.3s ease;
 }
 
 .nav-btn-title {
@@ -91,13 +92,12 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  flex: 1;
+  transition: padding-left 0.3s ease;
 
   @media screen and (max-width: 760px) {
     justify-content: center;
   }
-
-  flex: 1;
-  transition: padding-left 0.3s ease;
 }
 
 .top-left > a {
@@ -117,13 +117,14 @@
 .nav-slash {
   border-top: var(--borders-1);
   width: 24px;
-  @media screen and (max-width: 760px) {
-    display: none;
-  }
   display: inline-block;
   transform: rotate(120deg);
   margin: 0;
   background-color: var(--primary-text-color);
+
+  @media screen and (max-width: 760px) {
+    display: none;
+  }
 }
 
 #nav-move {
@@ -192,10 +193,6 @@
 }
 
 .nav-time {
-  @media screen and (max-width: 760px) {
-    display: none;
-  }
-
   margin: 0;
   padding: 6px 0 6px 0;
   display: flex;
@@ -208,6 +205,10 @@
   transition: 0.1s ease;
   pointer-events: none;
   text-align: right;
+
+  @media screen and (max-width: 760px) {
+    display: none;
+  }
 }
 
 .nav-time-text {
