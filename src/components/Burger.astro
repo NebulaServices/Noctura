@@ -5,9 +5,18 @@ const { background } = Astro.props;
 ---
 
 <div class="burger-container" id="burger-container">
-  <span id="_b1" class="burger-line-1"></span>
-  <span id="_b2" class="burger-line-2"></span>
-  <span id="_b3" class="burger-line-3"></span>
+  <button
+    type="button"
+    class="burger-button"
+    id="burger-button"
+    aria-label="More options"
+    aria-haspopup="true"
+    aria-expanded="false"
+  >
+    <span id="_b1" class="burger-line-1"></span>
+    <span id="_b2" class="burger-line-2"></span>
+    <span id="_b3" class="burger-line-3"></span>
+  </button>
 
   <div
     class="burger-child-container"
@@ -56,11 +65,13 @@ toggle = (e, only = false) => {
     const one = document.getElementById("_b1");
     const two = document.getElementById("_b2");
     const three = document.getElementById("_b3");
+    const button = document.getElementById("burger-button");
 
     if (one.classList.contains("burger-line-1-active")) {
         one.classList.remove("burger-line-1-active");
         two.classList.remove("burger-line-2-active");
         three.classList.remove("burger-line-3-active");
+        if (button) button.setAttribute("aria-expanded", "false");
 
         if (document.getElementsByClassName("burger-child-container")[0])
             document
@@ -81,13 +92,14 @@ toggle = (e, only = false) => {
         one.classList.add("burger-line-1-active");
         two.classList.add("burger-line-2-active");
         three.classList.add("burger-line-3-active");
+        if (button) button.setAttribute("aria-expanded", "true");
 
         if (document.getElementsByClassName("burger-child-container")[0])
             document.getElementsByClassName(
                 "burger-child-container"
             )[0].style.display = "block";
 
-        if (document.getElementsByClassName("burger-child-container")[0]) {
+        if (e.clientX && document.getElementsByClassName("burger-child-container")[0]) {
             var a = document.getElementsByClassName("burger-child-container")[0];
             var bounds = a.getBoundingClientRect();
 
@@ -111,4 +123,12 @@ toggle = (e, only = false) => {
 burger = document.getElementById("burger-container");
 
 burger.onclick = (e) => toggle(e);
+
+addEventListener("keydown", (e) => {
+    if (
+        e.key === "Escape" &&
+        document.getElementById("_b1").classList.contains("burger-line-1-active")
+    )
+        toggle(e, true);
+});
 </script>

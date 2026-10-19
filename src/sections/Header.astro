@@ -52,11 +52,15 @@ const currentDate = new Date().getTime();
         <Img src={logo} class="nav-icon" alt="Website Logo" />
       </a>
       <hr class="nav-slash" />
-      <a target="_blank" href={github}>
+      <a target="_blank" href={github} aria-label="Nebula Services on GitHub">
         <NebulaLogo />
       </a>
 
-      <div class="focus-mode-container">
+      <button
+        type="button"
+        class="focus-mode-container"
+        aria-label="Toggle focus mode"
+      >
         <!-- should we have a non-fullscreen mode, and if so how will we show to user different option? -->
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +82,7 @@ const currentDate = new Date().getTime();
             d="M32 32C14.3 32 0 46.3 0 64v96c0 17.7 14.3 32 32 32s32-14.3 32-32V96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H32zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7 14.3 32 32 32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H64V352zM320 32c-17.7 0-32 14.3-32 32s14.3 32 32 32h64v64c0 17.7 14.3 32 32 32s32-14.3 32-32V64c0-17.7-14.3-32-32-32H320zM448 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32V352z"
           ></path>
         </svg>
-      </div>
+      </button>
     </div>
 
     <div class="top-right">
@@ -113,7 +117,7 @@ const currentDate = new Date().getTime();
   </div>
 
   <div class="bottom">
-    <div class="nav-btns">
+    <nav class="nav-btns" aria-label="Primary">
       <div id="nav-move" class="nav-move"></div>
       {
         routes.map((route) => (
@@ -127,9 +131,9 @@ const currentDate = new Date().getTime();
           </a>
         ))
       }
-    </div>
+    </nav>
     <div class="nav-time">
-      <span class="server-indicator" id="proxy-status">
+      <span class="server-indicator" id="proxy-status" role="status">
         <span class="server-indicator-value"
           ><span class="indicator-dot"></span>
           <span class="server-status-text">Connecting...</span>

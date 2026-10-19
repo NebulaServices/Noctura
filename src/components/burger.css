@@ -6,6 +6,19 @@
   cursor: pointer;
 }
 
+.burger-button {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.burger-button span {
+  pointer-events: none;
+}
+
 .burger-line-1 {
   background: var(--logo-color);
   height: 1px;
