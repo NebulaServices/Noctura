@@ -377,3 +377,7 @@
 .sec {
   color: var(--font-color) !important;
 }
+
+:root.vt-quick .settings-left {
+  view-transition-name: section-nav;
+}

@@ -64,6 +64,11 @@ class Router {
       current.style.viewTransitionName = "page-content";
       incoming.style.viewTransitionName = "page-content";
 
+      const section = (href: string) =>
+        new URL(href, location.origin).pathname.split("/")[1] || "";
+      if (section(prev) !== "" && section(prev) === section(next))
+        document.documentElement.classList.add("vt-quick");
+
       const transition = withTransition.startViewTransition(swap);
 
       transition.ready.catch((err) =>
@@ -72,6 +77,7 @@ class Router {
 
       transition.finished.finally(() => {
         incoming.style.viewTransitionName = "";
+        document.documentElement.classList.remove("vt-quick");
         done();
       });
     } else {

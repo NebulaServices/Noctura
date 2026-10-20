@@ -110,3 +110,7 @@
   background: rgb(var(--accent), 0.25) !important;
 }
 
+
+:root.vt-quick .plugins-left {
+  view-transition-name: section-nav;
+}

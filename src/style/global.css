@@ -63,15 +63,56 @@ button:not(:disabled),
   animation: none;
 }
 
+/* Hold old geometry while the old page fades, then jump to the new
+   geometry during the dark beat so the snap is never visible. */
 ::view-transition-group(page-content) {
-  animation-duration: 220ms;
-  animation-timing-function: var(--ease);
+  animation-duration: 1ms;
+  animation-delay: 100ms;
+  animation-fill-mode: backwards;
 }
 
-::view-transition-old(page-content),
+@keyframes vt-page-out {
+  to {
+    opacity: 0;
+    filter: blur(3px);
+  }
+}
+
+@keyframes vt-page-in {
+  from {
+    opacity: 0;
+    filter: blur(3px);
+  }
+}
+
+::view-transition-old(page-content) {
+  animation: vt-page-out 90ms var(--ease) both;
+}
+
 ::view-transition-new(page-content) {
-  animation-duration: 220ms;
-  animation-timing-function: var(--ease);
+  animation: vt-page-in 130ms var(--ease) 110ms both;
+}
+
+/* Same-section navigations (settings tabs, plugins tabs) snap faster. */
+:root.vt-quick::view-transition-group(page-content) {
+  animation-delay: 55ms;
+}
+
+:root.vt-quick::view-transition-old(page-content) {
+  animation-duration: 50ms;
+}
+
+:root.vt-quick::view-transition-new(page-content) {
+  animation-duration: 80ms;
+  animation-delay: 60ms;
+}
+
+/* Section sidebars opt out of the fade entirely (see settings.css/plugins.css):
+   the new snapshot shows immediately, so only the active chip moves. */
+:root.vt-quick::view-transition-group(section-nav),
+:root.vt-quick::view-transition-old(section-nav),
+:root.vt-quick::view-transition-new(section-nav) {
+  animation: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
