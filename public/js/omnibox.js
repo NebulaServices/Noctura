@@ -11,11 +11,20 @@
   let timer = null;
   let controller = null;
 
+  const container = document.querySelector(".home-container");
+
   function open() {
     if (!items.length) return;
     input.classList.add("input-omnibox");
     input.setAttribute("aria-expanded", "true");
     results.style.display = "block";
+    if (container) {
+      container.style.setProperty(
+        "--omnibox-shift",
+        Math.round(results.offsetHeight * 0.4) + "px"
+      );
+      container.classList.add("omnibox-open");
+    }
   }
 
   function close() {
@@ -23,6 +32,7 @@
     input.setAttribute("aria-expanded", "false");
     input.removeAttribute("aria-activedescendant");
     results.style.display = "none";
+    if (container) container.classList.remove("omnibox-open");
     active = -1;
   }
 
@@ -50,16 +60,38 @@
     }
   }
 
+  const ICON =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg>';
+
   function render(data) {
+    const query = input.value.trim().toLowerCase();
+
     results.innerHTML = "";
     items = data.map(function (result, i) {
       const li = document.createElement("li");
-      const span = document.createElement("span");
+      const icon = document.createElement("i");
+      const text = document.createElement("span");
 
       li.id = "omnibox-option-" + i;
       li.setAttribute("role", "option");
-      span.innerText = result.phrase;
-      li.appendChild(span);
+      li.dataset.phrase = result.phrase;
+
+      icon.className = "omnibox-icon";
+      icon.innerHTML = ICON;
+      li.appendChild(icon);
+
+      text.className = "omnibox-text";
+      if (query && result.phrase.toLowerCase().startsWith(query)) {
+        const typed = document.createElement("span");
+        const rest = document.createElement("b");
+        typed.textContent = result.phrase.slice(0, query.length);
+        rest.textContent = result.phrase.slice(query.length);
+        text.appendChild(typed);
+        text.appendChild(rest);
+      } else {
+        text.textContent = result.phrase;
+      }
+      li.appendChild(text);
 
       li.addEventListener("pointerdown", function (e) {
         e.preventDefault();
@@ -117,7 +149,7 @@
     } else if (e.key === "Enter") {
       if (visible && active >= 0) {
         e.preventDefault();
-        pick(items[active].querySelector("span").innerText);
+        pick(items[active].dataset.phrase);
       } else {
         clear();
       }
