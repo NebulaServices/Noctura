@@ -45,8 +45,18 @@ const themes = [
         autocomplete="off"
         placeholder="Search freely..."
         aria-label="Search the web or enter a URL"
+        role="combobox"
+        aria-expanded="false"
+        aria-controls="home-results"
+        aria-autocomplete="list"
       />
-      <div class="home-results"></div>
+      <div
+        class="home-results"
+        id="home-results"
+        role="listbox"
+        aria-label="Search suggestions"
+      >
+      </div>
     </form>
 
     <div class="corner-tools">

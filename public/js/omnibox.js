@@ -1,109 +1,131 @@
-input = document.querySelector(".home-input");
+(function () {
+  const input = document.querySelector(".home-input");
+  const results = document.querySelector(".home-results");
 
-if (input) {
-  let autofill = false;
+  if (!input || !results) return;
 
-  const request = async function () {
-    const req = await fetch("/api/search?q=" + encodeURIComponent(input.value));
+  const form = input.closest("form");
 
-    return await req.json();
-  };
+  let items = [];
+  let active = -1;
+  let timer = null;
+  let controller = null;
 
-  input.addEventListener("focus", async function (e) {
-    if (!autofill) {
-      setTimeout(function () {
-        const results = document.querySelector(".home-results");
+  function open() {
+    if (!items.length) return;
+    input.classList.add("input-omnibox");
+    input.setAttribute("aria-expanded", "true");
+    results.style.display = "block";
+  }
 
-        if (results.innerHTML)
-          input.classList.add("input-omnibox"),
-            (autofill = true),
-            (results.style.display = "block");
-      });
+  function close() {
+    input.classList.remove("input-omnibox");
+    input.setAttribute("aria-expanded", "false");
+    input.removeAttribute("aria-activedescendant");
+    results.style.display = "none";
+    active = -1;
+  }
 
-      return;
-    }
-  });
+  function clear() {
+    close();
+    items = [];
+    results.innerHTML = "";
+  }
 
-  input.addEventListener("blur", async function (e) {
-    if (input.omnibox) return;
+  function pick(phrase) {
+    input.value = phrase;
+    clear();
+    if (form) form.requestSubmit();
+  }
 
-    if (autofill) {
-      autofill = false;
-
-      setTimeout(function () {
-        const results = document.querySelector(".home-results");
-        input.classList.remove("input-omnibox");
-
-        results.style.display = "none";
-      });
-
-      return;
-    }
-  });
-
-  input.addEventListener("keydown", async function (e) {
-    setTimeout(async function () {
-      if (!e.target.value)
-        return (
-          input.classList.remove("input-omnibox"),
-          (autofill = false),
-          (document.querySelector(".home-results").style.display = "none"),
-          setTimeout(
-            (e) => (document.querySelector(".home-results").innerHTML = ""),
-            100
-          )
-        );
-
-      const _value = e.target.value + "";
-
-      const data = await request(e.target.value);
-
-      if (e.target.value !== _value) return;
-
-      const results = document.querySelector(".home-results");
-
-      autofill = true;
-
-      input.classList.add("input-omnibox");
-
-      results.innerHTML = "";
-
-      data.forEach(function (result) {
-        const li = document.createElement("li");
-        const span = document.createElement("span");
-
-        span.innerText = result.phrase;
-
-        li.appendChild(span);
-
-        li.addEventListener("mousedown", function (e) {
-          input.value = result.phrase;
-          input.omnibox = true;
-          input.focus();
-          input.omnibox = false;
-          input.classList.remove("input-omnibox");
-          autofill = false;
-          results.style.display = "none";
-          document.querySelector(".home-results").innerHTML = "";
-
-          input.parentNode.requestSubmit();
-        });
-
-        results.appendChild(li);
-      });
-
-      if (data.length === 0) {
-        const li = document.createElement("li");
-        const span = document.createElement("span");
-
-        span.innerText = "No results found";
-
-        li.appendChild(span);
-
-        results.appendChild(li);
-      }
-
-      results.style.display = "block";
+  function setActive(index) {
+    active = index;
+    items.forEach(function (li, i) {
+      li.classList.toggle("active", i === active);
     });
+    if (active >= 0) {
+      input.setAttribute("aria-activedescendant", items[active].id);
+    } else {
+      input.removeAttribute("aria-activedescendant");
+    }
+  }
+
+  function render(data) {
+    results.innerHTML = "";
+    items = data.map(function (result, i) {
+      const li = document.createElement("li");
+      const span = document.createElement("span");
+
+      li.id = "omnibox-option-" + i;
+      li.setAttribute("role", "option");
+      span.innerText = result.phrase;
+      li.appendChild(span);
+
+      li.addEventListener("pointerdown", function (e) {
+        e.preventDefault();
+        pick(result.phrase);
+      });
+      li.addEventListener("pointerenter", function () {
+        setActive(i);
+      });
+
+      results.appendChild(li);
+      return li;
+    });
+
+    if (items.length) open();
+    else close();
+  }
+
+  async function request(query) {
+    if (controller) controller.abort();
+    controller = new AbortController();
+
+    try {
+      const req = await fetch("/api/search?q=" + encodeURIComponent(query), {
+        signal: controller.signal
+      });
+      render(await req.json());
+    } catch (e) {
+      if (e.name !== "AbortError") close();
+    }
+  }
+
+  input.addEventListener("input", function () {
+    clearTimeout(timer);
+
+    const value = input.value.trim();
+
+    if (!value) {
+      clear();
+      return;
+    }
+
+    timer = setTimeout(function () {
+      request(value);
+    }, 150);
   });
-}
+
+  input.addEventListener("keydown", function (e) {
+    const visible = results.style.display === "block" && items.length;
+
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      if (!visible) return;
+      e.preventDefault();
+      const delta = e.key === "ArrowDown" ? 1 : -1;
+      setActive((active + delta + items.length) % items.length);
+    } else if (e.key === "Enter") {
+      if (visible && active >= 0) {
+        e.preventDefault();
+        pick(items[active].querySelector("span").innerText);
+      } else {
+        clear();
+      }
+    } else if (e.key === "Escape") {
+      close();
+    }
+  });
+
+  input.addEventListener("focus", open);
+  input.addEventListener("blur", close);
+})();
