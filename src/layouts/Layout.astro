@@ -129,6 +129,7 @@ const { url } = Astro;
     <script defer src="/scram/scramjet.all.js" data-cold></script>
     <script defer src="/baremux/index.js" data-cold></script>
     <script defer src="/js/proxy.js" data-cold></script>
+    <script defer src="/js/tabs.js" data-cold></script>
     <script async src="/js/gamebuttons.js" data-cold></script>
     <Analytics id="G-WE1NBQQ361" />
   </head>
@@ -139,8 +140,8 @@ const { url } = Astro;
       <Notifications />
       <slot />
       <Footer />
-      <!-- <Tabs /> -->
     </main>
+    <Tabs />
     <style is:global>
       code {
         font-family:

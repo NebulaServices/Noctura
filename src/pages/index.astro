@@ -258,7 +258,7 @@ const themes = [
     (function () {
       const homeContainer = document.querySelector(".home-container");
 
-      const submit = (e) => {
+      const submit = async (e) => {
         e.preventDefault();
 
         const input = document.querySelector(".home-input");
@@ -278,23 +278,23 @@ const themes = [
             encodeURIComponent(input.value);
         }
 
-        if (!window.scramjet || window.proxyStatus !== "connected") {
+        if (
+          !window.scramjet ||
+          window.proxyStatus !== "connected" ||
+          !window.tabs
+        ) {
           if (window.notify)
             window.notify.show("Proxy is still connecting...", "warning");
           return;
         }
 
-        const iframe = document.createElement("iframe");
-        iframe.classList.add("proxy-iframe");
-        iframe.src = window.scramjet.encodeUrl(url);
+        const { iframe } = await window.tabs.open(url);
 
         const loader = document.createElement("div");
         loader.classList.add("proxy-loader");
         loader.innerHTML = `<div><i class="loader-ring loader-ring-1"></i><i class="loader-ring loader-ring-2"></i><span>N</span></div><p>Loading...</p>`;
 
         document.querySelector(".home").style.paddingBottom = "0px";
-
-        iframe.style.display = "block";
 
         let hidden = false;
         const hide = function () {
@@ -342,7 +342,6 @@ const themes = [
         };
 
         homeContainer.parentNode.appendChild(loader);
-        homeContainer.parentNode.appendChild(iframe);
         window.iframe = iframe;
       };
 

@@ -1,130 +1,159 @@
-.tabs {
-  display: inline;
-}
-
-.tabs-btn {
+.tabs-dock {
   position: fixed;
-  left: 0;
-  bottom: 30px;
-  width: 25px;
-  display: flex;
-  justify-content: center;
-  align-tracks: center;
-  height: 60px;
-  border-radius: 0 10px 10px 0;
-  background: var(--settings-1);
-  transition:
-    background 0.1s ease,
-    left 0.3s ease;
-  cursor: pointer;
-  flex-direction: column;
-  border: 1px solid var(--settings-3);
-  border-left: 0;
-  z-index: 9999999999999;
+  left: 24px;
+  bottom: 24px;
+  z-index: 800;
 }
 
-.tabs-btn:hover {
-  background: rgb(var(--accent), 0.15);
-}
-
-.tabs-btn:active {
-  background: rgb(var(--accent), 0.25);
-}
-
-.tabs-btn:hover .arrow-1,
-.tabs-btn:hover .arrow-2 {
-  background: var(--nav-btn-color);
-}
-
-.arrow-1 {
-  width: 16px;
-  transform: rotate(65deg);
-  background: var(--settings-3);
-  height: 2px;
-  margin-bottom: -6px;
-  margin-left: 4px;
-}
-
-.arrow-2 {
-  width: 16px;
-  transform: rotate(-65deg);
-  background: var(--settings-3);
-  height: 2px;
-  margin-top: -6px;
-  margin-left: 4px;
-}
-
-.arrow-1.arrow-open {
-  transform: rotate(-65deg);
-  background: var(--settings-3);
-}
-
-.arrow-2.arrow-open {
-  transform: rotate(65deg);
-  background: var(--settings-3);
-}
-
-.arrow {
-  transition: transform 0s;
-}
-
-.tabs-list {
-  position: fixed;
-  left: 0;
-  top: 0;
-  transform: translateX(-100%);
-  height: 100%;
-  transition: 0.3s ease;
-  width: 210px;
-  background: var(--settings-1);
-  z-index: 9999999999999;
-  border-right: 1px solid var(--font-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 15px;
-  gap: 15px;
-}
-
-.tabs-tab {
-  width: 90%;
-  border: var(--borders-2);
-  padding: 5px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.tab-info {
+.tabs-toggle {
   position: relative;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(var(--accent), 0.3);
+  border-radius: var(--radius-md);
+  background: rgb(var(--accent), 0.06);
+  color: var(--logo-color);
+  cursor: pointer;
+  transition:
+    background var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+
+.tabs-toggle:hover,
+.tabs-dock.open .tabs-toggle {
+  background: rgb(var(--accent), 0.15);
+  border-color: rgb(var(--accent), 0.55);
+}
+
+.tabs-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: #fff;
+  background: rgb(var(--accent));
+  border-radius: var(--radius-full);
+}
+
+.tabs-stack {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 10px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: min(270px, 80vw);
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition:
+    opacity var(--dur-med) var(--ease),
+    transform var(--dur-med) var(--ease);
+}
+
+.tabs-dock.open .tabs-stack {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.tab-card {
+  position: relative;
+}
+
+.tab-main {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 34px 10px 12px;
+  border: 1px solid var(--settings-3);
+  border-radius: var(--radius-md);
+  background: var(--settings-1);
+  box-shadow: var(--shadow-1);
+  transition:
+    background var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+
+.tab-main:hover {
+  background: rgb(var(--accent), 0.1);
+  border-color: rgb(var(--accent), 0.4);
+}
+
+.tab-card.active .tab-main {
+  background: rgb(var(--accent), 0.12);
+  border-color: rgb(var(--accent), 0.55);
+}
+
+.tab-title {
+  display: block;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--font-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tab-link {
+  display: block;
+  margin: 2px 0 0;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--nav-btn-color-darker);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .tab-close {
   position: absolute;
-  right: 2px;
-  top: 0px;
-  margin: 0;
-  vertical-align: center;
-}
-
-.tab-picture {
-  width: 100%;
-  height: auto;
-}
-
-.tab-title {
-  color: var(--font-color);
-  font-size: 17px;
-  max-width: calc(100% - 20px);
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.tab-link {
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 1;
   color: var(--nav-btn-color-darker);
-  font-size: 12px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  width: 100%;
+  border-radius: var(--radius-sm);
+  transition:
+    background var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease);
+}
+
+.tab-close:hover {
+  background: rgb(var(--accent), 0.2);
+  color: var(--font-color);
+}
+
+.tabs-empty {
+  padding: 12px;
+  font-size: 13px;
+  color: var(--nav-btn-color-darker);
+  border: 1px dashed var(--settings-3);
+  border-radius: var(--radius-md);
+  background: var(--settings-1);
+  text-align: center;
+}
+
+/* Proxied tab frames render below the header; geometry is set inline by
+   tabs.js — this double-class rule just outranks .proxy-iframe's defaults. */
+.proxy-iframe.tab-frame {
+  position: fixed;
+  z-index: 500;
 }
